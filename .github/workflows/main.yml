@@ -1,0 +1,35 @@
+name: Daily Stock Analysis
+
+on:
+  schedule:
+    - cron: '0 1 * * *'  # Runs at 1 AM UTC daily
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  analyze_stocks:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run stock analysis
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TEST_MODE: 'False'
+        NUM_TEST_STOCKS: '20'
+        INITIAL_INVESTMENT: '100000'
+      run: python main.py
+    - name: Upload CSV results
+      uses: actions/upload-artifact@v2
+      with:
+        name: stock-analysis-results
+        path: |
+          all_top_performers.csv
+          ml_recommendations.csv

@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
 import logging
-from config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+from config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_GROUP_CHAT_ID
 
 def send_telegram_message(data, message_type):
     try:
@@ -18,13 +18,13 @@ def send_telegram_message(data, message_type):
             raise ValueError(f"Unknown message type: {message_type}")
 
         params = {
-            "chat_id": TELEGRAM_CHAT_ID,
+            "chat_id": TELEGRAM_GROUP_CHAT_ID,
             "text": message,
             "parse_mode": "HTML"
         }
         response = requests.get(url, params=params)
         response.raise_for_status()
-        logging.info("Telegram message sent successfully")
+        logging.info("Telegram message sent successfully to the group")
     except Exception as e:
         logging.error(f"Error sending Telegram message: {e}")
 

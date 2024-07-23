@@ -18,7 +18,7 @@ def main():
         logging.info("Analysis completed successfully")
     except Exception as e:
         logging.error(f"An error occurred: {e}")
-        send_telegram_message(f"An error occurred: {e}", 'error')
+        #send_telegram_message(f"An error occurred: {e}", 'error')
 
 if __name__ == "__main__":
     main()

@@ -36,7 +36,7 @@ def format_performance_message(top_performers, current_date):
     periods = top_performers['Period'].unique()
 
     for period in periods:
-        message += f"🔥 <b>Top Performers - {period.upper()}</b> 🔥\n"
+        message += f"🔥 <b>Top Performers - last {period.upper()}</b> 🔥\n"
         top_5 = top_performers[top_performers['Period'] == period].head()
         for i, row in top_5.iterrows():
             emoji = emojis[i] if i < len(emojis) else "🔹"

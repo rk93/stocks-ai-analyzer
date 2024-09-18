@@ -31,4 +31,4 @@ This project provides a comprehensive daily analysis of the Nifty 500 stocks, of
 
 This tool is designed for investors and analysts interested in the Indian stock market currently(will be expanded in future), providing a daily snapshot of market performance and potential investment opportunities.
 
-Note: This tool is for informational purposes only and should not be considered as financial advice. Always conduct your own research and consult with a qualified financial advisor before making investment decisions.
+Note: This tool is for informational purposes only and should not be considered as financial advice. Always conduct your own research and consult with a qualified financial advisor before making investment decisions..

@@ -1,9 +1,10 @@
-name: Daily Options Skew Map
+name: Options Skew Map Refresh
 
 on:
   workflow_dispatch:
   schedule:
-    # 22:15 UTC safely after the regular US close throughout DST changes.
+    # Near-live snapshots while US markets are active. GitHub schedules may run a few minutes late.
+    - cron: '*/30 13-21 * * 1-5'
     - cron: '15 22 * * 1-5'
 
 permissions:
@@ -21,12 +22,32 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run skew scanner
         run: python skew_map.py
-      - name: Persist observations
+      - name: Export GitHub Pages data
+        run: |
+          mkdir -p docs/data
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import pandas as pd
+
+          latest = Path('data/skew_latest.csv')
+          history = Path('data/skew_history.csv')
+          errors = Path('data/skew_errors.csv')
+          payload = {
+              'generated_at': datetime.now(timezone.utc).isoformat(),
+              'latest': pd.read_csv(latest).where(pd.notnull(pd.read_csv(latest)), None).to_dict('records') if latest.exists() else [],
+              'history': pd.read_csv(history).tail(1500).where(pd.notnull(pd.read_csv(history).tail(1500)), None).to_dict('records') if history.exists() else [],
+              'errors': pd.read_csv(errors).where(pd.notnull(pd.read_csv(errors)), None).to_dict('records') if errors.exists() else [],
+          }
+          Path('docs/data/skew.json').write_text(json.dumps(payload, allow_nan=False, default=str), encoding='utf-8')
+          PY
+      - name: Persist observations and page data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv || true
+          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv docs/data/skew.json || true
           if ! git diff --cached --quiet; then
-            git commit -m "data: update daily options skew map"
+            git commit -m "data: refresh options skew dashboard"
             git push
           fi

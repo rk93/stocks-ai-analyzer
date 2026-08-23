@@ -1,0 +1,62 @@
+name: Options Skew Map Refresh
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Near-live snapshots while US markets are active. GitHub schedules may run a few minutes late.
+    - cron: '*/30 13-21 * * 1-5'
+    - cron: '15 22 * * 1-5'
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run skew scanner
+        run: python skew_map.py
+      - name: Export GitHub Pages data
+        run: |
+          mkdir -p docs/data
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import pandas as pd
+
+          def records(path, tail=None):
+              p = Path(path)
+              if not p.exists():
+                  return []
+              df = pd.read_csv(p)
+              if tail:
+                  df = df.tail(tail)
+              return json.loads(df.to_json(orient='records'))
+
+          payload = {
+              'generated_at': datetime.now(timezone.utc).isoformat(),
+              'latest': records('data/skew_latest.csv'),
+              'history': records('data/skew_history.csv', 1500),
+              'errors': records('data/skew_errors.csv'),
+          }
+          Path('docs/data/skew.json').write_text(
+              json.dumps(payload, allow_nan=False, separators=(',', ':')),
+              encoding='utf-8'
+          )
+          PY
+      - name: Persist observations and page data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv docs/data/skew.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "data: refresh options skew dashboard"
+            git push
+          fi

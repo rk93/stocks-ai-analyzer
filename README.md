@@ -1,34 +1,98 @@
 # stocks-ai-analyzer
 
-Automated daily analysis of Nifty 500 stocks using Python, machine learning, and GitHub Actions.
+Stock research toolkit combining the existing Nifty 500 momentum/ML analysis with an options-market **Skew Map** for optionable equities.
 
-## Description
+> Educational research only. Skew describes relative option pricing/positioning; it does not predict price direction and is not financial advice.
 
-This project provides a comprehensive daily analysis of the Nifty 500 stocks, offering insights into top performers across various time periods and leveraging machine learning for stock recommendations. Key features include:
+## Options Skew Map
 
-- Daily automated analysis using GitHub Actions
-- Performance tracking for multiple time periods (2d, 3d, 7d, 15d, 1m, 2m, 3m, 6m, 1y, 3y, 5y)
-- Top 25 best-performing stocks for each period
-- Machine learning-based stock recommendations
-- Automated Telegram notifications with daily results
-- Data visualization with performance plots
+The skew module compares approximately 25-delta OTM put IV with approximately 25-delta OTM call IV using a consistent 28–60 DTE expiry rule.
 
-## Key Components
+`normalized skew = (put IV - call IV) / ATM IV`
 
-- Python script for stock data retrieval and analysis
-- Integration with yfinance for real-time stock data
-- Machine learning model for predictive analysis
-- GitHub Actions for daily automated execution
-- Telegram bot integration for instant notifications
+It combines skew with one-month price performance to classify each stock:
 
-## Outputs
+| Price | Skew | Quadrant | Research interpretation |
+|---|---|---|---|
+| Down | Calls bid | CONTRARIAN BID | Price/options disagreement; investigate |
+| Up | Calls bid | CHASE | Momentum and options agree |
+| Up | Puts bid | HEDGED RALLY | Rally with expensive protection |
+| Down | Puts bid | FEAR | Weak tape and expensive protection |
 
-- CSV files with top 25 performers for each time period
-- Consolidated CSV with all top performers
-- Machine learning-based stock recommendations
-- Performance visualization plots
-- Daily Telegram notifications with key insights
+### Improvements over a basic skew spreadsheet
 
-This tool is designed for investors and analysts interested in the Indian stock market currently(will be expanded in future), providing a daily snapshot of market performance and potential investment opportunities.
+- Black-Scholes delta estimation to select probability-comparable strikes
+- Fixed DTE selection rule
+- Both raw vol-point skew and ATM-normalized skew
+- 1-month return and relative return vs SPY
+- 5-observation and 20-observation skew change
+- Historical skew percentile after enough observations accumulate
+- Divergence ranking focused on weak relative price + rotation toward calls
+- Open-interest, bid/ask-spread and delta-fit quality score
+- Hard sanity ceiling for suspicious option marks
+- Earnings/catalyst flag when earnings falls inside the measured expiry
+- Sector agreement table using **raw** skew for cross-sector comparison
+- Persistent daily history
+- Interactive Streamlit dashboard
+- Scheduled weekday GitHub Action
+- Unit tests for core calculations
 
-Note: This tool is for informational purposes only and should not be considered as financial advice. Always conduct your own research and consult with a qualified financial advisor before making investment decisions..
+## Run locally
+
+```bash
+python -m pip install -r requirements.txt
+python skew_map.py
+streamlit run skew_dashboard.py
+```
+
+Scan selected symbols:
+
+```bash
+python skew_map.py --symbols AAPL NVDA MU AMD MSFT
+```
+
+Edit `skew_config.json` to change the universe, target delta, DTE window, quality thresholds, sanity ceiling and benchmark.
+
+## Data outputs
+
+- `data/skew_latest.csv` — latest board
+- `data/skew_history.csv` — observations used for change/percentile calculations
+- `data/skew_errors.csv` — names deliberately skipped when no reliable reading can be produced
+
+The first run has no historical skew changes. Five-observation change appears after enough runs; longer-term readings improve as history accumulates.
+
+## Dashboard
+
+The dashboard provides:
+
+1. Price × normalized-skew quadrant radar
+2. Contrarian/hedged/catalyst KPI counts
+3. Research ranking with divergence and quality scores
+4. Sector agreement view
+5. Per-stock skew history
+6. Live symbol entry and scan
+
+Run with `streamlit run skew_dashboard.py` and open the local Streamlit URL.
+
+## Automation
+
+`.github/workflows/skew-map.yml` runs after the US regular session Monday–Friday and commits the latest observations back to the repository. It can also be started manually from GitHub Actions.
+
+Free option-chain sources can be delayed, incomplete or rate-limited. The application therefore refuses to score a name when the configured expiry/strikes cannot produce a defensible reading. For serious trading use, replace the yfinance adapter with a licensed real-time options feed while keeping the analytics layer unchanged.
+
+## Existing Nifty 500 analyzer
+
+The original project remains available and continues to provide:
+
+- Daily Nifty 500 analysis
+- Multi-period performance tracking
+- Top-performer reports
+- Machine-learning recommendations
+- Telegram notifications
+- Existing portfolio analysis scripts
+
+Its original entry point remains:
+
+```bash
+python main.py
+```

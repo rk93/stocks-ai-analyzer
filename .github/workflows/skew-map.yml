@@ -31,16 +31,25 @@ jobs:
           from pathlib import Path
           import pandas as pd
 
-          latest = Path('data/skew_latest.csv')
-          history = Path('data/skew_history.csv')
-          errors = Path('data/skew_errors.csv')
+          def records(path, tail=None):
+              p = Path(path)
+              if not p.exists():
+                  return []
+              df = pd.read_csv(p)
+              if tail:
+                  df = df.tail(tail)
+              return json.loads(df.to_json(orient='records'))
+
           payload = {
               'generated_at': datetime.now(timezone.utc).isoformat(),
-              'latest': pd.read_csv(latest).where(pd.notnull(pd.read_csv(latest)), None).to_dict('records') if latest.exists() else [],
-              'history': pd.read_csv(history).tail(1500).where(pd.notnull(pd.read_csv(history).tail(1500)), None).to_dict('records') if history.exists() else [],
-              'errors': pd.read_csv(errors).where(pd.notnull(pd.read_csv(errors)), None).to_dict('records') if errors.exists() else [],
+              'latest': records('data/skew_latest.csv'),
+              'history': records('data/skew_history.csv', 1500),
+              'errors': records('data/skew_errors.csv'),
           }
-          Path('docs/data/skew.json').write_text(json.dumps(payload, allow_nan=False, default=str), encoding='utf-8')
+          Path('docs/data/skew.json').write_text(
+              json.dumps(payload, allow_nan=False, separators=(',', ':')),
+              encoding='utf-8'
+          )
           PY
       - name: Persist observations and page data
         run: |

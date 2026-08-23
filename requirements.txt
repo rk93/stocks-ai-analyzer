@@ -4,3 +4,8 @@ matplotlib
 seaborn
 scikit-learn
 requests
+numpy
+scipy
+streamlit
+plotly
+pytest

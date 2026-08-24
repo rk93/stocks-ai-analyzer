@@ -1,0 +1,22 @@
+symbol,error
+AAPL,Skew 14.990 exceeds sanity ceiling 1.25
+MSFT,Skew 1.999 exceeds sanity ceiling 1.25
+NVDA,Skew 11.992 exceeds sanity ceiling 1.25
+META,Skew 2.998 exceeds sanity ceiling 1.25
+GOOGL,Skew 11.992 exceeds sanity ceiling 1.25
+AVGO,Skew 14.990 exceeds sanity ceiling 1.25
+TSLA,Skew 13.991 exceeds sanity ceiling 1.25
+AMD,Skew 1.999 exceeds sanity ceiling 1.25
+MU,Skew 2.998 exceeds sanity ceiling 1.25
+PLTR,Skew 14.990 exceeds sanity ceiling 1.25
+NFLX,Skew 1.999 exceeds sanity ceiling 1.25
+BAC,Skew -3.998 exceeds sanity ceiling 1.25
+GS,Skew 2.998 exceeds sanity ceiling 1.25
+LLY,Skew 2.998 exceeds sanity ceiling 1.25
+UNH,Skew 5.996 exceeds sanity ceiling 1.25
+COST,Skew 2.998 exceeds sanity ceiling 1.25
+WMT,Skew 5.996 exceeds sanity ceiling 1.25
+KO,Skew 5.996 exceeds sanity ceiling 1.25
+CAT,Skew 2.998 exceeds sanity ceiling 1.25
+GE,Skew 1.999 exceeds sanity ceiling 1.25
+IWM,Skew 2.998 exceeds sanity ceiling 1.25

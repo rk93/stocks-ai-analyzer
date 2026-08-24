@@ -2,6 +2,12 @@ name: Options Skew Map Refresh
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'skew_map.py'
+      - 'skew_config.json'
+      - '.github/workflows/skew-map.yml'
   schedule:
     # Near-live snapshots while US markets are active. GitHub schedules may run a few minutes late.
     - cron: '*/30 13-21 * * 1-5'

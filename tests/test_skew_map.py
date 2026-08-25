@@ -1,6 +1,9 @@
 import math
 
+import pandas as pd
+
 from skew_map import bs_delta, bs_price, classify, implied_vol_from_mid
+from signal_engine import signal_label
 
 
 def test_atm_call_delta_is_reasonable():
@@ -33,3 +36,25 @@ def test_quadrants():
 
 def test_invalid_bs_inputs_return_nan():
     assert math.isnan(bs_delta(0, 100, 0.1, 0.2, "call"))
+
+
+def test_entry_candidate_requires_good_contrarian_setup():
+    row = pd.Series({
+        "quadrant": "CONTRARIAN BID", "quality_label": "HIGH", "quality_score": 85,
+        "return_vs_spy_1m": -0.08, "normalized_skew": -0.08,
+        "skew_change_5obs": -0.03, "catalyst_flag": False, "days_to_earnings": 30,
+    })
+    label, score, reason = signal_label(row)
+    assert label == "ADD CANDIDATE"
+    assert score >= 58
+    assert "call-side skew strengthening" in reason
+
+
+def test_near_earnings_becomes_event_risk():
+    row = pd.Series({
+        "quadrant": "CONTRARIAN BID", "quality_label": "HIGH", "quality_score": 90,
+        "return_vs_spy_1m": -0.08, "normalized_skew": -0.08,
+        "skew_change_5obs": -0.03, "catalyst_flag": True, "days_to_earnings": 3,
+    })
+    label, _, _ = signal_label(row)
+    assert label == "EVENT RISK"

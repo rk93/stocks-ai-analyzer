@@ -1,0 +1,22 @@
+{
+  "holdings": [
+    {"symbol": "META", "name": "Meta Platforms"},
+    {"symbol": "SNDK", "name": "Sandisk"},
+    {"symbol": "NVDA", "name": "Nvidia"},
+    {"symbol": "NVO", "name": "Novo Nordisk"},
+    {"symbol": "RGTI", "name": "Rigetti Computing"},
+    {"symbol": "CL", "name": "Colgate-Palmolive"},
+    {"symbol": "AVGO", "name": "Broadcom"},
+    {"symbol": "TSLA", "name": "Tesla"},
+    {"symbol": "AMD", "name": "Advanced Micro Devices"},
+    {"symbol": "SOUN", "name": "SoundHound AI"},
+    {"symbol": "NBIS", "name": "Nebius Group"},
+    {"symbol": "MP", "name": "MP Materials"},
+    {"symbol": "ASML", "name": "ASML"},
+    {"symbol": "MU", "name": "Micron Technology"},
+    {"symbol": "BURU", "name": "Nuburu"},
+    {"symbol": "CNX1.L", "name": "iShares NASDAQ 100 (Acc)"},
+    {"symbol": "CSPX.L", "name": "iShares Core S&P 500 (Acc)"},
+    {"symbol": "SSLN.L", "name": "iShares Physical Silver"}
+  ]
+}

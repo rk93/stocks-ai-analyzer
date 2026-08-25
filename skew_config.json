@@ -16,9 +16,21 @@
     "max_iv": 3.0,
     "max_atm_moneyness": 0.03
   },
+  "core_universe": [
+    "AAPL","MSFT","NVDA","META","AMZN","GOOGL","AVGO","TSLA","AMD","MU","PLTR","NFLX","CRM","ORCL","JPM","BAC","GS","XOM","CVX","LLY","UNH","COST","WMT","CAT","GE","SNDK","NVO","RGTI","CL","SOUN","NBIS","MP","ASML","SPY","QQQ","IWM"
+  ],
   "universe": [
-    "AAPL", "MSFT", "NVDA", "META", "AMZN", "GOOGL", "AVGO", "TSLA", "AMD", "MU",
-    "PLTR", "NFLX", "CRM", "ORCL", "JPM", "BAC", "GS", "XOM", "CVX", "LLY",
-    "UNH", "COST", "WMT", "KO", "CAT", "GE", "SPY", "QQQ", "IWM"
+    "AAPL","MSFT","NVDA","META","AMZN","GOOGL","AVGO","TSLA","AMD","MU","PLTR","NFLX","CRM","ORCL","ADBE","INTC","QCOM","TXN","AMAT","LRCX","KLAC","MRVL","ARM","DELL","HPQ","IBM","NOW","SNOW","PANW","CRWD","FTNT","DDOG","NET","MDB","SHOP","UBER","ABNB","DASH","PYPL","SQ","COIN","HOOD","RBLX","SNDK","RGTI","SOUN","NBIS",
+    "JPM","BAC","GS","MS","C","WFC","AXP","BLK","SCHW","USB","PNC","BK","COF","AIG","MET","PRU",
+    "XOM","CVX","COP","SLB","EOG","MPC","PSX","OXY","VLO","HAL",
+    "LLY","UNH","JNJ","ABBV","MRK","PFE","TMO","ABT","AMGN","GILD","ISRG","VRTX","REGN","BMY","CVS","CI","HUM","NVO",
+    "WMT","COST","HD","LOW","TGT","NKE","SBUX","MCD","KO","PEP","PG","CL","PM","MO","EL","LULU",
+    "CAT","GE","HON","RTX","BA","DE","UPS","FDX","LMT","NOC","ETN","EMR","MMM","CSX","UNP","WM","URI","MP",
+    "DIS","CMCSA","T","VZ","TMUS","SPOT","ROKU","PINS","SNAP",
+    "NEE","DUK","SO","AEP","EXC","SRE","D","PCG",
+    "LIN","APD","SHW","FCX","NEM","DOW","DD","NUE","STLD",
+    "AMT","PLD","EQIX","O","SPG","CCI",
+    "ASML","TSM","BABA","JD","PDD","MELI","SE","BIDU",
+    "SPY","QQQ","IWM","DIA","XLK","XLF","XLE","XLV","XLY","XLP","XLI","XLU","SMH","SOXX","ARKK"
   ]
 }

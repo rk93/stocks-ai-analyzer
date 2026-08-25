@@ -1,9 +1,6 @@
 symbol,error
 CRM,No validated ATM quote for normalization
-JPM,No call quote close enough to 25% delta
-XOM,No validated call quotes
-UNH,No call quote close enough to 25% delta
+JPM,No validated call quotes
 COST,No call quote close enough to 25% delta
 KO,No call quote close enough to 25% delta
-CAT,No validated call quotes
-GE,No validated call quotes
+GE,No validated ATM quote for normalization

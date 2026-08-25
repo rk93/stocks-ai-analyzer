@@ -1,30 +1,9 @@
 symbol,error
-AAPL,No validated call quotes
-MSFT,No validated call quotes
-NVDA,No validated call quotes
-META,No validated call quotes
-AMZN,No validated call quotes
-GOOGL,No validated call quotes
-AVGO,No validated call quotes
-TSLA,No validated call quotes
-AMD,No validated call quotes
-MU,No validated call quotes
-PLTR,No validated call quotes
-NFLX,No validated call quotes
-CRM,No validated call quotes
-ORCL,No validated call quotes
-JPM,No validated call quotes
-BAC,No validated call quotes
-GS,No validated call quotes
+CRM,No validated ATM quote for normalization
+JPM,No call quote close enough to 25% delta
 XOM,No validated call quotes
-CVX,No validated call quotes
-LLY,No validated call quotes
-UNH,No validated call quotes
-COST,No validated call quotes
-WMT,No validated call quotes
-KO,No validated call quotes
+UNH,No call quote close enough to 25% delta
+COST,No call quote close enough to 25% delta
+KO,No call quote close enough to 25% delta
 CAT,No validated call quotes
 GE,No validated call quotes
-SPY,No validated call quotes
-QQQ,No validated call quotes
-IWM,No validated call quotes

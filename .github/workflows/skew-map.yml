@@ -6,7 +6,9 @@ on:
     branches: [main]
     paths:
       - 'skew_map.py'
+      - 'market_data_provider.py'
       - 'skew_config.json'
+      - 'requirements.txt'
       - '.github/workflows/skew-map.yml'
   schedule:
     # Near-live snapshots while US markets are active. GitHub schedules may run a few minutes late.

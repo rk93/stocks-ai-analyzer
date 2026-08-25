@@ -1,5 +1,6 @@
 pandas
 yfinance
+yahooquery
 matplotlib
 seaborn
 scikit-learn

@@ -6,12 +6,14 @@ on:
     branches: [main]
     paths:
       - 'skew_map.py'
+      - 'signal_engine.py'
       - 'market_data_provider.py'
       - 'skew_config.json'
+      - 'portfolio_config.json'
       - 'requirements.txt'
+      - 'docs/index.html'
       - '.github/workflows/skew-map.yml'
   schedule:
-    # Near-live snapshots while US markets are active. GitHub schedules may run a few minutes late.
     - cron: '*/30 13-21 * * 1-5'
     - cron: '15 22 * * 1-5'
 
@@ -38,7 +40,22 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - name: Run skew scanner
-        run: python skew_map.py
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          if [ "$EVENT_NAME" = "schedule" ] && [ "$EVENT_SCHEDULE" = "*/30 13-21 * * 1-5" ]; then
+            SYMBOLS=$(python - <<'PY'
+          import json
+          print(' '.join(json.load(open('skew_config.json'))['core_universe']))
+          PY
+          )
+            python skew_map.py --symbols $SYMBOLS
+          else
+            python skew_map.py
+          fi
+      - name: Build portfolio and entry signals
+        run: python signal_engine.py
       - name: Export GitHub Pages data
         run: |
           mkdir -p docs/data
@@ -57,10 +74,14 @@ jobs:
                   df = df.tail(tail)
               return json.loads(df.to_json(orient='records'))
 
+          signals = records('data/signals_latest.csv')
           payload = {
               'generated_at': datetime.now(timezone.utc).isoformat(),
               'latest': records('data/skew_latest.csv'),
-              'history': records('data/skew_history.csv', 1500),
+              'signals': signals,
+              'entry_candidates': [x for x in signals if x.get('research_state') == 'ADD CANDIDATE'],
+              'portfolio': [x for x in signals if bool(x.get('in_portfolio'))],
+              'history': records('data/skew_history.csv', 5000),
               'errors': records('data/skew_errors.csv'),
           }
           Path('docs/data/skew.json').write_text(
@@ -72,7 +93,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv docs/data/skew.json || true
+          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv docs/data/skew.json || true
           if ! git diff --cached --quiet; then
             git commit -m "data: refresh options skew dashboard"
             git push

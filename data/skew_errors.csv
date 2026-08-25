@@ -1,6 +1,4 @@
 symbol,error
-CRM,No validated ATM quote for normalization
-CVX,No call quote close enough to 25% delta
 COST,No call quote close enough to 25% delta
 GE,No validated ATM quote for normalization
 NVO,No call quote close enough to 25% delta

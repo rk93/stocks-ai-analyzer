@@ -8,8 +8,13 @@
   "quality": {
     "min_open_interest": 25,
     "good_open_interest": 500,
-    "max_spread_pct": 0.35,
-    "max_delta_error": 0.10
+    "max_spread_pct": 0.20,
+    "hard_max_spread_pct": 0.35,
+    "max_delta_error": 0.08,
+    "min_option_mid": 0.10,
+    "min_iv": 0.03,
+    "max_iv": 3.0,
+    "max_atm_moneyness": 0.03
   },
   "universe": [
     "AAPL", "MSFT", "NVDA", "META", "AMZN", "GOOGL", "AVGO", "TSLA", "AMD", "MU",

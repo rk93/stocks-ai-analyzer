@@ -1,5 +1,106 @@
 symbol,error
 CRM,No validated ATM quote for normalization
+TXN,No validated call quotes
+LRCX,No call quote close enough to 25% delta
+KLAC,No validated call quotes
+ARM,No validated ATM quote for normalization
+DELL,No validated ATM quote for normalization
+HPQ,No validated put quotes
+IBM,No call quote close enough to 25% delta
+CRWD,No call quote close enough to 25% delta
+FTNT,No validated call quotes
+DDOG,No validated call quotes
+SHOP,No put quote close enough to 25% delta
+ABNB,No validated call quotes
+DASH,No validated call quotes
+PYPL,No validated call quotes
+SQ,Insufficient price history
+RBLX,No validated ATM quote for normalization
+JPM,No call quote close enough to 25% delta
+MS,No validated call quotes
+C,No call quote close enough to 25% delta
+AXP,No validated call quotes
+BLK,No validated call quotes
+SCHW,No call quote close enough to 25% delta
+USB,No validated call quotes
+PNC,No validated call quotes
+BK,Insufficient price history
+COF,No call quote close enough to 25% delta
+AIG,No validated call quotes
+PRU,No put quote close enough to 25% delta
+CVX,No call quote close enough to 25% delta
+COP,No validated call quotes
+SLB,No call quote close enough to 25% delta
+EOG,No validated call quotes
+PSX,No validated call quotes
+OXY,No call quote close enough to 25% delta
+VLO,No call quote close enough to 25% delta
+HAL,No validated call quotes
+ABBV,No call quote close enough to 25% delta
+MRK,No call quote close enough to 25% delta
+TMO,No validated call quotes
+ABT,No call quote close enough to 25% delta
+AMGN,No validated call quotes
+GILD,No call quote close enough to 25% delta
+ISRG,No validated call quotes
+VRTX,No validated call quotes
+REGN,No call quote close enough to 25% delta
+BMY,No call quote close enough to 25% delta
+CVS,No validated ATM quote for normalization
+CI,No validated call quotes
+HUM,No call quote close enough to 25% delta
+NVO,No call quote close enough to 25% delta
 COST,No call quote close enough to 25% delta
+HD,No validated ATM quote for normalization
+LOW,No validated call quotes
+SBUX,No call quote close enough to 25% delta
 KO,No call quote close enough to 25% delta
+PG,No validated put quotes
+CL,No validated call quotes
+PM,No validated call quotes
+MO,No call quote close enough to 25% delta
+EL,No validated call quotes
 GE,No validated ATM quote for normalization
+HON,No validated call quotes
+RTX,No validated call quotes
+DE,No validated call quotes
+UPS,No validated put quotes
+FDX,No call quote close enough to 25% delta
+LMT,No validated call quotes
+NOC,No validated call quotes
+ETN,No validated call quotes
+EMR,No validated call quotes
+MMM,No validated call quotes
+CSX,No validated put quotes
+UNP,No validated call quotes
+URI,No validated call quotes
+DIS,No call quote close enough to 25% delta
+CMCSA,No call quote close enough to 25% delta
+TMUS,No validated call quotes
+SPOT,No call quote close enough to 25% delta
+ROKU,No validated call quotes
+PINS,No validated put quotes
+SNAP,No validated ATM quote for normalization
+NEE,No validated call quotes
+SO,No call quote close enough to 25% delta
+D,No put quote close enough to 25% delta
+PCG,No validated call quotes
+APD,No validated put quotes
+SHW,No validated call quotes
+NEM,No validated call quotes
+DD,No validated call quotes
+STLD,No validated put quotes
+PLD,No call quote close enough to 25% delta
+EQIX,No validated put quotes
+ASML,No call quote close enough to 25% delta
+JD,No call quote close enough to 25% delta
+PDD,No call quote close enough to 25% delta
+MELI,No validated put quotes
+SE,No validated call quotes
+BIDU,No call quote close enough to 25% delta
+DIA,No validated call quotes
+XLV,No validated put quotes
+XLY,No validated call quotes
+XLI,No validated call quotes
+SOXX,No validated put quotes
+ARKK,No validated call quotes

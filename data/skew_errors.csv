@@ -1,14 +1,10 @@
 symbol,error
-CRM,No put quote close enough to 25% delta
-JPM,No validated call quotes
-XOM,No call quote close enough to 25% delta
-CVX,No call quote close enough to 25% delta
-LLY,No put quote close enough to 25% delta
-COST,No validated call quotes
-GE,No validated call quotes
+JPM,No call quote close enough to 25% delta
+XOM,No put quote close enough to 25% delta
+CVX,No validated call quotes
+GE,No call quote close enough to 25% delta
 NVO,No call quote close enough to 25% delta
-RGTI,No call quote close enough to 25% delta
+RGTI,No validated call quotes
 CL,No validated call quotes
 SOUN,No call quote close enough to 25% delta
-MP,No validated call quotes
 ASML,No call quote close enough to 25% delta

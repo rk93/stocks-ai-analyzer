@@ -17,5 +17,5 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: pip install -r requirements.txt
-      - run: python -m pytest -q tests/test_skew_map.py
+      - run: python -m pytest -q tests/test_skew_map.py tests/test_signal_engine.py
       - run: python -m py_compile market_data_provider.py skew_map.py signal_engine.py skew_dashboard.py

@@ -12,8 +12,10 @@ import pandas as pd
 import yfinance as yf
 
 LATEST = Path("data/skew_latest.csv")
+HISTORY = Path("data/skew_history.csv")
 SIGNALS = Path("data/signals_latest.csv")
 PORTFOLIO = Path("portfolio_config.json")
+MIN_CONFIRMATION_OBS = 5
 
 
 def _price_only(symbol: str) -> dict:
@@ -31,13 +33,13 @@ def _price_only(symbol: str) -> dict:
 def signal_label(row: pd.Series) -> tuple[str, float, str]:
     q = str(row.get("quadrant", ""))
     quality = str(row.get("quality_label", "LOW"))
-    qs = float(row.get("quality_score", 0) or 0)
     rel = float(row.get("return_vs_spy_1m", 0) or 0)
     skew = float(row.get("normalized_skew", 0) or 0)
     change = row.get("skew_change_5obs")
     change = float(change) if pd.notna(change) else None
     catalyst = bool(row.get("catalyst_flag", False))
     days = row.get("days_to_earnings")
+    obs = int(float(row.get("history_observations", 0) or 0))
 
     score = 0.0
     reasons = []
@@ -55,25 +57,42 @@ def signal_label(row: pd.Series) -> tuple[str, float, str]:
         reasons.append("price weakness and puts agree")
 
     score += {"HIGH": 25, "MEDIUM": 15, "LOW": 0}.get(quality, 0)
-    if quality != "LOW": reasons.append(f"{quality.lower()} quote quality")
-    if rel < -0.03 and q == "CONTRARIAN BID": score += min(15, abs(rel) * 100)
-    if skew < -0.03: score += min(10, abs(skew) * 50)
-    if change is not None:
-        if change < -0.015:
-            score += 15
-            reasons.append("call-side skew strengthening")
-        elif change > 0.03:
-            score -= 12
-            reasons.append("bullish skew fading")
+    if quality != "LOW":
+        reasons.append(f"{quality.lower()} quote quality")
+    if rel < -0.03 and q == "CONTRARIAN BID":
+        score += min(15, abs(rel) * 100)
+    if skew < -0.03:
+        score += min(10, abs(skew) * 50)
+
+    mature = obs >= MIN_CONFIRMATION_OBS
+    strengthening = change is not None and change < -0.005
+    if not mature:
+        reasons.append(f"history building ({obs}/{MIN_CONFIRMATION_OBS} observations)")
+        # A fresh one-day signal should never look as certain as a confirmed setup.
+        score = min(score, 59.9)
+    elif change is None:
+        reasons.append("history count met but 5-observation change unavailable")
+        score -= 8
+    elif strengthening:
+        score += 15
+        reasons.append("call-side skew strengthening; history confirmed")
+    elif change > 0.03:
+        score -= 12
+        reasons.append("bullish skew fading")
     else:
-        reasons.append("history still building")
+        reasons.append("history mature but skew not yet strengthening")
 
     if catalyst and days is not None and float(days) <= 10:
         score -= 30
         reasons.append(f"earnings in {int(float(days))}d")
         label = "EVENT RISK"
-    elif q == "CONTRARIAN BID" and quality in {"HIGH", "MEDIUM"} and score >= 58:
-        label = "ADD CANDIDATE"
+    elif q == "CONTRARIAN BID" and quality in {"HIGH", "MEDIUM"}:
+        if not mature and score >= 45:
+            label = "EARLY CANDIDATE"
+        elif mature and strengthening and score >= 65:
+            label = "ADD CANDIDATE"
+        else:
+            label = "WATCH"
     elif q == "FEAR":
         label = "DON'T ADD"
     elif q in {"CHASE", "HEDGED RALLY"}:
@@ -84,9 +103,22 @@ def signal_label(row: pd.Series) -> tuple[str, float, str]:
     return label, round(max(0, min(100, score)), 1), "; ".join(reasons)
 
 
+def _history_counts() -> dict[str, int]:
+    if not HISTORY.exists():
+        return {}
+    h = pd.read_csv(HISTORY)
+    if h.empty or "symbol" not in h.columns:
+        return {}
+    if "run_date" in h.columns:
+        return h.groupby("symbol")["run_date"].nunique().astype(int).to_dict()
+    return h.groupby("symbol").size().astype(int).to_dict()
+
+
 def build() -> pd.DataFrame:
     latest = pd.read_csv(LATEST) if LATEST.exists() else pd.DataFrame()
+    counts = _history_counts()
     if not latest.empty:
+        latest["history_observations"] = latest["symbol"].map(counts).fillna(0).astype(int)
         labels = latest.apply(signal_label, axis=1, result_type="expand")
         labels.columns = ["research_state", "entry_score", "signal_reason"]
         latest = pd.concat([latest, labels], axis=1)
@@ -111,6 +143,7 @@ def build() -> pd.DataFrame:
                 "normalized_skew": np.nan, "skew_change_5obs": np.nan,
                 "return_vs_spy_1m": np.nan, "divergence_score": np.nan,
                 "catalyst_flag": False, "days_to_earnings": np.nan,
+                "history_observations": counts.get(symbol, 0),
                 "research_state": "HOLD / WATCH", "entry_score": 0.0,
                 "signal_reason": "portfolio coverage available; reliable options skew unavailable",
                 "in_portfolio": True
@@ -118,7 +151,8 @@ def build() -> pd.DataFrame:
         except Exception as exc:
             extra.append({
                 "symbol": symbol, "sector": "Portfolio", "quadrant": "UNAVAILABLE",
-                "quality_label": "N/A", "research_state": "WATCH", "entry_score": 0.0,
+                "quality_label": "N/A", "history_observations": counts.get(symbol, 0),
+                "research_state": "WATCH", "entry_score": 0.0,
                 "signal_reason": f"data unavailable: {exc}", "in_portfolio": True
             })
     out = pd.concat([latest, pd.DataFrame(extra)], ignore_index=True, sort=False) if extra else latest
@@ -129,5 +163,5 @@ def build() -> pd.DataFrame:
 
 if __name__ == "__main__":
     df = build()
-    cols = [c for c in ["symbol", "research_state", "entry_score", "quadrant", "quality_label", "signal_reason"] if c in df]
+    cols = [c for c in ["symbol", "research_state", "entry_score", "history_observations", "quadrant", "quality_label", "signal_reason"] if c in df]
     print(df[cols].sort_values("entry_score", ascending=False).to_string(index=False))

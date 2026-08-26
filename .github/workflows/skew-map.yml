@@ -75,11 +75,15 @@ jobs:
               return json.loads(df.to_json(orient='records'))
 
           signals = records('data/signals_latest.csv')
+          confirmed = [x for x in signals if x.get('research_state') == 'ADD CANDIDATE']
+          early = [x for x in signals if x.get('research_state') == 'EARLY CANDIDATE']
           payload = {
               'generated_at': datetime.now(timezone.utc).isoformat(),
               'latest': records('data/skew_latest.csv'),
               'signals': signals,
-              'entry_candidates': [x for x in signals if x.get('research_state') == 'ADD CANDIDATE'],
+              'entry_candidates': confirmed + early,
+              'confirmed_entries': confirmed,
+              'early_candidates': early,
               'portfolio': [x for x in signals if bool(x.get('in_portfolio'))],
               'history': records('data/skew_history.csv', 5000),
               'errors': records('data/skew_errors.csv'),

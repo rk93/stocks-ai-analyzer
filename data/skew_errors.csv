@@ -1,11 +1,2 @@
 symbol,error
-JPM,No validated call quotes
-CVX,No call quote close enough to 25% delta
-LLY,No put quote close enough to 25% delta
-UNH,No call quote close enough to 25% delta
-GE,No validated call quotes
-RGTI,No call quote close enough to 25% delta
-CL,No validated call quotes
-SOUN,No put quote close enough to 25% delta
-MP,No put quote close enough to 25% delta
-ASML,No call quote close enough to 25% delta
+CL,No call quote close enough to 25% delta

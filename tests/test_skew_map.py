@@ -43,10 +43,11 @@ def test_entry_candidate_requires_good_contrarian_setup():
         "quadrant": "CONTRARIAN BID", "quality_label": "HIGH", "quality_score": 85,
         "return_vs_spy_1m": -0.08, "normalized_skew": -0.08,
         "skew_change_5obs": -0.03, "catalyst_flag": False, "days_to_earnings": 30,
+        "history_observations": 5,
     })
     label, score, reason = signal_label(row)
     assert label == "ADD CANDIDATE"
-    assert score >= 58
+    assert score >= 65
     assert "call-side skew strengthening" in reason
 
 
@@ -55,6 +56,7 @@ def test_near_earnings_becomes_event_risk():
         "quadrant": "CONTRARIAN BID", "quality_label": "HIGH", "quality_score": 90,
         "return_vs_spy_1m": -0.08, "normalized_skew": -0.08,
         "skew_change_5obs": -0.03, "catalyst_flag": True, "days_to_earnings": 3,
+        "history_observations": 5,
     })
     label, _, _ = signal_label(row)
     assert label == "EVENT RISK"

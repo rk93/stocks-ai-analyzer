@@ -104,15 +104,6 @@ jobs:
           }
           Path('docs/data/trending.json').write_text(json.dumps(trending_payload, allow_nan=False, separators=(',', ':')), encoding='utf-8')
           PY
-      - name: Persist observations and page data
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv data/trending_latest.csv data/market_context.json docs/data/skew.json docs/data/trending.json || true
-          if ! git diff --cached --quiet; then
-            git commit -m "data: refresh research dashboards"
-            git push
-          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -120,3 +111,15 @@ jobs:
       - name: Deploy refreshed dashboard
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Persist observations and page data
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv data/trending_latest.csv data/market_context.json docs/data/skew.json docs/data/trending.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "data: refresh research dashboards"
+            if ! git push; then
+              echo "Data commit raced with another main-branch update; dashboard was already deployed from this run."
+            fi
+          fi

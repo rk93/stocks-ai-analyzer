@@ -1,2 +1,52 @@
 symbol,error
-CL,No put quote close enough to 25% delta
+MDB,No call quote close enough to 25% delta
+SQ,Insufficient price history
+RBLX,No validated ATM quote for normalization
+PNC,No validated call quotes
+BK,Insufficient price history
+AIG,No validated call quotes
+MET,No call quote close enough to 25% delta
+EOG,No put quote close enough to 25% delta
+PSX,No put quote close enough to 25% delta
+TMO,No put quote close enough to 25% delta
+AMGN,No call quote close enough to 25% delta
+GILD,No call quote close enough to 25% delta
+ISRG,No validated put quotes
+VRTX,No validated call quotes
+REGN,No call quote close enough to 25% delta
+BMY,No call quote close enough to 25% delta
+HON,No call quote close enough to 25% delta
+NOC,No validated call quotes
+EMR,No call quote close enough to 25% delta
+CSX,No call quote close enough to 25% delta
+UNP,No validated call quotes
+URI,No call quote close enough to 25% delta
+DIS,No put quote close enough to 25% delta
+ROKU,No validated call quotes
+PINS,No call quote close enough to 25% delta
+SNAP,No validated ATM quote for normalization
+SO,No call quote close enough to 25% delta
+AEP,No validated call quotes
+EXC,No validated call quotes
+SRE,No call quote close enough to 25% delta
+D,No call quote close enough to 25% delta
+LIN,No call quote close enough to 25% delta
+APD,No call quote close enough to 25% delta
+DOW,No put quote close enough to 25% delta
+DD,No validated call quotes
+STLD,No validated call quotes
+AMT,No call quote close enough to 25% delta
+PLD,No call quote close enough to 25% delta
+EQIX,No validated put quotes
+O,No call quote close enough to 25% delta
+SPG,No put quote close enough to 25% delta
+JD,No call quote close enough to 25% delta
+PDD,No call quote close enough to 25% delta
+MELI,No call quote close enough to 25% delta
+BIDU,No call quote close enough to 25% delta
+XLF,No call quote close enough to 25% delta
+XLV,No validated call quotes
+XLY,No validated call quotes
+XLP,No validated call quotes
+XLI,No validated call quotes
+XLU,No validated call quotes

@@ -1,3 +1,4 @@
 symbol,error
 WMT,No put quote close enough to 25% delta
-SOUN,No validated ATM quote for normalization
+CL,No validated call quotes
+SOUN,No validated put quotes

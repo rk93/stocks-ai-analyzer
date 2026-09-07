@@ -1,51 +1,31 @@
 symbol,error
-FTNT,No call quote close enough to 25% delta
-ABNB,No call quote close enough to 25% delta
-DASH,No call quote close enough to 25% delta
-SQ,Insufficient price history
-RBLX,No put quote close enough to 25% delta
-SOUN,No validated put quotes
-USB,No call quote close enough to 25% delta
-PNC,No call quote close enough to 25% delta
-BK,Insufficient price history
-MET,No validated call quotes
-PRU,No validated call quotes
-GILD,No call quote close enough to 25% delta
-VRTX,No validated call quotes
-REGN,No call quote close enough to 25% delta
-NKE,No validated ATM quote for normalization
+META,No call quote close enough to 25% delta
+AMZN,No validated put quotes
+GOOGL,No put quote close enough to 25% delta
+AMD,No call quote close enough to 25% delta
+MU,No validated call quotes
+NFLX,No put quote close enough to 25% delta
+CRM,No validated call quotes
+ORCL,No call quote close enough to 25% delta
+JPM,No validated call quotes
+BAC,No validated call quotes
+GS,No validated call quotes
+XOM,No validated call quotes
+CVX,No validated call quotes
+LLY,No validated call quotes
+UNH,No validated call quotes
+COST,No validated call quotes
+WMT,No validated put quotes
+CAT,No validated call quotes
+GE,No validated call quotes
+SNDK,No validated call quotes
+NVO,No validated call quotes
+RGTI,No validated call quotes
 CL,No validated call quotes
-MO,No call quote close enough to 25% delta
-HON,No call quote close enough to 25% delta
-RTX,No call quote close enough to 25% delta
-NOC,No validated call quotes
-EMR,No put quote close enough to 25% delta
-CSX,No validated call quotes
-URI,No validated call quotes
-DIS,No call quote close enough to 25% delta
-CMCSA,No put quote close enough to 25% delta
-T,No call quote close enough to 25% delta
-ROKU,No validated call quotes
-SNAP,No call quote close enough to 25% delta
-SO,No validated call quotes
-AEP,No validated put quotes
-EXC,No validated call quotes
-SRE,No validated put quotes
-D,No call quote close enough to 25% delta
-LIN,No call quote close enough to 25% delta
-APD,No validated call quotes
-DD,No validated call quotes
-STLD,No call quote close enough to 25% delta
-EQIX,No validated call quotes
-O,No call quote close enough to 25% delta
-SPG,No validated call quotes
-JD,No validated put quotes
-PDD,No put quote close enough to 25% delta
-MELI,No call quote close enough to 25% delta
-SE,No put quote close enough to 25% delta
-XLF,No call quote close enough to 25% delta
-XLV,No validated put quotes
-XLY,No validated call quotes
-XLP,No validated call quotes
-XLI,No validated call quotes
-XLU,No call quote close enough to 25% delta
+SOUN,No validated call quotes
+NBIS,No validated call quotes
+MP,No validated call quotes
+ASML,No validated call quotes
+SPY,No call quote close enough to 25% delta
+QQQ,No call quote close enough to 25% delta
+IWM,No call quote close enough to 25% delta

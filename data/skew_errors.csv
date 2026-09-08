@@ -1,4 +1,5 @@
 symbol,error
+META,No call quote close enough to 25% delta
 CRM,No validated call quotes
 JPM,No validated call quotes
 BAC,No validated call quotes
@@ -8,7 +9,6 @@ CVX,No validated call quotes
 LLY,No validated put quotes
 UNH,No validated call quotes
 COST,No call quote close enough to 25% delta
-WMT,No call quote close enough to 25% delta
 CAT,No validated call quotes
 GE,No validated call quotes
 SNDK,No validated ATM quote for normalization

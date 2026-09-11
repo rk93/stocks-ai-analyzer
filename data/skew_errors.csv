@@ -1,12 +1,15 @@
 symbol,error
 CRM,No call quote close enough to 25% delta
-BAC,No call quote close enough to 25% delta
+BAC,No validated call quotes
 GS,No call quote close enough to 25% delta
+XOM,No call quote close enough to 25% delta
 LLY,No validated call quotes
+UNH,No call quote close enough to 25% delta
+WMT,No put quote close enough to 25% delta
 CAT,No validated call quotes
 GE,No call quote close enough to 25% delta
 NVO,No call quote close enough to 25% delta
 CL,No validated call quotes
-SOUN,No validated put quotes
+SOUN,No call quote close enough to 25% delta
 MP,No call quote close enough to 25% delta
 ASML,No validated call quotes

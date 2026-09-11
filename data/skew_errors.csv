@@ -1,14 +1,12 @@
 symbol,error
 CRM,No call quote close enough to 25% delta
-BAC,No validated call quotes
+BAC,No call quote close enough to 25% delta
 GS,No call quote close enough to 25% delta
-LLY,No validated ATM quote for normalization
-UNH,No call quote close enough to 25% delta
+LLY,No validated call quotes
 CAT,No validated call quotes
 GE,No call quote close enough to 25% delta
-NVO,No validated call quotes
-RGTI,No put quote close enough to 25% delta
+NVO,No call quote close enough to 25% delta
 CL,No validated call quotes
-SOUN,No put quote close enough to 25% delta
+SOUN,No validated put quotes
 MP,No call quote close enough to 25% delta
 ASML,No validated call quotes

@@ -1,15 +1,133 @@
 symbol,error
 CRM,No call quote close enough to 25% delta
+ADBE,No call quote close enough to 25% delta
+TXN,No call quote close enough to 25% delta
+AMAT,No call quote close enough to 25% delta
+KLAC,No call quote close enough to 25% delta
+ARM,No validated ATM quote for normalization
+HPQ,No validated call quotes
+IBM,No put quote close enough to 25% delta
+SNOW,No call quote close enough to 25% delta
+PANW,No validated call quotes
+FTNT,No validated call quotes
+DDOG,No validated call quotes
+NET,No call quote close enough to 25% delta
+MDB,No validated call quotes
+SHOP,No validated call quotes
+ABNB,No validated call quotes
+DASH,No validated call quotes
+PYPL,No call quote close enough to 25% delta
+SQ,Insufficient price history
+RBLX,No call quote close enough to 25% delta
+SOUN,No call quote close enough to 25% delta
 BAC,No validated call quotes
 GS,No call quote close enough to 25% delta
+MS,No validated call quotes
+WFC,No call quote close enough to 25% delta
+AXP,No validated call quotes
+BLK,No validated call quotes
+SCHW,No validated call quotes
+USB,Columns must be same length as key
+PNC,Columns must be same length as key
+BK,Insufficient price history
+COF,No validated call quotes
+AIG,No validated call quotes
+MET,No call quote close enough to 25% delta
+PRU,No validated put quotes
 XOM,No call quote close enough to 25% delta
+COP,No validated call quotes
+SLB,No call quote close enough to 25% delta
+EOG,No validated call quotes
+PSX,No validated call quotes
+OXY,No validated put quotes
+VLO,No call quote close enough to 25% delta
+HAL,Columns must be same length as key
 LLY,No validated call quotes
-UNH,No call quote close enough to 25% delta
+JNJ,No validated call quotes
+ABBV,No validated call quotes
+MRK,No validated call quotes
+PFE,No validated put quotes
+TMO,No validated call quotes
+ABT,No validated call quotes
+AMGN,No validated call quotes
+GILD,No validated call quotes
+ISRG,No validated call quotes
+VRTX,Columns must be same length as key
+REGN,No validated call quotes
+BMY,No validated call quotes
+CVS,No validated call quotes
+CI,Columns must be same length as key
+HUM,No validated call quotes
+NVO,No call quote close enough to 25% delta
 WMT,No put quote close enough to 25% delta
+HD,No validated call quotes
+LOW,No validated call quotes
+TGT,No validated call quotes
+SBUX,No validated call quotes
+MCD,No call quote close enough to 25% delta
+KO,No call quote close enough to 25% delta
+PEP,No validated call quotes
+PG,No put quote close enough to 25% delta
+CL,No validated call quotes
+PM,No validated call quotes
+MO,No validated put quotes
+EL,Columns must be same length as key
 CAT,No validated call quotes
 GE,No call quote close enough to 25% delta
-NVO,No call quote close enough to 25% delta
-CL,No validated call quotes
-SOUN,No call quote close enough to 25% delta
+HON,No validated call quotes
+RTX,No validated call quotes
+BA,No validated put quotes
+DE,No validated call quotes
+UPS,No validated call quotes
+FDX,No validated call quotes
+LMT,No validated call quotes
+ETN,No validated put quotes
+EMR,Columns must be same length as key
+MMM,No validated call quotes
+CSX,No validated call quotes
+UNP,No validated call quotes
+WM,No call quote close enough to 25% delta
+URI,No validated call quotes
 MP,No call quote close enough to 25% delta
+DIS,No call quote close enough to 25% delta
+CMCSA,No validated call quotes
+T,No put quote close enough to 25% delta
+VZ,No call quote close enough to 25% delta
+TMUS,No validated call quotes
+SPOT,No validated call quotes
+ROKU,No validated call quotes
+PINS,No validated call quotes
+SNAP,No validated put quotes
+NEE,No validated call quotes
+DUK,No call quote close enough to 25% delta
+SO,No validated call quotes
+AEP,No validated put quotes
+EXC,No validated call quotes
+SRE,No validated call quotes
+D,No validated call quotes
+PCG,No validated call quotes
+LIN,No validated put quotes
+APD,No validated call quotes
+NEM,No validated call quotes
+DOW,No validated call quotes
+DD,No validated call quotes
+STLD,No call quote close enough to 25% delta
+EQIX,No validated call quotes
+O,No call quote close enough to 25% delta
+SPG,No call quote close enough to 25% delta
+CCI,No call quote close enough to 25% delta
 ASML,No validated call quotes
+JD,No validated call quotes
+PDD,No validated call quotes
+MELI,No validated call quotes
+SE,No validated call quotes
+BIDU,No call quote close enough to 25% delta
+XLK,No call quote close enough to 25% delta
+XLF,No call quote close enough to 25% delta
+XLV,No validated call quotes
+XLY,No validated call quotes
+XLP,No validated call quotes
+XLI,No validated call quotes
+XLU,No validated call quotes
+SOXX,No validated call quotes
+ARKK,No validated call quotes

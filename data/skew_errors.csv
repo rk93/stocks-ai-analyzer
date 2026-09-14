@@ -5,15 +5,16 @@ AVGO,No call quote close enough to 25% delta
 CRM,No validated call quotes
 JPM,No validated call quotes
 BAC,No validated call quotes
-GS,No put quote close enough to 25% delta
-XOM,No call quote close enough to 25% delta
+GS,No validated call quotes
+XOM,No validated call quotes
+CVX,No validated put quotes
 LLY,No call quote close enough to 25% delta
 COST,No validated call quotes
 WMT,No validated put quotes
 CAT,No validated call quotes
 GE,No validated call quotes
 SNDK,No call quote close enough to 25% delta
-NVO,No call quote close enough to 25% delta
+NVO,No validated call quotes
 RGTI,No validated put quotes
 CL,No validated call quotes
 SOUN,No call quote close enough to 25% delta

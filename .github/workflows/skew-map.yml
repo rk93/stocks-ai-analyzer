@@ -9,6 +9,7 @@ on:
       - 'signal_engine.py'
       - 'trending_engine.py'
       - 'day_opportunities.py'
+      - 'prediction_tracker.py'
       - 'market_data_provider.py'
       - 'skew_config.json'
       - 'portfolio_config.json'
@@ -16,6 +17,7 @@ on:
       - 'docs/index.html'
       - 'docs/trending.html'
       - 'docs/day-opportunities.html'
+      - 'docs/prediction-tracker.html'
       - '.github/workflows/skew-map.yml'
   schedule:
     - cron: '*/30 13-21 * * 1-5'
@@ -62,6 +64,8 @@ jobs:
         run: python signal_engine.py
       - name: Build day opportunities
         run: python day_opportunities.py
+      - name: Evaluate saved predictions
+        run: python prediction_tracker.py
       - name: Build trending stock screen
         if: github.event_name != 'schedule' || github.event.schedule != '*/30 13-21 * * 1-5'
         run: python trending_engine.py
@@ -108,6 +112,12 @@ jobs:
           }
           Path('docs/data/trending.json').write_text(json.dumps(trending_payload, allow_nan=False, separators=(',', ':')), encoding='utf-8')
 
+          tracker_payload = {
+              'generated_at': datetime.now(timezone.utc).isoformat(),
+              'predictions': records('data/prediction_tracker.csv', 5000),
+          }
+          Path('docs/data/prediction-tracker.json').write_text(json.dumps(tracker_payload, allow_nan=False, separators=(',', ':')), encoding='utf-8')
+
           day_payload = {
               'generated_at': datetime.now(timezone.utc).isoformat(),
               'opportunities': records('data/day_opportunities_latest.csv'),
@@ -127,7 +137,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv data/trending_latest.csv data/market_context.json data/day_opportunities_latest.csv data/day_opportunities_history.csv docs/data/skew.json docs/data/trending.json docs/data/day-opportunities.json || true
+          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv data/trending_latest.csv data/market_context.json data/day_opportunities_latest.csv data/day_opportunities_history.csv data/prediction_tracker.csv docs/data/skew.json docs/data/trending.json docs/data/day-opportunities.json docs/data/prediction-tracker.json || true
           if ! git diff --cached --quiet; then
             git commit -m "data: refresh research dashboards"
             if ! git push; then

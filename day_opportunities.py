@@ -224,25 +224,41 @@ def main():
             keep = pd.concat([old, keep], ignore_index=True).tail(5000)
         keep.to_csv(HIST, index=False)
 
-    # Permanent append-only ledger: freeze the first ENTRY TRIGGERED per symbol/day.
-    triggered = df[df["state"] == "ENTRY TRIGGERED"].copy()
-    if not triggered.empty:
-        signal_date = pd.Timestamp(ts).tz_convert("America/New_York").date().isoformat()
-        triggered["signal_date"] = signal_date
-        triggered["prediction_id"] = triggered.apply(
-            lambda r: hashlib.sha256(f"{signal_date}|{r['symbol']}|ENTRY TRIGGERED".encode()).hexdigest()[:20],
-            axis=1,
+    # Permanent append-only ledger: freeze the first trigger per strategy/symbol/day.
+    signal_date = pd.Timestamp(ts).tz_convert("America/New_York").date().isoformat()
+    frozen = []
+    for strategy, state_col, score_col, reason_col, stop_col, t1_col, t2_col in [
+        ("V1", "state", "score", "reason", "stop", "target_1r", "target_2r"),
+        ("V2", "v2_state", "v2_score", "v2_reason", "v2_stop", "v2_target_1r", "v2_target_2r"),
+        ("V3", "v3_state", "v3_score", "v3_reason", "v3_stop", "v3_target_1r", "v3_target_2r"),
+    ]:
+        x = df[df[state_col] == "ENTRY TRIGGERED"].copy()
+        if x.empty:
+            continue
+        x["strategy_version"] = strategy
+        x["signal_date"] = signal_date
+        x["prediction_id"] = x.apply(
+            lambda r: hashlib.sha256(f"{signal_date}|{r['symbol']}|{strategy}|ENTRY TRIGGERED".encode()).hexdigest()[:20], axis=1
         )
-        triggered["frozen_at"] = ts
+        x["frozen_at"] = ts
+        x["prediction_state"] = x[state_col]
+        x["prediction_score"] = x[score_col]
+        x["prediction_reason"] = x[reason_col]
+        x["prediction_stop"] = x[stop_col]
+        x["prediction_target_1r"] = x[t1_col]
+        x["prediction_target_2r"] = x[t2_col]
+        frozen.append(x)
+    if frozen:
+        triggered = pd.concat(frozen, ignore_index=True, sort=False)
         if PREDICTIONS.exists():
             old = pd.read_csv(PREDICTIONS)
-            ledger = pd.concat([old, triggered], ignore_index=True)
+            ledger = pd.concat([old, triggered], ignore_index=True, sort=False)
             ledger = ledger.drop_duplicates("prediction_id", keep="first")
         else:
             ledger = triggered
         ledger.to_csv(PREDICTIONS, index=False)
 
-    print(df[["symbol", "state", "score", "day_change", "volume_ratio", "vwap_dist", "reason"]].head(20).to_string(index=False))
+    print(df[["symbol", "market_regime", "state", "score", "v2_state", "v2_score", "v3_state", "v3_score", "day_change", "volume_ratio_tod"]].head(20).to_string(index=False))
 
 
 if __name__ == "__main__":

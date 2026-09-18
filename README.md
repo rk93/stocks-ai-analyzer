@@ -96,3 +96,40 @@ Its original entry point remains:
 ```bash
 python main.py
 ```
+
+
+## Forward paper trading
+
+The repository now includes a forward-test harness for three isolated strategies:
+
+- **V1** — existing baseline
+- **V2** — opening-range / time-normalized-volume experiment
+- **V3** — V2 plus deterministic broad-market regime and risk gates
+
+Each shadow portfolio starts with `$10,000` by default, limits each position to `$1,000`, applies adverse slippage, and records an append-only trade/equity history. The Paper Trading dashboard is published at `docs/paper-trading.html`.
+
+Run locally:
+
+```bash
+python day_opportunities.py
+python paper_trader.py
+```
+
+### Optional Alpaca paper mirror
+
+Local shadow portfolios are always the comparison source of truth. To mirror V3 into Alpaca Paper Trading, add GitHub repository secrets `ALPACA_API_KEY` and `ALPACA_API_SECRET`, then set repository variable `PAPER_EXECUTION_MODE=alpaca`.
+
+The broker adapter is hard-wired to `https://paper-api.alpaca.markets`; there is intentionally no live-trading endpoint in this module.
+
+Useful environment overrides:
+
+```text
+PAPER_STARTING_CASH=10000
+PAPER_MAX_POSITION_DOLLARS=1000
+PAPER_MAX_OPEN_POSITIONS=5
+PAPER_SLIPPAGE_BPS=7
+PAPER_EXIT_AT_R=1
+ALPACA_PAPER_STRATEGY=V3
+```
+
+Every V1/V2/V3 signal is versioned and frozen in the prediction ledger before outcomes are evaluated.

@@ -10,6 +10,7 @@ on:
       - 'trending_engine.py'
       - 'day_opportunities.py'
       - 'prediction_tracker.py'
+      - 'backtest_engine.py'
       - 'market_data_provider.py'
       - 'skew_config.json'
       - 'portfolio_config.json'
@@ -18,6 +19,7 @@ on:
       - 'docs/trending.html'
       - 'docs/day-opportunities.html'
       - 'docs/prediction-tracker.html'
+      - 'docs/backtest.html'
       - '.github/workflows/skew-map.yml'
   schedule:
     - cron: '*/30 13-21 * * 1-5'
@@ -66,6 +68,9 @@ jobs:
         run: python day_opportunities.py
       - name: Evaluate saved predictions
         run: python prediction_tracker.py
+      - name: Run strategy backtest
+        if: github.event_name != 'schedule' || github.event.schedule == '15 22 * * 1-5'
+        run: python backtest_engine.py
       - name: Build trending stock screen
         if: github.event_name != 'schedule' || github.event.schedule != '*/30 13-21 * * 1-5'
         run: python trending_engine.py
@@ -118,6 +123,15 @@ jobs:
           }
           Path('docs/data/prediction-tracker.json').write_text(json.dumps(tracker_payload, allow_nan=False, separators=(',', ':')), encoding='utf-8')
 
+          summary_path = Path('data/backtest_summary.json')
+          backtest_summary = json.loads(summary_path.read_text(encoding='utf-8')) if summary_path.exists() else {}
+          backtest_payload = {
+              'generated_at': datetime.now(timezone.utc).isoformat(),
+              'summary': backtest_summary,
+              'trades': records('data/backtest_trades.csv'),
+          }
+          Path('docs/data/backtest.json').write_text(json.dumps(backtest_payload, allow_nan=False, separators=(',', ':')), encoding='utf-8')
+
           day_payload = {
               'generated_at': datetime.now(timezone.utc).isoformat(),
               'opportunities': records('data/day_opportunities_latest.csv'),
@@ -137,7 +151,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv data/trending_latest.csv data/market_context.json data/day_opportunities_latest.csv data/day_opportunities_history.csv data/predictions.csv data/prediction_tracker.csv docs/data/skew.json docs/data/trending.json docs/data/day-opportunities.json docs/data/prediction-tracker.json || true
+          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv data/trending_latest.csv data/market_context.json data/day_opportunities_latest.csv data/day_opportunities_history.csv data/predictions.csv data/prediction_tracker.csv data/backtest_trades.csv data/backtest_summary.json docs/data/skew.json docs/data/trending.json docs/data/day-opportunities.json docs/data/prediction-tracker.json docs/data/backtest.json || true
           if ! git diff --cached --quiet; then
             git commit -m "data: refresh research dashboards"
             if ! git push; then

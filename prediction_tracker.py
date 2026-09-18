@@ -35,7 +35,7 @@ def main():
     rows=[]
     for _,r in s.iterrows():
         sd=str(r.get("signal_date") or pd.to_datetime(r.generated_at,utc=True).tz_convert("America/New_York").date())
-        entry=f(r.get("price")); stop=f(r.get("stop")); t1=f(r.get("target_1r")); t2=f(r.get("target_2r"))
+        entry=f(r.get("price")); stop=f(r.get("prediction_stop", r.get("stop"))); t1=f(r.get("prediction_target_1r", r.get("target_1r"))); t2=f(r.get("prediction_target_2r", r.get("target_2r")))
         start=(pd.Timestamp(sd)+pd.Timedelta(days=1)).date().isoformat()
         end=(pd.Timestamp(sd)+pd.Timedelta(days=60)).date().isoformat()
         try:d=yf.Ticker(str(r.symbol)).history(start=start,end=end,interval="1d",auto_adjust=False).dropna(subset=["High","Low","Close"])

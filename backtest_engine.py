@@ -15,6 +15,7 @@ import pandas as pd
 import yfinance as yf
 
 from day_opportunities import score_row
+from strategy_v2 import score_v2
 
 CONFIG=Path("skew_config.json")
 TRADES=Path("data/backtest_trades.csv")
@@ -73,27 +74,53 @@ def intra_asof(today, prior_intraday, cutoff, dm):
     near=False
     for s in (dm["ma20"],dm["ma50"],dm["prior_low"]):
         if np.isfinite(s) and abs(price/s-1)<=.012:near=True;break
+    # Time-of-day normalized volume: compare the latest 3 bars with the same
+    # clock-time bars on prior sessions, avoiding the U-shaped intraday-volume bias.
+    recent_times=set(x.tail(3).index.time)
+    tod=prior_intraday[[t in recent_times for t in prior_intraday.index.time]]
+    tod_avg=safe(tod.Volume.mean(),0) if not tod.empty else 0
+    vr_tod=safe(x.Volume.tail(3).mean()/tod_avg) if tod_avg>0 else np.nan
+    mins=(cutoff.hour*60+cutoff.minute)-(9*60+30)
     return {"price":price,"session_open":op,"gap":op/prev-1,"day_change":price/prev-1,
-            "vwap":cur_vwap,"vwap_dist":vdist,"volume_ratio":vr,
+            "vwap":cur_vwap,"vwap_dist":vdist,"volume_ratio":vr,"volume_ratio_tod":vr_tod,"minutes_from_open":mins,
             "opening_range_high":or_high,"opening_range_low":or_low,
             "breakout_or":bool(np.isfinite(or_high) and price>or_high),"crossed_vwap":bool(crossed),
             "momentum_15m":mom,"near_support":near}
 
 
+def exact_trade_path(intra, cutoff, entry, stop, t1, t2):
+    """Walk future 5m bars. Entry occurs at cutoff close, so start next bar."""
+    future=intra[intra.index>cutoff]
+    risk=max(entry-stop,1e-9); first_1r=None; first_2r=None; first_stop=None
+    for ts,b in future.iterrows():
+        hi=safe(b.High); lo=safe(b.Low)
+        # Same 5m candle touching both is genuinely unordered.
+        if first_1r is None and hi>=t1:first_1r=ts
+        if first_2r is None and hi>=t2:first_2r=ts
+        if first_stop is None and lo<=stop:first_stop=ts
+        if first_1r is not None or first_stop is not None:break
+    if first_1r is not None and first_stop is not None and first_1r==first_stop:
+        result="AMBIGUOUS"; r=np.nan
+    elif first_1r is not None and (first_stop is None or first_1r<first_stop):
+        result="WIN_1R"; r=1.0
+    elif first_stop is not None:
+        result="STOP"; r=-1.0
+    else:
+        result="OPEN"; r=np.nan
+    return {"trade_result_1r":result,"realized_r_1r":r,
+            "first_1r_at":first_1r.isoformat() if first_1r is not None else "",
+            "first_2r_at":first_2r.isoformat() if first_2r is not None else "",
+            "first_stop_at":first_stop.isoformat() if first_stop is not None else ""}
+
 def outcome(daily, signal_day, entry, stop, t1, t2):
-    future=daily[pd.DatetimeIndex(daily.index).date>signal_day]
-    out={}
+    future=daily[pd.DatetimeIndex(daily.index).date>signal_day]; out={}
     for n in HORIZONS:
         label="3m" if n==63 else f"{n}d"
         if len(future)<n:
-            out.update({f"return_{label}":np.nan,f"mfe_{label}":np.nan,f"mae_{label}":np.nan,
-                        f"result_{label}":"PENDING"}); continue
+            out.update({f"return_{label}":np.nan,f"mfe_{label}":np.nan,f"mae_{label}":np.nan,f"result_{label}":"PENDING"});continue
         w=future.iloc[:n]; hi=safe(w.High.max()); lo=safe(w.Low.min()); close=safe(w.Close.iloc[-1])
-        th=np.isfinite(t1) and hi>=t1; sh=np.isfinite(stop) and lo<=stop
-        # Daily bars cannot order target/stop if both occur within the window.
-        result="AMBIGUOUS" if th and sh else ("CORRECT" if th else ("WRONG" if sh else ("CORRECT" if close>entry else "WRONG")))
         out.update({f"return_{label}":close/entry-1,f"mfe_{label}":hi/entry-1,f"mae_{label}":lo/entry-1,
-                    f"result_{label}":result})
+                    f"result_{label}":"UP" if close>entry else ("DOWN" if close<entry else "FLAT")})
     return out
 
 
@@ -119,33 +146,46 @@ def main():
             prior=intra[intra.index.date<day]
             # Mirrors the scheduled scanner cadence after the opening range exists.
             checkpoints=today[(today.index.minute%30==0)&(today.index.time>=pd.Timestamp("10:00").time())].index
-            signal=None
-            for cutoff in checkpoints:
-                im=intra_asof(today,prior,cutoff,dm)
-                if not im:continue
-                state,score,reason,stop,t1,t2=score_row(dm,im)
-                if state=="ENTRY TRIGGERED":
-                    signal=(cutoff,im,state,score,reason,stop,t1,t2);break
-            if not signal:continue
-            cutoff,im,state,score,reason,stop,t1,t2=signal
-            row={"symbol":symbol,"signal_date":str(day),"signal_time":cutoff.isoformat(),
-                 "score":score,"entry":im["price"],"stop":stop,"target_1r":t1,"target_2r":t2,
-                 "reason":reason,"volume_ratio":im["volume_ratio"],"vwap_dist":im["vwap_dist"],
-                 "day_change_at_signal":im["day_change"]}
-            row.update(outcome(daily,day,im["price"],stop,t1,t2));rows.append(row)
+            for version,scorer in (("V1",score_row),("V2",score_v2)):
+                signal=None
+                for cutoff in checkpoints:
+                    im=intra_asof(today,prior,cutoff,dm)
+                    if not im:continue
+                    state,score,reason,stop,t1,t2=scorer(dm,im)
+                    if state=="ENTRY TRIGGERED":
+                        signal=(cutoff,im,score,reason,stop,t1,t2);break
+                if not signal:continue
+                cutoff,im,score,reason,stop,t1,t2=signal
+                row={"strategy":version,"symbol":symbol,"signal_date":str(day),"signal_time":cutoff.isoformat(),
+                     "score":score,"entry":im["price"],"stop":stop,"target_1r":t1,"target_2r":t2,
+                     "reason":reason,"volume_ratio":im["volume_ratio"],"volume_ratio_tod":im["volume_ratio_tod"],
+                     "vwap_dist":im["vwap_dist"],"day_change_at_signal":im["day_change"]}
+                row.update(exact_trade_path(intra,cutoff,im["price"],stop,t1,t2))
+                row.update(outcome(daily,day,im["price"],stop,t1,t2));rows.append(row)
 
     df=pd.DataFrame(rows)
     TRADES.parent.mkdir(parents=True,exist_ok=True);df.to_csv(TRADES,index=False)
     summary={"generated_at":datetime.now(timezone.utc).isoformat(),"method":"exact_recent_intraday",
              "note":"5-minute point-in-time replay; historical intraday coverage is limited by Yahoo/yfinance.",
              "coverage_start":str(min(coverage)) if coverage else None,"coverage_end":str(max(coverage)) if coverage else None,
-             "signals":len(df),"horizons":{}}
+             "signals":len(df),"strategies":{},"horizons":{}}
     if not df.empty:
+        for version,g in df.groupby("strategy"):
+            resolved=g[g.trade_result_1r.isin(["WIN_1R","STOP"])]
+            wins=int((resolved.trade_result_1r=="WIN_1R").sum()); losses=int((resolved.trade_result_1r=="STOP").sum())
+            gross_win=float(resolved.loc[resolved.realized_r_1r>0,"realized_r_1r"].sum())
+            gross_loss=abs(float(resolved.loc[resolved.realized_r_1r<0,"realized_r_1r"].sum()))
+            summary["strategies"][version]={"signals":len(g),"resolved_1r":len(resolved),"wins_1r":wins,"stops":losses,
+                "ambiguous_5m":int((g.trade_result_1r=="AMBIGUOUS").sum()),
+                "win_rate_1r":wins/len(resolved) if len(resolved) else None,
+                "expectancy_r":safe(resolved.realized_r_1r.mean()) if len(resolved) else None,
+                "profit_factor_r":gross_win/gross_loss if gross_loss else None}
+        # Horizon returns describe signal follow-through; exact 1R trade sequencing is above.
         for n in HORIZONS:
             label="3m" if n==63 else f"{n}d"; col=f"result_{label}"
-            resolved=df[df[col].isin(["CORRECT","WRONG"])]
-            summary["horizons"][label]={"resolved":len(resolved),"correct":int((resolved[col]=="CORRECT").sum()),
-                "wrong":int((resolved[col]=="WRONG").sum()),"ambiguous":int((df[col]=="AMBIGUOUS").sum()),
+            resolved=df[df[col].isin(["UP","DOWN"])]
+            summary["horizons"][label]={"resolved":len(resolved),"correct":int((resolved[col]=="UP").sum()),
+                "wrong":int((resolved[col]=="DOWN").sum()),"ambiguous":0,
                 "pending":int((df[col]=="PENDING").sum()),
                 "win_rate":safe((resolved[col]=="CORRECT").mean()) if len(resolved) else None,
                 "avg_return":safe(df[f"return_{label}"].mean()) if df[f"return_{label}"].notna().any() else None,

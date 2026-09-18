@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-09-18T19:07:44.807182+00:00",
+  "method": "exact_recent_intraday",
+  "note": "5-minute point-in-time replay; historical intraday coverage is limited by Yahoo/yfinance.",
+  "coverage_start": "2026-06-25",
+  "coverage_end": "2026-09-18",
+  "signals": 58,
+  "horizons": {
+    "1d": {
+      "resolved": 49,
+      "correct": 19,
+      "wrong": 30,
+      "ambiguous": 9,
+      "pending": 0,
+      "win_rate": 0.3877551020408163,
+      "avg_return": -0.003327744331907925,
+      "median_return": -0.005316655397659686,
+      "avg_mfe": 0.013841952626283823,
+      "avg_mae": -0.015626159755549526
+    },
+    "5d": {
+      "resolved": 22,
+      "correct": 8,
+      "wrong": 14,
+      "ambiguous": 34,
+      "pending": 2,
+      "win_rate": 0.36363636363636365,
+      "avg_return": -0.0064375537951077205,
+      "median_return": -0.008067465289829823,
+      "avg_mfe": 0.037770593164151045,
+      "avg_mae": -0.044630716923424386
+    },
+    "15d": {
+      "resolved": 7,
+      "correct": 2,
+      "wrong": 5,
+      "ambiguous": 33,
+      "pending": 18,
+      "win_rate": 0.2857142857142857,
+      "avg_return": 0.001907367378370603,
+      "median_return": -0.009910055606355828,
+      "avg_mfe": 0.07025119974481091,
+      "avg_mae": -0.06865966081641059
+    },
+    "30d": {
+      "resolved": 4,
+      "correct": 1,
+      "wrong": 3,
+      "ambiguous": 19,
+      "pending": 35,
+      "win_rate": 0.25,
+      "avg_return": -0.017070430411793694,
+      "median_return": -0.0532688283129964,
+      "avg_mfe": 0.08951198062109592,
+      "avg_mae": -0.0981608901890835
+    },
+    "3m": {
+      "resolved": 0,
+      "correct": 0,
+      "wrong": 0,
+      "ambiguous": 0,
+      "pending": 58,
+      "win_rate": null,
+      "avg_return": null,
+      "median_return": null,
+      "avg_mfe": null,
+      "avg_mae": null
+    }
+  }
+}

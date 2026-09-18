@@ -78,7 +78,7 @@ jobs:
         run: python day_opportunities.py
       - name: Run shadow paper portfolios
         env:
-          PAPER_EXECUTION_MODE: local
+          PAPER_EXECUTION_MODE: ${{ vars.PAPER_EXECUTION_MODE || 'local' }}
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
           ALPACA_PAPER_STRATEGY: V3

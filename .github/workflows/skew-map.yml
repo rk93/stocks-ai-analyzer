@@ -137,7 +137,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv data/trending_latest.csv data/market_context.json data/day_opportunities_latest.csv data/day_opportunities_history.csv data/prediction_tracker.csv docs/data/skew.json docs/data/trending.json docs/data/day-opportunities.json docs/data/prediction-tracker.json || true
+          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv data/trending_latest.csv data/market_context.json data/day_opportunities_latest.csv data/day_opportunities_history.csv data/predictions.csv data/prediction_tracker.csv docs/data/skew.json docs/data/trending.json docs/data/day-opportunities.json docs/data/prediction-tracker.json || true
           if ! git diff --cached --quiet; then
             git commit -m "data: refresh research dashboards"
             if ! git push; then

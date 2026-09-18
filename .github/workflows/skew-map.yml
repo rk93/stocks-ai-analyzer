@@ -2,6 +2,12 @@ name: Options Skew Map Refresh
 
 on:
   workflow_dispatch:
+    inputs:
+      backtest_now:
+        description: 'Run historical backtest now'
+        required: false
+        default: true
+        type: boolean
   push:
     branches: [main]
     paths:
@@ -69,7 +75,7 @@ jobs:
       - name: Evaluate saved predictions
         run: python prediction_tracker.py
       - name: Run strategy backtest
-        if: github.event_name != 'schedule' || github.event.schedule == '15 22 * * 1-5'
+        if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.schedule == '15 22 * * 1-5'
         run: python backtest_engine.py
       - name: Build trending stock screen
         if: github.event_name != 'schedule' || github.event.schedule != '*/30 13-21 * * 1-5'

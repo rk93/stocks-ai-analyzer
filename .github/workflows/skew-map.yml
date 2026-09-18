@@ -17,6 +17,7 @@ on:
       - 'day_opportunities.py'
       - 'prediction_tracker.py'
       - 'backtest_engine.py'
+      - 'strategy_v2.py'
       - 'market_data_provider.py'
       - 'skew_config.json'
       - 'portfolio_config.json'

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -11,6 +12,7 @@ import yfinance as yf
 CONFIG = Path("skew_config.json")
 OUT = Path("data/day_opportunities_latest.csv")
 HIST = Path("data/day_opportunities_history.csv")
+PREDICTIONS = Path("data/predictions.csv")
 
 
 def _safe(v, default=np.nan):
@@ -214,13 +216,31 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(OUT, index=False)
 
-    # Persist only actionable/watch snapshots, one row per symbol per run.
+    # Keep scan history for diagnostics. Prediction ledger below is the permanent audit source.
     keep = df[df["state"].isin(["ENTRY TRIGGERED", "WATCH"])].copy()
     if not keep.empty:
         if HIST.exists():
             old = pd.read_csv(HIST)
             keep = pd.concat([old, keep], ignore_index=True).tail(5000)
         keep.to_csv(HIST, index=False)
+
+    # Permanent append-only ledger: freeze the first ENTRY TRIGGERED per symbol/day.
+    triggered = df[df["state"] == "ENTRY TRIGGERED"].copy()
+    if not triggered.empty:
+        signal_date = pd.Timestamp(ts).tz_convert("America/New_York").date().isoformat()
+        triggered["signal_date"] = signal_date
+        triggered["prediction_id"] = triggered.apply(
+            lambda r: hashlib.sha256(f"{signal_date}|{r['symbol']}|ENTRY TRIGGERED".encode()).hexdigest()[:20],
+            axis=1,
+        )
+        triggered["frozen_at"] = ts
+        if PREDICTIONS.exists():
+            old = pd.read_csv(PREDICTIONS)
+            ledger = pd.concat([old, triggered], ignore_index=True)
+            ledger = ledger.drop_duplicates("prediction_id", keep="first")
+        else:
+            ledger = triggered
+        ledger.to_csv(PREDICTIONS, index=False)
 
     print(df[["symbol", "state", "score", "day_change", "volume_ratio", "vwap_dist", "reason"]].head(20).to_string(index=False))
 

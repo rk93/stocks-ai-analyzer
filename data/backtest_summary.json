@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T19:07:44.807182+00:00",
+  "generated_at": "2026-09-18T19:11:28.821152+00:00",
   "method": "exact_recent_intraday",
   "note": "5-minute point-in-time replay; historical intraday coverage is limited by Yahoo/yfinance.",
   "coverage_start": "2026-06-25",
@@ -13,7 +13,7 @@
       "ambiguous": 9,
       "pending": 0,
       "win_rate": 0.3877551020408163,
-      "avg_return": -0.003327744331907925,
+      "avg_return": -0.003326315293990856,
       "median_return": -0.005316655397659686,
       "avg_mfe": 0.013841952626283823,
       "avg_mae": -0.015626159755549526

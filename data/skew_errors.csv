@@ -35,7 +35,7 @@ VLO,No validated call quotes
 HAL,No validated call quotes
 LLY,No call quote close enough to 25% delta
 JNJ,No validated call quotes
-ABBV,No validated call quotes
+ABBV,No validated put quotes
 MRK,No validated put quotes
 TMO,No validated call quotes
 ABT,No validated call quotes
@@ -45,13 +45,13 @@ ISRG,No validated call quotes
 VRTX,No validated call quotes
 REGN,No validated call quotes
 BMY,No validated ATM quote for normalization
-CVS,No validated put quotes
+CVS,No validated call quotes
 CI,No validated call quotes
 HUM,No validated call quotes
 HD,No validated call quotes
 LOW,No call quote close enough to 25% delta
 TGT,No validated call quotes
-SBUX,No validated call quotes
+SBUX,No call quote close enough to 25% delta
 PEP,No validated call quotes
 PG,No validated put quotes
 CL,No validated put quotes
@@ -64,7 +64,6 @@ RTX,No call quote close enough to 25% delta
 DE,No validated call quotes
 FDX,No validated call quotes
 LMT,No validated call quotes
-NOC,No call quote close enough to 25% delta
 ETN,No validated call quotes
 EMR,No validated call quotes
 MMM,No validated call quotes

@@ -18,6 +18,9 @@ on:
       - 'prediction_tracker.py'
       - 'backtest_engine.py'
       - 'strategy_v2.py'
+      - 'strategy_v3.py'
+      - 'paper_trader.py'
+      - 'docs/paper-trading.html'
       - 'market_data_provider.py'
       - 'skew_config.json'
       - 'portfolio_config.json'
@@ -73,6 +76,13 @@ jobs:
         run: python signal_engine.py
       - name: Build day opportunities
         run: python day_opportunities.py
+      - name: Run shadow paper portfolios
+        env:
+          PAPER_EXECUTION_MODE: local
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
+          ALPACA_PAPER_STRATEGY: V3
+        run: python paper_trader.py
       - name: Evaluate saved predictions
         run: python prediction_tracker.py
       - name: Run strategy backtest
@@ -130,6 +140,16 @@ jobs:
           }
           Path('docs/data/prediction-tracker.json').write_text(json.dumps(tracker_payload, allow_nan=False, separators=(',', ':')), encoding='utf-8')
 
+          paper_summary_path = Path('data/paper_summary.json')
+          paper_summary = json.loads(paper_summary_path.read_text(encoding='utf-8')) if paper_summary_path.exists() else {}
+          paper_payload = {
+              'generated_at': datetime.now(timezone.utc).isoformat(),
+              'summary': paper_summary,
+              'trades': records('data/paper_trades.csv', 5000),
+              'equity': records('data/paper_equity.csv', 5000),
+          }
+          Path('docs/data/paper-trading.json').write_text(json.dumps(paper_payload, allow_nan=False, separators=(',', ':')), encoding='utf-8')
+
           summary_path = Path('data/backtest_summary.json')
           backtest_summary = json.loads(summary_path.read_text(encoding='utf-8')) if summary_path.exists() else {}
           backtest_payload = {
@@ -158,7 +178,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv data/trending_latest.csv data/market_context.json data/day_opportunities_latest.csv data/day_opportunities_history.csv data/predictions.csv data/prediction_tracker.csv data/backtest_trades.csv data/backtest_summary.json docs/data/skew.json docs/data/trending.json docs/data/day-opportunities.json docs/data/prediction-tracker.json docs/data/backtest.json || true
+          git add data/skew_history.csv data/skew_latest.csv data/skew_errors.csv data/signals_latest.csv data/trending_latest.csv data/market_context.json data/day_opportunities_latest.csv data/day_opportunities_history.csv data/predictions.csv data/prediction_tracker.csv data/backtest_trades.csv data/backtest_summary.json data/paper_state.json data/paper_trades.csv data/paper_equity.csv data/paper_summary.json docs/data/skew.json docs/data/trending.json docs/data/day-opportunities.json docs/data/prediction-tracker.json docs/data/backtest.json docs/data/paper-trading.json || true
           if ! git diff --cached --quiet; then
             git commit -m "data: refresh research dashboards"
             if ! git push; then

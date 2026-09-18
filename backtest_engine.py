@@ -147,12 +147,15 @@ def main():
             prior=intra[intra.index.date<day]
             # Mirrors the scheduled scanner cadence after the opening range exists.
             checkpoints=today[(today.index.minute%30==0)&(today.index.time>=pd.Timestamp("10:00").time())].index
-            for version,scorer in (("V1",score_row),("V2",score_v2)):
+            mm=market_asof(market_daily,day) if not market_daily.empty else {}
+            for version in ("V1","V2","V3"):
                 signal=None
                 for cutoff in checkpoints:
                     im=intra_asof(today,prior,cutoff,dm)
                     if not im:continue
-                    state,score,reason,stop,t1,t2=scorer(dm,im)
+                    if version=="V1": state,score,reason,stop,t1,t2=score_row(dm,im)
+                    elif version=="V2": state,score,reason,stop,t1,t2=score_v2(dm,im)
+                    else: state,score,reason,stop,t1,t2=score_v3(dm,im,mm)
                     if state=="ENTRY TRIGGERED":
                         signal=(cutoff,im,score,reason,stop,t1,t2);break
                 if not signal:continue
@@ -189,7 +192,7 @@ def main():
             summary["horizons"][label]={"resolved":len(resolved),"correct":int((resolved[col]=="UP").sum()),
                 "wrong":int((resolved[col]=="DOWN").sum()),"ambiguous":0,
                 "pending":int((df[col]=="PENDING").sum()),
-                "win_rate":safe((resolved[col]=="CORRECT").mean()) if len(resolved) else None,
+                "win_rate":safe((resolved[col]=="UP").mean()) if len(resolved) else None,
                 "avg_return":safe(df[f"return_{label}"].mean()) if df[f"return_{label}"].notna().any() else None,
                 "median_return":safe(df[f"return_{label}"].median()) if df[f"return_{label}"].notna().any() else None,
                 "avg_mfe":safe(df[f"mfe_{label}"].mean()) if df[f"mfe_{label}"].notna().any() else None,

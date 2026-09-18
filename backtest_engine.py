@@ -98,7 +98,7 @@ def exact_trade_path(intra, cutoff, entry, stop, t1, t2):
         if first_1r is None and hi>=t1:first_1r=ts
         if first_2r is None and hi>=t2:first_2r=ts
         if first_stop is None and lo<=stop:first_stop=ts
-        if first_1r is not None or first_stop is not None:break
+        if first_2r is not None and first_stop is not None:break
     if first_1r is not None and first_stop is not None and first_1r==first_stop:
         result="AMBIGUOUS"; r=np.nan
     elif first_1r is not None and (first_stop is None or first_1r<first_stop):
@@ -107,7 +107,8 @@ def exact_trade_path(intra, cutoff, entry, stop, t1, t2):
         result="STOP"; r=-1.0
     else:
         result="OPEN"; r=np.nan
-    return {"trade_result_1r":result,"realized_r_1r":r,
+    hit2=first_2r is not None and (first_stop is None or first_2r<first_stop)
+    return {"trade_result_1r":result,"realized_r_1r":r,"target_2r_before_stop":bool(hit2),
             "first_1r_at":first_1r.isoformat() if first_1r is not None else "",
             "first_2r_at":first_2r.isoformat() if first_2r is not None else "",
             "first_stop_at":first_stop.isoformat() if first_stop is not None else ""}
@@ -179,7 +180,8 @@ def main():
                 "ambiguous_5m":int((g.trade_result_1r=="AMBIGUOUS").sum()),
                 "win_rate_1r":wins/len(resolved) if len(resolved) else None,
                 "expectancy_r":safe(resolved.realized_r_1r.mean()) if len(resolved) else None,
-                "profit_factor_r":gross_win/gross_loss if gross_loss else None}
+                "profit_factor_r":gross_win/gross_loss if gross_loss else None,
+                "target_2r_before_stop_rate":safe(g.target_2r_before_stop.mean()) if len(g) else None}
         # Horizon returns describe signal follow-through; exact 1R trade sequencing is above.
         for n in HORIZONS:
             label="3m" if n==63 else f"{n}d"; col=f"result_{label}"

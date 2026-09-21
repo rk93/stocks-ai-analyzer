@@ -1,0 +1,229 @@
+{
+  "generated_at": "2026-09-21T11:51:25.733657+00:00",
+  "mode": "local",
+  "alpaca_strategy": "V3",
+  "starting_cash": 10000.0,
+  "slippage_bps": 7.0,
+  "max_position_dollars": 1000.0,
+  "max_open_positions": 5,
+  "exit_at_r": 1.0,
+  "benchmarks": {
+    "SPY": {
+      "start_price": 761.6900024414062,
+      "price": 761.6900024414062,
+      "return": 0.0
+    },
+    "QQQ": {
+      "start_price": 721.4500122070312,
+      "price": 721.4500122070312,
+      "return": 0.0
+    }
+  },
+  "strategies": {
+    "V1": {
+      "equity": 9997.8,
+      "return": -0.00022015663600016833,
+      "cash": 6852.7,
+      "open_positions": 4,
+      "realized_pnl": 0.0,
+      "positions": [
+        {
+          "trade_id": "V1-NVDA-081933e581eb",
+          "symbol": "NVDA",
+          "qty": 4,
+          "entry_time": "2026-09-21T11:51:25.490004+00:00",
+          "entry_price": 222.10406408999998,
+          "last_price": 221.9487,
+          "stop": 219.8459863596535,
+          "target": 224.0514136403465,
+          "score": 84.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 6.1x; 15m momentum; positive 1M trend; enough daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-CAT-47e9e81fa207",
+          "symbol": "CAT",
+          "qty": 1,
+          "entry_time": "2026-09-21T11:51:25.490172+00:00",
+          "entry_price": 810.06665,
+          "last_price": 809.5,
+          "stop": 801.9186328419765,
+          "target": 817.0813671580235,
+          "score": 71.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 3.4x; near support; enough daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-AMD-e1ad90964a9d",
+          "symbol": "AMD",
+          "qty": 1,
+          "entry_time": "2026-09-21T11:51:25.490298+00:00",
+          "entry_price": 559.19116,
+          "last_price": 558.8,
+          "stop": 550.7886992936207,
+          "target": 566.8113007063793,
+          "score": 70.0,
+          "reason": "opening-range breakout; volume 5.7x; 15m momentum; positive 1M trend; enough daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-PLTR-4b41a1234ac9",
+          "symbol": "PLTR",
+          "qty": 5,
+          "entry_time": "2026-09-21T11:51:25.490469+00:00",
+          "entry_price": 177.92446,
+          "last_price": 177.8,
+          "stop": 175.28901862197313,
+          "target": 180.3109813780269,
+          "score": 68.0,
+          "reason": "opening-range breakout; volume 3.4x; near support; positive 1M trend; enough daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        }
+      ],
+      "max_drawdown": 0.0,
+      "closed_trades": 0,
+      "win_rate": null,
+      "profit_factor": null
+    },
+    "V2": {
+      "equity": 9998.25,
+      "return": -0.00017491358499988063,
+      "cash": 7499.49,
+      "open_positions": 3,
+      "realized_pnl": 0.0,
+      "positions": [
+        {
+          "trade_id": "V2-NVDA-84e9d9a0f998",
+          "symbol": "NVDA",
+          "qty": 4,
+          "entry_time": "2026-09-21T11:51:25.493537+00:00",
+          "entry_price": 222.10406408999998,
+          "last_price": 221.9487,
+          "stop": 219.8459863596535,
+          "target": 224.0514136403465,
+          "score": 79.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.0x; controlled 15m momentum; tradable daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-PLTR-a3202d556503",
+          "symbol": "PLTR",
+          "qty": 5,
+          "entry_time": "2026-09-21T11:51:25.493659+00:00",
+          "entry_price": 177.92446,
+          "last_price": 177.8,
+          "stop": 175.28901862197313,
+          "target": 180.3109813780269,
+          "score": 75.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.7x; controlled 15m momentum; near support; tradable daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-QQQ-f36eb817a858",
+          "symbol": "QQQ",
+          "qty": 1,
+          "entry_time": "2026-09-21T11:51:25.493770+00:00",
+          "entry_price": 722.47607949,
+          "last_price": 721.9707,
+          "stop": 717.6388757999999,
+          "target": 726.3025242,
+          "score": 66.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.9x; controlled 15m momentum",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        }
+      ],
+      "max_drawdown": 0.0,
+      "closed_trades": 0,
+      "win_rate": null,
+      "profit_factor": null
+    },
+    "V3": {
+      "equity": 9997.6,
+      "return": -0.00024036078499989344,
+      "cash": 6563.87,
+      "open_positions": 4,
+      "realized_pnl": 0.0,
+      "positions": [
+        {
+          "trade_id": "V3-NVDA-13e4b4648ca1",
+          "symbol": "NVDA",
+          "qty": 4,
+          "entry_time": "2026-09-21T11:51:25.497186+00:00",
+          "entry_price": 222.10406408999998,
+          "last_price": 221.9487,
+          "stop": 219.8459863596535,
+          "target": 224.0514136403465,
+          "score": 87.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.0x; controlled 15m momentum; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-PLTR-4f1dfe5e014e",
+          "symbol": "PLTR",
+          "qty": 5,
+          "entry_time": "2026-09-21T11:51:25.497382+00:00",
+          "entry_price": 177.92446,
+          "last_price": 177.8,
+          "stop": 175.28901862197313,
+          "target": 180.3109813780269,
+          "score": 79.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.7x; controlled 15m momentum; near support; tradable daily range; sideways market: neutral; tight VWAP proximity",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-QQQ-c39953c2cc09",
+          "symbol": "QQQ",
+          "qty": 1,
+          "entry_time": "2026-09-21T11:51:25.497644+00:00",
+          "entry_price": 722.47607949,
+          "last_price": 721.9707,
+          "stop": 717.6388757999999,
+          "target": 726.3025242,
+          "score": 70.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.9x; controlled 15m momentum; sideways market: neutral; tight VWAP proximity",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-NFLX-f85cce1328e8",
+          "symbol": "NFLX",
+          "qty": 13,
+          "entry_time": "2026-09-21T11:51:25.497845+00:00",
+          "entry_price": 71.970344,
+          "last_price": 71.92,
+          "stop": 71.11184324111197,
+          "target": 72.72815675888803,
+          "score": 69.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.5x; controlled 15m momentum; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        }
+      ],
+      "max_drawdown": 0.0,
+      "closed_trades": 0,
+      "win_rate": null,
+      "profit_factor": null
+    }
+  },
+  "note": "Local shadow portfolios are the source of truth. Alpaca, when enabled, is paper-only and mirrors the selected strategy."
+}

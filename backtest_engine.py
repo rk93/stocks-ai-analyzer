@@ -203,6 +203,23 @@ def main():
                 "profit_factor_r":gross_win/gross_loss if gross_loss else None,
                 "target_2r_before_stop_rate":safe(g.target_2r_before_stop.mean()) if len(g) else None}
         # Horizon returns describe signal follow-through; exact 1R trade sequencing is above.
+        summary["horizons_by_strategy"]={}
+        for version,g in df.groupby("strategy"):
+            summary["horizons_by_strategy"][version]={}
+            for n in HORIZONS:
+                label="3m" if n==63 else f"{n}d"; col=f"result_{label}"
+                resolved=g[g[col].isin(["UP","DOWN"])]
+                summary["horizons_by_strategy"][version][label]={
+                    "resolved":len(resolved),
+                    "correct":int((resolved[col]=="UP").sum()),
+                    "wrong":int((resolved[col]=="DOWN").sum()),
+                    "pending":int((g[col]=="PENDING").sum()),
+                    "win_rate":safe((resolved[col]=="UP").mean()) if len(resolved) else None,
+                    "avg_return":safe(g[f"return_{label}"].mean()) if g[f"return_{label}"].notna().any() else None,
+                    "median_return":safe(g[f"return_{label}"].median()) if g[f"return_{label}"].notna().any() else None,
+                    "avg_mfe":safe(g[f"mfe_{label}"].mean()) if g[f"mfe_{label}"].notna().any() else None,
+                    "avg_mae":safe(g[f"mae_{label}"].mean()) if g[f"mae_{label}"].notna().any() else None,
+                }
         for n in HORIZONS:
             label="3m" if n==63 else f"{n}d"; col=f"result_{label}"
             resolved=df[df[col].isin(["UP","DOWN"])]

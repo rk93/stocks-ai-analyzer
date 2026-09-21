@@ -16,6 +16,7 @@ import yfinance as yf
 
 from day_opportunities import score_row
 from strategy_v2 import score_v2
+from strategy_v3 import score_v3
 
 CONFIG=Path("skew_config.json")
 TRADES=Path("data/backtest_trades.csv")
@@ -49,6 +50,18 @@ def daily_asof(daily, day):
     return {"prev_close":prev,"ma20":safe(close.tail(20).mean()),"ma50":safe(close.tail(50).mean()),
             "atr_pct":safe(tr.tail(14).mean())/prev if prev else np.nan,
             "prior_high":safe(high.iloc[-1]),"prior_low":safe(low.iloc[-1]),
+            "return_20d":safe(close.iloc[-1]/close.iloc[-21]-1)}
+
+
+def market_asof(daily, day):
+    x=daily[pd.DatetimeIndex(daily.index).date < day]
+    if len(x)<205:return {}
+    close=x.Close.dropna(); high=x.High.dropna(); low=x.Low.dropna()
+    if len(close)<205:return {}
+    price=safe(close.iloc[-1])
+    tr=pd.concat([high-low,(high-close.shift(1)).abs(),(low-close.shift(1)).abs()],axis=1).max(axis=1)
+    return {"price":price,"ma20":safe(close.tail(20).mean()),"ma50":safe(close.tail(50).mean()),
+            "ma200":safe(close.tail(200).mean()),"atr_pct":safe(tr.tail(14).mean())/price if price else np.nan,
             "return_20d":safe(close.iloc[-1]/close.iloc[-21]-1)}
 
 
@@ -129,6 +142,10 @@ def main():
     cfg=json.loads(CONFIG.read_text())
     symbols=cfg.get("day_universe") or cfg["core_universe"]
     rows=[]; coverage=[]
+    try:
+        market_daily=yf.Ticker("SPY").history(period="2y",interval="1d",auto_adjust=False)
+    except Exception:
+        market_daily=pd.DataFrame()
     for symbol in symbols:
         if symbol.startswith("^"):continue
         print("BACKTEST",symbol,flush=True)

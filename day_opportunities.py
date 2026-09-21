@@ -9,6 +9,9 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
+from strategy_v2 import score_v2
+from strategy_v3 import classify_regime, score_v3
+
 CONFIG = Path("skew_config.json")
 OUT = Path("data/day_opportunities_latest.csv")
 HIST = Path("data/day_opportunities_history.csv")

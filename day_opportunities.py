@@ -92,6 +92,13 @@ def _intraday_metrics(symbol: str, daily: dict):
     avg_bar_vol = _safe(past["Volume"].tail(78 * 3).mean(), 0.0)
     volume_ratio = _safe(today["Volume"].tail(3).mean() / avg_bar_vol) if avg_bar_vol > 0 else np.nan
 
+    recent_times = set(today.tail(3).index.time)
+    tod = past[[t in recent_times for t in past.index.time]] if not past.empty else past
+    tod_avg = _safe(tod["Volume"].mean(), 0.0) if not tod.empty else 0.0
+    volume_ratio_tod = _safe(today["Volume"].tail(3).mean() / tod_avg) if tod_avg > 0 else np.nan
+    last_ts = today.index[-1]
+    minutes_from_open = (last_ts.hour * 60 + last_ts.minute) - (9 * 60 + 30)
+
     prev_close = daily.get("prev_close", np.nan)
     session_open = _safe(today["Open"].iloc[0])
     gap = session_open / prev_close - 1 if prev_close and np.isfinite(prev_close) else np.nan
@@ -121,12 +128,35 @@ def _intraday_metrics(symbol: str, daily: dict):
         "vwap": cur_vwap,
         "vwap_dist": vwap_dist,
         "volume_ratio": volume_ratio,
+        "volume_ratio_tod": volume_ratio_tod,
+        "minutes_from_open": minutes_from_open,
         "opening_range_high": or_high,
         "opening_range_low": or_low,
         "breakout_or": bool(breakout_or),
         "crossed_vwap": bool(crossed_vwap),
         "momentum_15m": momentum_15m,
         "near_support": bool(near_support),
+    }
+
+
+def _market_metrics():
+    d = yf.Ticker("SPY").history(period="1y", interval="1d", auto_adjust=False)
+    if len(d) < 205:
+        return {}
+    close = d["Close"].dropna()
+    high = d["High"].dropna()
+    low = d["Low"].dropna()
+    if len(close) < 205:
+        return {}
+    price = _safe(close.iloc[-1])
+    tr = pd.concat([high-low, (high-close.shift(1)).abs(), (low-close.shift(1)).abs()], axis=1).max(axis=1)
+    return {
+        "price": price,
+        "ma20": _safe(close.tail(20).mean()),
+        "ma50": _safe(close.tail(50).mean()),
+        "ma200": _safe(close.tail(200).mean()),
+        "atr_pct": _safe(tr.tail(14).mean()) / price if price else np.nan,
+        "return_20d": _safe(close.iloc[-1] / close.iloc[-21] - 1),
     }
 
 
@@ -194,6 +224,8 @@ def main():
     symbols = [s for s in symbols if not s.startswith("^")]
     rows = []
     ts = datetime.now(timezone.utc).isoformat()
+    market = _market_metrics()
+    regime = classify_regime(market)
     for symbol in symbols:
         try:
             daily = _daily_metrics(symbol)
@@ -203,9 +235,16 @@ def main():
             if not intra:
                 continue
             state, score, reason, stop, t1, t2 = score_row(daily, intra)
+            v2_state, v2_score, v2_reason, v2_stop, v2_t1, v2_t2 = score_v2(daily, intra)
+            v3_state, v3_score, v3_reason, v3_stop, v3_t1, v3_t2 = score_v3(daily, intra, market)
             row = {"generated_at": ts, "symbol": symbol, **daily, **intra,
+                   "market_regime": regime,
                    "state": state, "score": score, "reason": reason,
-                   "stop": stop, "target_1r": t1, "target_2r": t2}
+                   "stop": stop, "target_1r": t1, "target_2r": t2,
+                   "v2_state": v2_state, "v2_score": v2_score, "v2_reason": v2_reason,
+                   "v2_stop": v2_stop, "v2_target_1r": v2_t1, "v2_target_2r": v2_t2,
+                   "v3_state": v3_state, "v3_score": v3_score, "v3_reason": v3_reason,
+                   "v3_stop": v3_stop, "v3_target_1r": v3_t1, "v3_target_2r": v3_t2}
             rows.append(row)
         except Exception as e:
             print(f"SKIP {symbol}: {e}")

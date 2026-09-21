@@ -74,7 +74,11 @@ def _intraday_metrics(symbol: str, daily: dict):
     reg = _regular_session(raw)
     if reg.empty:
         return None
-    today = reg[reg.index.date == reg.index[-1].date()].copy()
+    latest_session_date = reg.index[-1].date()
+    ny_today = pd.Timestamp.now(tz="America/New_York").date()
+    if latest_session_date != ny_today:
+        return None
+    today = reg[reg.index.date == latest_session_date].copy()
     if len(today) < 3:
         return None
 

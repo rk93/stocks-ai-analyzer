@@ -46,10 +46,11 @@ def f(v, default=np.nan):
 
 def empty_state():
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "created_at": now(),
         "starting_cash": STARTING_CASH,
         "benchmarks": {},
+        "seen_signals": [],
         "portfolios": {
             v: {"cash": STARTING_CASH, "positions": {}, "realized_pnl": 0.0}
             for v in ("V1", "V2", "V3")
@@ -62,6 +63,9 @@ def load_state():
         return empty_state()
     try:
         s = json.loads(STATE.read_text())
+        if int(s.get("schema_version", 0)) < 2:
+            return empty_state()
+        s.setdefault("seen_signals", [])
         for v in ("V1", "V2", "V3"):
             s.setdefault("portfolios", {}).setdefault(
                 v, {"cash": STARTING_CASH, "positions": {}, "realized_pnl": 0.0}
@@ -197,7 +201,9 @@ def open_positions(state, df, prices):
             if len(pf["positions"]) >= MAX_OPEN_POSITIONS:
                 break
             symbol = str(r["symbol"])
-            if symbol in pf["positions"]:
+            signal_day = str(r.get("generated_at", ""))[:10] or now()[:10]
+            signal_key = f"{strategy}|{symbol}|{signal_day}"
+            if symbol in pf["positions"] or signal_key in state.get("seen_signals", []):
                 continue
             price = prices.get(symbol)
             if not np.isfinite(f(price)) or price <= 0:
@@ -221,6 +227,7 @@ def open_positions(state, df, prices):
             broker = {"status": "local"}
             if strategy == ALPACA_STRATEGY:
                 broker = submit_alpaca_bracket(symbol, qty, stop, target, trade_id)
+            state.setdefault("seen_signals", []).append(signal_key)
             pf["positions"][symbol] = {
                 "trade_id": trade_id, "symbol": symbol, "qty": qty,
                 "entry_time": now(), "entry_price": entry, "last_price": price,

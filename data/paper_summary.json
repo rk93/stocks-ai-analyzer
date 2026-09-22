@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T22:33:21.962517+00:00",
+  "generated_at": "2026-09-22T17:36:04.947371+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,22 +10,22 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 773.5,
-      "return": -0.00030370263205270476
+      "price": 773.3800048828125,
+      "return": -0.0004587881839008823
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 741.469970703125,
-      "return": 0.001553332839217214
+      "price": 745.25,
+      "return": 0.006659272513247272
     }
   },
   "strategies": {
     "V1": {
-      "equity": 9997.15,
-      "return": -0.0002846929259998632,
-      "cash": 5930.11,
-      "open_positions": 5,
-      "realized_pnl": 0.0,
+      "equity": 10028.6,
+      "return": 0.002859799618479597,
+      "cash": 7414.55,
+      "open_positions": 3,
+      "realized_pnl": 15.48,
       "positions": [
         {
           "trade_id": "V1-PLTR-45cc277104ed",
@@ -33,26 +33,11 @@
           "qty": 5,
           "entry_time": "2026-09-21T22:33:21.565019+00:00",
           "entry_price": 183.39728829999999,
-          "last_price": 183.269,
+          "last_price": 184.69679260253903,
           "stop": 180.6374738276377,
           "target": 185.9005261723623,
           "score": 84.0,
           "reason": "holding above VWAP; opening-range breakout; volume 6.3x; 15m momentum; positive 1M trend; enough daily range",
-          "market_regime": "BULL_TREND",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V1-MSFT-88790cefce30",
-          "symbol": "MSFT",
-          "qty": 1,
-          "entry_time": "2026-09-21T22:33:21.565232+00:00",
-          "entry_price": 502.04118299999993,
-          "last_price": 501.69,
-          "stop": 498.0958302383539,
-          "target": 505.28416976164607,
-          "score": 75.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 3.2x; near support; positive 1M trend",
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
@@ -63,7 +48,7 @@
           "qty": 1,
           "entry_time": "2026-09-21T22:33:21.565374+00:00",
           "entry_price": 773.7112189999999,
-          "last_price": 773.17,
+          "last_price": 773.3800048828125,
           "stop": 768.53098,
           "target": 777.8090199999999,
           "score": 75.0,
@@ -78,7 +63,7 @@
           "qty": 4,
           "entry_time": "2026-09-21T22:33:21.565505+00:00",
           "entry_price": 227.55837943999998,
-          "last_price": 227.3992,
+          "last_price": 229.29690551757807,
           "stop": 225.2259306664748,
           "target": 229.5724693335252,
           "score": 74.0,
@@ -86,34 +71,19 @@
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
-        },
-        {
-          "trade_id": "V1-WMT-52d323a7e481",
-          "symbol": "WMT",
-          "qty": 9,
-          "entry_time": "2026-09-21T22:33:21.565642+00:00",
-          "entry_price": 107.43515199999999,
-          "last_price": 107.36,
-          "stop": 106.71584,
-          "target": 108.00416,
-          "score": 71.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 11.9x; near support; positive 1M trend",
-          "market_regime": "BULL_TREND",
-          "broker_status": "local",
-          "broker_order_id": null
         }
       ],
       "max_drawdown": -0.00028500000000009074,
-      "closed_trades": 0,
-      "win_rate": null,
-      "profit_factor": null
+      "closed_trades": 2,
+      "win_rate": 0.5,
+      "profit_factor": 3.655231560891938
     },
     "V2": {
-      "equity": 9997.03,
-      "return": -0.00029712422599992294,
-      "cash": 5752.4,
-      "open_positions": 5,
-      "realized_pnl": 0.0,
+      "equity": 10025.59,
+      "return": 0.002558820593870026,
+      "cash": 7501.9,
+      "open_positions": 3,
+      "realized_pnl": 7.29,
       "positions": [
         {
           "trade_id": "V2-PLTR-609565c380bb",
@@ -121,7 +91,7 @@
           "qty": 5,
           "entry_time": "2026-09-21T22:33:21.569793+00:00",
           "entry_price": 183.39728829999999,
-          "last_price": 183.269,
+          "last_price": 184.69679260253903,
           "stop": 180.6374738276377,
           "target": 185.9005261723623,
           "score": 79.0,
@@ -136,7 +106,7 @@
           "qty": 4,
           "entry_time": "2026-09-21T22:33:21.569910+00:00",
           "entry_price": 227.55837943999998,
-          "last_price": 227.3992,
+          "last_price": 229.29690551757807,
           "stop": 225.2259306664748,
           "target": 229.5724693335252,
           "score": 73.0,
@@ -151,7 +121,7 @@
           "qty": 2,
           "entry_time": "2026-09-21T22:33:21.570011+00:00",
           "entry_price": 339.087195,
-          "last_price": 338.85,
+          "last_price": 341.5101013183594,
           "stop": 336.17956349300385,
           "target": 341.5204365069962,
           "score": 73.0,
@@ -159,49 +129,19 @@
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
-        },
-        {
-          "trade_id": "V2-WMT-d93cf4dcd822",
-          "symbol": "WMT",
-          "qty": 9,
-          "entry_time": "2026-09-21T22:33:21.570149+00:00",
-          "entry_price": 107.43515199999999,
-          "last_price": 107.36,
-          "stop": 106.71584,
-          "target": 108.00416,
-          "score": 71.0,
-          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 3.1x; near support; tradable daily range",
-          "market_regime": "BULL_TREND",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V2-AMZN-577c7e40b710",
-          "symbol": "AMZN",
-          "qty": 3,
-          "entry_time": "2026-09-21T22:33:21.570251+00:00",
-          "entry_price": 258.430775,
-          "last_price": 258.25,
-          "stop": 256.35162830553713,
-          "target": 260.14837169446287,
-          "score": 63.0,
-          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 1.6x; near support; tradable daily range",
-          "market_regime": "BULL_TREND",
-          "broker_status": "local",
-          "broker_order_id": null
         }
       ],
       "max_drawdown": -0.0002969999999998807,
-      "closed_trades": 0,
-      "win_rate": null,
-      "profit_factor": null
+      "closed_trades": 2,
+      "win_rate": 0.5,
+      "profit_factor": 1.5199714693295292
     },
     "V3": {
-      "equity": 9997.03,
-      "return": -0.00029712422599992294,
-      "cash": 5752.4,
-      "open_positions": 5,
-      "realized_pnl": 0.0,
+      "equity": 10025.59,
+      "return": 0.002558820593870026,
+      "cash": 7501.9,
+      "open_positions": 3,
+      "realized_pnl": 7.29,
       "positions": [
         {
           "trade_id": "V3-PLTR-8243149410d8",
@@ -209,7 +149,7 @@
           "qty": 5,
           "entry_time": "2026-09-21T22:33:21.573147+00:00",
           "entry_price": 183.39728829999999,
-          "last_price": 183.269,
+          "last_price": 184.69679260253903,
           "stop": 180.6374738276377,
           "target": 185.9005261723623,
           "score": 95.0,
@@ -224,7 +164,7 @@
           "qty": 4,
           "entry_time": "2026-09-21T22:33:21.573279+00:00",
           "entry_price": 227.55837943999998,
-          "last_price": 227.3992,
+          "last_price": 229.29690551757807,
           "stop": 225.2259306664748,
           "target": 229.5724693335252,
           "score": 89.0,
@@ -239,7 +179,7 @@
           "qty": 2,
           "entry_time": "2026-09-21T22:33:21.573391+00:00",
           "entry_price": 339.087195,
-          "last_price": 338.85,
+          "last_price": 341.5101013183594,
           "stop": 336.17956349300385,
           "target": 341.5204365069962,
           "score": 89.0,
@@ -247,42 +187,12 @@
           "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null
-        },
-        {
-          "trade_id": "V3-WMT-f97aba756f3d",
-          "symbol": "WMT",
-          "qty": 9,
-          "entry_time": "2026-09-21T22:33:21.573495+00:00",
-          "entry_price": 107.43515199999999,
-          "last_price": 107.36,
-          "stop": 106.71584,
-          "target": 108.00416,
-          "score": 87.0,
-          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 3.1x; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "BULL_TREND",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V3-AMZN-d908e2058d96",
-          "symbol": "AMZN",
-          "qty": 3,
-          "entry_time": "2026-09-21T22:33:21.573597+00:00",
-          "entry_price": 258.430775,
-          "last_price": 258.25,
-          "stop": 256.35162830553713,
-          "target": 260.14837169446287,
-          "score": 75.0,
-          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 1.6x; near support; tradable daily range; broad market bull trend; tight VWAP proximity",
-          "market_regime": "BULL_TREND",
-          "broker_status": "disabled",
-          "broker_order_id": null
         }
       ],
       "max_drawdown": -0.0002969999999998807,
-      "closed_trades": 0,
-      "win_rate": null,
-      "profit_factor": null
+      "closed_trades": 2,
+      "win_rate": 0.5,
+      "profit_factor": 1.5199714693295292
     }
   },
   "note": "Local shadow portfolios are the source of truth. Alpaca, when enabled, is paper-only and mirrors the selected strategy."

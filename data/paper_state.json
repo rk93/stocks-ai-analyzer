@@ -37,11 +37,23 @@
     "V1|CAT|2026-09-23",
     "V2|CAT|2026-09-23",
     "V3|CAT|2026-09-23",
-    "V3|COST|2026-09-23"
+    "V3|COST|2026-09-23",
+    "V1|GOOGL|2026-09-24",
+    "V1|NVDA|2026-09-24",
+    "V1|SPY|2026-09-24",
+    "V1|QQQ|2026-09-24",
+    "V2|MSFT|2026-09-24",
+    "V2|NVDA|2026-09-24",
+    "V2|CAT|2026-09-24",
+    "V2|META|2026-09-24",
+    "V3|MSFT|2026-09-24",
+    "V3|NVDA|2026-09-24",
+    "V3|CAT|2026-09-24",
+    "V3|META|2026-09-24"
   ],
   "portfolios": {
     "V1": {
-      "cash": 9387.859696331203,
+      "cash": 6296.390181431203,
       "positions": {
         "AMD": {
           "trade_id": "V1-AMD-ae3bfcacba01",
@@ -49,11 +61,71 @@
           "qty": 1,
           "entry_time": "2026-09-22T21:06:27.229733+00:00",
           "entry_price": 623.586205,
-          "last_price": 621.2683715820312,
+          "last_price": 628.49,
           "stop": 614.11139591669,
           "target": 632.18860408331,
           "score": 74.0,
           "reason": "holding above VWAP; opening-range breakout; volume 4.1x; positive 1M trend; enough daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "GOOGL": {
+          "trade_id": "V1-GOOGL-019b071d4b14",
+          "symbol": "GOOGL",
+          "qty": 2,
+          "entry_time": "2026-09-24T21:22:17.441703+00:00",
+          "entry_price": 342.399512,
+          "last_price": 342.16,
+          "stop": 338.9425360635078,
+          "target": 345.37746393649223,
+          "score": 78.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 5.2x; near support; positive 1M trend; enough daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "NVDA": {
+          "trade_id": "V1-NVDA-ee4261b826d0",
+          "symbol": "NVDA",
+          "qty": 4,
+          "entry_time": "2026-09-24T21:22:17.441847+00:00",
+          "entry_price": 224.6061143,
+          "last_price": 224.449,
+          "stop": 222.56741517480216,
+          "target": 226.33058482519783,
+          "score": 75.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 5.7x; near support; positive 1M trend",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "SPY": {
+          "trade_id": "V1-SPY-e58bc71cd258",
+          "symbol": "SPY",
+          "qty": 1,
+          "entry_time": "2026-09-24T21:22:17.441970+00:00",
+          "entry_price": 767.396802,
+          "last_price": 766.86,
+          "stop": 763.6199951171875,
+          "target": 770.1000048828125,
+          "score": 75.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 4.7x; near support; positive 1M trend",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "QQQ": {
+          "trade_id": "V1-QQQ-a8a1f495477b",
+          "symbol": "QQQ",
+          "qty": 1,
+          "entry_time": "2026-09-24T21:22:17.442126+00:00",
+          "entry_price": 740.8492316999999,
+          "last_price": 740.331,
+          "stop": 735.889014,
+          "target": 744.7729860000001,
+          "score": 75.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 2.0x; near support; positive 1M trend",
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
@@ -62,30 +134,15 @@
       "realized_pnl": 11.445901331201298
     },
     "V2": {
-      "cash": 8707.27766660757,
+      "cash": 5902.979885547571,
       "positions": {
-        "AAPL": {
-          "trade_id": "V2-AAPL-a531f5727a3c",
-          "symbol": "AAPL",
-          "qty": 2,
-          "entry_time": "2026-09-21T22:33:21.570011+00:00",
-          "entry_price": 339.087195,
-          "last_price": 336.875,
-          "stop": 336.17956349300385,
-          "target": 341.5204365069962,
-          "score": 73.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.2x; tradable daily range",
-          "market_regime": "BULL_TREND",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
         "AMD": {
           "trade_id": "V2-AMD-1f649e27b6b9",
           "symbol": "AMD",
           "qty": 1,
           "entry_time": "2026-09-22T21:06:27.233247+00:00",
           "entry_price": 623.586205,
-          "last_price": 621.2683715820312,
+          "last_price": 628.49,
           "stop": 614.11139591669,
           "target": 632.18860408331,
           "score": 65.0,
@@ -93,35 +150,80 @@
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
-        }
-      },
-      "realized_pnl": 9.038261607568302
-    },
-    "V3": {
-      "cash": 8698.004937564845,
-      "positions": {
-        "AAPL": {
-          "trade_id": "V3-AAPL-1b867d10c3d7",
-          "symbol": "AAPL",
+        },
+        "MSFT": {
+          "trade_id": "V2-MSFT-15c162bf5c4a",
+          "symbol": "MSFT",
           "qty": 2,
-          "entry_time": "2026-09-21T22:33:21.573391+00:00",
-          "entry_price": 339.087195,
-          "last_price": 336.875,
-          "stop": 336.17956349300385,
-          "target": 341.5204365069962,
-          "score": 89.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.2x; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "entry_time": "2026-09-24T21:22:17.445693+00:00",
+          "entry_price": 497.317879,
+          "last_price": 496.97,
+          "stop": 493.4275526256463,
+          "target": 500.51244737435377,
+          "score": 71.0,
+          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 2.6x; near support; tradable daily range",
           "market_regime": "BULL_TREND",
-          "broker_status": "disabled",
+          "broker_status": "local",
           "broker_order_id": null
         },
+        "NVDA": {
+          "trade_id": "V2-NVDA-7341f3d7e632",
+          "symbol": "NVDA",
+          "qty": 4,
+          "entry_time": "2026-09-24T21:22:17.445803+00:00",
+          "entry_price": 224.6061143,
+          "last_price": 224.449,
+          "stop": 222.56741517480216,
+          "target": 226.33058482519783,
+          "score": 69.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.9x; near support; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "CAT": {
+          "trade_id": "V2-CAT-68a6a05a3ac7",
+          "symbol": "CAT",
+          "qty": 1,
+          "entry_time": "2026-09-24T21:22:17.445900+00:00",
+          "entry_price": 805.2132549999999,
+          "last_price": 804.65,
+          "stop": 797.2562196739044,
+          "target": 812.0437803260955,
+          "score": 65.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.8x; near support; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "META": {
+          "trade_id": "V2-META-d0e0bf7718fa",
+          "symbol": "META",
+          "qty": 1,
+          "entry_time": "2026-09-24T21:22:17.445994+00:00",
+          "entry_price": 777.4138089999999,
+          "last_price": 776.87,
+          "stop": 766.5524520968132,
+          "target": 787.1875479031868,
+          "score": 65.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        }
+      },
+      "realized_pnl": 2.253369747568172
+    },
+    "V3": {
+      "cash": 5893.707156504846,
+      "positions": {
         "AMD": {
           "trade_id": "V3-AMD-0da9cb1f3ce3",
           "symbol": "AMD",
           "qty": 1,
           "entry_time": "2026-09-22T21:06:27.235732+00:00",
           "entry_price": 623.586205,
-          "last_price": 621.2683715820312,
+          "last_price": 628.49,
           "stop": 614.11139591669,
           "target": 632.18860408331,
           "score": 77.0,
@@ -129,9 +231,69 @@
           "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null
+        },
+        "MSFT": {
+          "trade_id": "V3-MSFT-246389cd5678",
+          "symbol": "MSFT",
+          "qty": 2,
+          "entry_time": "2026-09-24T21:22:17.449562+00:00",
+          "entry_price": 497.317879,
+          "last_price": 496.97,
+          "stop": 493.4275526256463,
+          "target": 500.51244737435377,
+          "score": 87.0,
+          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 2.6x; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "NVDA": {
+          "trade_id": "V3-NVDA-b3d2ba2a462c",
+          "symbol": "NVDA",
+          "qty": 4,
+          "entry_time": "2026-09-24T21:22:17.449684+00:00",
+          "entry_price": 224.6061143,
+          "last_price": 224.449,
+          "stop": 222.56741517480216,
+          "target": 226.33058482519783,
+          "score": 81.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.9x; near support; tradable daily range; broad market bull trend; tight VWAP proximity",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "CAT": {
+          "trade_id": "V3-CAT-870caadc647e",
+          "symbol": "CAT",
+          "qty": 1,
+          "entry_time": "2026-09-24T21:22:17.449792+00:00",
+          "entry_price": 805.2132549999999,
+          "last_price": 804.65,
+          "stop": 797.2562196739044,
+          "target": 812.0437803260955,
+          "score": 81.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.8x; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "META": {
+          "trade_id": "V3-META-de688ae9a34a",
+          "symbol": "META",
+          "qty": 1,
+          "entry_time": "2026-09-24T21:22:17.449905+00:00",
+          "entry_price": 777.4138089999999,
+          "last_price": 776.87,
+          "stop": 766.5524520968132,
+          "target": 787.1875479031868,
+          "score": 77.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; tradable daily range; broad market bull trend; tight VWAP proximity",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
         }
       },
-      "realized_pnl": -0.23446743515626167
+      "realized_pnl": -7.0193592951563915
     }
   }
 }

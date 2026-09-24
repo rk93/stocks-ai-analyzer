@@ -1,4 +1,5 @@
 symbol,error
 GE,No call quote close enough to 25% delta
+RGTI,No validated put quotes
 CL,No validated call quotes
 ASML,No validated call quotes

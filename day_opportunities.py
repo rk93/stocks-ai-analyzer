@@ -11,6 +11,7 @@ import yfinance as yf
 
 from strategy_v2 import score_v2
 from strategy_v3 import classify_regime, score_v3
+from strategy_v4 import score_v4
 
 CONFIG = Path("skew_config.json")
 OUT = Path("data/day_opportunities_latest.csv")
@@ -241,6 +242,7 @@ def main():
             state, score, reason, stop, t1, t2 = score_row(daily, intra)
             v2_state, v2_score, v2_reason, v2_stop, v2_t1, v2_t2 = score_v2(daily, intra)
             v3_state, v3_score, v3_reason, v3_stop, v3_t1, v3_t2 = score_v3(daily, intra, market)
+            v4_state, v4_score, v4_reason, v4_stop, v4_t1, v4_t2 = score_v4(daily, intra, market)
             row = {"generated_at": ts, "symbol": symbol, **daily, **intra,
                    "market_regime": regime,
                    "state": state, "score": score, "reason": reason,
@@ -248,7 +250,9 @@ def main():
                    "v2_state": v2_state, "v2_score": v2_score, "v2_reason": v2_reason,
                    "v2_stop": v2_stop, "v2_target_1r": v2_t1, "v2_target_2r": v2_t2,
                    "v3_state": v3_state, "v3_score": v3_score, "v3_reason": v3_reason,
-                   "v3_stop": v3_stop, "v3_target_1r": v3_t1, "v3_target_2r": v3_t2}
+                   "v3_stop": v3_stop, "v3_target_1r": v3_t1, "v3_target_2r": v3_t2,
+                   "v4_state": v4_state, "v4_score": v4_score, "v4_reason": v4_reason,
+                   "v4_stop": v4_stop, "v4_target_1r": v4_t1, "v4_target_2r": v4_t2}
             rows.append(row)
         except Exception as e:
             print(f"SKIP {symbol}: {e}")
@@ -277,6 +281,7 @@ def main():
         ("V1", "state", "score", "reason", "stop", "target_1r", "target_2r"),
         ("V2", "v2_state", "v2_score", "v2_reason", "v2_stop", "v2_target_1r", "v2_target_2r"),
         ("V3", "v3_state", "v3_score", "v3_reason", "v3_stop", "v3_target_1r", "v3_target_2r"),
+        ("V4", "v4_state", "v4_score", "v4_reason", "v4_stop", "v4_target_1r", "v4_target_2r"),
     ]:
         x = df[df[state_col] == "ENTRY TRIGGERED"].copy()
         if x.empty:
@@ -304,7 +309,7 @@ def main():
             ledger = triggered
         ledger.to_csv(PREDICTIONS, index=False)
 
-    print(df[["symbol", "market_regime", "state", "score", "v2_state", "v2_score", "v3_state", "v3_score", "day_change", "volume_ratio_tod"]].head(20).to_string(index=False))
+    print(df[["symbol", "market_regime", "state", "score", "v2_state", "v2_score", "v3_state", "v3_score", "v4_state", "v4_score", "day_change", "volume_ratio_tod"]].head(20).to_string(index=False))
 
 
 if __name__ == "__main__":

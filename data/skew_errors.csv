@@ -1,5 +1,18 @@
 symbol,error
+CRM,No validated call quotes
+JPM,No validated call quotes
+BAC,No validated call quotes
+GS,No validated call quotes
+XOM,No validated call quotes
+CVX,No validated call quotes
+LLY,No validated call quotes
+UNH,No validated ATM quote for normalization
+WMT,No put quote close enough to 25% delta
+CAT,No validated call quotes
+GE,No validated call quotes
+SNDK,No validated call quotes
+RGTI,No validated ATM quote for normalization
 CL,No validated call quotes
-SOUN,No put quote close enough to 25% delta
+SOUN,No validated call quotes
 MP,No call quote close enough to 25% delta
 ASML,No validated call quotes

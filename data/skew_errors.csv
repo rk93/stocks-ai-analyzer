@@ -1,131 +1,16 @@
 symbol,error
-ADBE,No validated call quotes
-TXN,No validated call quotes
-AMAT,No validated call quotes
-LRCX,No validated call quotes
-KLAC,No call quote close enough to 25% delta
-ARM,No validated ATM quote for normalization
-HPQ,No validated call quotes
-IBM,No validated ATM quote for normalization
-SNOW,No validated call quotes
-PANW,No validated ATM quote for normalization
-FTNT,No validated call quotes
-DDOG,No validated call quotes
-NET,No validated call quotes
-MDB,No validated call quotes
-SHOP,No validated call quotes
-ABNB,No validated call quotes
-DASH,No validated call quotes
-SQ,Insufficient price history
-COIN,No call quote close enough to 25% delta
-HOOD,No validated ATM quote for normalization
-RBLX,No validated ATM quote for normalization
-SNDK,No validated call quotes
-RGTI,No validated ATM quote for normalization
-SOUN,No validated put quotes
 JPM,No validated call quotes
-BAC,No validated put quotes
+BAC,No validated call quotes
 GS,No validated call quotes
-MS,No validated call quotes
-C,No validated call quotes
-WFC,No validated call quotes
-AXP,No validated call quotes
-BLK,Columns must be same length as key
-SCHW,No validated put quotes
-USB,No validated call quotes
-PNC,Columns must be same length as key
-BK,Insufficient price history
-COF,No validated call quotes
-AIG,Columns must be same length as key
 XOM,No validated call quotes
 CVX,No call quote close enough to 25% delta
-COP,No validated call quotes
-SLB,No validated call quotes
-EOG,No validated call quotes
-PSX,No validated call quotes
-OXY,No call quote close enough to 25% delta
-VLO,No validated call quotes
-HAL,No validated call quotes
 LLY,No validated call quotes
-UNH,No validated ATM quote for normalization
-JNJ,No validated call quotes
-ABBV,No call quote close enough to 25% delta
-MRK,No validated call quotes
-TMO,No validated call quotes
-ABT,No validated call quotes
-AMGN,No validated call quotes
-GILD,No validated call quotes
-ISRG,No validated call quotes
-VRTX,No validated call quotes
-REGN,No call quote close enough to 25% delta
-BMY,No call quote close enough to 25% delta
-CVS,No validated call quotes
-CI,No validated call quotes
-HUM,No validated call quotes
-HD,No validated put quotes
-LOW,No validated call quotes
-TGT,No validated put quotes
-SBUX,No call quote close enough to 25% delta
-KO,No call quote close enough to 25% delta
-PEP,No validated call quotes
-PG,No put quote close enough to 25% delta
-CL,No validated call quotes
-PM,No validated call quotes
-MO,No validated call quotes
-EL,No validated call quotes
-LULU,No validated call quotes
+UNH,No validated put quotes
 CAT,No validated call quotes
 GE,No validated call quotes
-HON,Columns must be same length as key
-RTX,No validated call quotes
-DE,No validated call quotes
-UPS,No call quote close enough to 25% delta
-FDX,No validated call quotes
-LMT,No validated call quotes
-ETN,No validated call quotes
-EMR,No validated call quotes
-MMM,Columns must be same length as key
-CSX,Columns must be same length as key
-UNP,No validated call quotes
-URI,No validated call quotes
+SNDK,No validated call quotes
+RGTI,No validated call quotes
+CL,No validated call quotes
+SOUN,No call quote close enough to 25% delta
 MP,No call quote close enough to 25% delta
-DIS,No validated call quotes
-CMCSA,No validated call quotes
-T,No call quote close enough to 25% delta
-VZ,No validated put quotes
-TMUS,No validated call quotes
-SPOT,No validated call quotes
-ROKU,Columns must be same length as key
-PINS,No validated call quotes
-SNAP,No validated put quotes
-NEE,No validated put quotes
-SO,No validated call quotes
-EXC,No call quote close enough to 25% delta
-SRE,No call quote close enough to 25% delta
-D,No call quote close enough to 25% delta
-PCG,No call quote close enough to 25% delta
-APD,No put quote close enough to 25% delta
-FCX,No call quote close enough to 25% delta
-NEM,No validated put quotes
-DOW,No call quote close enough to 25% delta
-DD,No call quote close enough to 25% delta
-CCI,No put quote close enough to 25% delta
 ASML,No validated call quotes
-BABA,No validated ATM quote for normalization
-JD,No call quote close enough to 25% delta
-PDD,No put quote close enough to 25% delta
-MELI,No call quote close enough to 25% delta
-SE,No validated call quotes
-BIDU,No validated call quotes
-DIA,No call quote close enough to 25% delta
-XLK,No validated call quotes
-XLF,No call quote close enough to 25% delta
-XLE,No put quote close enough to 25% delta
-XLV,No validated call quotes
-XLY,No validated call quotes
-XLP,No call quote close enough to 25% delta
-XLI,No validated call quotes
-XLU,No call quote close enough to 25% delta
-SMH,No call quote close enough to 25% delta
-SOXX,No validated call quotes
-ARKK,No validated call quotes

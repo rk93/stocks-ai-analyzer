@@ -19,6 +19,7 @@ on:
       - 'backtest_engine.py'
       - 'strategy_v2.py'
       - 'strategy_v3.py'
+      - 'strategy_v4.py'
       - 'paper_trader.py'
       - 'docs/paper-trading.html'
       - 'market_data_provider.py'

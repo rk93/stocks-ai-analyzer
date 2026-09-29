@@ -250,7 +250,11 @@ def main():
     if not SIGNALS.exists():
         print("No day-opportunity signals yet.")
         return
-    df = pd.read_csv(SIGNALS)
+    try:
+        df = pd.read_csv(SIGNALS)
+    except pd.errors.EmptyDataError:
+        print("No current-session day-opportunity signals yet.")
+        return
     if df.empty:
         return
     state = load_state()

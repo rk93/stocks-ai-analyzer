@@ -17,6 +17,7 @@ import yfinance as yf
 from day_opportunities import score_row
 from strategy_v2 import score_v2
 from strategy_v3 import score_v3
+from strategy_v4 import score_v4
 
 CONFIG=Path("skew_config.json")
 TRADES=Path("data/backtest_trades.csv")
@@ -165,14 +166,15 @@ def main():
             # Mirrors the scheduled scanner cadence after the opening range exists.
             checkpoints=today[(today.index.minute%30==0)&(today.index.time>=pd.Timestamp("10:00").time())].index
             mm=market_asof(market_daily,day) if not market_daily.empty else {}
-            for version in ("V1","V2","V3"):
+            for version in ("V1","V2","V3","V4"):
                 signal=None
                 for cutoff in checkpoints:
                     im=intra_asof(today,prior,cutoff,dm)
                     if not im:continue
                     if version=="V1": state,score,reason,stop,t1,t2=score_row(dm,im)
                     elif version=="V2": state,score,reason,stop,t1,t2=score_v2(dm,im)
-                    else: state,score,reason,stop,t1,t2=score_v3(dm,im,mm)
+                    elif version=="V3": state,score,reason,stop,t1,t2=score_v3(dm,im,mm)
+                    else: state,score,reason,stop,t1,t2=score_v4(dm,im,mm)
                     if state=="ENTRY TRIGGERED":
                         signal=(cutoff,im,score,reason,stop,t1,t2);break
                 if not signal:continue

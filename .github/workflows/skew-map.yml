@@ -15,6 +15,7 @@ on:
       - 'signal_engine.py'
       - 'trending_engine.py'
       - 'day_opportunities.py'
+      - 'confluence_engine.py'
       - 'prediction_tracker.py'
       - 'backtest_engine.py'
       - 'strategy_v2.py'
@@ -91,6 +92,8 @@ jobs:
       - name: Build trending stock screen
         if: github.event_name != 'schedule' || github.event.schedule != '*/30 13-21 * * 1-5'
         run: python trending_engine.py
+      - name: Build multi-layer confluence screen
+        run: python confluence_engine.py
       - name: Export GitHub Pages data
         run: |
           mkdir -p docs/data
@@ -104,7 +107,10 @@ jobs:
               p = Path(path)
               if not p.exists():
                   return []
-              df = pd.read_csv(p)
+              try:
+                  df = pd.read_csv(p)
+              except pd.errors.EmptyDataError:
+                  return []
               if tail:
                   df = df.tail(tail)
               return json.loads(df.to_json(orient='records'))
@@ -163,6 +169,7 @@ jobs:
               'generated_at': datetime.now(timezone.utc).isoformat(),
               'opportunities': records('data/day_opportunities_latest.csv'),
               'history': records('data/day_opportunities_history.csv', 1000),
+              'confluence': records('data/confluence_latest.csv'),
           }
           Path('docs/data/day-opportunities.json').write_text(json.dumps(day_payload, allow_nan=False, separators=(',', ':')), encoding='utf-8')
           PY

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T18:21:07.326682+00:00",
+  "generated_at": "2026-09-30T22:31:32.991152+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,21 +10,21 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 766.7550048828125,
-      "return": -0.009021151428972196
+      "price": 762.6300048828125,
+      "return": -0.014352434204205178
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 743.1599731445312,
-      "return": 0.0038361327428892977
+      "price": 739.77001953125,
+      "return": -0.0007429054834767745
     }
   },
   "strategies": {
     "V1": {
-      "equity": 10004.06,
-      "return": 0.0004055834291878391,
-      "cash": 9087.36,
-      "open_positions": 1,
+      "equity": 10002.09,
+      "return": 0.00020946380848463342,
+      "cash": 6712.57,
+      "open_positions": 4,
       "realized_pnl": -2.25,
       "positions": [
         {
@@ -33,11 +33,56 @@
           "qty": 4,
           "entry_time": "2026-09-29T02:00:18.621260+00:00",
           "entry_price": 227.59920799999998,
-          "last_price": 229.1750030517578,
+          "last_price": 229.1,
           "stop": 224.54014587628984,
           "target": 230.33985412371013,
           "score": 71.0,
           "reason": "VWAP reclaim; opening-range breakout; volume 2.7x; enough daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-MP-79d1d3ea8704",
+          "symbol": "MP",
+          "qty": 20,
+          "entry_time": "2026-09-30T22:31:32.560117+00:00",
+          "entry_price": 48.013586,
+          "last_price": 47.98,
+          "stop": 47.2603,
+          "target": 48.6997,
+          "score": 77.0,
+          "reason": "VWAP reclaim; opening-range breakout; volume 4.9x; 15m momentum; enough daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-GOOGL-51ac8703fc8c",
+          "symbol": "GOOGL",
+          "qty": 2,
+          "entry_time": "2026-09-30T22:31:32.560275+00:00",
+          "entry_price": 352.17635099999995,
+          "last_price": 351.93,
+          "stop": 348.70407756897674,
+          "target": 355.15592243102327,
+          "score": 74.0,
+          "reason": "VWAP reclaim; volume 11.5x; 15m momentum; positive 1M trend; enough daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-TSLA-8f45171e4202",
+          "symbol": "TSLA",
+          "qty": 2,
+          "entry_time": "2026-09-30T22:31:32.560433+00:00",
+          "entry_price": 355.078381,
+          "last_price": 354.83,
+          "stop": 351.0148794858804,
+          "target": 358.64512051411964,
+          "score": 71.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 4.8x; near support; enough daily range",
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
@@ -49,25 +94,57 @@
       "profit_factor": 0.9769434809222607
     },
     "V2": {
-      "equity": 9992.51,
-      "return": -0.0007485555331521176,
-      "cash": 9992.51,
-      "open_positions": 0,
+      "equity": 9992.02,
+      "return": -0.0007982317331521882,
+      "cash": 9282.36,
+      "open_positions": 1,
       "realized_pnl": -7.49,
-      "positions": [],
-      "max_drawdown": -0.003876826763961061,
+      "positions": [
+        {
+          "trade_id": "V2-TSLA-10cb8b56a0ac",
+          "symbol": "TSLA",
+          "qty": 2,
+          "entry_time": "2026-09-30T22:31:32.563581+00:00",
+          "entry_price": 355.078381,
+          "last_price": 354.83,
+          "stop": 351.0148794858804,
+          "target": 358.64512051411964,
+          "score": 71.0,
+          "reason": "confirmed OR breakout; time-normalized volume 3.4x; controlled 15m momentum; near support; tradable daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        }
+      ],
+      "max_drawdown": -0.003925673385569262,
       "closed_trades": 14,
       "win_rate": 0.35714285714285715,
       "profit_factor": 0.9435130644917686
     },
     "V3": {
-      "equity": 9963.33,
-      "return": -0.0036674500572732027,
-      "cash": 9963.33,
-      "open_positions": 0,
+      "equity": 9962.83,
+      "return": -0.0037171262572732733,
+      "cash": 9253.17,
+      "open_positions": 1,
       "realized_pnl": -36.67,
-      "positions": [],
-      "max_drawdown": -0.006210108332776465,
+      "positions": [
+        {
+          "trade_id": "V3-TSLA-dd35bad1beea",
+          "symbol": "TSLA",
+          "qty": 2,
+          "entry_time": "2026-09-30T22:31:32.565902+00:00",
+          "entry_price": 355.078381,
+          "last_price": 354.83,
+          "stop": 351.0148794858804,
+          "target": 358.64512051411964,
+          "score": 79.0,
+          "reason": "confirmed OR breakout; time-normalized volume 3.4x; controlled 15m momentum; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        }
+      ],
+      "max_drawdown": -0.006259980709364732,
       "closed_trades": 16,
       "win_rate": 0.3125,
       "profit_factor": 0.7730957242744879

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T22:54:03.933603+00:00",
+  "generated_at": "2026-09-30T18:21:07.326682+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,45 +10,30 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 764.2000122070312,
-      "return": -0.012323306203090745
+      "price": 766.7550048828125,
+      "return": -0.009021151428972196
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 737.9299926757812,
-      "return": -0.0032283534482282494
+      "price": 743.1599731445312,
+      "return": 0.0038361327428892977
     }
   },
   "strategies": {
     "V1": {
-      "equity": 9971.74,
-      "return": -0.002825571675182381,
-      "cash": 8390.0,
-      "open_positions": 2,
-      "realized_pnl": -14.8,
+      "equity": 10004.06,
+      "return": 0.0004055834291878391,
+      "cash": 9087.36,
+      "open_positions": 1,
+      "realized_pnl": -2.25,
       "positions": [
-        {
-          "trade_id": "V1-GOOGL-019b071d4b14",
-          "symbol": "GOOGL",
-          "qty": 2,
-          "entry_time": "2026-09-24T21:22:17.441703+00:00",
-          "entry_price": 342.399512,
-          "last_price": 340.77,
-          "stop": 338.9425360635078,
-          "target": 345.37746393649223,
-          "score": 78.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 5.2x; near support; positive 1M trend; enough daily range",
-          "market_regime": "BULL_TREND",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
         {
           "trade_id": "V1-CRM-f5df008beb72",
           "symbol": "CRM",
           "qty": 4,
           "entry_time": "2026-09-29T02:00:18.621260+00:00",
           "entry_price": 227.59920799999998,
-          "last_price": 225.05,
+          "last_price": 229.1750030517578,
           "stop": 224.54014587628984,
           "target": 230.33985412371013,
           "score": 71.0,
@@ -59,9 +44,9 @@
         }
       ],
       "max_drawdown": -0.006251165053285823,
-      "closed_trades": 13,
-      "win_rate": 0.38461538461538464,
-      "profit_factor": 0.8489083860436646
+      "closed_trades": 14,
+      "win_rate": 0.42857142857142855,
+      "profit_factor": 0.9769434809222607
     },
     "V2": {
       "equity": 9992.51,

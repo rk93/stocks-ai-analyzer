@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T22:31:32.991152+00:00",
+  "generated_at": "2026-10-01T18:46:19.656948+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,75 +10,30 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 762.6300048828125,
-      "return": -0.014352434204205178
+      "price": 764.1599731445312,
+      "return": -0.012375053976240502
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 739.77001953125,
-      "return": -0.0007429054834767745
+      "price": 742.905029296875,
+      "return": 0.003491762949916044
     }
   },
   "strategies": {
     "V1": {
-      "equity": 10002.09,
-      "return": 0.00020946380848463342,
-      "cash": 6712.57,
-      "open_positions": 4,
-      "realized_pnl": -2.25,
+      "equity": 9958.26,
+      "return": -0.004174437365984329,
+      "cash": 9243.71,
+      "open_positions": 1,
+      "realized_pnl": -46.13,
       "positions": [
-        {
-          "trade_id": "V1-CRM-f5df008beb72",
-          "symbol": "CRM",
-          "qty": 4,
-          "entry_time": "2026-09-29T02:00:18.621260+00:00",
-          "entry_price": 227.59920799999998,
-          "last_price": 229.1,
-          "stop": 224.54014587628984,
-          "target": 230.33985412371013,
-          "score": 71.0,
-          "reason": "VWAP reclaim; opening-range breakout; volume 2.7x; enough daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V1-MP-79d1d3ea8704",
-          "symbol": "MP",
-          "qty": 20,
-          "entry_time": "2026-09-30T22:31:32.560117+00:00",
-          "entry_price": 48.013586,
-          "last_price": 47.98,
-          "stop": 47.2603,
-          "target": 48.6997,
-          "score": 77.0,
-          "reason": "VWAP reclaim; opening-range breakout; volume 4.9x; 15m momentum; enough daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V1-GOOGL-51ac8703fc8c",
-          "symbol": "GOOGL",
-          "qty": 2,
-          "entry_time": "2026-09-30T22:31:32.560275+00:00",
-          "entry_price": 352.17635099999995,
-          "last_price": 351.93,
-          "stop": 348.70407756897674,
-          "target": 355.15592243102327,
-          "score": 74.0,
-          "reason": "VWAP reclaim; volume 11.5x; 15m momentum; positive 1M trend; enough daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
         {
           "trade_id": "V1-TSLA-8f45171e4202",
           "symbol": "TSLA",
           "qty": 2,
           "entry_time": "2026-09-30T22:31:32.560433+00:00",
           "entry_price": 355.078381,
-          "last_price": 354.83,
+          "last_price": 357.2720031738281,
           "stop": 351.0148794858804,
           "target": 358.64512051411964,
           "score": 71.0,
@@ -88,14 +43,14 @@
           "broker_order_id": null
         }
       ],
-      "max_drawdown": -0.006251165053285823,
-      "closed_trades": 14,
-      "win_rate": 0.42857142857142855,
-      "profit_factor": 0.9769434809222607
+      "max_drawdown": -0.007323761704112752,
+      "closed_trades": 17,
+      "win_rate": 0.4117647058823529,
+      "profit_factor": 0.7338984028138154
     },
     "V2": {
-      "equity": 9992.02,
-      "return": -0.0007982317331521882,
+      "equity": 9996.9,
+      "return": -0.0003098310983865593,
       "cash": 9282.36,
       "open_positions": 1,
       "realized_pnl": -7.49,
@@ -106,7 +61,7 @@
           "qty": 2,
           "entry_time": "2026-09-30T22:31:32.563581+00:00",
           "entry_price": 355.078381,
-          "last_price": 354.83,
+          "last_price": 357.2720031738281,
           "stop": 351.0148794858804,
           "target": 358.64512051411964,
           "score": 71.0,
@@ -122,8 +77,8 @@
       "profit_factor": 0.9435130644917686
     },
     "V3": {
-      "equity": 9962.83,
-      "return": -0.0037171262572732733,
+      "equity": 9967.71,
+      "return": -0.0032287256225076444,
       "cash": 9253.17,
       "open_positions": 1,
       "realized_pnl": -36.67,
@@ -134,7 +89,7 @@
           "qty": 2,
           "entry_time": "2026-09-30T22:31:32.565902+00:00",
           "entry_price": 355.078381,
-          "last_price": 354.83,
+          "last_price": 357.2720031738281,
           "stop": 351.0148794858804,
           "target": 358.64512051411964,
           "score": 79.0,

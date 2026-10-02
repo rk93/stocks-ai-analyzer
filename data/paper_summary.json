@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T18:18:44.046491+00:00",
+  "generated_at": "2026-10-02T22:29:01.587980+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,21 +10,21 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 768.885009765625,
-      "return": -0.006268264557965919
+      "price": 769.6400146484375,
+      "return": -0.005292471945370747
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 748.6400146484375,
-      "return": 0.011238393183901962
+      "price": 749.5800170898438,
+      "return": 0.012508117670754215
     }
   },
   "strategies": {
     "V1": {
-      "equity": 10008.2,
-      "return": 0.000820167796515614,
-      "cash": 9023.6,
-      "open_positions": 1,
+      "equity": 10005.98,
+      "return": 0.0005976899427655447,
+      "cash": 7645.22,
+      "open_positions": 3,
       "realized_pnl": 7.21,
       "positions": [
         {
@@ -33,11 +33,41 @@
           "qty": 6,
           "entry_time": "2026-10-01T23:03:38.539067+00:00",
           "entry_price": 163.93467399999997,
-          "last_price": 164.10009765625,
+          "last_price": 163.89,
           "stop": 162.49748749609037,
           "target": 165.1425125039096,
           "score": 68.0,
           "reason": "holding above VWAP; opening-range breakout; volume 34.4x; near support",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-AAPL-512d7b87e797",
+          "symbol": "AAPL",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.350179+00:00",
+          "entry_price": 333.773478,
+          "last_price": 333.54,
+          "stop": 331.24181387760785,
+          "target": 335.8381861223922,
+          "score": 75.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 4.6x; near support; positive 1M trend",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-AVGO-55721bda4217",
+          "symbol": "AVGO",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.350319+00:00",
+          "entry_price": 355.41761829999996,
+          "last_price": 355.169,
+          "stop": 351.56750087660106,
+          "target": 358.7704991233989,
+          "score": 71.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 9.6x; near support; enough daily range",
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
@@ -49,10 +79,10 @@
       "profit_factor": 1.0414576486190394
     },
     "V2": {
-      "equity": 10046.85,
-      "return": 0.004684774064113384,
-      "cash": 9062.25,
-      "open_positions": 1,
+      "equity": 10044.62,
+      "return": 0.004462296210363537,
+      "cash": 7683.86,
+      "open_positions": 3,
       "realized_pnl": 45.86,
       "positions": [
         {
@@ -61,11 +91,41 @@
           "qty": 6,
           "entry_time": "2026-10-01T23:03:38.542015+00:00",
           "entry_price": 163.93467399999997,
-          "last_price": 164.10009765625,
+          "last_price": 163.89,
           "stop": 162.49748749609037,
           "target": 165.1425125039096,
           "score": 71.0,
           "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 4.6x; near support; tradable daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-AAPL-c82b2e508495",
+          "symbol": "AAPL",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.353618+00:00",
+          "entry_price": 333.773478,
+          "last_price": 333.54,
+          "stop": 331.24181387760785,
+          "target": 335.8381861223922,
+          "score": 69.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; near support; tradable daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-AVGO-0d1b1500f039",
+          "symbol": "AVGO",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.353728+00:00",
+          "entry_price": 355.41761829999996,
+          "last_price": 355.169,
+          "stop": 351.56750087660106,
+          "target": 358.7704991233989,
+          "score": 65.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.8x; near support; tradable daily range",
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
@@ -77,10 +137,10 @@
       "profit_factor": 1.3463223078084883
     },
     "V3": {
-      "equity": 10017.66,
-      "return": 0.0017658795399924099,
-      "cash": 9033.06,
-      "open_positions": 1,
+      "equity": 10015.43,
+      "return": 0.0015434016862423405,
+      "cash": 7654.68,
+      "open_positions": 3,
       "realized_pnl": 16.67,
       "positions": [
         {
@@ -89,11 +149,41 @@
           "qty": 6,
           "entry_time": "2026-10-01T23:03:38.544479+00:00",
           "entry_price": 163.93467399999997,
-          "last_price": 164.10009765625,
+          "last_price": 163.89,
           "stop": 162.49748749609037,
           "target": 165.1425125039096,
           "score": 79.0,
           "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 4.6x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-AAPL-ee692779a356",
+          "symbol": "AAPL",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.356001+00:00",
+          "entry_price": 333.773478,
+          "last_price": 333.54,
+          "stop": 331.24181387760785,
+          "target": 335.8381861223922,
+          "score": 73.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-AVGO-889ac8f81c00",
+          "symbol": "AVGO",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.356118+00:00",
+          "entry_price": 355.41761829999996,
+          "last_price": 355.169,
+          "stop": 351.56750087660106,
+          "target": 358.7704991233989,
+          "score": 73.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.8x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
           "market_regime": "SIDEWAYS",
           "broker_status": "disabled",
           "broker_order_id": null

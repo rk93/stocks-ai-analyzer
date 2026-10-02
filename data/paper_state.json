@@ -68,11 +68,17 @@
     "V2|XOM|2026-10-01",
     "V2|CAT|2026-10-01",
     "V3|XOM|2026-10-01",
-    "V3|CAT|2026-10-01"
+    "V3|CAT|2026-10-01",
+    "V1|AAPL|2026-10-02",
+    "V1|AVGO|2026-10-02",
+    "V2|AAPL|2026-10-02",
+    "V2|AVGO|2026-10-02",
+    "V3|AAPL|2026-10-02",
+    "V3|AVGO|2026-10-02"
   ],
   "portfolios": {
     "V1": {
-      "cash": 9023.601092027657,
+      "cash": 7645.218899427657,
       "positions": {
         "XOM": {
           "trade_id": "V1-XOM-257bd7ccb778",
@@ -80,11 +86,41 @@
           "qty": 6,
           "entry_time": "2026-10-01T23:03:38.539067+00:00",
           "entry_price": 163.93467399999997,
-          "last_price": 164.10009765625,
+          "last_price": 163.89,
           "stop": 162.49748749609037,
           "target": 165.1425125039096,
           "score": 68.0,
           "reason": "holding above VWAP; opening-range breakout; volume 34.4x; near support",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "AAPL": {
+          "trade_id": "V1-AAPL-512d7b87e797",
+          "symbol": "AAPL",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.350179+00:00",
+          "entry_price": 333.773478,
+          "last_price": 333.54,
+          "stop": 331.24181387760785,
+          "target": 335.8381861223922,
+          "score": 75.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 4.6x; near support; positive 1M trend",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "AVGO": {
+          "trade_id": "V1-AVGO-55721bda4217",
+          "symbol": "AVGO",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.350319+00:00",
+          "entry_price": 355.41761829999996,
+          "last_price": 355.169,
+          "stop": 351.56750087660106,
+          "target": 358.7704991233989,
+          "score": 71.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 9.6x; near support; enough daily range",
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
@@ -93,7 +129,7 @@
       "realized_pnl": 7.209136027653926
     },
     "V2": {
-      "cash": 9062.247154703635,
+      "cash": 7683.864962103635,
       "positions": {
         "XOM": {
           "trade_id": "V2-XOM-b69e36e9096b",
@@ -101,11 +137,41 @@
           "qty": 6,
           "entry_time": "2026-10-01T23:03:38.542015+00:00",
           "entry_price": 163.93467399999997,
-          "last_price": 164.10009765625,
+          "last_price": 163.89,
           "stop": 162.49748749609037,
           "target": 165.1425125039096,
           "score": 71.0,
           "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 4.6x; near support; tradable daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "AAPL": {
+          "trade_id": "V2-AAPL-c82b2e508495",
+          "symbol": "AAPL",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.353618+00:00",
+          "entry_price": 333.773478,
+          "last_price": 333.54,
+          "stop": 331.24181387760785,
+          "target": 335.8381861223922,
+          "score": 69.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; near support; tradable daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "AVGO": {
+          "trade_id": "V2-AVGO-0d1b1500f039",
+          "symbol": "AVGO",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.353728+00:00",
+          "entry_price": 355.41761829999996,
+          "last_price": 355.169,
+          "stop": 351.56750087660106,
+          "target": 358.7704991233989,
+          "score": 65.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.8x; near support; tradable daily range",
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
@@ -114,7 +180,7 @@
       "realized_pnl": 45.85519870363271
     },
     "V3": {
-      "cash": 9033.058209462424,
+      "cash": 7654.676016862424,
       "positions": {
         "XOM": {
           "trade_id": "V3-XOM-4069bbdc3fd5",
@@ -122,11 +188,41 @@
           "qty": 6,
           "entry_time": "2026-10-01T23:03:38.544479+00:00",
           "entry_price": 163.93467399999997,
-          "last_price": 164.10009765625,
+          "last_price": 163.89,
           "stop": 162.49748749609037,
           "target": 165.1425125039096,
           "score": 79.0,
           "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 4.6x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "AAPL": {
+          "trade_id": "V3-AAPL-ee692779a356",
+          "symbol": "AAPL",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.356001+00:00",
+          "entry_price": 333.773478,
+          "last_price": 333.54,
+          "stop": 331.24181387760785,
+          "target": 335.8381861223922,
+          "score": 73.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "AVGO": {
+          "trade_id": "V3-AVGO-889ac8f81c00",
+          "symbol": "AVGO",
+          "qty": 2,
+          "entry_time": "2026-10-02T22:29:01.356118+00:00",
+          "entry_price": 355.41761829999996,
+          "last_price": 355.169,
+          "stop": 351.56750087660106,
+          "target": 358.7704991233989,
+          "score": 73.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.8x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
           "market_regime": "SIDEWAYS",
           "broker_status": "disabled",
           "broker_order_id": null

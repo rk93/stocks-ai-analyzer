@@ -74,11 +74,17 @@
     "V2|AAPL|2026-10-02",
     "V2|AVGO|2026-10-02",
     "V3|AAPL|2026-10-02",
-    "V3|AVGO|2026-10-02"
+    "V3|AVGO|2026-10-02",
+    "V1|SPY|2026-10-06",
+    "V1|QQQ|2026-10-06",
+    "V1|CAT|2026-10-06",
+    "V2|CAT|2026-10-06",
+    "V3|CAT|2026-10-06",
+    "V3|UNH|2026-10-06"
   ],
   "portfolios": {
     "V1": {
-      "cash": 7645.218899427657,
+      "cash": 5986.764755427658,
       "positions": {
         "XOM": {
           "trade_id": "V1-XOM-257bd7ccb778",
@@ -86,7 +92,7 @@
           "qty": 6,
           "entry_time": "2026-10-01T23:03:38.539067+00:00",
           "entry_price": 163.93467399999997,
-          "last_price": 163.89,
+          "last_price": 164.0,
           "stop": 162.49748749609037,
           "target": 165.1425125039096,
           "score": 68.0,
@@ -101,7 +107,7 @@
           "qty": 2,
           "entry_time": "2026-10-02T22:29:01.350179+00:00",
           "entry_price": 333.773478,
-          "last_price": 333.54,
+          "last_price": 333.22,
           "stop": 331.24181387760785,
           "target": 335.8381861223922,
           "score": 75.0,
@@ -110,26 +116,56 @@
           "broker_status": "local",
           "broker_order_id": null
         },
-        "AVGO": {
-          "trade_id": "V1-AVGO-55721bda4217",
-          "symbol": "AVGO",
-          "qty": 2,
-          "entry_time": "2026-10-02T22:29:01.350319+00:00",
-          "entry_price": 355.41761829999996,
-          "last_price": 355.169,
-          "stop": 351.56750087660106,
-          "target": 358.7704991233989,
-          "score": 71.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 9.6x; near support; enough daily range",
-          "market_regime": "SIDEWAYS",
+        "SPY": {
+          "trade_id": "V1-SPY-3addf4d17cc5",
+          "symbol": "SPY",
+          "qty": 1,
+          "entry_time": "2026-10-06T01:51:51.910975+00:00",
+          "entry_price": 775.0921849999999,
+          "last_price": 774.55,
+          "stop": 769.9027,
+          "target": 779.1972999999999,
+          "score": 75.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 3.1x; near support; positive 1M trend",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "QQQ": {
+          "trade_id": "V1-QQQ-fb383c023722",
+          "symbol": "QQQ",
+          "qty": 1,
+          "entry_time": "2026-10-06T01:51:51.911088+00:00",
+          "entry_price": 756.6793049999999,
+          "last_price": 756.15,
+          "stop": 751.6131,
+          "target": 760.6868999999999,
+          "score": 75.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 3.0x; near support; positive 1M trend",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "CAT": {
+          "trade_id": "V1-CAT-94b15a2e6052",
+          "symbol": "CAT",
+          "qty": 1,
+          "entry_time": "2026-10-06T01:51:51.911187+00:00",
+          "entry_price": 850.9952799999999,
+          "last_price": 850.4,
+          "stop": 842.5643631510289,
+          "target": 858.235636848971,
+          "score": 74.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 8.3x; positive 1M trend; enough daily range",
+          "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
         }
       },
-      "realized_pnl": 7.209136027653926
+      "realized_pnl": 20.686525427654033
     },
     "V2": {
-      "cash": 7683.864962103635,
+      "cash": 7557.1823081036355,
       "positions": {
         "XOM": {
           "trade_id": "V2-XOM-b69e36e9096b",
@@ -137,7 +173,7 @@
           "qty": 6,
           "entry_time": "2026-10-01T23:03:38.542015+00:00",
           "entry_price": 163.93467399999997,
-          "last_price": 163.89,
+          "last_price": 164.0,
           "stop": 162.49748749609037,
           "target": 165.1425125039096,
           "score": 71.0,
@@ -152,7 +188,7 @@
           "qty": 2,
           "entry_time": "2026-10-02T22:29:01.353618+00:00",
           "entry_price": 333.773478,
-          "last_price": 333.54,
+          "last_price": 333.22,
           "stop": 331.24181387760785,
           "target": 335.8381861223922,
           "score": 69.0,
@@ -161,26 +197,26 @@
           "broker_status": "local",
           "broker_order_id": null
         },
-        "AVGO": {
-          "trade_id": "V2-AVGO-0d1b1500f039",
-          "symbol": "AVGO",
-          "qty": 2,
-          "entry_time": "2026-10-02T22:29:01.353728+00:00",
-          "entry_price": 355.41761829999996,
-          "last_price": 355.169,
-          "stop": 351.56750087660106,
-          "target": 358.7704991233989,
-          "score": 65.0,
-          "reason": "confirmed OR breakout; time-normalized volume 2.8x; near support; tradable daily range",
-          "market_regime": "SIDEWAYS",
+        "CAT": {
+          "trade_id": "V2-CAT-cf4e46975bfc",
+          "symbol": "CAT",
+          "qty": 1,
+          "entry_time": "2026-10-06T01:51:51.914392+00:00",
+          "entry_price": 850.9952799999999,
+          "last_price": 850.4,
+          "stop": 842.5643631510289,
+          "target": 858.235636848971,
+          "score": 71.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.9x; controlled 15m momentum; tradable daily range",
+          "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
         }
       },
-      "realized_pnl": 45.85519870363271
+      "realized_pnl": 59.332588103632816
     },
     "V3": {
-      "cash": 7654.676016862424,
+      "cash": 6771.424134862425,
       "positions": {
         "XOM": {
           "trade_id": "V3-XOM-4069bbdc3fd5",
@@ -188,7 +224,7 @@
           "qty": 6,
           "entry_time": "2026-10-01T23:03:38.544479+00:00",
           "entry_price": 163.93467399999997,
-          "last_price": 163.89,
+          "last_price": 164.0,
           "stop": 162.49748749609037,
           "target": 165.1425125039096,
           "score": 79.0,
@@ -203,7 +239,7 @@
           "qty": 2,
           "entry_time": "2026-10-02T22:29:01.356001+00:00",
           "entry_price": 333.773478,
-          "last_price": 333.54,
+          "last_price": 333.22,
           "stop": 331.24181387760785,
           "target": 335.8381861223922,
           "score": 73.0,
@@ -212,23 +248,38 @@
           "broker_status": "disabled",
           "broker_order_id": null
         },
-        "AVGO": {
-          "trade_id": "V3-AVGO-889ac8f81c00",
-          "symbol": "AVGO",
+        "CAT": {
+          "trade_id": "V3-CAT-a6cf05c48a35",
+          "symbol": "CAT",
+          "qty": 1,
+          "entry_time": "2026-10-06T01:51:51.917817+00:00",
+          "entry_price": 850.9952799999999,
+          "last_price": 850.4,
+          "stop": 842.5643631510289,
+          "target": 858.235636848971,
+          "score": 83.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.9x; controlled 15m momentum; tradable daily range; broad market bull trend; tight VWAP proximity",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "UNH": {
+          "trade_id": "V3-UNH-f183b8e7d9d5",
+          "symbol": "UNH",
           "qty": 2,
-          "entry_time": "2026-10-02T22:29:01.356118+00:00",
-          "entry_price": 355.41761829999996,
-          "last_price": 355.169,
-          "stop": 351.56750087660106,
-          "target": 358.7704991233989,
-          "score": 73.0,
-          "reason": "confirmed OR breakout; time-normalized volume 2.8x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
+          "entry_time": "2026-10-06T01:51:51.917996+00:00",
+          "entry_price": 378.284614,
+          "last_price": 378.02,
+          "stop": 375.3390971595511,
+          "target": 380.70090284044886,
+          "score": 69.0,
+          "reason": "confirmed OR breakout; time-normalized volume 1.7x; near support; tradable daily range; broad market bull trend; tight VWAP proximity",
+          "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null
         }
       },
-      "realized_pnl": 16.666253462421878
+      "realized_pnl": 30.143642862421984
     }
   }
 }

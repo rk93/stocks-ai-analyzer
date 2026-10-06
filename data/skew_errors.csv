@@ -1,3 +1,2 @@
 symbol,error
-SOUN,No validated put quotes
-MP,No put quote close enough to 25% delta
+MP,No validated ATM quote for normalization

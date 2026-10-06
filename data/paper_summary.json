@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T18:52:09.252444+00:00",
+  "generated_at": "2026-10-06T22:57:47.392573+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,21 +10,21 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 780.0549926757812,
-      "return": 0.008168180893806998
+      "price": 779.0900268554688,
+      "return": 0.006921028007377927
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 760.8200073242188,
-      "return": 0.027690728059740488
+      "price": 759.6599731445312,
+      "return": 0.026123791912924244
     }
   },
   "strategies": {
     "V1": {
-      "equity": 10049.68,
-      "return": 0.004968059833232008,
-      "cash": 9383.2,
-      "open_positions": 1,
+      "equity": 10049.17,
+      "return": 0.004917075786357028,
+      "cash": 7482.07,
+      "open_positions": 3,
       "realized_pnl": 50.75,
       "positions": [
         {
@@ -33,12 +33,42 @@
           "qty": 2,
           "entry_time": "2026-10-02T22:29:01.350179+00:00",
           "entry_price": 333.773478,
-          "last_price": 333.239990234375,
+          "last_price": 333.65,
           "stop": 331.24181387760785,
           "target": 335.8381861223922,
           "score": 75.0,
           "reason": "holding above VWAP; opening-range breakout; volume 4.6x; near support; positive 1M trend",
           "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-COST-3653d3e2faac",
+          "symbol": "COST",
+          "qty": 1,
+          "entry_time": "2026-10-06T22:57:47.147936+00:00",
+          "entry_price": 935.6545,
+          "last_price": 935.0,
+          "stop": 929.39,
+          "target": 940.61,
+          "score": 75.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 2.2x; near support; positive 1M trend",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-WMT-99072d2ba1a5",
+          "symbol": "WMT",
+          "qty": 9,
+          "entry_time": "2026-10-06T22:57:47.148046+00:00",
+          "entry_price": 107.27503999999999,
+          "last_price": 107.2,
+          "stop": 106.41005363231284,
+          "target": 107.98994636768715,
+          "score": 71.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 7.5x; near support; positive 1M trend",
+          "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
         }
@@ -49,10 +79,10 @@
       "profit_factor": 1.2925099463760592
     },
     "V2": {
-      "equity": 10079.73,
-      "return": 0.007972699608276068,
-      "cash": 8656.37,
-      "open_positions": 2,
+      "equity": 10074.61,
+      "return": 0.0074610426731200885,
+      "cash": 6859.99,
+      "open_positions": 4,
       "realized_pnl": 81.32,
       "positions": [
         {
@@ -61,7 +91,7 @@
           "qty": 2,
           "entry_time": "2026-10-02T22:29:01.353618+00:00",
           "entry_price": 333.773478,
-          "last_price": 333.239990234375,
+          "last_price": 333.65,
           "stop": 331.24181387760785,
           "target": 335.8381861223922,
           "score": 69.0,
@@ -76,11 +106,41 @@
           "qty": 2,
           "entry_time": "2026-10-06T18:52:08.994203+00:00",
           "entry_price": 378.70491044311524,
-          "last_price": 378.4400024414063,
+          "last_price": 376.1,
           "stop": 374.558101627996,
           "target": 382.32190325481656,
           "score": 65.0,
           "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-CVX-22a8f28a0b02",
+          "symbol": "CVX",
+          "qty": 4,
+          "entry_time": "2026-10-06T22:57:47.150459+00:00",
+          "entry_price": 207.725306,
+          "last_price": 207.58,
+          "stop": 206.2115373590168,
+          "target": 208.94846264098325,
+          "score": 65.0,
+          "reason": "confirmed OR breakout; time-normalized volume 4.9x; near support; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-WMT-8dac8337ad01",
+          "symbol": "WMT",
+          "qty": 9,
+          "entry_time": "2026-10-06T22:57:47.150549+00:00",
+          "entry_price": 107.27503999999999,
+          "last_price": 107.2,
+          "stop": 106.41005363231284,
+          "target": 107.98994636768715,
+          "score": 63.0,
+          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 1.6x; near support; tradable daily range",
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
@@ -92,10 +152,10 @@
       "profit_factor": 1.6141821477118259
     },
     "V3": {
-      "equity": 10047.79,
-      "return": 0.004778883016576918,
-      "cash": 7870.61,
-      "open_positions": 3,
+      "equity": 10039.85,
+      "return": 0.003985225348998922,
+      "cash": 6074.23,
+      "open_positions": 5,
       "realized_pnl": 52.13,
       "positions": [
         {
@@ -104,7 +164,7 @@
           "qty": 2,
           "entry_time": "2026-10-02T22:29:01.356001+00:00",
           "entry_price": 333.773478,
-          "last_price": 333.239990234375,
+          "last_price": 333.65,
           "stop": 331.24181387760785,
           "target": 335.8381861223922,
           "score": 73.0,
@@ -119,7 +179,7 @@
           "qty": 2,
           "entry_time": "2026-10-06T01:51:51.917996+00:00",
           "entry_price": 378.284614,
-          "last_price": 376.9100036621094,
+          "last_price": 375.5,
           "stop": 375.3390971595511,
           "target": 380.70090284044886,
           "score": 69.0,
@@ -134,11 +194,41 @@
           "qty": 2,
           "entry_time": "2026-10-06T18:52:08.997038+00:00",
           "entry_price": 378.70491044311524,
-          "last_price": 378.4400024414063,
+          "last_price": 376.1,
           "stop": 374.558101627996,
           "target": 382.32190325481656,
           "score": 77.0,
           "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; tradable daily range; broad market bull trend; tight VWAP proximity",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-CVX-232c07375596",
+          "symbol": "CVX",
+          "qty": 4,
+          "entry_time": "2026-10-06T22:57:47.152782+00:00",
+          "entry_price": 207.725306,
+          "last_price": 207.58,
+          "stop": 206.2115373590168,
+          "target": 208.94846264098325,
+          "score": 81.0,
+          "reason": "confirmed OR breakout; time-normalized volume 4.9x; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-WMT-ec19aae67eca",
+          "symbol": "WMT",
+          "qty": 9,
+          "entry_time": "2026-10-06T22:57:47.152884+00:00",
+          "entry_price": 107.27503999999999,
+          "last_price": 107.2,
+          "stop": 106.41005363231284,
+          "target": 107.98994636768715,
+          "score": 75.0,
+          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 1.6x; near support; tradable daily range; broad market bull trend; tight VWAP proximity",
           "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null

@@ -1,3 +1,4 @@
 symbol,error
+CL,No put quote close enough to 25% delta
 SOUN,No validated ATM quote for normalization
 MP,No validated ATM quote for normalization

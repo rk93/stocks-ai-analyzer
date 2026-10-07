@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T22:57:47.392573+00:00",
+  "generated_at": "2026-10-07T01:35:41.727508+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -21,10 +21,10 @@
   },
   "strategies": {
     "V1": {
-      "equity": 10049.17,
-      "return": 0.004917075786357028,
-      "cash": 7482.07,
-      "open_positions": 3,
+      "equity": 10048.64,
+      "return": 0.004864421786356932,
+      "cash": 6729.34,
+      "open_positions": 4,
       "realized_pnl": 50.75,
       "positions": [
         {
@@ -71,6 +71,21 @@
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-AVGO-6a60db630b3b",
+          "symbol": "AVGO",
+          "qty": 2,
+          "entry_time": "2026-10-07T01:35:41.422070+00:00",
+          "entry_price": 376.36327,
+          "last_price": 376.1,
+          "stop": 372.24210208618297,
+          "target": 379.9578979138171,
+          "score": 82.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 2.6x; near support; positive 1M trend; enough daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
         }
       ],
       "max_drawdown": -0.008023541303444182,
@@ -79,10 +94,10 @@
       "profit_factor": 1.2925099463760592
     },
     "V2": {
-      "equity": 10074.61,
-      "return": 0.0074610426731200885,
-      "cash": 6859.99,
-      "open_positions": 4,
+      "equity": 10073.96,
+      "return": 0.007395592673119955,
+      "cash": 5924.34,
+      "open_positions": 5,
       "realized_pnl": 81.32,
       "positions": [
         {
@@ -141,6 +156,21 @@
           "target": 107.98994636768715,
           "score": 63.0,
           "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 1.6x; near support; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-COST-cc1463e55658",
+          "symbol": "COST",
+          "qty": 1,
+          "entry_time": "2026-10-07T01:35:41.424299+00:00",
+          "entry_price": 935.6545,
+          "last_price": 935.0,
+          "stop": 929.39,
+          "target": 940.61,
+          "score": 77.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 7.1x; near support; tradable daily range",
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null

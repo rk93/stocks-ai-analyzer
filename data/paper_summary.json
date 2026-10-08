@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T19:13:50.993464+00:00",
+  "generated_at": "2026-10-08T23:53:11.342131+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,21 +10,21 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 772.9500122070312,
-      "return": -0.0010145245586569152
+      "price": 773.9299926757812,
+      "return": 0.00025203374270343915
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 745.8942260742188,
-      "return": 0.007529471978134472
+      "price": 747.5800170898438,
+      "return": 0.009806583225901555
     }
   },
   "strategies": {
     "V1": {
-      "equity": 9995.06,
-      "return": -0.0004935386385380713,
-      "cash": 9298.28,
-      "open_positions": 1,
+      "equity": 9994.71,
+      "return": -0.0005289785682256465,
+      "cash": 8328.51,
+      "open_positions": 2,
       "realized_pnl": -0.52,
       "positions": [
         {
@@ -33,11 +33,26 @@
           "qty": 2,
           "entry_time": "2026-10-07T23:43:08.445981+00:00",
           "entry_price": 350.595245,
-          "last_price": 348.3900146484375,
+          "last_price": 348.552,
           "stop": 347.19585677391416,
           "target": 353.5041432260859,
           "score": 74.0,
           "reason": "holding above VWAP; opening-range breakout; volume 10.7x; positive 1M trend; enough daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-CL-62878d4e5bda",
+          "symbol": "CL",
+          "qty": 11,
+          "entry_time": "2026-10-08T23:53:11.049201+00:00",
+          "entry_price": 88.16166999999999,
+          "last_price": 88.1,
+          "stop": 87.5714,
+          "target": 88.62859999999999,
+          "score": 71.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 11.6x; near support; positive 1M trend",
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
@@ -49,8 +64,8 @@
       "profit_factor": 0.9977253340915553
     },
     "V2": {
-      "equity": 10004.53,
-      "return": 0.00045323547263587116,
+      "equity": 9999.37,
+      "return": -6.337206520623528e-05,
       "cash": 7626.32,
       "open_positions": 3,
       "realized_pnl": 10.12,
@@ -61,7 +76,7 @@
           "qty": 2,
           "entry_time": "2026-10-07T23:43:08.449203+00:00",
           "entry_price": 350.595245,
-          "last_price": 348.3900146484375,
+          "last_price": 348.552,
           "stop": 347.19585677391416,
           "target": 353.5041432260859,
           "score": 73.0,
@@ -76,7 +91,7 @@
           "qty": 9,
           "entry_time": "2026-10-08T19:13:50.619400+00:00",
           "entry_price": 111.08770913772584,
-          "last_price": 111.01000213623048,
+          "last_price": 110.52,
           "stop": 110.18019779964142,
           "target": 111.83980647281952,
           "score": 65.0,
@@ -91,7 +106,7 @@
           "qty": 2,
           "entry_time": "2026-10-08T19:13:50.619483+00:00",
           "entry_price": 341.40883243713375,
-          "last_price": 341.1700134277344,
+          "last_price": 340.63,
           "stop": 338.9585940399595,
           "target": 343.38143281550924,
           "score": 65.0,
@@ -101,16 +116,16 @@
           "broker_order_id": null
         }
       ],
-      "max_drawdown": -0.007897526519287101,
+      "max_drawdown": -0.008409219598638162,
       "closed_trades": 28,
       "win_rate": 0.4642857142857143,
       "profit_factor": 1.0449113766602995
     },
     "V3": {
-      "equity": 9963.56,
-      "return": -0.0036440250501517113,
-      "cash": 6622.71,
-      "open_positions": 4,
+      "equity": 9959.37,
+      "return": -0.004062690164018945,
+      "cash": 5706.95,
+      "open_positions": 5,
       "realized_pnl": -30.18,
       "positions": [
         {
@@ -119,7 +134,7 @@
           "qty": 2,
           "entry_time": "2026-10-07T23:43:08.453578+00:00",
           "entry_price": 350.595245,
-          "last_price": 348.3900146484375,
+          "last_price": 348.552,
           "stop": 347.19585677391416,
           "target": 353.5041432260859,
           "score": 89.0,
@@ -134,7 +149,7 @@
           "qty": 9,
           "entry_time": "2026-10-08T19:13:50.621651+00:00",
           "entry_price": 111.08770913772584,
-          "last_price": 111.01000213623048,
+          "last_price": 110.52,
           "stop": 110.18019779964142,
           "target": 111.83980647281952,
           "score": 77.0,
@@ -149,7 +164,7 @@
           "qty": 2,
           "entry_time": "2026-10-08T19:13:50.621776+00:00",
           "entry_price": 341.40883243713375,
-          "last_price": 341.1700134277344,
+          "last_price": 340.63,
           "stop": 338.9585940399595,
           "target": 343.38143281550924,
           "score": 77.0,
@@ -164,7 +179,7 @@
           "qty": 18,
           "entry_time": "2026-10-08T19:13:50.621879+00:00",
           "entry_price": 53.51743554191589,
-          "last_price": 53.47999954223633,
+          "last_price": 53.57,
           "stop": 53.13126050344167,
           "target": 53.82873858103099,
           "score": 69.0,
@@ -172,9 +187,24 @@
           "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-GE-95307803f82d",
+          "symbol": "GE",
+          "qty": 3,
+          "entry_time": "2026-10-08T23:53:11.054869+00:00",
+          "entry_price": 305.253528,
+          "last_price": 305.04,
+          "stop": 302.2588013213362,
+          "target": 307.82119867866385,
+          "score": 75.0,
+          "reason": "confirmed OR breakout; time-normalized volume 5.9x; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
         }
       ],
-      "max_drawdown": -0.008382937939586887,
+      "max_drawdown": -0.00879994506254611,
       "closed_trades": 29,
       "win_rate": 0.41379310344827586,
       "profit_factor": 0.8831611130461703

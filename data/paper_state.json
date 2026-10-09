@@ -110,7 +110,10 @@
     "V3|AAPL|2026-10-08",
     "V3|BAC|2026-10-08",
     "V1|CL|2026-10-08",
-    "V3|GE|2026-10-08"
+    "V3|GE|2026-10-08",
+    "V2|MSFT|2026-10-09",
+    "V2|PLTR|2026-10-09",
+    "V3|MSFT|2026-10-09"
   ],
   "portfolios": {
     "V1": {
@@ -122,7 +125,7 @@
           "qty": 2,
           "entry_time": "2026-10-07T23:43:08.445981+00:00",
           "entry_price": 350.595245,
-          "last_price": 348.552,
+          "last_price": 351.0599975585937,
           "stop": 347.19585677391416,
           "target": 353.5041432260859,
           "score": 74.0,
@@ -137,7 +140,7 @@
           "qty": 11,
           "entry_time": "2026-10-08T23:53:11.049201+00:00",
           "entry_price": 88.16166999999999,
-          "last_price": 88.1,
+          "last_price": 88.41000366210938,
           "stop": 87.5714,
           "target": 88.62859999999999,
           "score": 71.0,
@@ -150,7 +153,7 @@
       "realized_pnl": -0.5249256822585266
     },
     "V2": {
-      "cash": 7626.322279347939,
+      "cash": 6935.106619289345,
       "positions": {
         "GOOGL": {
           "trade_id": "V2-GOOGL-c22051f9c397",
@@ -158,7 +161,7 @@
           "qty": 2,
           "entry_time": "2026-10-07T23:43:08.449203+00:00",
           "entry_price": 350.595245,
-          "last_price": 348.552,
+          "last_price": 351.0599975585937,
           "stop": 347.19585677391416,
           "target": 353.5041432260859,
           "score": 73.0,
@@ -173,7 +176,7 @@
           "qty": 9,
           "entry_time": "2026-10-08T19:13:50.619400+00:00",
           "entry_price": 111.08770913772584,
-          "last_price": 110.52,
+          "last_price": 111.3499984741211,
           "stop": 110.18019779964142,
           "target": 111.83980647281952,
           "score": 65.0,
@@ -182,26 +185,41 @@
           "broker_status": "local",
           "broker_order_id": null
         },
-        "AAPL": {
-          "trade_id": "V2-AAPL-bb6d3450fa6d",
-          "symbol": "AAPL",
-          "qty": 2,
-          "entry_time": "2026-10-08T19:13:50.619483+00:00",
-          "entry_price": 341.40883243713375,
-          "last_price": 340.63,
-          "stop": 338.9585940399595,
-          "target": 343.38143281550924,
+        "MSFT": {
+          "trade_id": "V2-MSFT-d25d7341e085",
+          "symbol": "MSFT",
+          "qty": 1,
+          "entry_time": "2026-10-09T18:44:02.555887+00:00",
+          "entry_price": 536.9456063293457,
+          "last_price": 536.5700073242188,
+          "stop": 532.0137153517265,
+          "target": 541.126299296711,
+          "score": 79.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.0x; controlled 15m momentum; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "PLTR": {
+          "trade_id": "V2-PLTR-7f596000ab5c",
+          "symbol": "PLTR",
+          "qty": 4,
+          "entry_time": "2026-10-09T18:44:02.556015+00:00",
+          "entry_price": 206.84468694610595,
+          "last_price": 206.6999969482422,
+          "stop": 204.5321322362348,
+          "target": 208.8678616602496,
           "score": 65.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.6x; tradable daily range",
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.8x; tradable daily range",
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
         }
       },
-      "realized_pnl": 10.119816461737628
+      "realized_pnl": 0.4108456426458815
     },
     "V3": {
-      "cash": 5706.949098359812,
+      "cash": 6817.939323596323,
       "positions": {
         "GOOGL": {
           "trade_id": "V3-GOOGL-0d141f9d783b",
@@ -209,7 +227,7 @@
           "qty": 2,
           "entry_time": "2026-10-07T23:43:08.453578+00:00",
           "entry_price": 350.595245,
-          "last_price": 348.552,
+          "last_price": 351.0599975585937,
           "stop": 347.19585677391416,
           "target": 353.5041432260859,
           "score": 89.0,
@@ -224,41 +242,11 @@
           "qty": 9,
           "entry_time": "2026-10-08T19:13:50.621651+00:00",
           "entry_price": 111.08770913772584,
-          "last_price": 110.52,
+          "last_price": 111.3499984741211,
           "stop": 110.18019779964142,
           "target": 111.83980647281952,
           "score": 77.0,
           "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; tradable daily range; broad market bull trend; tight VWAP proximity",
-          "market_regime": "BULL_TREND",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        "AAPL": {
-          "trade_id": "V3-AAPL-881d80ecc7a1",
-          "symbol": "AAPL",
-          "qty": 2,
-          "entry_time": "2026-10-08T19:13:50.621776+00:00",
-          "entry_price": 341.40883243713375,
-          "last_price": 340.63,
-          "stop": 338.9585940399595,
-          "target": 343.38143281550924,
-          "score": 77.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.6x; tradable daily range; broad market bull trend; tight VWAP proximity",
-          "market_regime": "BULL_TREND",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        "BAC": {
-          "trade_id": "V3-BAC-669a6a5fe375",
-          "symbol": "BAC",
-          "qty": 18,
-          "entry_time": "2026-10-08T19:13:50.621879+00:00",
-          "entry_price": 53.51743554191589,
-          "last_price": 53.61,
-          "stop": 53.13126050344167,
-          "target": 53.82873858103099,
-          "score": 69.0,
-          "reason": "confirmed OR breakout; time-normalized volume 1.5x; controlled 15m momentum; near support; tradable daily range; broad market bull trend; tight VWAP proximity",
           "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null
@@ -269,7 +257,7 @@
           "qty": 3,
           "entry_time": "2026-10-08T23:53:11.054869+00:00",
           "entry_price": 305.253528,
-          "last_price": 305.62,
+          "last_price": 306.7900085449219,
           "stop": 302.2588013213362,
           "target": 307.82119867866385,
           "score": 75.0,
@@ -277,9 +265,24 @@
           "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null
+        },
+        "MSFT": {
+          "trade_id": "V3-MSFT-d0af277ba0b6",
+          "symbol": "MSFT",
+          "qty": 1,
+          "entry_time": "2026-10-09T18:44:02.558315+00:00",
+          "entry_price": 536.9456063293457,
+          "last_price": 536.5700073242188,
+          "stop": 532.0137153517265,
+          "target": 541.126299296711,
+          "score": 95.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.0x; controlled 15m momentum; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
         }
       },
-      "realized_pnl": -30.178940771904877
+      "realized_pnl": -28.374613834801494
     }
   }
 }

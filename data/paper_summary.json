@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T23:07:48.204137+00:00",
+  "generated_at": "2026-10-10T01:48:45.044862+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -21,8 +21,8 @@
   },
   "strategies": {
     "V1": {
-      "equity": 10001.2,
-      "return": 0.00011984165177447714,
+      "equity": 10001.08,
+      "return": 0.00010784165177457616,
       "cash": 6042.05,
       "open_positions": 5,
       "realized_pnl": -0.52,
@@ -78,7 +78,7 @@
           "qty": 1,
           "entry_time": "2026-10-09T23:07:47.905598+00:00",
           "entry_price": 779.235083,
-          "last_price": 778.69,
+          "last_price": 778.57,
           "stop": 775.1400146484375,
           "target": 782.2399853515626,
           "score": 75.0,

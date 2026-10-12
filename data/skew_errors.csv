@@ -1,34 +1,26 @@
 symbol,error
-SQ,Insufficient price history
-RBLX,No validated ATM quote for normalization
-SOUN,No validated ATM quote for normalization
-BLK,No call quote close enough to 25% delta
-BK,Insufficient price history
-AIG,No validated put quotes
-VRTX,No call quote close enough to 25% delta
-REGN,No call quote close enough to 25% delta
-HUM,No call quote close enough to 25% delta
-SBUX,No call quote close enough to 25% delta
-HON,No validated put quotes
-FDX,No call quote close enough to 25% delta
-NOC,No validated put quotes
-CSX,No call quote close enough to 25% delta
-URI,No call quote close enough to 25% delta
-ROKU,No validated call quotes
-SNAP,No put quote close enough to 25% delta
-DUK,No call quote close enough to 25% delta
-AEP,No call quote close enough to 25% delta
-EXC,No call quote close enough to 25% delta
-SRE,No put quote close enough to 25% delta
-D,No put quote close enough to 25% delta
-PCG,No validated call quotes
-LIN,No put quote close enough to 25% delta
-DOW,No put quote close enough to 25% delta
-DD,No validated call quotes
-PLD,No call quote close enough to 25% delta
-EQIX,No call quote close enough to 25% delta
-SPG,No call quote close enough to 25% delta
-CCI,No validated put quotes
-XLE,No validated call quotes
-XLY,No validated call quotes
-XLI,No validated call quotes
+MSFT,No call quote close enough to 25% delta
+META,No validated put quotes
+AMD,No call quote close enough to 25% delta
+NFLX,No put quote close enough to 25% delta
+CRM,No validated call quotes
+ORCL,No put quote close enough to 25% delta
+JPM,No validated call quotes
+BAC,No validated call quotes
+GS,No validated call quotes
+XOM,No call quote close enough to 25% delta
+CVX,No validated call quotes
+LLY,No validated call quotes
+UNH,No call quote close enough to 25% delta
+COST,No validated call quotes
+WMT,No validated put quotes
+CAT,No call quote close enough to 25% delta
+GE,No validated call quotes
+SNDK,No validated put quotes
+NVO,No validated call quotes
+RGTI,No validated call quotes
+CL,No validated call quotes
+SOUN,No validated call quotes
+NBIS,No call quote close enough to 25% delta
+MP,No validated call quotes
+ASML,No validated call quotes

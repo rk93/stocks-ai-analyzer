@@ -1,17 +1,19 @@
 symbol,error
+MSFT,No call quote close enough to 25% delta
 META,No call quote close enough to 25% delta
 CRM,No validated call quotes
 JPM,No call quote close enough to 25% delta
-BAC,No put quote close enough to 25% delta
+BAC,No validated put quotes
 GS,No call quote close enough to 25% delta
 XOM,No call quote close enough to 25% delta
 CVX,No validated ATM quote for normalization
 LLY,No validated call quotes
 COST,No call quote close enough to 25% delta
-CAT,No put quote close enough to 25% delta
+WMT,No validated put quotes
+CAT,No validated call quotes
 GE,No validated call quotes
 SNDK,No call quote close enough to 25% delta
-NVO,No validated call quotes
+NVO,No validated put quotes
 RGTI,No call quote close enough to 25% delta
 CL,No validated call quotes
 SOUN,No call quote close enough to 25% delta

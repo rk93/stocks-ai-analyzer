@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T17:54:20.966540+00:00",
+  "generated_at": "2026-10-14T21:28:53.962323+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,13 +10,13 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 767.6900024414062,
-      "return": -0.007812730488604647
+      "price": 769.5999755859375,
+      "return": -0.005344219718520504
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 728.0499267578125,
-      "return": -0.016574022645632236
+      "price": 728.9500122070312,
+      "return": -0.015358216723444729
     }
   },
   "strategies": {
@@ -33,34 +33,19 @@
       "profit_factor": 0.7789408228832002
     },
     "V2": {
-      "equity": 10038.21,
-      "return": 0.003820503455715496,
-      "cash": 5444.68,
-      "open_positions": 5,
-      "realized_pnl": 41.42,
+      "equity": 10054.15,
+      "return": 0.005414555450832692,
+      "cash": 6368.94,
+      "open_positions": 4,
+      "realized_pnl": 46.48,
       "positions": [
-        {
-          "trade_id": "V2-CL-2f520ce71bf7",
-          "symbol": "CL",
-          "qty": 10,
-          "entry_time": "2026-10-14T17:54:20.461152+00:00",
-          "entry_price": 91.91930185928344,
-          "last_price": 91.8550033569336,
-          "stop": 91.303873336792,
-          "target": 92.4061333770752,
-          "score": 73.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.2x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
         {
           "trade_id": "V2-COST-88cd0d147083",
           "symbol": "COST",
           "qty": 1,
           "entry_time": "2026-10-14T17:54:20.461215+00:00",
           "entry_price": 978.3043291137695,
-          "last_price": 977.6199951171876,
+          "last_price": 982.0,
           "stop": 971.6305197249368,
           "target": 983.6094705094382,
           "score": 65.0,
@@ -75,7 +60,7 @@
           "qty": 8,
           "entry_time": "2026-10-14T17:54:20.461259+00:00",
           "entry_price": 115.46577163772584,
-          "last_price": 115.38500213623048,
+          "last_price": 115.9035,
           "stop": 114.57174180882696,
           "target": 116.19826246363398,
           "score": 65.0,
@@ -90,7 +75,7 @@
           "qty": 4,
           "entry_time": "2026-10-14T17:54:20.461296+00:00",
           "entry_price": 222.1353817245483,
-          "last_price": 221.97999572753903,
+          "last_price": 222.12,
           "stop": 220.49583019494648,
           "target": 223.46416126013165,
           "score": 65.0,
@@ -105,7 +90,7 @@
           "qty": 5,
           "entry_time": "2026-10-14T17:54:20.461330+00:00",
           "entry_price": 177.39409327545164,
-          "last_price": 177.27000427246094,
+          "last_price": 177.5,
           "stop": 176.12680806498744,
           "target": 178.41320047993443,
           "score": 65.0,
@@ -116,39 +101,24 @@
         }
       ],
       "max_drawdown": -0.008409219598638162,
-      "closed_trades": 39,
-      "win_rate": 0.5384615384615384,
-      "profit_factor": 1.1398884946781551
+      "closed_trades": 40,
+      "win_rate": 0.55,
+      "profit_factor": 1.156985977361041
     },
     "V3": {
-      "equity": 9925.79,
-      "return": -0.0074211899042678775,
-      "cash": 5332.27,
-      "open_positions": 5,
-      "realized_pnl": -71.0,
+      "equity": 9941.73,
+      "return": -0.0058271379091507924,
+      "cash": 6256.52,
+      "open_positions": 4,
+      "realized_pnl": -65.94,
       "positions": [
-        {
-          "trade_id": "V3-CL-898a589e4d29",
-          "symbol": "CL",
-          "qty": 10,
-          "entry_time": "2026-10-14T17:54:20.462597+00:00",
-          "entry_price": 91.91930185928344,
-          "last_price": 91.8550033569336,
-          "stop": 91.303873336792,
-          "target": 92.4061333770752,
-          "score": 81.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.2x; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
         {
           "trade_id": "V3-COST-6a11a0479773",
           "symbol": "COST",
           "qty": 1,
           "entry_time": "2026-10-14T17:54:20.462652+00:00",
           "entry_price": 978.3043291137695,
-          "last_price": 977.6199951171876,
+          "last_price": 982.0,
           "stop": 971.6305197249368,
           "target": 983.6094705094382,
           "score": 69.0,
@@ -163,7 +133,7 @@
           "qty": 8,
           "entry_time": "2026-10-14T17:54:20.462710+00:00",
           "entry_price": 115.46577163772584,
-          "last_price": 115.38500213623048,
+          "last_price": 115.9035,
           "stop": 114.57174180882696,
           "target": 116.19826246363398,
           "score": 69.0,
@@ -178,7 +148,7 @@
           "qty": 4,
           "entry_time": "2026-10-14T17:54:20.462782+00:00",
           "entry_price": 222.1353817245483,
-          "last_price": 221.97999572753903,
+          "last_price": 222.12,
           "stop": 220.49583019494648,
           "target": 223.46416126013165,
           "score": 69.0,
@@ -193,7 +163,7 @@
           "qty": 5,
           "entry_time": "2026-10-14T17:54:20.462841+00:00",
           "entry_price": 177.39409327545164,
-          "last_price": 177.27000427246094,
+          "last_price": 177.5,
           "stop": 176.12680806498744,
           "target": 178.41320047993443,
           "score": 69.0,
@@ -204,9 +174,9 @@
         }
       ],
       "max_drawdown": -0.012141973508602355,
-      "closed_trades": 41,
-      "win_rate": 0.4878048780487805,
-      "profit_factor": 0.820561408827914
+      "closed_trades": 42,
+      "win_rate": 0.5,
+      "profit_factor": 0.8333459662952578
     }
   },
   "note": "Local shadow portfolios are the source of truth. Alpaca, when enabled, is paper-only and mirrors the selected strategy."

@@ -1,17 +1,18 @@
 symbol,error
 JPM,No call quote close enough to 25% delta
-BAC,No validated ATM quote for normalization
-GS,No put quote close enough to 25% delta
+BAC,No validated call quotes
+GS,No validated ATM quote for normalization
 XOM,No call quote close enough to 25% delta
 CVX,No call quote close enough to 25% delta
 LLY,No validated call quotes
 COST,No validated call quotes
-WMT,No put quote close enough to 25% delta
+WMT,No validated put quotes
 CAT,No validated call quotes
 GE,No validated call quotes
 SNDK,No call quote close enough to 25% delta
 NVO,No call quote close enough to 25% delta
+RGTI,No validated call quotes
 CL,No validated call quotes
-SOUN,No call quote close enough to 25% delta
-MP,No validated call quotes
+SOUN,No validated put quotes
+MP,No validated put quotes
 ASML,No validated call quotes

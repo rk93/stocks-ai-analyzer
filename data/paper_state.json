@@ -145,39 +145,78 @@
     "V2|UNH|2026-10-15",
     "V2|QQQ|2026-10-15",
     "V3|UNH|2026-10-15",
-    "V3|QQQ|2026-10-15"
+    "V3|QQQ|2026-10-15",
+    "V1|SPY|2026-10-15",
+    "V1|AMZN|2026-10-15",
+    "V1|PLTR|2026-10-15",
+    "V2|AMZN|2026-10-15",
+    "V3|AMZN|2026-10-15",
+    "V3|NVDA|2026-10-15",
+    "V3|GE|2026-10-15",
+    "V3|CAT|2026-10-15"
   ],
   "portfolios": {
     "V1": {
-      "cash": 9914.714132877107,
-      "positions": {},
-      "realized_pnl": -85.28586712289666
-    },
-    "V2": {
-      "cash": 8501.390933178063,
+      "cash": 7572.415770947107,
       "positions": {
-        "UNH": {
-          "trade_id": "V2-UNH-ba6813eb95da",
-          "symbol": "UNH",
-          "qty": 2,
-          "entry_time": "2026-10-15T17:42:50.203166+00:00",
-          "entry_price": 411.6579541137695,
-          "last_price": 411.3699951171875,
-          "stop": 407.02956431018725,
-          "target": 415.71042592418775,
-          "score": 71.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.6x; controlled 15m momentum; tradable daily range",
+        "SPY": {
+          "trade_id": "V1-SPY-0f85d6cf8d0a",
+          "symbol": "SPY",
+          "qty": 1,
+          "entry_time": "2026-10-15T21:10:33.796888+00:00",
+          "entry_price": 772.4303229999999,
+          "last_price": 771.89,
+          "stop": 767.25866,
+          "target": 776.52134,
+          "score": 75.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 5.4x; near support; positive 1M trend",
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
         },
+        "AMZN": {
+          "trade_id": "V1-AMZN-fbfe05905710",
+          "symbol": "AMZN",
+          "qty": 3,
+          "entry_time": "2026-10-15T21:10:33.797008+00:00",
+          "entry_price": 255.10174630999998,
+          "last_price": 254.9233,
+          "stop": 252.90085878510152,
+          "target": 256.9457412148985,
+          "score": 71.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 8.9x; near support; positive 1M trend",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "PLTR": {
+          "trade_id": "V1-PLTR-171319ace22b",
+          "symbol": "PLTR",
+          "qty": 4,
+          "entry_time": "2026-10-15T21:10:33.797110+00:00",
+          "entry_price": 201.14069999999998,
+          "last_price": 201.0,
+          "stop": 198.7417127453444,
+          "target": 203.2582872546556,
+          "score": 68.0,
+          "reason": "opening-range breakout; volume 5.9x; near support; positive 1M trend; enough daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        }
+      },
+      "realized_pnl": -85.28586712289666
+    },
+    "V2": {
+      "cash": 8547.817084248065,
+      "positions": {
         "QQQ": {
           "trade_id": "V2-QQQ-2f12b9aca9dc",
           "symbol": "QQQ",
           "qty": 1,
           "entry_time": "2026-10-15T17:42:50.203338+00:00",
           "entry_price": 727.2937226257324,
-          "last_price": 726.7849731445312,
+          "last_price": 727.87,
           "stop": 722.4242633056641,
           "target": 731.1456829833984,
           "score": 66.0,
@@ -185,35 +224,35 @@
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
+        },
+        "AMZN": {
+          "trade_id": "V2-AMZN-7754936e04f7",
+          "symbol": "AMZN",
+          "qty": 3,
+          "entry_time": "2026-10-15T21:10:33.799894+00:00",
+          "entry_price": 255.10174630999998,
+          "last_price": 254.9233,
+          "stop": 252.90085878510152,
+          "target": 256.9457412148985,
+          "score": 71.0,
+          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 3.0x; near support; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
         }
       },
-      "realized_pnl": 52.00056403133533
+      "realized_pnl": 40.41604580379624
     },
     "V3": {
-      "cash": 8388.97399957823,
+      "cash": 5892.178340688231,
       "positions": {
-        "UNH": {
-          "trade_id": "V3-UNH-624adfd93b8c",
-          "symbol": "UNH",
-          "qty": 2,
-          "entry_time": "2026-10-15T17:42:50.206721+00:00",
-          "entry_price": 411.6579541137695,
-          "last_price": 411.3699951171875,
-          "stop": 407.02956431018725,
-          "target": 415.71042592418775,
-          "score": 83.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.6x; controlled 15m momentum; tradable daily range; broad market bull trend; tight VWAP proximity",
-          "market_regime": "BULL_TREND",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
         "QQQ": {
           "trade_id": "V3-QQQ-8ff1335e8067",
           "symbol": "QQQ",
           "qty": 1,
           "entry_time": "2026-10-15T17:42:50.206844+00:00",
           "entry_price": 727.2937226257324,
-          "last_price": 726.7849731445312,
+          "last_price": 727.87,
           "stop": 722.4242633056641,
           "target": 731.1456829833984,
           "score": 82.0,
@@ -221,9 +260,69 @@
           "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null
+        },
+        "AMZN": {
+          "trade_id": "V3-AMZN-1e9163a6caf6",
+          "symbol": "AMZN",
+          "qty": 3,
+          "entry_time": "2026-10-15T21:10:33.803379+00:00",
+          "entry_price": 255.10174630999998,
+          "last_price": 254.9233,
+          "stop": 252.90085878510152,
+          "target": 256.9457412148985,
+          "score": 87.0,
+          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 3.0x; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "NVDA": {
+          "trade_id": "V3-NVDA-04935fd40937",
+          "symbol": "NVDA",
+          "qty": 4,
+          "entry_time": "2026-10-15T21:10:33.803504+00:00",
+          "entry_price": 217.62042773999997,
+          "last_price": 217.4682,
+          "stop": 215.4183189687417,
+          "target": 219.5180810312583,
+          "score": 75.0,
+          "reason": "confirmed OR breakout; time-normalized volume 3.1x; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "GE": {
+          "trade_id": "V3-GE-4c5fd0af2395",
+          "symbol": "GE",
+          "qty": 3,
+          "entry_time": "2026-10-15T21:10:33.803615+00:00",
+          "entry_price": 312.2184,
+          "last_price": 312.0,
+          "stop": 309.5364266998104,
+          "target": 314.46357330018964,
+          "score": 75.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.7x; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "CAT": {
+          "trade_id": "V3-CAT-6d1128eb6589",
+          "symbol": "CAT",
+          "qty": 1,
+          "entry_time": "2026-10-15T21:10:33.803775+00:00",
+          "entry_price": 736.084899,
+          "last_price": 735.57,
+          "stop": 725.1742754053405,
+          "target": 745.9657245946596,
+          "score": 75.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.4x; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
         }
       },
-      "realized_pnl": -60.416369568499704
+      "realized_pnl": -72.0008877960388
     }
   }
 }

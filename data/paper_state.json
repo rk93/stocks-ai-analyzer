@@ -141,7 +141,11 @@
     "V3|COST|2026-10-14",
     "V3|WMT|2026-10-14",
     "V3|CVX|2026-10-14",
-    "V3|XOM|2026-10-14"
+    "V3|XOM|2026-10-14",
+    "V2|UNH|2026-10-15",
+    "V2|QQQ|2026-10-15",
+    "V3|UNH|2026-10-15",
+    "V3|QQQ|2026-10-15"
   ],
   "portfolios": {
     "V1": {
@@ -150,136 +154,76 @@
       "realized_pnl": -85.28586712289666
     },
     "V2": {
-      "cash": 6368.937554508326,
+      "cash": 8501.390933178063,
       "positions": {
-        "COST": {
-          "trade_id": "V2-COST-88cd0d147083",
-          "symbol": "COST",
+        "UNH": {
+          "trade_id": "V2-UNH-ba6813eb95da",
+          "symbol": "UNH",
+          "qty": 2,
+          "entry_time": "2026-10-15T17:42:50.203166+00:00",
+          "entry_price": 411.6579541137695,
+          "last_price": 411.3699951171875,
+          "stop": 407.02956431018725,
+          "target": 415.71042592418775,
+          "score": 71.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.6x; controlled 15m momentum; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "QQQ": {
+          "trade_id": "V2-QQQ-2f12b9aca9dc",
+          "symbol": "QQQ",
           "qty": 1,
-          "entry_time": "2026-10-14T17:54:20.461215+00:00",
-          "entry_price": 978.3043291137695,
-          "last_price": 982.0,
-          "stop": 971.6305197249368,
-          "target": 983.6094705094382,
-          "score": 65.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.9x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        "WMT": {
-          "trade_id": "V2-WMT-68a8f179c209",
-          "symbol": "WMT",
-          "qty": 8,
-          "entry_time": "2026-10-14T17:54:20.461259+00:00",
-          "entry_price": 115.46577163772584,
-          "last_price": 115.9035,
-          "stop": 114.57174180882696,
-          "target": 116.19826246363398,
-          "score": 65.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        "CVX": {
-          "trade_id": "V2-CVX-b49c504c9bef",
-          "symbol": "CVX",
-          "qty": 4,
-          "entry_time": "2026-10-14T17:54:20.461296+00:00",
-          "entry_price": 222.1353817245483,
-          "last_price": 222.12,
-          "stop": 220.49583019494648,
-          "target": 223.46416126013165,
-          "score": 65.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.4x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        "XOM": {
-          "trade_id": "V2-XOM-563d60908df4",
-          "symbol": "XOM",
-          "qty": 5,
-          "entry_time": "2026-10-14T17:54:20.461330+00:00",
-          "entry_price": 177.39409327545164,
-          "last_price": 177.5,
-          "stop": 176.12680806498744,
-          "target": 178.41320047993443,
-          "score": 65.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.4x; tradable daily range",
-          "market_regime": "SIDEWAYS",
+          "entry_time": "2026-10-15T17:42:50.203338+00:00",
+          "entry_price": 727.2937226257324,
+          "last_price": 726.7849731445312,
+          "stop": 722.4242633056641,
+          "target": 731.1456829833984,
+          "score": 66.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.3x; controlled 15m momentum; near support",
+          "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
         }
       },
-      "realized_pnl": 46.48004999935267
+      "realized_pnl": 52.00056403133533
     },
     "V3": {
-      "cash": 6256.520620908492,
+      "cash": 8388.97399957823,
       "positions": {
-        "COST": {
-          "trade_id": "V3-COST-6a11a0479773",
-          "symbol": "COST",
+        "UNH": {
+          "trade_id": "V3-UNH-624adfd93b8c",
+          "symbol": "UNH",
+          "qty": 2,
+          "entry_time": "2026-10-15T17:42:50.206721+00:00",
+          "entry_price": 411.6579541137695,
+          "last_price": 411.3699951171875,
+          "stop": 407.02956431018725,
+          "target": 415.71042592418775,
+          "score": 83.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.6x; controlled 15m momentum; tradable daily range; broad market bull trend; tight VWAP proximity",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "QQQ": {
+          "trade_id": "V3-QQQ-8ff1335e8067",
+          "symbol": "QQQ",
           "qty": 1,
-          "entry_time": "2026-10-14T17:54:20.462652+00:00",
-          "entry_price": 978.3043291137695,
-          "last_price": 982.0,
-          "stop": 971.6305197249368,
-          "target": 983.6094705094382,
-          "score": 69.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.9x; tradable daily range; sideways market: neutral; tight VWAP proximity",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        "WMT": {
-          "trade_id": "V3-WMT-663f4d09aa1a",
-          "symbol": "WMT",
-          "qty": 8,
-          "entry_time": "2026-10-14T17:54:20.462710+00:00",
-          "entry_price": 115.46577163772584,
-          "last_price": 115.9035,
-          "stop": 114.57174180882696,
-          "target": 116.19826246363398,
-          "score": 69.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.5x; tradable daily range; sideways market: neutral; tight VWAP proximity",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        "CVX": {
-          "trade_id": "V3-CVX-602b7e23b9ee",
-          "symbol": "CVX",
-          "qty": 4,
-          "entry_time": "2026-10-14T17:54:20.462782+00:00",
-          "entry_price": 222.1353817245483,
-          "last_price": 222.12,
-          "stop": 220.49583019494648,
-          "target": 223.46416126013165,
-          "score": 69.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.4x; tradable daily range; sideways market: neutral; tight VWAP proximity",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        "XOM": {
-          "trade_id": "V3-XOM-fcd1f02db893",
-          "symbol": "XOM",
-          "qty": 5,
-          "entry_time": "2026-10-14T17:54:20.462841+00:00",
-          "entry_price": 177.39409327545164,
-          "last_price": 177.5,
-          "stop": 176.12680806498744,
-          "target": 178.41320047993443,
-          "score": 69.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.4x; tradable daily range; sideways market: neutral; tight VWAP proximity",
-          "market_regime": "SIDEWAYS",
+          "entry_time": "2026-10-15T17:42:50.206844+00:00",
+          "entry_price": 727.2937226257324,
+          "last_price": 726.7849731445312,
+          "stop": 722.4242633056641,
+          "target": 731.1456829833984,
+          "score": 82.0,
+          "reason": "confirmed OR breakout; time-normalized volume 2.3x; controlled 15m momentum; near support; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null
         }
       },
-      "realized_pnl": -65.93688360048236
+      "realized_pnl": -60.416369568499704
     }
   }
 }

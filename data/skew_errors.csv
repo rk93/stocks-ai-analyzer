@@ -1,16 +1,7 @@
 symbol,error
-JPM,No call quote close enough to 25% delta
-BAC,No validated call quotes
-GS,No call quote close enough to 25% delta
-XOM,No call quote close enough to 25% delta
-CVX,No call quote close enough to 25% delta
-LLY,No call quote close enough to 25% delta
-COST,No call quote close enough to 25% delta
-CAT,No validated call quotes
+CAT,No validated ATM quote for normalization
 GE,No validated call quotes
-NVO,No call quote close enough to 25% delta
-RGTI,No call quote close enough to 25% delta
-CL,No validated call quotes
+NVO,No put quote close enough to 25% delta
+CL,No validated put quotes
 SOUN,No call quote close enough to 25% delta
-MP,No call quote close enough to 25% delta
 ASML,No validated call quotes

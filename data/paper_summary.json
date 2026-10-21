@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T17:57:58.937719+00:00",
+  "generated_at": "2026-10-21T21:33:59.451161+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,21 +10,21 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 774.0601196289062,
-      "return": 0.00042021400544012266
+      "price": 773.0900268554688,
+      "return": -0.0008335651202339145
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 726.739990234375,
-      "return": -0.018343441964950746
+      "price": 725.2000122070312,
+      "return": -0.02042359380754355
     }
   },
   "strategies": {
     "V1": {
-      "equity": 9858.01,
-      "return": -0.014199492593057639,
-      "cash": 7263.44,
-      "open_positions": 3,
+      "equity": 9848.02,
+      "return": -0.015197695833682467,
+      "cash": 5952.39,
+      "open_positions": 5,
       "realized_pnl": -135.48,
       "positions": [
         {
@@ -33,7 +33,7 @@
           "qty": 4,
           "entry_time": "2026-10-19T23:02:05.514839+00:00",
           "entry_price": 242.86988999999997,
-          "last_price": 242.58999633789065,
+          "last_price": 241.0,
           "stop": 239.6627207411765,
           "target": 245.73727925882343,
           "score": 74.0,
@@ -48,7 +48,7 @@
           "qty": 3,
           "entry_time": "2026-10-19T23:02:05.514902+00:00",
           "entry_price": 262.68375,
-          "last_price": 264.17498779296875,
+          "last_price": 262.5,
           "stop": 260.06819961547853,
           "target": 264.93180038452147,
           "score": 74.0,
@@ -63,12 +63,42 @@
           "qty": 2,
           "entry_time": "2026-10-20T21:26:52.053630+00:00",
           "entry_price": 420.774336,
-          "last_price": 415.8399963378906,
+          "last_price": 417.0,
           "stop": 415.6616563712344,
           "target": 425.2983436287656,
           "score": 82.0,
           "reason": "VWAP reclaim; opening-range breakout; volume 4.9x; positive 1M trend; enough daily range",
           "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-TSLA-f1ea1a9be3f4",
+          "symbol": "TSLA",
+          "qty": 2,
+          "entry_time": "2026-10-21T21:33:58.987037+00:00",
+          "entry_price": 389.582517,
+          "last_price": 389.31,
+          "stop": 384.78380549271503,
+          "target": 393.836194507285,
+          "score": 84.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 3.3x; 15m momentum; positive 1M trend; enough daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V1-MSFT-4cf19d692bf2",
+          "symbol": "MSFT",
+          "qty": 1,
+          "entry_time": "2026-10-21T21:33:58.987158+00:00",
+          "entry_price": 531.8820569999999,
+          "last_price": 531.51,
+          "stop": 527.619634176159,
+          "target": 535.400365823841,
+          "score": 75.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 4.1x; near support; positive 1M trend",
+          "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
         }
@@ -79,49 +109,19 @@
       "profit_factor": 0.7150277590847913
     },
     "V2": {
-      "equity": 10017.03,
-      "return": 0.0017034565004414581,
-      "cash": 5520.77,
+      "equity": 10007.95,
+      "return": 0.0007951187313945951,
+      "cash": 5835.96,
       "open_positions": 5,
-      "realized_pnl": 18.76,
+      "realized_pnl": 29.67,
       "positions": [
-        {
-          "trade_id": "V2-COST-1f6dd5cc2e7a",
-          "symbol": "COST",
-          "qty": 1,
-          "entry_time": "2026-10-16T17:16:20.723001+00:00",
-          "entry_price": 991.2433727844237,
-          "last_price": 996.2349853515624,
-          "stop": 984.6066878662108,
-          "target": 996.4932877197266,
-          "score": 65.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.4x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V2-CVX-f213a16d6c0c",
-          "symbol": "CVX",
-          "qty": 4,
-          "entry_time": "2026-10-16T22:59:04.224164+00:00",
-          "entry_price": 225.15749999999997,
-          "last_price": 226.3650054931641,
-          "stop": 223.38295137022976,
-          "target": 226.61704862977024,
-          "score": 73.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.2x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
         {
           "trade_id": "V2-CRM-f39cd71b6074",
           "symbol": "CRM",
           "qty": 4,
           "entry_time": "2026-10-19T23:02:05.516586+00:00",
           "entry_price": 242.86988999999997,
-          "last_price": 242.58999633789065,
+          "last_price": 241.0,
           "stop": 239.6627207411765,
           "target": 245.73727925882343,
           "score": 73.0,
@@ -136,7 +136,7 @@
           "qty": 2,
           "entry_time": "2026-10-20T21:26:52.055733+00:00",
           "entry_price": 420.774336,
-          "last_price": 415.8399963378906,
+          "last_price": 417.0,
           "stop": 415.6616563712344,
           "target": 425.2983436287656,
           "score": 73.0,
@@ -151,7 +151,7 @@
           "qty": 3,
           "entry_time": "2026-10-21T17:57:58.714528+00:00",
           "entry_price": 264.3599102844238,
-          "last_price": 264.17498779296875,
+          "last_price": 262.5,
           "stop": 261.897669340699,
           "target": 266.4523062452385,
           "score": 73.0,
@@ -159,19 +159,49 @@
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-TSLA-4acaeba83cdc",
+          "symbol": "TSLA",
+          "qty": 2,
+          "entry_time": "2026-10-21T21:33:58.991001+00:00",
+          "entry_price": 389.582517,
+          "last_price": 389.31,
+          "stop": 384.78380549271503,
+          "target": 393.836194507285,
+          "score": 79.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.1x; controlled 15m momentum; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-PLTR-1ccc4eb70d0c",
+          "symbol": "PLTR",
+          "qty": 4,
+          "entry_time": "2026-10-21T21:33:58.991160+00:00",
+          "entry_price": 202.10957774,
+          "last_price": 201.9682,
+          "stop": 198.938677,
+          "target": 204.997723,
+          "score": 79.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.6x; controlled 15m momentum; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
         }
       ],
       "max_drawdown": -0.01040640925331493,
-      "closed_trades": 50,
-      "win_rate": 0.5,
-      "profit_factor": 1.0490293548218301
+      "closed_trades": 52,
+      "win_rate": 0.5192307692307693,
+      "profit_factor": 1.0775992883679555
     },
     "V3": {
-      "equity": 9910.68,
-      "return": -0.008931523234936734,
-      "cash": 5643.3,
+      "equity": 9906.71,
+      "return": -0.009329361003983516,
+      "cash": 5958.48,
       "open_positions": 5,
-      "realized_pnl": -94.11,
+      "realized_pnl": -83.2,
       "positions": [
         {
           "trade_id": "V3-CAT-6d1128eb6589",
@@ -179,7 +209,7 @@
           "qty": 1,
           "entry_time": "2026-10-15T21:10:33.803775+00:00",
           "entry_price": 736.084899,
-          "last_price": 741.4849853515625,
+          "last_price": 740.23,
           "stop": 725.1742754053405,
           "target": 745.9657245946596,
           "score": 75.0,
@@ -189,42 +219,12 @@
           "broker_order_id": null
         },
         {
-          "trade_id": "V3-COST-afd9ffc2827e",
-          "symbol": "COST",
-          "qty": 1,
-          "entry_time": "2026-10-16T17:16:20.724591+00:00",
-          "entry_price": 991.2433727844237,
-          "last_price": 996.2349853515624,
-          "stop": 984.6066878662108,
-          "target": 996.4932877197266,
-          "score": 69.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.4x; tradable daily range; sideways market: neutral; tight VWAP proximity",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V3-CVX-b60b6c3c3471",
-          "symbol": "CVX",
-          "qty": 4,
-          "entry_time": "2026-10-16T22:59:04.227466+00:00",
-          "entry_price": 225.15749999999997,
-          "last_price": 226.3650054931641,
-          "stop": 223.38295137022976,
-          "target": 226.61704862977024,
-          "score": 81.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.2x; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        {
           "trade_id": "V3-UNH-86612a028ead",
           "symbol": "UNH",
           "qty": 2,
           "entry_time": "2026-10-20T21:26:52.058183+00:00",
           "entry_price": 420.774336,
-          "last_price": 415.8399963378906,
+          "last_price": 417.0,
           "stop": 415.6616563712344,
           "target": 425.2983436287656,
           "score": 81.0,
@@ -239,7 +239,7 @@
           "qty": 3,
           "entry_time": "2026-10-21T17:57:58.716396+00:00",
           "entry_price": 264.3599102844238,
-          "last_price": 264.17498779296875,
+          "last_price": 262.5,
           "stop": 261.897669340699,
           "target": 266.4523062452385,
           "score": 89.0,
@@ -247,12 +247,42 @@
           "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-TSLA-b93db4481a0d",
+          "symbol": "TSLA",
+          "qty": 2,
+          "entry_time": "2026-10-21T21:33:58.994810+00:00",
+          "entry_price": 389.582517,
+          "last_price": 389.31,
+          "stop": 384.78380549271503,
+          "target": 393.836194507285,
+          "score": 95.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.1x; controlled 15m momentum; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-PLTR-b8f6b5c74873",
+          "symbol": "PLTR",
+          "qty": 4,
+          "entry_time": "2026-10-21T21:33:58.994981+00:00",
+          "entry_price": 202.10957774,
+          "last_price": 201.9682,
+          "stop": 198.938677,
+          "target": 204.997723,
+          "score": 95.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.6x; controlled 15m momentum; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
         }
       ],
       "max_drawdown": -0.01818409819472744,
-      "closed_trades": 54,
-      "win_rate": 0.46296296296296297,
-      "profit_factor": 0.8085465565634787
+      "closed_trades": 56,
+      "win_rate": 0.48214285714285715,
+      "profit_factor": 0.8307570272139283
     }
   },
   "note": "Local shadow portfolios are the source of truth. Alpaca, when enabled, is paper-only and mirrors the selected strategy."

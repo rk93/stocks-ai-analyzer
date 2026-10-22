@@ -1,5 +1,9 @@
 symbol,error
-XOM,No call quote close enough to 25% delta
-CL,No call quote close enough to 25% delta
+XOM,No validated put quotes
+COST,No call quote close enough to 25% delta
+CAT,No call quote close enough to 25% delta
+RGTI,No validated put quotes
+CL,No validated call quotes
 SOUN,No validated call quotes
+MP,No call quote close enough to 25% delta
 ASML,No validated call quotes

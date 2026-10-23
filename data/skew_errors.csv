@@ -1,8 +1,10 @@
 symbol,error
-XOM,No call quote close enough to 25% delta
+GS,No call quote close enough to 25% delta
+WMT,No call quote close enough to 25% delta
+CAT,No put quote close enough to 25% delta
 GE,No call quote close enough to 25% delta
-RGTI,No call quote close enough to 25% delta
+RGTI,No validated call quotes
 CL,No call quote close enough to 25% delta
 SOUN,No validated call quotes
-MP,No put quote close enough to 25% delta
+MP,No call quote close enough to 25% delta
 ASML,No validated call quotes

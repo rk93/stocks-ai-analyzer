@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T21:23:33.688618+00:00",
+  "generated_at": "2026-10-23T17:49:30.479619+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,19 +10,19 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 763.9600219726562,
-      "return": -0.0126334773067871
+      "price": 760.8300170898438,
+      "return": -0.016678796365728665
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 704.469970703125,
-      "return": -0.04842505439055822
+      "price": 705.8599853515625,
+      "return": -0.0465474681647563
     }
   },
   "strategies": {
     "V1": {
-      "equity": 9828.45,
-      "return": -0.01715530625390982,
+      "equity": 9819.68,
+      "return": -0.01803230820703483,
       "cash": 8980.45,
       "open_positions": 1,
       "realized_pnl": -178.0,
@@ -33,7 +33,7 @@
           "qty": 2,
           "entry_time": "2026-10-20T21:26:52.053630+00:00",
           "entry_price": 420.774336,
-          "last_price": 424.0,
+          "last_price": 419.614990234375,
           "stop": 415.6616563712344,
           "target": 425.2983436287656,
           "score": 82.0,
@@ -43,17 +43,17 @@
           "broker_order_id": null
         }
       ],
-      "max_drawdown": -0.02481511049679863,
+      "max_drawdown": -0.024943202580112067,
       "closed_trades": 48,
       "win_rate": 0.5,
       "profit_factor": 0.6718942926119087
     },
     "V2": {
-      "equity": 9977.21,
-      "return": -0.002278564098378455,
-      "cash": 6792.11,
-      "open_positions": 4,
-      "realized_pnl": -27.6,
+      "equity": 9939.7,
+      "return": -0.006029758429433096,
+      "cash": 8408.0,
+      "open_positions": 2,
+      "realized_pnl": -53.44,
       "positions": [
         {
           "trade_id": "V2-UNH-81734eb9a832",
@@ -61,7 +61,7 @@
           "qty": 2,
           "entry_time": "2026-10-20T21:26:52.055733+00:00",
           "entry_price": 420.774336,
-          "last_price": 424.0,
+          "last_price": 419.614990234375,
           "stop": 415.6616563712344,
           "target": 425.2983436287656,
           "score": 73.0,
@@ -76,7 +76,7 @@
           "qty": 2,
           "entry_time": "2026-10-22T21:23:33.416190+00:00",
           "entry_price": 348.50378199999994,
-          "last_price": 348.26,
+          "last_price": 346.2349853515625,
           "stop": 346.10431812360406,
           "target": 350.4156818763959,
           "score": 73.0,
@@ -84,49 +84,19 @@
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
-        },
-        {
-          "trade_id": "V2-WMT-a4dec56d542f",
-          "symbol": "WMT",
-          "qty": 8,
-          "entry_time": "2026-10-22T21:23:33.416325+00:00",
-          "entry_price": 121.054679,
-          "last_price": 120.97,
-          "stop": 120.06375185514746,
-          "target": 121.87624814485254,
-          "score": 73.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.9x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V2-JPM-f5593253d51b",
-          "symbol": "JPM",
-          "qty": 2,
-          "entry_time": "2026-10-22T21:23:33.416487+00:00",
-          "entry_price": 336.645487,
-          "last_price": 336.41,
-          "stop": 334.252424992507,
-          "target": 338.5675750074931,
-          "score": 65.0,
-          "reason": "confirmed OR breakout; time-normalized volume 2.4x; near support; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
         }
       ],
-      "max_drawdown": -0.010606723210735303,
-      "closed_trades": 56,
-      "win_rate": 0.5,
-      "profit_factor": 0.94048439924151
+      "max_drawdown": -0.014326414568576196,
+      "closed_trades": 58,
+      "win_rate": 0.4827586206896552,
+      "profit_factor": 0.8908619598718183
     },
     "V3": {
-      "equity": 9804.31,
-      "return": -0.01956935049757469,
-      "cash": 6619.21,
-      "open_positions": 4,
-      "realized_pnl": -200.51,
+      "equity": 9766.79,
+      "return": -0.02332054482862933,
+      "cash": 8235.09,
+      "open_positions": 2,
+      "realized_pnl": -226.35,
       "positions": [
         {
           "trade_id": "V3-UNH-86612a028ead",
@@ -134,7 +104,7 @@
           "qty": 2,
           "entry_time": "2026-10-20T21:26:52.058183+00:00",
           "entry_price": 420.774336,
-          "last_price": 424.0,
+          "last_price": 419.614990234375,
           "stop": 415.6616563712344,
           "target": 425.2983436287656,
           "score": 81.0,
@@ -149,7 +119,7 @@
           "qty": 2,
           "entry_time": "2026-10-22T21:23:33.420113+00:00",
           "entry_price": 348.50378199999994,
-          "last_price": 348.26,
+          "last_price": 346.2349853515625,
           "stop": 346.10431812360406,
           "target": 350.4156818763959,
           "score": 81.0,
@@ -157,42 +127,12 @@
           "market_regime": "SIDEWAYS",
           "broker_status": "disabled",
           "broker_order_id": null
-        },
-        {
-          "trade_id": "V3-WMT-50b23db556d4",
-          "symbol": "WMT",
-          "qty": 8,
-          "entry_time": "2026-10-22T21:23:33.420263+00:00",
-          "entry_price": 121.054679,
-          "last_price": 120.97,
-          "stop": 120.06375185514746,
-          "target": 121.87624814485254,
-          "score": 81.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.9x; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V3-JPM-f3bb5d64d24b",
-          "symbol": "JPM",
-          "qty": 2,
-          "entry_time": "2026-10-22T21:23:33.420386+00:00",
-          "entry_price": 336.645487,
-          "last_price": 336.41,
-          "stop": 334.252424992507,
-          "target": 338.5675750074931,
-          "score": 73.0,
-          "reason": "confirmed OR breakout; time-normalized volume 2.4x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
         }
       ],
-      "max_drawdown": -0.02423219434323387,
-      "closed_trades": 60,
-      "win_rate": 0.45,
-      "profit_factor": 0.6707116818286315
+      "max_drawdown": -0.02796634881899407,
+      "closed_trades": 62,
+      "win_rate": 0.43548387096774194,
+      "profit_factor": 0.6434005954349985
     }
   },
   "note": "Local shadow portfolios are the source of truth. Alpaca, when enabled, is paper-only and mirrors the selected strategy."

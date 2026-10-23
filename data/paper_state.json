@@ -197,7 +197,7 @@
           "qty": 2,
           "entry_time": "2026-10-20T21:26:52.053630+00:00",
           "entry_price": 420.774336,
-          "last_price": 424.0,
+          "last_price": 419.614990234375,
           "stop": 415.6616563712344,
           "target": 425.2983436287656,
           "score": 82.0,
@@ -210,7 +210,7 @@
       "realized_pnl": -178.00439053910247
     },
     "V2": {
-      "cash": 6792.1143590162155,
+      "cash": 8408.002464533794,
       "positions": {
         "UNH": {
           "trade_id": "V2-UNH-81734eb9a832",
@@ -218,7 +218,7 @@
           "qty": 2,
           "entry_time": "2026-10-20T21:26:52.055733+00:00",
           "entry_price": 420.774336,
-          "last_price": 424.0,
+          "last_price": 419.614990234375,
           "stop": 415.6616563712344,
           "target": 425.2983436287656,
           "score": 73.0,
@@ -233,7 +233,7 @@
           "qty": 2,
           "entry_time": "2026-10-22T21:23:33.416190+00:00",
           "entry_price": 348.50378199999994,
-          "last_price": 348.26,
+          "last_price": 346.2349853515625,
           "stop": 346.10431812360406,
           "target": 350.4156818763959,
           "score": 73.0,
@@ -241,42 +241,12 @@
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
-        },
-        "WMT": {
-          "trade_id": "V2-WMT-a4dec56d542f",
-          "symbol": "WMT",
-          "qty": 8,
-          "entry_time": "2026-10-22T21:23:33.416325+00:00",
-          "entry_price": 121.054679,
-          "last_price": 120.97,
-          "stop": 120.06375185514746,
-          "target": 121.87624814485254,
-          "score": 73.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.9x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        "JPM": {
-          "trade_id": "V2-JPM-f5593253d51b",
-          "symbol": "JPM",
-          "qty": 2,
-          "entry_time": "2026-10-22T21:23:33.416487+00:00",
-          "entry_price": 336.645487,
-          "last_price": 336.41,
-          "stop": 334.252424992507,
-          "target": 338.5675750074931,
-          "score": 65.0,
-          "reason": "confirmed OR breakout; time-normalized volume 2.4x; near support; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
         }
       },
-      "realized_pnl": -27.600998983786326
+      "realized_pnl": -53.44129946620819
     },
     "V3": {
-      "cash": 6619.206495024253,
+      "cash": 8235.094600541832,
       "positions": {
         "UNH": {
           "trade_id": "V3-UNH-86612a028ead",
@@ -284,7 +254,7 @@
           "qty": 2,
           "entry_time": "2026-10-20T21:26:52.058183+00:00",
           "entry_price": 420.774336,
-          "last_price": 424.0,
+          "last_price": 419.614990234375,
           "stop": 415.6616563712344,
           "target": 425.2983436287656,
           "score": 81.0,
@@ -299,7 +269,7 @@
           "qty": 2,
           "entry_time": "2026-10-22T21:23:33.420113+00:00",
           "entry_price": 348.50378199999994,
-          "last_price": 348.26,
+          "last_price": 346.2349853515625,
           "stop": 346.10431812360406,
           "target": 350.4156818763959,
           "score": 81.0,
@@ -307,39 +277,9 @@
           "market_regime": "SIDEWAYS",
           "broker_status": "disabled",
           "broker_order_id": null
-        },
-        "WMT": {
-          "trade_id": "V3-WMT-50b23db556d4",
-          "symbol": "WMT",
-          "qty": 8,
-          "entry_time": "2026-10-22T21:23:33.420263+00:00",
-          "entry_price": 121.054679,
-          "last_price": 120.97,
-          "stop": 120.06375185514746,
-          "target": 121.87624814485254,
-          "score": 81.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.9x; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        "JPM": {
-          "trade_id": "V3-JPM-f3bb5d64d24b",
-          "symbol": "JPM",
-          "qty": 2,
-          "entry_time": "2026-10-22T21:23:33.420386+00:00",
-          "entry_price": 336.645487,
-          "last_price": 336.41,
-          "stop": 334.252424992507,
-          "target": 338.5675750074931,
-          "score": 73.0,
-          "reason": "confirmed OR breakout; time-normalized volume 2.4x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
         }
       },
-      "realized_pnl": -200.50886297575016
+      "realized_pnl": -226.34916345817203
     }
   }
 }

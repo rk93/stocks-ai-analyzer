@@ -197,30 +197,15 @@
   ],
   "portfolios": {
     "V1": {
-      "cash": 7469.840252460902,
+      "cash": 8818.535458106655,
       "positions": {
-        "UNH": {
-          "trade_id": "V1-UNH-dc6773fed776",
-          "symbol": "UNH",
-          "qty": 2,
-          "entry_time": "2026-10-20T21:26:52.053630+00:00",
-          "entry_price": 420.774336,
-          "last_price": 418.0,
-          "stop": 415.6616563712344,
-          "target": 425.2983436287656,
-          "score": 82.0,
-          "reason": "VWAP reclaim; opening-range breakout; volume 4.9x; positive 1M trend; enough daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
         "PLTR": {
           "trade_id": "V1-PLTR-b8e1fae8dd59",
           "symbol": "PLTR",
           "qty": 5,
           "entry_time": "2026-10-23T21:14:32.584748+00:00",
           "entry_price": 197.13789999999997,
-          "last_price": 197.0,
+          "last_price": 199.05999755859375,
           "stop": 194.045,
           "target": 199.955,
           "score": 82.0,
@@ -228,65 +213,20 @@
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
-        },
-        "MSFT": {
-          "trade_id": "V1-MSFT-87a29fd902b2",
-          "symbol": "MSFT",
-          "qty": 1,
-          "entry_time": "2026-10-23T21:14:32.584922+00:00",
-          "entry_price": 524.9171849999999,
-          "last_price": 524.55,
-          "stop": 520.6600154151598,
-          "target": 528.4399845848401,
-          "score": 71.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 8.3x; near support; positive 1M trend",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
         }
       },
-      "realized_pnl": -178.00439053910247
+      "realized_pnl": -195.77504189335048
     },
     "V2": {
-      "cash": 5963.275152493795,
+      "cash": 7997.290285941061,
       "positions": {
-        "UNH": {
-          "trade_id": "V2-UNH-81734eb9a832",
-          "symbol": "UNH",
-          "qty": 2,
-          "entry_time": "2026-10-20T21:26:52.055733+00:00",
-          "entry_price": 420.774336,
-          "last_price": 418.0,
-          "stop": 415.6616563712344,
-          "target": 425.2983436287656,
-          "score": 73.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.0x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        "AAPL": {
-          "trade_id": "V2-AAPL-39569a3cf97d",
-          "symbol": "AAPL",
-          "qty": 2,
-          "entry_time": "2026-10-22T21:23:33.416190+00:00",
-          "entry_price": 348.50378199999994,
-          "last_price": 347.6,
-          "stop": 346.10431812360406,
-          "target": 350.4156818763959,
-          "score": 73.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 17.6x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
         "PLTR": {
           "trade_id": "V2-PLTR-cc891465260a",
           "symbol": "PLTR",
           "qty": 5,
           "entry_time": "2026-10-23T21:14:32.588388+00:00",
           "entry_price": 197.13789999999997,
-          "last_price": 197.0,
+          "last_price": 199.05999755859375,
           "stop": 194.045,
           "target": 199.955,
           "score": 75.0,
@@ -301,7 +241,7 @@
           "qty": 4,
           "entry_time": "2026-10-23T21:14:32.588504+00:00",
           "entry_price": 233.53015675999998,
-          "last_price": 233.3668,
+          "last_price": 232.5749969482422,
           "stop": 231.57032436490977,
           "target": 235.16327563509026,
           "score": 73.0,
@@ -309,65 +249,20 @@
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
-        },
-        "MSFT": {
-          "trade_id": "V2-MSFT-c1db2e48f153",
-          "symbol": "MSFT",
-          "qty": 1,
-          "entry_time": "2026-10-23T21:14:32.588609+00:00",
-          "entry_price": 524.9171849999999,
-          "last_price": 524.55,
-          "stop": 520.6600154151598,
-          "target": 528.4399845848401,
-          "score": 71.0,
-          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 3.0x; near support; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
         }
       },
-      "realized_pnl": -53.44129946620819
+      "realized_pnl": -82.89958701894238
     },
     "V3": {
-      "cash": 5790.367288501832,
+      "cash": 7824.382421949098,
       "positions": {
-        "UNH": {
-          "trade_id": "V3-UNH-86612a028ead",
-          "symbol": "UNH",
-          "qty": 2,
-          "entry_time": "2026-10-20T21:26:52.058183+00:00",
-          "entry_price": 420.774336,
-          "last_price": 418.0,
-          "stop": 415.6616563712344,
-          "target": 425.2983436287656,
-          "score": 81.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.0x; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        "AAPL": {
-          "trade_id": "V3-AAPL-6cd6af6558c9",
-          "symbol": "AAPL",
-          "qty": 2,
-          "entry_time": "2026-10-22T21:23:33.420113+00:00",
-          "entry_price": 348.50378199999994,
-          "last_price": 347.6,
-          "stop": 346.10431812360406,
-          "target": 350.4156818763959,
-          "score": 81.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 17.6x; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
         "CVX": {
           "trade_id": "V3-CVX-ca7ab6b0ce01",
           "symbol": "CVX",
           "qty": 4,
           "entry_time": "2026-10-23T21:14:32.591358+00:00",
           "entry_price": 233.53015675999998,
-          "last_price": 233.3668,
+          "last_price": 232.5749969482422,
           "stop": 231.57032436490977,
           "target": 235.16327563509026,
           "score": 81.0,
@@ -382,7 +277,7 @@
           "qty": 5,
           "entry_time": "2026-10-23T21:14:32.591484+00:00",
           "entry_price": 197.13789999999997,
-          "last_price": 197.0,
+          "last_price": 199.05999755859375,
           "stop": 194.045,
           "target": 199.955,
           "score": 79.0,
@@ -390,24 +285,9 @@
           "market_regime": "SIDEWAYS",
           "broker_status": "disabled",
           "broker_order_id": null
-        },
-        "MSFT": {
-          "trade_id": "V3-MSFT-8e01ac7bd3cf",
-          "symbol": "MSFT",
-          "qty": 1,
-          "entry_time": "2026-10-23T21:14:32.591601+00:00",
-          "entry_price": 524.9171849999999,
-          "last_price": 524.55,
-          "stop": 520.6600154151598,
-          "target": 528.4399845848401,
-          "score": 79.0,
-          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 3.0x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
         }
       },
-      "realized_pnl": -226.34916345817203
+      "realized_pnl": -255.80745101090622
     }
   }
 }

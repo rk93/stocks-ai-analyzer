@@ -1,5 +1,7 @@
 symbol,error
+MSFT,No put quote close enough to 25% delta
 CRM,No validated call quotes
+JPM,No put quote close enough to 25% delta
 BAC,No put quote close enough to 25% delta
 GS,No validated call quotes
 XOM,No call quote close enough to 25% delta
@@ -10,8 +12,8 @@ COST,No validated call quotes
 WMT,No call quote close enough to 25% delta
 CAT,No validated call quotes
 GE,No validated call quotes
-SNDK,No put quote close enough to 25% delta
-NVO,No validated put quotes
+SNDK,No validated put quotes
+NVO,No call quote close enough to 25% delta
 RGTI,No validated call quotes
 CL,Columns must be same length as key
 SOUN,No validated call quotes

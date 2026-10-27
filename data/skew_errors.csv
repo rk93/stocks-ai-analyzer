@@ -1,23 +1,19 @@
 symbol,error
-MSFT,No call quote close enough to 25% delta
-AMD,No put quote close enough to 25% delta
 CRM,No validated call quotes
-JPM,No validated call quotes
 BAC,No put quote close enough to 25% delta
 GS,No validated call quotes
-XOM,No validated call quotes
+XOM,No call quote close enough to 25% delta
 CVX,No validated call quotes
 LLY,No validated call quotes
-UNH,No validated call quotes
+UNH,No call quote close enough to 25% delta
 COST,No validated call quotes
-WMT,No validated call quotes
+WMT,No call quote close enough to 25% delta
 CAT,No validated call quotes
 GE,No validated call quotes
-SNDK,No validated call quotes
-NVO,No validated call quotes
+SNDK,No put quote close enough to 25% delta
+NVO,No validated put quotes
 RGTI,No validated call quotes
 CL,Columns must be same length as key
 SOUN,No validated call quotes
-NBIS,No call quote close enough to 25% delta
-MP,No validated call quotes
+MP,No call quote close enough to 25% delta
 ASML,No validated call quotes

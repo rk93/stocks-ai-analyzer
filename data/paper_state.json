@@ -210,11 +210,18 @@
     "V3|TSLA|2026-10-27",
     "V3|AMZN|2026-10-27",
     "V2|SPY|2026-10-28",
-    "V3|SPY|2026-10-28"
+    "V3|SPY|2026-10-28",
+    "V1|WMT|2026-10-28",
+    "V1|AMZN|2026-10-28",
+    "V1|AVGO|2026-10-28",
+    "V2|AMZN|2026-10-28",
+    "V2|AVGO|2026-10-28",
+    "V3|AMZN|2026-10-28",
+    "V3|AVGO|2026-10-28"
   ],
   "portfolios": {
     "V1": {
-      "cash": 5869.082285106654,
+      "cash": 5608.918734466653,
       "positions": {
         "PLTR": {
           "trade_id": "V1-PLTR-b8e1fae8dd59",
@@ -222,41 +229,11 @@
           "qty": 5,
           "entry_time": "2026-10-23T21:14:32.584748+00:00",
           "entry_price": 197.13789999999997,
-          "last_price": 194.89500427246094,
+          "last_price": 198.3183,
           "stop": 194.045,
           "target": 199.955,
           "score": 82.0,
           "reason": "holding above VWAP; opening-range breakout; volume 4.1x; near support; positive 1M trend; enough daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        "MSFT": {
-          "trade_id": "V1-MSFT-cfaefadf393c",
-          "symbol": "MSFT",
-          "qty": 1,
-          "entry_time": "2026-10-26T23:16:47.857323+00:00",
-          "entry_price": 533.27303,
-          "last_price": 529.1024780273438,
-          "stop": 528.9472666689126,
-          "target": 536.8527333310874,
-          "score": 75.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 12.6x; near support; positive 1M trend",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        "AMZN": {
-          "trade_id": "V1-AMZN-1fc0a1e912d1",
-          "symbol": "AMZN",
-          "qty": 3,
-          "entry_time": "2026-10-27T22:55:00.524742+00:00",
-          "entry_price": 253.667443,
-          "last_price": 253.80999755859375,
-          "stop": 251.04404733309028,
-          "target": 255.93595266690974,
-          "score": 74.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 7.8x; near support; positive 1M trend; enough daily range",
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
@@ -267,7 +244,7 @@
           "qty": 2,
           "entry_time": "2026-10-27T22:55:00.524933+00:00",
           "entry_price": 407.08475999999996,
-          "last_price": 404.7300109863281,
+          "last_price": 404.56,
           "stop": 401.78875121993946,
           "target": 411.81124878006057,
           "score": 74.0,
@@ -276,26 +253,56 @@
           "broker_status": "local",
           "broker_order_id": null
         },
-        "IWM": {
-          "trade_id": "V1-IWM-cd1ff8daa3e1",
-          "symbol": "IWM",
+        "WMT": {
+          "trade_id": "V1-WMT-08d530b49f5c",
+          "symbol": "WMT",
+          "qty": 8,
+          "entry_time": "2026-10-28T23:02:53.685462+00:00",
+          "entry_price": 119.55362899999999,
+          "last_price": 119.47,
+          "stop": 118.61346975891702,
+          "target": 120.32653024108298,
+          "score": 85.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 3.9x; 15m momentum; near support; positive 1M trend",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "AMZN": {
+          "trade_id": "V1-AMZN-d02cf0156f8f",
+          "symbol": "AMZN",
           "qty": 3,
-          "entry_time": "2026-10-27T22:55:00.525053+00:00",
-          "entry_price": 280.336098,
-          "last_price": 281.0899963378906,
-          "stop": 278.45916,
-          "target": 281.82084,
-          "score": 71.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 4.4x; near support; positive 1M trend",
-          "market_regime": "SIDEWAYS",
+          "entry_time": "2026-10-28T23:02:53.685620+00:00",
+          "entry_price": 256.11915799999997,
+          "last_price": 255.94,
+          "stop": 253.57905370939886,
+          "target": 258.30094629060113,
+          "score": 82.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 9.9x; near support; positive 1M trend; enough daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "AVGO": {
+          "trade_id": "V1-AVGO-192843627c2e",
+          "symbol": "AVGO",
+          "qty": 2,
+          "entry_time": "2026-10-28T23:02:53.685727+00:00",
+          "entry_price": 352.2464,
+          "last_price": 352.0,
+          "stop": 347.9798076375339,
+          "target": 356.0201923624661,
+          "score": 78.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 7.2x; near support; positive 1M trend; enough daily range",
+          "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
         }
       },
-      "realized_pnl": -195.77504189335048
+      "realized_pnl": -161.94293953335045
     },
     "V2": {
-      "cash": 6001.74786518325,
+      "cash": 5852.90533654325,
       "positions": {
         "PLTR": {
           "trade_id": "V2-PLTR-cc891465260a",
@@ -303,26 +310,11 @@
           "qty": 5,
           "entry_time": "2026-10-23T21:14:32.588388+00:00",
           "entry_price": 197.13789999999997,
-          "last_price": 194.89500427246094,
+          "last_price": 198.3183,
           "stop": 194.045,
           "target": 199.955,
           "score": 75.0,
           "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.0x; controlled 15m momentum; near support; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        "MSFT": {
-          "trade_id": "V2-MSFT-64ebeec998ea",
-          "symbol": "MSFT",
-          "qty": 1,
-          "entry_time": "2026-10-26T23:16:47.859200+00:00",
-          "entry_price": 533.27303,
-          "last_price": 529.1024780273438,
-          "stop": 528.9472666689126,
-          "target": 536.8527333310874,
-          "score": 77.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 4.7x; near support; tradable daily range",
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
@@ -333,26 +325,11 @@
           "qty": 2,
           "entry_time": "2026-10-27T22:55:00.528207+00:00",
           "entry_price": 407.08475999999996,
-          "last_price": 404.7300109863281,
+          "last_price": 404.56,
           "stop": 401.78875121993946,
           "target": 411.81124878006057,
           "score": 73.0,
           "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.1x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        "AMZN": {
-          "trade_id": "V2-AMZN-1a4b26bcc36c",
-          "symbol": "AMZN",
-          "qty": 3,
-          "entry_time": "2026-10-27T22:55:00.528310+00:00",
-          "entry_price": 253.667443,
-          "last_price": 253.80999755859375,
-          "stop": 251.04404733309028,
-          "target": 255.93595266690974,
-          "score": 65.0,
-          "reason": "confirmed OR breakout; time-normalized volume 3.5x; near support; tradable daily range",
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
@@ -363,7 +340,7 @@
           "qty": 1,
           "entry_time": "2026-10-28T18:44:20.967321+00:00",
           "entry_price": 773.4410544311523,
-          "last_price": 772.9000244140625,
+          "last_price": 773.36,
           "stop": 769.239990234375,
           "target": 776.56005859375,
           "score": 78.0,
@@ -371,12 +348,42 @@
           "market_regime": "BULL_TREND",
           "broker_status": "local",
           "broker_order_id": null
+        },
+        "AMZN": {
+          "trade_id": "V2-AMZN-1216cb8d9e4c",
+          "symbol": "AMZN",
+          "qty": 3,
+          "entry_time": "2026-10-28T23:02:53.688026+00:00",
+          "entry_price": 256.11915799999997,
+          "last_price": 255.94,
+          "stop": 253.57905370939886,
+          "target": 258.30094629060113,
+          "score": 83.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.3x; controlled 15m momentum; near support; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        "AVGO": {
+          "trade_id": "V2-AVGO-2b109c705da7",
+          "symbol": "AVGO",
+          "qty": 2,
+          "entry_time": "2026-10-28T23:02:53.688176+00:00",
+          "entry_price": 352.2464,
+          "last_price": 352.0,
+          "stop": 347.9798076375339,
+          "target": 356.0201923624661,
+          "score": 71.0,
+          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 2.4x; near support; tradable daily range",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
         }
       },
-      "realized_pnl": -130.67670138560243
+      "realized_pnl": -100.94431502560235
     },
     "V3": {
-      "cash": 5856.85148308826,
+      "cash": 5708.00895444826,
       "positions": {
         "PLTR": {
           "trade_id": "V3-PLTR-bf7cef9e9a21",
@@ -384,26 +391,11 @@
           "qty": 5,
           "entry_time": "2026-10-23T21:14:32.591484+00:00",
           "entry_price": 197.13789999999997,
-          "last_price": 194.89500427246094,
+          "last_price": 198.3183,
           "stop": 194.045,
           "target": 199.955,
           "score": 79.0,
           "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.0x; controlled 15m momentum; near support; tradable daily range; sideways market: neutral; tight VWAP proximity",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        "MSFT": {
-          "trade_id": "V3-MSFT-6d9ac5d1b306",
-          "symbol": "MSFT",
-          "qty": 1,
-          "entry_time": "2026-10-26T23:16:47.860971+00:00",
-          "entry_price": 533.27303,
-          "last_price": 529.1024780273438,
-          "stop": 528.9472666689126,
-          "target": 536.8527333310874,
-          "score": 85.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 4.7x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
           "market_regime": "SIDEWAYS",
           "broker_status": "disabled",
           "broker_order_id": null
@@ -414,26 +406,11 @@
           "qty": 2,
           "entry_time": "2026-10-27T22:55:00.531269+00:00",
           "entry_price": 407.08475999999996,
-          "last_price": 404.7300109863281,
+          "last_price": 404.56,
           "stop": 401.78875121993946,
           "target": 411.81124878006057,
           "score": 81.0,
           "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.1x; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        "AMZN": {
-          "trade_id": "V3-AMZN-6c3a4d5ed870",
-          "symbol": "AMZN",
-          "qty": 3,
-          "entry_time": "2026-10-27T22:55:00.531382+00:00",
-          "entry_price": 253.667443,
-          "last_price": 253.80999755859375,
-          "stop": 251.04404733309028,
-          "target": 255.93595266690974,
-          "score": 73.0,
-          "reason": "confirmed OR breakout; time-normalized volume 3.5x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
           "market_regime": "SIDEWAYS",
           "broker_status": "disabled",
           "broker_order_id": null
@@ -444,7 +421,7 @@
           "qty": 1,
           "entry_time": "2026-10-28T18:44:20.969803+00:00",
           "entry_price": 773.4410544311523,
-          "last_price": 772.9000244140625,
+          "last_price": 773.36,
           "stop": 769.239990234375,
           "target": 776.56005859375,
           "score": 94.0,
@@ -452,9 +429,39 @@
           "market_regime": "BULL_TREND",
           "broker_status": "disabled",
           "broker_order_id": null
+        },
+        "AMZN": {
+          "trade_id": "V3-AMZN-f0e707b21d62",
+          "symbol": "AMZN",
+          "qty": 3,
+          "entry_time": "2026-10-28T23:02:53.691401+00:00",
+          "entry_price": 256.11915799999997,
+          "last_price": 255.94,
+          "stop": 253.57905370939886,
+          "target": 258.30094629060113,
+          "score": 99.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.3x; controlled 15m momentum; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        "AVGO": {
+          "trade_id": "V3-AVGO-55f887ca84c7",
+          "symbol": "AVGO",
+          "qty": 2,
+          "entry_time": "2026-10-28T23:02:53.691624+00:00",
+          "entry_price": 352.2464,
+          "last_price": 352.0,
+          "stop": 347.9798076375339,
+          "target": 356.0201923624661,
+          "score": 87.0,
+          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 2.4x; near support; tradable daily range; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
         }
       },
-      "realized_pnl": -275.5730834805936
+      "realized_pnl": -245.84069712059352
     }
   }
 }

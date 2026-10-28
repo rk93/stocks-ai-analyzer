@@ -1,9 +1,9 @@
 symbol,error
 CRM,No validated call quotes
-JPM,No call quote close enough to 25% delta
-BAC,No validated put quotes
+JPM,No validated call quotes
+BAC,No validated call quotes
 GS,No validated call quotes
-XOM,No validated call quotes
+XOM,No call quote close enough to 25% delta
 CVX,No validated call quotes
 LLY,No validated call quotes
 UNH,No validated ATM quote for normalization

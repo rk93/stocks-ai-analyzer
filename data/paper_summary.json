@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T22:55:00.834356+00:00",
+  "generated_at": "2026-10-28T18:44:21.346279+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,19 +10,19 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 769.6599731445312,
-      "return": -0.0052666769425964155
+      "price": 772.8400268554688,
+      "return": -0.001156673167217681
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 721.25,
-      "return": -0.025759140824985316
+      "price": 725.6179809570312,
+      "return": -0.01985901532004497
     }
   },
   "strategies": {
     "V1": {
-      "equity": 9805.01,
-      "return": -0.019498621489334567,
+      "equity": 9786.82,
+      "return": -0.02131802118415871,
       "cash": 5869.08,
       "open_positions": 5,
       "realized_pnl": -195.78,
@@ -33,7 +33,7 @@
           "qty": 5,
           "entry_time": "2026-10-23T21:14:32.584748+00:00",
           "entry_price": 197.13789999999997,
-          "last_price": 198.0683,
+          "last_price": 194.89500427246094,
           "stop": 194.045,
           "target": 199.955,
           "score": 82.0,
@@ -48,7 +48,7 @@
           "qty": 1,
           "entry_time": "2026-10-26T23:16:47.857323+00:00",
           "entry_price": 533.27303,
-          "last_price": 531.1,
+          "last_price": 529.1024780273438,
           "stop": 528.9472666689126,
           "target": 536.8527333310874,
           "score": 75.0,
@@ -63,7 +63,7 @@
           "qty": 3,
           "entry_time": "2026-10-27T22:55:00.524742+00:00",
           "entry_price": 253.667443,
-          "last_price": 253.49,
+          "last_price": 253.80999755859375,
           "stop": 251.04404733309028,
           "target": 255.93595266690974,
           "score": 74.0,
@@ -78,7 +78,7 @@
           "qty": 2,
           "entry_time": "2026-10-27T22:55:00.524933+00:00",
           "entry_price": 407.08475999999996,
-          "last_price": 406.8,
+          "last_price": 404.7300109863281,
           "stop": 401.78875121993946,
           "target": 411.81124878006057,
           "score": 74.0,
@@ -93,7 +93,7 @@
           "qty": 3,
           "entry_time": "2026-10-27T22:55:00.525053+00:00",
           "entry_price": 280.336098,
-          "last_price": 280.14,
+          "last_price": 281.0899963378906,
           "stop": 278.45916,
           "target": 281.82084,
           "score": 71.0,
@@ -103,17 +103,17 @@
           "broker_order_id": null
         }
       ],
-      "max_drawdown": -0.026399877667095506,
+      "max_drawdown": -0.028206075338004233,
       "closed_trades": 50,
       "win_rate": 0.5,
       "profit_factor": 0.6545159412107204
     },
     "V2": {
-      "equity": 9876.34,
-      "return": -0.012365706922226827,
-      "cash": 6086.33,
+      "equity": 9849.12,
+      "return": -0.015088459636460216,
+      "cash": 6001.75,
       "open_positions": 5,
-      "realized_pnl": -124.55,
+      "realized_pnl": -130.68,
       "positions": [
         {
           "trade_id": "V2-PLTR-cc891465260a",
@@ -121,7 +121,7 @@
           "qty": 5,
           "entry_time": "2026-10-23T21:14:32.588388+00:00",
           "entry_price": 197.13789999999997,
-          "last_price": 198.0683,
+          "last_price": 194.89500427246094,
           "stop": 194.045,
           "target": 199.955,
           "score": 75.0,
@@ -136,26 +136,11 @@
           "qty": 1,
           "entry_time": "2026-10-26T23:16:47.859200+00:00",
           "entry_price": 533.27303,
-          "last_price": 531.1,
+          "last_price": 529.1024780273438,
           "stop": 528.9472666689126,
           "target": 536.8527333310874,
           "score": 77.0,
           "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 4.7x; near support; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V2-AAPL-50353eb0e894",
-          "symbol": "AAPL",
-          "qty": 2,
-          "entry_time": "2026-10-27T22:55:00.528090+00:00",
-          "entry_price": 347.493075,
-          "last_price": 347.25,
-          "stop": 345.00263314936063,
-          "target": 349.49736685063937,
-          "score": 79.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.3x; controlled 15m momentum; tradable daily range",
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
@@ -166,7 +151,7 @@
           "qty": 2,
           "entry_time": "2026-10-27T22:55:00.528207+00:00",
           "entry_price": 407.08475999999996,
-          "last_price": 406.8,
+          "last_price": 404.7300109863281,
           "stop": 401.78875121993946,
           "target": 411.81124878006057,
           "score": 73.0,
@@ -181,7 +166,7 @@
           "qty": 3,
           "entry_time": "2026-10-27T22:55:00.528310+00:00",
           "entry_price": 253.667443,
-          "last_price": 253.49,
+          "last_price": 253.80999755859375,
           "stop": 251.04404733309028,
           "target": 255.93595266690974,
           "score": 65.0,
@@ -189,19 +174,34 @@
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-SPY-93f09f55a1fb",
+          "symbol": "SPY",
+          "qty": 1,
+          "entry_time": "2026-10-28T18:44:20.967321+00:00",
+          "entry_price": 773.4410544311523,
+          "last_price": 772.9000244140625,
+          "stop": 769.239990234375,
+          "target": 776.56005859375,
+          "score": 78.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.6x; controlled 15m momentum; near support",
+          "market_regime": "BULL_TREND",
+          "broker_status": "local",
+          "broker_order_id": null
         }
       ],
-      "max_drawdown": -0.02060952958944562,
-      "closed_trades": 63,
-      "win_rate": 0.4603174603174603,
-      "profit_factor": 0.7804409509878218
+      "max_drawdown": -0.023308809748348036,
+      "closed_trades": 64,
+      "win_rate": 0.453125,
+      "profit_factor": 0.7720995920075322
     },
     "V3": {
-      "equity": 9731.45,
-      "return": -0.026855345131725827,
-      "cash": 5941.44,
+      "equity": 9704.22,
+      "return": -0.029578097845959217,
+      "cash": 5856.85,
       "open_positions": 5,
-      "realized_pnl": -269.44,
+      "realized_pnl": -275.57,
       "positions": [
         {
           "trade_id": "V3-PLTR-bf7cef9e9a21",
@@ -209,7 +209,7 @@
           "qty": 5,
           "entry_time": "2026-10-23T21:14:32.591484+00:00",
           "entry_price": 197.13789999999997,
-          "last_price": 198.0683,
+          "last_price": 194.89500427246094,
           "stop": 194.045,
           "target": 199.955,
           "score": 79.0,
@@ -224,26 +224,11 @@
           "qty": 1,
           "entry_time": "2026-10-26T23:16:47.860971+00:00",
           "entry_price": 533.27303,
-          "last_price": 531.1,
+          "last_price": 529.1024780273438,
           "stop": 528.9472666689126,
           "target": 536.8527333310874,
           "score": 85.0,
           "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 4.7x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V3-AAPL-f18cae0b2ff2",
-          "symbol": "AAPL",
-          "qty": 2,
-          "entry_time": "2026-10-27T22:55:00.531142+00:00",
-          "entry_price": 347.493075,
-          "last_price": 347.25,
-          "stop": 345.00263314936063,
-          "target": 349.49736685063937,
-          "score": 87.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.3x; controlled 15m momentum; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
           "market_regime": "SIDEWAYS",
           "broker_status": "disabled",
           "broker_order_id": null
@@ -254,7 +239,7 @@
           "qty": 2,
           "entry_time": "2026-10-27T22:55:00.531269+00:00",
           "entry_price": 407.08475999999996,
-          "last_price": 406.8,
+          "last_price": 404.7300109863281,
           "stop": 401.78875121993946,
           "target": 411.81124878006057,
           "score": 81.0,
@@ -269,7 +254,7 @@
           "qty": 3,
           "entry_time": "2026-10-27T22:55:00.531382+00:00",
           "entry_price": 253.667443,
-          "last_price": 253.49,
+          "last_price": 253.80999755859375,
           "stop": 251.04404733309028,
           "target": 255.93595266690974,
           "score": 73.0,
@@ -277,12 +262,27 @@
           "market_regime": "SIDEWAYS",
           "broker_status": "disabled",
           "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-SPY-a4e9e8d9fa48",
+          "symbol": "SPY",
+          "qty": 1,
+          "entry_time": "2026-10-28T18:44:20.969803+00:00",
+          "entry_price": 773.4410544311523,
+          "last_price": 772.9000244140625,
+          "stop": 769.239990234375,
+          "target": 776.56005859375,
+          "score": 94.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.6x; controlled 15m momentum; near support; broad market bull trend; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "BULL_TREND",
+          "broker_status": "disabled",
+          "broker_order_id": null
         }
       ],
-      "max_drawdown": -0.03148354016156785,
-      "closed_trades": 68,
-      "win_rate": 0.4264705882352941,
-      "profit_factor": 0.6216815712260112
+      "max_drawdown": -0.03419358883893886,
+      "closed_trades": 69,
+      "win_rate": 0.42028985507246375,
+      "profit_factor": 0.6163771504927342
     }
   },
   "note": "Local shadow portfolios are the source of truth. Alpaca, when enabled, is paper-only and mirrors the selected strategy."

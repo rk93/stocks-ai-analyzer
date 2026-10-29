@@ -1,4 +1,5 @@
 symbol,error
-NVO,No validated ATM quote for normalization
-SOUN,No validated ATM quote for normalization
+AMD,No put quote close enough to 25% delta
+CL,No validated call quotes
+SOUN,No validated call quotes
 MP,No put quote close enough to 25% delta

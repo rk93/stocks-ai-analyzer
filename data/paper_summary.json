@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T02:00:14.284074+00:00",
+  "generated_at": "2026-10-30T18:30:50.309597+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,204 +10,51 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 769.3599853515625,
-      "return": -0.005654390822216859
+      "price": 753.8300170898438,
+      "return": -0.025725821681275685
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 715.3400268554688,
-      "return": -0.033742138834038204
+      "price": 685.0698852539062,
+      "return": -0.07463005392763356
     }
   },
   "strategies": {
     "V1": {
-      "equity": 9768.8,
-      "return": -0.023120472478359133,
-      "cash": 5236.27,
-      "open_positions": 5,
-      "realized_pnl": -228.03,
-      "positions": [
-        {
-          "trade_id": "V1-AAPL-c499ac173627",
-          "symbol": "AAPL",
-          "qty": 2,
-          "entry_time": "2026-10-29T23:11:19.135438+00:00",
-          "entry_price": 352.2464,
-          "last_price": 352.0,
-          "stop": 349.8270649913581,
-          "target": 354.1729350086419,
-          "score": 85.0,
-          "reason": "VWAP reclaim; opening-range breakout; volume 3.3x; 15m momentum; positive 1M trend",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V1-WMT-aa1e90bd5d0c",
-          "symbol": "WMT",
-          "qty": 8,
-          "entry_time": "2026-10-29T23:11:19.135638+00:00",
-          "entry_price": 122.39561699999999,
-          "last_price": 122.31,
-          "stop": 121.39373061902803,
-          "target": 123.22626938097197,
-          "score": 77.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 9.7x; 15m momentum; positive 1M trend",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V1-CL-1572a55940ed",
-          "symbol": "CL",
-          "qty": 10,
-          "entry_time": "2026-10-29T23:11:19.135746+00:00",
-          "entry_price": 93.56545,
-          "last_price": 93.5,
-          "stop": 92.76043302408588,
-          "target": 94.23956697591412,
-          "score": 77.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 8.6x; 15m momentum; positive 1M trend",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V1-NVO-e1918270d58a",
-          "symbol": "NVO",
-          "qty": 25,
-          "entry_time": "2026-10-29T23:11:19.135848+00:00",
-          "entry_price": 39.02840077,
-          "last_price": 39.0011,
-          "stop": 38.73652580188118,
-          "target": 39.26567419811882,
-          "score": 71.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 4.5x; near support; positive 1M trend",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V1-GE-09dc680aaf28",
-          "symbol": "GE",
-          "qty": 3,
-          "entry_time": "2026-10-29T23:11:19.135947+00:00",
-          "entry_price": 313.55933799999997,
-          "last_price": 313.34,
-          "stop": 309.8822619159724,
-          "target": 316.79773808402757,
-          "score": 70.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 6.0x; positive 1M trend; enough daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        }
-      ],
+      "equity": 9772.43,
+      "return": -0.02275695758417895,
+      "cash": 9772.43,
+      "open_positions": 0,
+      "realized_pnl": -227.57,
+      "positions": [],
       "max_drawdown": -0.029995392656848252,
-      "closed_trades": 58,
-      "win_rate": 0.5,
-      "profit_factor": 0.646682468125978
+      "closed_trades": 63,
+      "win_rate": 0.5079365079365079,
+      "profit_factor": 0.6764467567913344
     },
     "V2": {
-      "equity": 9811.83,
-      "return": -0.01881692449482031,
-      "cash": 6918.3,
-      "open_positions": 3,
-      "realized_pnl": -186.14,
-      "positions": [
-        {
-          "trade_id": "V2-WMT-2e17254fb493",
-          "symbol": "WMT",
-          "qty": 8,
-          "entry_time": "2026-10-29T23:11:19.139860+00:00",
-          "entry_price": 122.39561699999999,
-          "last_price": 122.31,
-          "stop": 121.39373061902803,
-          "target": 123.22626938097197,
-          "score": 79.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.7x; controlled 15m momentum; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V2-GE-48a7dddfab72",
-          "symbol": "GE",
-          "qty": 3,
-          "entry_time": "2026-10-29T23:11:19.140018+00:00",
-          "entry_price": 313.55933799999997,
-          "last_price": 313.34,
-          "stop": 309.8822619159724,
-          "target": 316.79773808402757,
-          "score": 67.0,
-          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 2.8x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V2-NVO-4791764b74ff",
-          "symbol": "NVO",
-          "qty": 25,
-          "entry_time": "2026-10-29T23:11:19.140133+00:00",
-          "entry_price": 39.02840077,
-          "last_price": 39.0011,
-          "stop": 38.73652580188118,
-          "target": 39.26567419811882,
-          "score": 63.0,
-          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 1.7x; near support; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        }
-      ],
-      "max_drawdown": -0.027006684734589004,
-      "closed_trades": 71,
-      "win_rate": 0.43661971830985913,
-      "profit_factor": 0.7173695236360323
+      "equity": 9806.86,
+      "return": -0.019314012624626953,
+      "cash": 9806.86,
+      "open_positions": 0,
+      "realized_pnl": -193.14,
+      "positions": [],
+      "max_drawdown": -0.027499536402103453,
+      "closed_trades": 74,
+      "win_rate": 0.44594594594594594,
+      "profit_factor": 0.723431974688256
     },
     "V3": {
-      "equity": 9667.62,
-      "return": -0.03323831077931938,
-      "cash": 7749.12,
-      "open_positions": 2,
-      "realized_pnl": -331.04,
-      "positions": [
-        {
-          "trade_id": "V3-WMT-747d6640f435",
-          "symbol": "WMT",
-          "qty": 8,
-          "entry_time": "2026-10-29T23:11:19.142529+00:00",
-          "entry_price": 122.39561699999999,
-          "last_price": 122.31,
-          "stop": 121.39373061902803,
-          "target": 123.22626938097197,
-          "score": 87.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.7x; controlled 15m momentum; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        {
-          "trade_id": "V3-GE-f672a0c21268",
-          "symbol": "GE",
-          "qty": 3,
-          "entry_time": "2026-10-29T23:11:19.142649+00:00",
-          "entry_price": 313.55933799999997,
-          "last_price": 313.34,
-          "stop": 309.8822619159724,
-          "target": 316.79773808402757,
-          "score": 75.0,
-          "reason": "trend 2/3; confirmed OR breakout; time-normalized volume 2.8x; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        }
-      ],
-      "max_drawdown": -0.03783618089151941,
-      "closed_trades": 76,
-      "win_rate": 0.40789473684210525,
-      "profit_factor": 0.5880244885769746
+      "equity": 9640.87,
+      "return": -0.03591282772115301,
+      "cash": 9640.87,
+      "open_positions": 0,
+      "realized_pnl": -359.13,
+      "positions": [],
+      "max_drawdown": -0.04049845786984008,
+      "closed_trades": 78,
+      "win_rate": 0.41025641025641024,
+      "profit_factor": 0.5741353347798763
     }
   },
   "note": "Local shadow portfolios are the source of truth. Alpaca, when enabled, is paper-only and mirrors the selected strategy."

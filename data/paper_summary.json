@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T18:30:50.309597+00:00",
+  "generated_at": "2026-10-30T22:38:28.677619+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,48 +10,96 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 753.8300170898438,
-      "return": -0.025725821681275685
+      "price": 755.719970703125,
+      "return": -0.023283184797766365
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 685.0698852539062,
-      "return": -0.07463005392763356
+      "price": 690.489990234375,
+      "return": -0.06730875377790646
     }
   },
   "strategies": {
     "V1": {
-      "equity": 9772.43,
-      "return": -0.02275695758417895,
-      "cash": 9772.43,
-      "open_positions": 0,
+      "equity": 9771.87,
+      "return": -0.022812887584179098,
+      "cash": 8972.87,
+      "open_positions": 1,
       "realized_pnl": -227.57,
-      "positions": [],
+      "positions": [
+        {
+          "trade_id": "V1-TSLA-0b477adf573d",
+          "symbol": "TSLA",
+          "qty": 2,
+          "entry_time": "2026-10-30T22:38:28.266477+00:00",
+          "entry_price": 399.77964999999995,
+          "last_price": 399.5,
+          "stop": 394.51392540570674,
+          "target": 404.48607459429326,
+          "score": 82.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 3.9x; near support; positive 1M trend; enough daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        }
+      ],
       "max_drawdown": -0.029995392656848252,
       "closed_trades": 63,
       "win_rate": 0.5079365079365079,
       "profit_factor": 0.6764467567913344
     },
     "V2": {
-      "equity": 9806.86,
-      "return": -0.019314012624626953,
-      "cash": 9806.86,
-      "open_positions": 0,
+      "equity": 9806.3,
+      "return": -0.01936994262462688,
+      "cash": 9007.3,
+      "open_positions": 1,
       "realized_pnl": -193.14,
-      "positions": [],
-      "max_drawdown": -0.027499536402103453,
+      "positions": [
+        {
+          "trade_id": "V2-TSLA-5a48b3bdb039",
+          "symbol": "TSLA",
+          "qty": 2,
+          "entry_time": "2026-10-30T22:38:28.269486+00:00",
+          "entry_price": 399.77964999999995,
+          "last_price": 399.5,
+          "stop": 394.51392540570674,
+          "target": 404.48607459429326,
+          "score": 77.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.7x; near support; tradable daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        }
+      ],
+      "max_drawdown": -0.027555068984358777,
       "closed_trades": 74,
       "win_rate": 0.44594594594594594,
       "profit_factor": 0.723431974688256
     },
     "V3": {
-      "equity": 9640.87,
-      "return": -0.03591282772115301,
-      "cash": 9640.87,
-      "open_positions": 0,
+      "equity": 9640.31,
+      "return": -0.035968757721153044,
+      "cash": 8841.31,
+      "open_positions": 1,
       "realized_pnl": -359.13,
-      "positions": [],
-      "max_drawdown": -0.04049845786984008,
+      "positions": [
+        {
+          "trade_id": "V3-TSLA-28ee292030f7",
+          "symbol": "TSLA",
+          "qty": 2,
+          "entry_time": "2026-10-30T22:38:28.273734+00:00",
+          "entry_price": 399.77964999999995,
+          "last_price": 399.5,
+          "stop": 394.51392540570674,
+          "target": 404.48607459429326,
+          "score": 85.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.7x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        }
+      ],
+      "max_drawdown": -0.040554191518732075,
       "closed_trades": 78,
       "win_rate": 0.41025641025641024,
       "profit_factor": 0.5741353347798763

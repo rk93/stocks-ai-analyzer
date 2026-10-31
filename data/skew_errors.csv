@@ -1,3 +1,43 @@
 symbol,error
-CL,No validated call quotes
+ABNB,No validated put quotes
+PYPL,No call quote close enough to 25% delta
+SQ,Insufficient price history
 SOUN,No call quote close enough to 25% delta
+BLK,No call quote close enough to 25% delta
+BK,Insufficient price history
+AIG,No call quote close enough to 25% delta
+MET,No validated call quotes
+PRU,No call quote close enough to 25% delta
+GILD,No validated put quotes
+VRTX,No call quote close enough to 25% delta
+REGN,No validated put quotes
+HUM,No call quote close enough to 25% delta
+NKE,No validated ATM quote for normalization
+CL,No validated call quotes
+EL,No call quote close enough to 25% delta
+HON,No validated call quotes
+CSX,No validated call quotes
+WM,No call quote close enough to 25% delta
+CMCSA,No validated ATM quote for normalization
+TMUS,No call quote close enough to 25% delta
+ROKU,No validated call quotes
+SNAP,No put quote close enough to 25% delta
+SO,No put quote close enough to 25% delta
+AEP,No call quote close enough to 25% delta
+EXC,No validated call quotes
+SRE,No validated call quotes
+D,No call quote close enough to 25% delta
+PCG,No validated call quotes
+APD,No call quote close enough to 25% delta
+SHW,No validated call quotes
+DOW,No put quote close enough to 25% delta
+DD,No validated call quotes
+STLD,No call quote close enough to 25% delta
+EQIX,No call quote close enough to 25% delta
+JD,No call quote close enough to 25% delta
+BIDU,No put quote close enough to 25% delta
+XLF,No call quote close enough to 25% delta
+XLV,No validated call quotes
+XLY,No validated call quotes
+XLP,No call quote close enough to 25% delta
+XLI,No validated call quotes

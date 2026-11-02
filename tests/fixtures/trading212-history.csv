@@ -1,0 +1,9 @@
+Action,Time (UTC),ISIN,Ticker,Name,Notes,ID,No. of shares,Price / share,Currency (Price / share),Exchange rate,Result,Currency (Result),Total,Currency (Total),Withholding tax,Currency (Withholding tax)
+Deposit,2026-01-01 09:00:00,,,,,cash-1,,,,,,,1000,GBP,,
+Market buy,2026-01-02 10:00:00,TEST00000001,TEST,Example security,,buy-1,2,100,USD,,,,161,GBP,,
+Limit buy,2026-01-03 10:00:00,TEST00000001,TEST,Example security,,buy-2,1,120,USD,,,,97,GBP,,
+Market sell,2026-01-04 10:00:00,TEST00000001,TEST,Example security,,sell-1,2.5,140,USD,,,,279,GBP,,
+Dividend (Dividend),2026-01-05 10:00:00,TEST00000001,TEST,Example security,,div-1,,,,,,,5.5,GBP,0.5,GBP
+Interest on cash,2026-01-06 10:00:00,,,,,int-1,,,,,,,1,GBP,,
+Fee,2026-01-07 10:00:00,,,,,fee-1,,,,,,,2,GBP,,
+Withdrawal,2026-01-08 10:00:00,,,,,cash-2,,,,,,,100,GBP,,

@@ -54,8 +54,8 @@ The exploratory volume filter does not establish an improvement. See EXPERIMENTS
 
 This is a substantive first release, not a claim that every item in the full overhaul brief is implemented.
 
-- XLSX parsing and automatic transaction-history accounting are not shipped. No real user broker export was supplied; adapters are mapped against published existing fields and synthetic tests, not represented as validated across all Trading 212 variants. History is classified into events for preview and blocked from holdings commit. Fees, FX, corporate actions, opening balances and realised P/L need reconciled accounting fixtures.
-- Portfolio metrics use entered prices, not automatically currency-verified public quotes. Realised P/L, daily return, dividends/total-return history, beta, covariance, verified sector/ETF look-through, asset classes and historical scenarios remain unavailable rather than invented. Cash contributions and purchases at entered prices are arithmetic scenarios, not return/risk simulations. Published sector classifications are displayed with an unclassified bucket; ETF look-through is unavailable.
+- XLSX parsing remains unshipped. Supported transaction accounting now requires a reviewable reconciliation flow. No real user broker export was supplied; adapters are mapped against published existing fields and synthetic tests, not represented as validated across all Trading 212 variants. The second release adds explicit transaction reconciliation for complete share histories with verified opening cash, net settlement totals, duplicate-safe appends and FIFO research realised P/L. See TRANSACTION_ACCOUNTING.md. Share transfers, corporate actions, multi-currency cash ledgers and jurisdiction-specific tax rules remain unsupported.
+- Portfolio metrics use entered prices, not automatically currency-verified public quotes. Position-only snapshots still lack realised P/L and income history. Transaction-based portfolios now show booked FIFO realised P/L and net income. Daily/market total-return history, beta, covariance, verified sector/ETF look-through, asset classes and historical scenarios remain unavailable rather than invented. Cash contributions and purchases at entered prices are arithmetic scenarios, not return/risk simulations. Published sector classifications are displayed with an unclassified bucket; ETF look-through is unavailable.
 - Aggregation across independent snapshots is intentionally not offered: overlapping snapshots must not be double counted. Multiple portfolios are switchable.
 - Price history is archived scanner observations, not complete OHLC. RSI/MACD/ATR, attributed news, full catalyst calendars and reliable exchange normalization await a richer point-in-time dataset. Users must enter exchange-qualified symbols where ambiguous.
 - Strategy capital/risk execution simulation, regime/sector/time slicing, calibrated prediction charts, prospective walk-forward V4 research and executable outcome accounting remain future work. No robust OOS profitability has been demonstrated.
@@ -63,7 +63,11 @@ This is a substantive first release, not a claim that every item in the full ove
 
 ## Validation
 
-24 Python tests pass (existing tests plus diagnostics and frozen-prediction tests); seven Node portfolio/import tests pass.
+24 Python tests pass (existing tests plus diagnostics and frozen-prediction tests); 20 Node portfolio/accounting tests pass.
 Chromium checks cover routes, stock details/comparison, persistence after reload, CSV commit,
 duplicate rejection, invalid-import preservation, legacy navigation and overflow at desktop/tablet/mobile widths.
 See `tests/ui_smoke.py` for reproducible browser checks.
+
+## Second release
+
+See [Transaction accounting](TRANSACTION_ACCOUNTING.md) for the supported import contract, source-format evidence, schema-1 migration, append-only local records and cross-tab write protection.

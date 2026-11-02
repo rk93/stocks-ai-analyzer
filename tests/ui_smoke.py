@@ -1,8 +1,10 @@
+import os
+import shutil
 """Run against `python -m http.server 8765 --directory docs` with Playwright installed."""
 from playwright.sync_api import sync_playwright
 BASE='http://127.0.0.1:8765/'
 with sync_playwright() as p:
-    browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
+    browser=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_EXECUTABLE') or shutil.which('chromium'),headless=True,args=['--no-sandbox'])
     page=browser.new_page(viewport={'width':1440,'height':1000})
     errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))

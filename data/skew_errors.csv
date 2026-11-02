@@ -1,14 +1,5 @@
 symbol,error
-SQ,Insufficient price history
-RGTI,No validated ATM quote for normalization
-SOUN,No validated put quotes
-BK,Insufficient price history
-VRTX,No put quote close enough to 25% delta
-REGN,No call quote close enough to 25% delta
+RGTI,No put quote close enough to 25% delta
 CL,No call quote close enough to 25% delta
-NOC,No call quote close enough to 25% delta
-ROKU,No validated call quotes
-SNAP,No validated ATM quote for normalization
-EXC,No call quote close enough to 25% delta
-D,No validated call quotes
-DD,No validated call quotes
+SOUN,No validated call quotes
+MP,No put quote close enough to 25% delta

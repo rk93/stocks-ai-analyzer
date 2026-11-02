@@ -133,3 +133,27 @@ ALPACA_PAPER_STRATEGY=V3
 ```
 
 Every V1/V2/V3 signal is versioned and frozen in the prediction ledger before outcomes are evaluated.
+
+## Personal research workspace
+
+The GitHub Pages entry point now provides Overview, Discover, My Portfolio,
+Strategy Lab and Insights. Run locally with `python -m http.server 8765 --directory docs`.
+No Node build or backend is required. Existing advanced dashboard URLs remain available.
+
+Holdings, journal entries, watchlists and preferences are stored only in this
+browser's versioned IndexedDB. Import a CSV positions snapshot, map columns and
+review before committing. Transaction-history exports are detected but blocked
+from becoming holdings until complete accounting is available. Export private
+JSON backups before changing browser/device or clearing storage.
+
+Prices entered into a private portfolio are manual snapshots. Cross-currency
+aggregates are withheld without verified FX (except explicit GBX-to-GBP units).
+No live quotes, total-return history or strategy profitability are implied.
+Frozen prediction rationale and versioned close-return observations are published
+separately; original predictions and existing paper ledgers remain unchanged.
+
+Read the [audit and delivery limits](research/AUDIT.md) and
+[experimental research register](research/EXPERIMENTS.md).
+Run `node --test tests/portfolio.test.mjs` and `PYTHONPATH=. python -m pytest -q tests`.
+Optional browser regression: install Playwright, run the local server and
+`python tests/ui_smoke.py` (Chromium expected at `/usr/bin/chromium`).

@@ -17,6 +17,9 @@ on:
       - 'day_opportunities.py'
       - 'confluence_engine.py'
       - 'prediction_tracker.py'
+      - 'prediction_research.py'
+      - 'publish_manifest.py'
+      - 'research_diagnostics.py'
       - 'backtest_engine.py'
       - 'strategy_v2.py'
       - 'strategy_v3.py'
@@ -173,6 +176,11 @@ jobs:
           }
           Path('docs/data/day-opportunities.json').write_text(json.dumps(day_payload, allow_nan=False, separators=(',', ':')), encoding='utf-8')
           PY
+      - name: Publish provenance and read-only research diagnostics
+        run: |
+          python prediction_research.py
+          python publish_manifest.py
+          python research_diagnostics.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

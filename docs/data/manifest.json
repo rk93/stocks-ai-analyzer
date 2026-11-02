@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-02T14:41:20.123292+00:00",
+  "datasets": {
+    "skew": {
+      "schema_version": 1,
+      "generated_at": "2026-10-31T01:44:24.459060+00:00",
+      "market_data_timestamp": null,
+      "latest_record_timestamp": "2026-10-31",
+      "source": "data/skew_latest.csv",
+      "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
+      "pipeline_status": "published_snapshot",
+      "validity": "unknown_quote_freshness",
+      "publication_age_seconds": 219415.664232,
+      "stale_publication": true,
+      "coverage": {
+        "source_rows": 138,
+        "market_data_cutoff_verified": false
+      },
+      "sha256": "cfe99b905667909f39a4b59732fa952ab2a3e6183a76bcd196b916e0413594d2"
+    },
+    "trending": {
+      "schema_version": 1,
+      "generated_at": "2026-10-31T01:44:24.569975+00:00",
+      "market_data_timestamp": null,
+      "latest_record_timestamp": null,
+      "source": "data/trending_latest.csv",
+      "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
+      "pipeline_status": "published_snapshot",
+      "validity": "unknown_quote_freshness",
+      "publication_age_seconds": 219415.553317,
+      "stale_publication": true,
+      "coverage": {
+        "source_rows": 163,
+        "market_data_cutoff_verified": false
+      },
+      "sha256": "c44f6b0eb66e150c48f9b9ee4a030aa80e98a0791457d0421cb60d7eca695961"
+    },
+    "day-opportunities": {
+      "schema_version": 1,
+      "generated_at": "2026-10-31T01:44:24.608940+00:00",
+      "market_data_timestamp": null,
+      "latest_record_timestamp": null,
+      "source": "data/day_opportunities_latest.csv",
+      "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
+      "pipeline_status": "published_snapshot",
+      "validity": "unknown_quote_freshness",
+      "publication_age_seconds": 219415.514352,
+      "stale_publication": true,
+      "coverage": {
+        "source_rows": 36,
+        "market_data_cutoff_verified": false
+      },
+      "sha256": "67f1ad80c29b1fcacbadefcc0215ac10b46892ec4f6319f9f14825dee065075c"
+    },
+    "backtest": {
+      "schema_version": 1,
+      "generated_at": "2026-10-31T01:44:24.593136+00:00",
+      "market_data_timestamp": null,
+      "latest_record_timestamp": "2026-10-30T12:30:00-04:00",
+      "source": "data/backtest_trades.csv",
+      "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
+      "pipeline_status": "published_snapshot",
+      "validity": "unknown_quote_freshness",
+      "publication_age_seconds": 219415.530156,
+      "stale_publication": true,
+      "coverage": {
+        "source_rows": 470,
+        "market_data_cutoff_verified": false
+      },
+      "sha256": "6c7e3ebcaa9e7de61661cee81df0df02c24b990c7e66e3b9896939d4baccd953"
+    },
+    "prediction-tracker": {
+      "schema_version": 1,
+      "generated_at": "2026-10-31T01:44:24.575751+00:00",
+      "market_data_timestamp": null,
+      "latest_record_timestamp": "2026-10-30T22:38:18.636581+00:00",
+      "source": "data/prediction_tracker.csv",
+      "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
+      "pipeline_status": "published_snapshot",
+      "validity": "unknown_quote_freshness",
+      "publication_age_seconds": 219415.547541,
+      "stale_publication": true,
+      "coverage": {
+        "source_rows": 324,
+        "market_data_cutoff_verified": false
+      },
+      "sha256": "7ea4738aefd66f45b75cd648961348aa40b5b5fb37066b8ca842d26db8be0a1c"
+    },
+    "prediction-research": {
+      "schema_version": 1,
+      "generated_at": "2026-11-02T14:40:01.916357+00:00",
+      "market_data_timestamp": null,
+      "latest_record_timestamp": null,
+      "source": "data/predictions.csv",
+      "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
+      "pipeline_status": "published_snapshot",
+      "validity": "unknown_quote_freshness",
+      "publication_age_seconds": 78.206935,
+      "stale_publication": false,
+      "coverage": {
+        "source_rows": 324,
+        "market_data_cutoff_verified": false
+      },
+      "sha256": "d2f60c2d9a470c7c789dda42cc5514c2f11f29c76b2b8668d58675c8a03d9f16"
+    },
+    "paper-trading": {
+      "schema_version": 1,
+      "generated_at": "2026-10-31T01:44:24.587392+00:00",
+      "market_data_timestamp": null,
+      "latest_record_timestamp": "2026-10-31T01:38:53.235899+00:00",
+      "source": "data/paper_equity.csv",
+      "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
+      "pipeline_status": "published_snapshot",
+      "validity": "unknown_quote_freshness",
+      "publication_age_seconds": 219415.5359,
+      "stale_publication": true,
+      "coverage": {
+        "source_rows": 77,
+        "market_data_cutoff_verified": false
+      },
+      "sha256": "3bff9970916894c78c4ba18687d3fe51bfe21041a90fa1a5254760f977e65354"
+    }
+  },
+  "note": "Publication time is not quote time. Staleness threshold is a conservative 36-hour publication flag, not exchange-session validation."
+}

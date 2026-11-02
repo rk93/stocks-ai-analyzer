@@ -230,71 +230,40 @@
     "V3|GE|2026-10-29",
     "V1|TSLA|2026-10-30",
     "V2|TSLA|2026-10-30",
-    "V3|TSLA|2026-10-30"
+    "V3|TSLA|2026-10-30",
+    "V1|TSLA|2026-11-02"
   ],
   "portfolios": {
     "V1": {
-      "cash": 8972.87112415821,
+      "cash": 8971.716950195809,
       "positions": {
         "TSLA": {
-          "trade_id": "V1-TSLA-0b477adf573d",
+          "trade_id": "V1-TSLA-842047a8e87e",
           "symbol": "TSLA",
           "qty": 2,
-          "entry_time": "2026-10-30T22:38:28.266477+00:00",
-          "entry_price": 399.77964999999995,
-          "last_price": 399.5,
-          "stop": 394.51392540570674,
-          "target": 404.48607459429326,
-          "score": 82.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 3.9x; near support; positive 1M trend; enough daily range",
+          "entry_time": "2026-11-02T16:19:36.221380+00:00",
+          "entry_price": 412.49353006286617,
+          "last_price": 412.2049865722656,
+          "stop": 406.7600046368386,
+          "target": 417.6499685076927,
+          "score": 74.0,
+          "reason": "holding above VWAP; opening-range breakout; volume 17.6x; positive 1M trend; enough daily range",
           "market_regime": "SIDEWAYS",
           "broker_status": "local",
           "broker_order_id": null
         }
       },
-      "realized_pnl": -227.5695758417911
+      "realized_pnl": -203.29598967846096
     },
     "V2": {
-      "cash": 9007.300573753731,
-      "positions": {
-        "TSLA": {
-          "trade_id": "V2-TSLA-5a48b3bdb039",
-          "symbol": "TSLA",
-          "qty": 2,
-          "entry_time": "2026-10-30T22:38:28.269486+00:00",
-          "entry_price": 399.77964999999995,
-          "last_price": 399.5,
-          "stop": 394.51392540570674,
-          "target": 404.48607459429326,
-          "score": 77.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.7x; near support; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        }
-      },
-      "realized_pnl": -193.14012624627458
+      "cash": 9831.133459917062,
+      "positions": {},
+      "realized_pnl": -168.86654008294443
     },
     "V3": {
-      "cash": 8841.31242278847,
-      "positions": {
-        "TSLA": {
-          "trade_id": "V3-TSLA-28ee292030f7",
-          "symbol": "TSLA",
-          "qty": 2,
-          "entry_time": "2026-10-30T22:38:28.273734+00:00",
-          "entry_price": 399.77964999999995,
-          "last_price": 399.5,
-          "stop": 394.51392540570674,
-          "target": 404.48607459429326,
-          "score": 85.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 2.7x; near support; tradable daily range; sideways market: neutral; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        }
-      },
-      "realized_pnl": -359.12827721153553
+      "cash": 9665.1453089518,
+      "positions": {},
+      "realized_pnl": -334.8546910482054
     }
   }
 }

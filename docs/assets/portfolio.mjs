@@ -1,7 +1,11 @@
+import { currency, validatePosition } from "./financial-domain.mjs";
+import { validateLedgerPortfolio } from "./accounting.mjs";
+export { currency, validatePosition };
 // Financial data stays in this origin's IndexedDB. No holdings are sent over the network.
-export const SCHEMA = 1;
+export const SCHEMA = 2;
 export const blank = () => ({
   schema: SCHEMA,
+  revision: 0,
   portfolios: [],
   watchlist: [],
   journal: [],
@@ -9,8 +13,12 @@ export const blank = () => ({
   preferences: { currency: "GBP", hidden: [] },
 });
 export function validateState(s) {
+  if (s?.schema === 1)
+    s = { ...structuredClone(s), schema: SCHEMA, revision: 0 };
   if (
     s?.schema !== SCHEMA ||
+    !Number.isSafeInteger(s.revision) ||
+    s.revision < 0 ||
     !Array.isArray(s.portfolios) ||
     !Array.isArray(s.watchlist) ||
     !Array.isArray(s.journal) ||
@@ -31,6 +39,7 @@ export function validateState(s) {
     )
       throw Error("Invalid portfolio");
     for (const r of p.positions) validatePosition(r);
+    if (p.ledger) validateLedgerPortfolio(p);
   }
   if (
     !Array.isArray(s.preferences.hidden) ||
@@ -65,48 +74,30 @@ export function validateState(s) {
       throw Error("Invalid journal record");
   return s;
 }
-export const currency = (c) =>
-  /^[A-Z]{3}$/.test(c) &&
-  (() => {
-    try {
-      new Intl.NumberFormat("en", { style: "currency", currency: c });
-      return [
-        "GBP",
-        "USD",
-        "EUR",
-        "INR",
-        "CAD",
-        "AUD",
-        "CHF",
-        "JPY",
-        "HKD",
-        "SGD",
-        "GBX",
-      ].includes(c);
-    } catch {
-      return false;
-    }
-  })();
-export function validatePosition(r) {
-  if (
-    !/^[A-Z0-9^][A-Z0-9.^=:/_-]{0,29}$/.test(r.symbol) ||
-    !Number.isFinite(r.quantity) ||
-    r.quantity <= 0 ||
-    !currency(r.currency) ||
-    !Number.isFinite(r.cost) ||
-    r.cost < 0 ||
-    !(r.price == null || (Number.isFinite(r.price) && r.price >= 0))
-  )
-    throw Error(
-      "Check symbol, positive quantity, currency and non-negative unit cost/price",
-    );
-  return r;
-}
 export async function openStore() {
   return new Promise((resolve, reject) => {
     const q = indexedDB.open("stocks-research-private", SCHEMA);
-    q.onupgradeneeded = () => q.result.createObjectStore("state");
-    q.onsuccess = () => resolve(q.result);
+    let blocked = false;
+    q.onupgradeneeded = () => {
+      if (!q.result.objectStoreNames.contains("state"))
+        q.result.createObjectStore("state");
+    };
+    q.onblocked = () => {
+      blocked = true;
+      reject(
+        Error(
+          "An older workspace tab is blocking the storage upgrade. Close other Northstar tabs and reload; existing data is preserved.",
+        ),
+      );
+    };
+    q.onsuccess = () => {
+      if (blocked) {
+        q.result.close();
+        return;
+      }
+      q.result.onversionchange = () => q.result.close();
+      resolve(q.result);
+    };
     q.onerror = () =>
       reject(
         Error(
@@ -118,18 +109,39 @@ export async function openStore() {
 export async function readStore(db) {
   return new Promise((resolve, reject) => {
     const r = db.transaction("state").objectStore("state").get("main");
-    r.onsuccess = () => resolve(r.result ? validateState(r.result) : blank());
+    r.onsuccess = () => {
+      try {
+        resolve(r.result ? validateState(r.result) : blank());
+      } catch (error) {
+        reject(error);
+      }
+    };
     r.onerror = () => reject(r.error);
   });
 }
 export async function saveStore(db, s) {
   validateState(s);
   return new Promise((resolve, reject) => {
-    const t = db.transaction("state", "readwrite");
-    t.objectStore("state").put(s, "main");
-    t.oncomplete = resolve;
-    t.onerror = () => reject(t.error);
-    t.onabort = () => reject(t.error || Error("Save aborted"));
+    const t = db.transaction("state", "readwrite"),
+      store = t.objectStore("state");
+    let saved,
+      conflict = null;
+    const read = store.get("main");
+    read.onsuccess = () => {
+      const revision = read.result?.revision ?? 0;
+      if (revision !== s.revision) {
+        conflict = Error(
+          "Workspace changed in another tab. Reload before saving; no changes were written.",
+        );
+        t.abort();
+        return;
+      }
+      saved = { ...s, revision: revision + 1 };
+      store.put(saved, "main");
+    };
+    t.oncomplete = () => resolve(saved);
+    t.onerror = () => reject(conflict || t.error);
+    t.onabort = () => reject(conflict || t.error || Error("Save aborted"));
   });
 }
 export function parseCSV(text) {
@@ -166,7 +178,9 @@ export function parseCSV(text) {
   if (rows.length < 2)
     throw Error("CSV needs a header and at least one data row");
   const headers = rows.shift();
-  if (new Set(headers).size !== headers.length)
+  if (
+    new Set(headers.map((h) => h.trim().toLowerCase())).size !== headers.length
+  )
     throw Error("Duplicate column names");
   return { headers, rows, delimiter };
 }
@@ -188,14 +202,27 @@ export const aliases = {
   ],
   price: ["current price", "market price", "price"],
   type: ["action", "transaction type", "type"],
-  date: ["time", "date", "trade date"],
+  date: ["time", "time (utc)", "date", "trade date"],
   fees: ["fees", "fee", "transaction fee"],
+  amount: ["total", "net amount", "amount"],
+  settlementCurrency: [
+    "currency (total)",
+    "settlement currency",
+    "amount currency",
+    "currency",
+  ],
+  brokerId: ["id", "transaction id", "trade id", "reference"],
+  exchange: ["exchange", "market", "mic"],
 };
 export function detect(headers) {
   return Object.fromEntries(
     Object.entries(aliases).map(([k, names]) => [
       k,
-      headers.findIndex((h) => names.includes(h.toLowerCase())),
+      names
+        .map((name) =>
+          headers.findIndex((h) => h.trim().toLowerCase() === name),
+        )
+        .find((i) => i >= 0) ?? -1,
     ]),
   );
 }
@@ -242,7 +269,7 @@ export function reconcile(parsed, map) {
         currency: get("currency"),
         cost: number("cost"),
         price: get("price") ? number("price") : null,
-        exchange: "",
+        exchange: get("exchange"),
         asOf: get("date") || null,
       });
       if (
@@ -267,7 +294,8 @@ export function reconcile(parsed, map) {
 export function valuation(p) {
   let value = p.cash,
     cost = 0,
-    missing = 0;
+    missing = 0,
+    missingCost = 0;
   const rows = p.positions.map((r) => {
     const scale =
       r.currency === "GBX" && p.currency === "GBP"
@@ -276,18 +304,27 @@ export function valuation(p) {
           ? 1
           : null;
     const v =
-      scale !== null && r.price !== null ? r.quantity * r.price * scale : null;
-    const c = scale !== null ? r.quantity * r.cost * scale : null;
-    if (v === null || c === null) missing++;
-    if (v !== null) value += v;
-    if (c !== null) cost += c;
+      scale !== null && Number.isFinite(r.price)
+        ? r.quantity * r.price * scale
+        : null;
+    const c =
+      p.ledger && Number.isFinite(r.basisBase)
+        ? r.basisBase
+        : scale !== null
+          ? r.quantity * r.cost * scale
+          : null;
+    if (v === null) missing++;
+    else value += v;
+    if (c === null) missingCost++;
+    else cost += c;
     return { ...r, value: v, basis: c };
   });
   return {
     rows,
     value: missing ? null : value,
-    cost: missing ? null : cost,
+    cost: missingCost ? null : cost,
     missing,
+    missingCost,
     cash: p.cash,
   };
 }

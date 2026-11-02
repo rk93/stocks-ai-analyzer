@@ -82,8 +82,8 @@ test("missing prices are distinct from zero prices", () => {
   );
 });
 test("backup schema validation preserves compatibility boundary", () => {
-  assert.equal(validateState(blank()).schema, 1);
-  assert.throws(() => validateState({ ...blank(), schema: 2 }));
+  assert.equal(validateState(blank()).schema, 2);
+  assert.throws(() => validateState({ ...blank(), schema: 3 }));
   assert.throws(() =>
     validateState({
       ...blank(),

@@ -20,6 +20,25 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/portfolio.test.mjs
+      - run: node --test tests/*.test.mjs
       - run: python -m pytest -q tests
       - run: python -m py_compile market_data_provider.py skew_map.py signal_engine.py trending_engine.py day_opportunities.py strategy_v2.py strategy_v3.py paper_trader.py backtest_engine.py prediction_tracker.py skew_dashboard.py confluence_engine.py research_diagnostics.py publish_manifest.py prediction_research.py
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright
+      - run: python -m playwright install --with-deps chromium
+      - name: Browser regressions for workspace and financial imports
+        run: |
+          python -m http.server 8765 --directory docs >/tmp/research-http.log 2>&1 &
+          task_server_pid=$!
+          trap 'kill "$task_server_pid"' EXIT
+          curl --fail --silent --retry 5 --retry-connrefused --retry-delay 1 http://127.0.0.1:8765/ >/dev/null
+          python tests/ui_smoke.py
+          python tests/ui_accounting.py

@@ -1,3 +1,4 @@
+import { reconcileHistory, replayLedger } from "./accounting.mjs";
 import {
   blank,
   openStore,
@@ -37,6 +38,8 @@ const $ = (s) => document.querySelector(s),
           currency: c,
         }).format(x),
   id = () => crypto.randomUUID();
+let importEpoch = 0;
+let storageError = "";
 let stockRange = "all",
   db,
   state = blank(),
@@ -65,11 +68,11 @@ const toast = (m) => {
 };
 async function commit(fn) {
   const next = structuredClone(state);
-  fn(next);
   try {
+    fn(next);
+    next.revision = state.revision;
     if (!db) throw Error("Storage unavailable; changes cannot be saved");
-    await saveStore(db, next);
-    state = next;
+    state = await saveStore(db, next);
     render();
     return true;
   } catch (e) {
@@ -87,7 +90,11 @@ const stocks = () => data.trending?.stocks || [],
   ticker = (s) =>
     `<button class="ticker" data-stock="${esc(s)}">${esc(s)} ↗</button>`,
   selectedP = () =>
-    state.portfolios.find((p) => p.id === selected) || state.portfolios[0];
+    state.portfolios.find((p) => p.id === selected) ||
+    state.portfolios.find(
+      (p) => p.id === state.preferences.activePortfolioId,
+    ) ||
+    state.portfolios[0];
 const panel = (title, body, extra = "") =>
   `<section class="panel"><div class="section-head"><h2>${title}</h2>${extra}</div>${body}</section>`;
 function chart(series, labels = []) {
@@ -111,7 +118,7 @@ function freshness() {
 }
 function summaryCards(p) {
   const v = valuation(p);
-  return `<div class="cards">${panel("Portfolio value", `<div class="metric">${money(v.value, p.currency)}</div><small>Cash ${money(p.cash, p.currency)} · ${v.rows.length} positions</small>`)}${panel("Cost basis", `<div class="metric">${money(v.cost, p.currency)}</div><small>Position cost, excluding unreported fees</small>`)}${panel("Unrealised P/L", `<div class="metric ${v.value !== null && v.value - p.cash - v.cost >= 0 ? "positive" : "negative"}">${money(v.value === null ? null : v.value - p.cash - v.cost, p.currency)}</div><small>Based on your entered prices · not live</small>`)}</div>${v.missing ? `<div class="notice">${v.missing} positions have missing prices or unsupported currency conversion. Portfolio totals and weights are withheld. Enter prices in the position currency; no FX rates are assumed.</div>` : ""}`;
+  return `<div class="cards">${panel("Portfolio value", `<div class="metric">${money(v.value, p.currency)}</div><small>Cash ${money(p.cash, p.currency)} · ${v.rows.length} positions</small>`)}${panel("Cost basis", `<div class="metric">${money(v.cost, p.currency)}</div><small>${p.ledger ? "Remaining FIFO book basis from net settlements" : "Position cost, excluding unreported fees"}</small>`)}${panel("Unrealised P/L", `<div class="metric ${v.value !== null && v.value - p.cash - v.cost >= 0 ? "positive" : "negative"}">${money(v.value === null ? null : v.value - p.cash - v.cost, p.currency)}</div><small>Based on your entered prices · not live</small>`)}</div>${v.missing ? `<div class="notice">${v.missing} positions have missing prices or unsupported currency conversion. Portfolio totals and weights are withheld. Enter prices in the position currency; no FX rates are assumed.</div>` : ""}`;
 }
 function market() {
   const m = data.trending?.context?.market || [];
@@ -162,7 +169,9 @@ function overview() {
       ),
       watchlist: panel(
         "Your watchlist",
-        state.watchlist.length ? researchRows(state.watchlist.slice(0, 6).map(find)) : '<p class="empty">Star a symbol in Discover to build your private watchlist.</p>',
+        state.watchlist.length
+          ? researchRows(state.watchlist.slice(0, 6).map(find))
+          : '<p class="empty">Star a symbol in Discover to build your private watchlist.</p>',
       ),
     };
   return (
@@ -283,18 +292,19 @@ function portfolio() {
           const v = valuation(p);
           const total = v.value;
           return (
-            `<div class="tools"><select id="portfolio-select" aria-label="Selected portfolio">${state.portfolios.map((r) => `<option value="${esc(r.id)}" ${r.id === p.id ? "selected" : ""}>${esc(r.name)}${r.demo ? " · DEMO" : ""}</option>`).join("")}</select><button data-action="position">+ Add position</button><button data-action="edit-portfolio">Edit name, currency & cash</button><button data-action="delete-portfolio">Delete portfolio</button></div>` +
+            `<div class="tools"><select id="portfolio-select" aria-label="Selected portfolio">${state.portfolios.map((r) => `<option value="${esc(r.id)}" ${r.id === p.id ? "selected" : ""}>${esc(r.name)}${r.demo ? " · DEMO" : ""}</option>`).join("")}</select>${p.ledger ? "" : '<button data-action="position">+ Add position</button>'}<button data-action="edit-portfolio">${p.ledger ? "Edit name" : "Edit name, currency & cash"}</button><button data-action="delete-portfolio">Delete portfolio</button></div>` +
             (p.demo
               ? '<p class="notice">Sample portfolio · fictional quantities, costs and prices. Not your holdings and not live market data.</p>'
               : "") +
             summaryCards(p) +
+            ledgerPanel(p) +
             `<div class="two-col">${panel("Allocation by holding", v.rows.map((r) => `<div class="list-row"><div class="grow">${ticker(r.symbol)}<div class="bar"><span style="width:${total && r.value !== null ? Math.max(0, Math.min(100, (r.value / total) * 100)) : 0}%"></span></div></div><span>${total && r.value !== null ? pct(r.value / total) : "Unavailable"}</span></div>`).join("") + '<p class="sub">Weights include cash in the denominator. Missing FX prevents aggregate weights.</p>')}${panel("Portfolio health", health(p, v))}</div>` +
             allocationPanel(p, v) +
             panel(
               "Your positions",
-              `<div class="scroll"><table><thead><tr><th>Symbol</th><th>Quantity</th><th>Unit cost</th><th>Entered price</th><th>Value (${esc(p.currency)})</th><th>Research</th><th>Manage</th></tr></thead><tbody>${v.rows.map((r, i) => `<tr><td>${ticker(r.symbol)}<p>${esc(r.currency)}</p></td><td>${num(r.quantity)}</td><td>${num(r.cost)}</td><td>${num(r.price)}<p class="muted">${esc(r.asOf || "Date not provided")}</p></td><td>${money(r.value, p.currency)}</td><td>${esc(find(r.symbol).research_state || "Insufficient Data")}</td><td><button data-edit="${i}">Edit</button> <button data-remove="${i}" aria-label="Remove ${esc(r.symbol)}">×</button></td></tr>`).join("")}</tbody></table></div>`,
+              `<div class="scroll"><table><thead><tr><th>Symbol</th><th>Quantity</th><th>${p.ledger ? "Average native entry (excl. settlement charges)" : "Unit cost"}</th><th>Entered price</th><th>Value (${esc(p.currency)})</th><th>Research</th><th>Manage</th></tr></thead><tbody>${v.rows.map((r, i) => `<tr><td>${ticker(r.symbol)}<p>${esc(r.currency)}</p></td><td>${num(r.quantity)}</td><td>${num(r.cost)}</td><td>${num(r.price)}<p class="muted">${esc(r.asOf || "Date not provided")}</p></td><td>${money(r.value, p.currency)}</td><td>${esc(find(r.symbol).research_state || "Insufficient Data")}</td><td><button data-edit="${i}">Edit</button> ${p.ledger ? "" : `<button data-remove="${i}" aria-label="Remove ${esc(r.symbol)}">×</button>`}</td></tr>`).join("")}</tbody></table></div>`,
             ) +
-            `<div class="two-col">${panel("What if you add more?", `<p class="muted">Model a new contribution in ${esc(p.currency)}, held as cash or allocated to an existing position. Entered prices remain unchanged; fees and future returns are excluded.</p><label>Additional cash<input id="what-amount" type="number" min="0" value="500"></label><label>Hypothetical allocation<select id="what-symbol"><option value="">Hold as cash</option>${p.positions.map((r, i) => `<option value="${i}">${esc(r.symbol)}</option>`).join("")}</select></label><button data-action="what">Calculate allocation scenario</button><p id="what-result" role="status"></p>`)}${panel("Coverage & calculation limits", '<p class="muted">Realised P/L, dividends, total return, daily movement, beta, volatility, drawdown, correlations and ETF overlap require reconciled transactions, historical prices, FX and constituent data. These metrics are unavailable for entered positions; no estimates are invented.</p>')}</div>`
+            `<div class="two-col">${panel("What if you add more?", `<p class="muted">Model a new contribution in ${esc(p.currency)}, held as cash or allocated to an existing position. Entered prices remain unchanged; fees and future returns are excluded.</p><label>Additional cash<input id="what-amount" type="number" min="0" value="500"></label><label>Hypothetical allocation<select id="what-symbol"><option value="">Hold as cash</option>${p.positions.map((r, i) => `<option value="${i}">${esc(r.symbol)}</option>`).join("")}</select></label><button data-action="what">Calculate allocation scenario</button><p id="what-result" role="status"></p>`)}${panel("Coverage & calculation limits", '<p class="muted">Transaction-based portfolios show booked FIFO realised P/L and net income. Position-only snapshots lack this history. Market total return, daily movement, beta, volatility, drawdown, correlations and ETF overlap still require verified historical prices, FX or constituent data; unavailable metrics are not estimated.</p>')}</div>`
           );
         })()) +
     `<div class="notice">Privacy: holdings, watchlists and journal entries are saved in this browser’s IndexedDB. Backups contain sensitive financial data. Clearing browser storage removes your workspace. Published public research is fetched from this site only. <button data-action="reset">Remove all local data</button></div>`
@@ -478,9 +488,10 @@ function render() {
   document
     .querySelectorAll("nav a")
     .forEach((a) => a.classList.toggle("active", a.hash === "#" + route));
-  $("#main").innerHTML = { overview, discover, portfolio, lab, insights }[
-    route
-  ]();
+  $("#main").innerHTML =
+    (storageError
+      ? `<p class="notice error" role="alert">Local storage unavailable: ${esc(storageError)}. Saving is disabled to preserve any existing data.</p>`
+      : "") + { overview, discover, portfolio, lab, insights }[route]();
 }
 function modal(html) {
   $("#modal-body").innerHTML = html;
@@ -516,13 +527,23 @@ function stock(s) {
 function portfolioForm() {
   const p = selectedP();
   modal(
-    `<h2>${p ? "Edit" : "Create"} portfolio</h2><form id="portfolio-form"><label>Name<input name="name" required maxlength="80" value="${esc(p?.name || "My portfolio")}"></label><label>Base currency<select name="currency">${["GBP", "USD", "EUR", "INR"].map((c) => `<option ${p?.currency === c ? "selected" : ""}>${c}</option>`).join("")}</select></label><label>Cash<input name="cash" type="number" step="any" min="0" value="${p?.cash || 0}" required></label><button class="primary">Save portfolio</button></form>`,
+    `<h2>${p ? "Edit" : "Create"} portfolio</h2><form id="portfolio-form"><label>Name<input name="name" required maxlength="80" value="${esc(p?.name || "My portfolio")}"></label><label>Base currency<select name="currency">${["GBP", "USD", "EUR", "INR", "CAD", "AUD", "CHF", "JPY", "HKD", "SGD"].map((c) => `<option ${p?.currency === c ? "selected" : ""}>${c}</option>`).join("")}</select></label><label>Cash<input name="cash" type="number" step="any" min="0" value="${p?.cash || 0}" required></label><button class="primary">Save portfolio</button></form>`,
   );
+  if (p?.ledger) {
+    $('#portfolio-form [name="currency"]').disabled = true;
+    $('#portfolio-form [name="cash"]').readOnly = true;
+  }
 }
 function positionForm(i) {
   const p = selectedP();
   if (!p) {
     toast("Create a portfolio first");
+    return;
+  }
+  if (p.ledger && i == null) {
+    toast(
+      "Transaction-based holdings come from the ledger. Import more records to change shares.",
+    );
     return;
   }
   const r = p.positions[i] || {};
@@ -548,34 +569,46 @@ function positionForm(i) {
         "",
       )}<div class="full error" id="form-error"></div><button class="primary">Save position</button></form>`,
   );
+  if (p.ledger) {
+    for (const name of ["symbol", "quantity", "currency", "cost"])
+      $('#position-form [name="' + name + '"]').readOnly = true;
+    $("#position-form").insertAdjacentHTML(
+      "afterbegin",
+      '<p class="notice full">Shares and cost come from the ledger. Only quote and quote date can be changed here.</p>',
+    );
+  }
 }
 function importStart() {
+  importEpoch++;
   importData = null;
   modal(
-    `<span class="tag">PRIVATE IMPORT · STEP 1 OF 3</span><h2>Bring your holdings into focus.</h2><p class="muted">CSV positions snapshots from Trading 212 or another broker. Map and review before saving. Files stay in this browser. XLSX is not supported; export as CSV.</p><div class="drop" id="drop"><label>Choose or drop a CSV<input id="csv-file" type="file" accept=".csv,text/csv"></label></div><p class="notice">Transaction exports are detected and previewed, but not converted to holdings without a complete reconciliation. Importing creates a new snapshot portfolio; it never appends to existing holdings.</p><div id="import-error" class="error" role="alert"></div>`,
+    `<span class="tag">PRIVATE IMPORT · STEP 1 OF 3</span><h2>Bring your holdings into focus.</h2><p class="muted">CSV positions snapshots or supported transaction histories from Trading 212 or another broker. Map and review before saving. Files stay in this browser. XLSX is not supported; export as CSV.</p><div class="drop" id="drop"><label>Choose or drop a CSV<input id="csv-file" type="file" accept=".csv,text/csv"></label></div><p class="notice">Transaction histories need net settlement totals, complete trade history from zero holdings and verified opening cash. Reconcile a new portfolio or append to a transaction-based portfolio with duplicate checks. Position snapshots remain separate.</p><div id="import-error" class="error" role="alert"></div>`,
   );
 }
 async function importFile(file) {
+  const epoch = ++importEpoch;
   try {
     if (file.size > 5e6) throw Error("File exceeds 5 MB limit");
     const text = await file.text(),
       hash = await fingerprint(text);
+    if (epoch !== importEpoch || !$("#modal").open) return;
     const parsed = parseCSV(text);
     importData = { parsed, hash, map: detect(parsed.headers) };
     if (state.imports.includes(hash)) {
       $("#import-error").innerHTML =
-        'This exact file was already imported. Your existing portfolio is unchanged. <p>Use the existing portfolio, or explicitly review a separate snapshot. Separate snapshots are never aggregated.</p><button data-action="mapping">Review as separate snapshot</button>';
+        'This exact file was already imported. Your existing portfolio is unchanged. <p>Use the existing portfolio, or review import options to inspect broker IDs and choose a destination. Independent portfolios are never aggregated.</p><button data-action="mapping">Review import options</button>';
       return;
     }
     mapping();
   } catch (e) {
-    $("#import-error").textContent = e.message;
+    if (epoch === importEpoch && $("#import-error"))
+      $("#import-error").textContent = e.message;
   }
 }
 function mapping() {
   const { parsed, map } = importData;
   modal(
-    `<span class="tag">STEP 2 OF 3 · COLUMN MAPPING</span><h2>Check the detected columns.</h2><p class="muted">Delimiter ${parsed.delimiter === "\t" ? "tab" : esc(parsed.delimiter)} · ${parsed.rows.length} rows. Cost must be per share, not total lot cost. Correct ambiguous tickers in the preview.</p><div class="grid-form">${Object.keys(
+    `<span class="tag">STEP 2 OF 3 · COLUMN MAPPING</span><h2>Check the detected columns.</h2><p class="muted">Delimiter ${parsed.delimiter === "\t" ? "tab" : esc(parsed.delimiter)} · ${parsed.rows.length} rows. For positions, cost is per share, not total lot cost. For transaction history, map cost to Price / share, amount to net Total, and settlement currency to Currency (Total). Correct ambiguous tickers in the preview.</p><div class="grid-form">${Object.keys(
       map,
     )
       .map(
@@ -596,6 +629,15 @@ function mapping() {
   );
 }
 function importReview() {
+  const action = importData.parsed.headers.findIndex(
+    (h) => h.trim().toLowerCase() === "action",
+  );
+  if (
+    (importData.map.type >= 0 &&
+      importData.parsed.rows.some((r) => r[importData.map.type]?.trim())) ||
+    (action >= 0 && importData.parsed.rows.some((r) => r[action]?.trim()))
+  )
+    return historySetup();
   importData.result = reconcile(importData.parsed, importData.map);
   const { positions, errors, events } = importData.result;
   modal(
@@ -608,6 +650,137 @@ function importReview() {
       .join(
         "",
       )}<div class="scroll"><table><thead><tr><th>Symbol</th><th>Quantity</th><th>Currency</th><th>Unit cost</th><th>Price</th></tr></thead><tbody>${positions.map((r) => `<tr><td>${esc(r.symbol)}</td><td>${num(r.quantity)}</td><td>${esc(r.currency)}</td><td>${num(r.cost)}</td><td>${num(r.price)}</td></tr>`).join("")}</tbody></table></div><label>New snapshot portfolio name<input id="import-name" value="Imported portfolio" maxlength="80"></label><p class="notice">A new independent snapshot will be created. Previous portfolios are preserved. Overlapping snapshots are never combined. Save a backup before deleting old snapshots.</p><button data-action="mapping">Back to mapping</button> <button class="primary" data-action="import-save" ${errors.length || !positions.length ? "disabled" : ""}>Save new portfolio</button>`,
+  );
+}
+function historySetup() {
+  const c = importData.historyConfig || {
+    base: "GBP",
+    openingCash: 0,
+    destination: "",
+  };
+  modal(
+    `<span class="tag">TRANSACTION IMPORT · RECONCILIATION ASSUMPTIONS</span><h2>Rebuild from booked transactions.</h2><p class="muted">Use a complete account history starting with zero shares. Trades use FIFO research cost basis in the settlement currency. This is not a jurisdiction-specific tax calculation.</p><label>Destination<select id="history-destination"><option value="">New transaction-based portfolio</option>${state.portfolios
+      .filter((p) => p.ledger)
+      .map(
+        (p) =>
+          `<option value="${esc(p.id)}" ${p.id === c.destination ? "selected" : ""}>${esc(p.name)}</option>`,
+      )
+      .join(
+        "",
+      )}</select></label><div class="grid-form"><label>Settlement currency<select id="history-currency">${["GBP", "USD", "EUR", "INR", "CAD", "AUD", "CHF", "JPY", "HKD", "SGD"].map((x) => `<option ${c.base === x ? "selected" : ""}>${x}</option>`).join("")}</select></label><label>Verified cash before the first record<input id="history-cash" type="number" min="0" step="any" value="${c.openingCash}"></label></div><p class="notice">Total / Amount must be the net booked cash amount, including trade fees and dividend taxes. Do not map the broker's “Result” (profit) as Total. Cross-currency trades work only when their actual settled cash total is recorded in this one settlement currency; exchange rates are never inferred. Share transfers, splits, FX conversions, shorts and margin are blocked.</p><label class="check"><input id="history-complete" type="checkbox">These records, plus the destination ledger if selected, cover all share activity from zero opening holdings for the same account.</label><label class="check"><input id="history-net" type="checkbox">The mapped totals are net booked amounts; fees/taxes are included once. Opening cash is verified, and timestamps without an offset are UTC.</label><div id="history-error" class="error" role="alert"></div><button data-action="mapping">Back to columns</button> <button class="primary" data-action="history-preview">Reconcile transactions</button>`,
+  );
+  if (c.destination) configureHistoryDestination();
+}
+function configureHistoryDestination() {
+  const p = state.portfolios.find(
+    (p) => p.id === $("#history-destination").value,
+  );
+  $("#history-currency").disabled = !!p;
+  $("#history-cash").readOnly = !!p;
+  if (p) {
+    $("#history-currency").value = p.currency;
+    $("#history-cash").value = p.ledger.openingCash;
+  }
+}
+function historyResult() {
+  const c = importData.historyConfig;
+  return reconcileHistory(importData.parsed, importData.map, {
+    base: c.base,
+    openingCash: c.openingCash,
+    existing: c.destination
+      ? state.portfolios.find((p) => p.id === c.destination)
+      : null,
+  });
+}
+function historyPreview() {
+  if (!$("#history-complete").checked || !$("#history-net").checked) {
+    $("#history-error").textContent =
+      "Confirm the source history, net totals and timestamp assumptions before reconciliation.";
+    return;
+  }
+  const opening = $("#history-cash").value;
+  if (
+    opening.trim() === "" ||
+    !Number.isFinite(Number(opening)) ||
+    Number(opening) < 0
+  ) {
+    $("#history-error").textContent =
+      "Enter verified non-negative opening cash.";
+    return;
+  }
+  importData.historyConfig = {
+    base: $("#history-currency").value,
+    openingCash: Number(opening),
+    destination: $("#history-destination").value,
+  };
+  const r = historyResult(),
+    c = importData.historyConfig;
+  importData.historyResult = r;
+  modal(
+    `<span class="tag">TRANSACTION IMPORT · REVIEW</span><h2>${r.errors.length ? "Resolve the reconciliation errors." : "Your history reconciles."}</h2><p>${r.added} new records · ${r.duplicates} exact broker-ID duplicates skipped · ${r.errors.length} errors</p><div class="error" role="alert">${r.errors.map((e) => `<p>${esc(e)}</p>`).join("")}</div>${r.warnings.map((w) => `<p class="notice">${esc(w)}</p>`).join("")}${r.summary ? `<div class="cards">${panel("Closing cash", `<div class="metric">${money(r.cash, c.base)}</div>`)}${panel("FIFO realised P/L", `<div class="metric">${money(r.summary.realizedPnl, c.base)}</div><small>Research accounting, not tax reporting</small>`)}${panel("Net dividends", `<div class="metric">${money(r.summary.dividends, c.base)}</div>`)}</div><div class="scroll"><table><thead><tr><th>Symbol</th><th>Shares</th><th>Quote currency</th><th>Remaining book cost (${esc(c.base)})</th></tr></thead><tbody>${r.positions.map((p) => `<tr><td>${esc(p.symbol)}</td><td>${num(p.quantity)}</td><td>${esc(p.currency)}</td><td>${money(p.basisBase, c.base)}</td></tr>`).join("")}</tbody></table></div><p class="notice">Quotes remain unpriced until you enter a current price. Replaying history does not turn trade prices into current market prices.</p>` : ""}${!c.destination ? '<label>Portfolio name<input id="history-name" value="Imported transaction history" maxlength="80"></label>' : "<p>New records will be appended to the selected local ledger; existing records remain unchanged.</p>"}<button data-action="history-setup">Back to assumptions</button> <button data-action="mapping">Back to columns</button> <button class="primary" data-action="history-save" ${r.errors.length || !r.ledger || !r.added ? "disabled" : ""}>${c.destination ? "Append reconciled records" : "Save reconciled portfolio"}</button>`,
+  );
+}
+async function historySave() {
+  const r = historyResult(),
+    c = importData.historyConfig;
+  if (r.errors.length || !r.ledger || !r.added) {
+    toast("Reconciliation failed or no new records to save.");
+    return;
+  }
+  const name =
+    $("#history-name")?.value.trim() || "Imported transaction history";
+  let pid = c.destination || id();
+  if (
+    await commit((s) => {
+      const existing = c.destination
+        ? s.portfolios.find((p) => p.id === c.destination)
+        : null;
+      if (c.destination && !existing)
+        throw Error("Destination no longer exists. Reconcile again.");
+      const p = {
+        ...(existing || { id: pid, name }),
+        currency: c.base,
+        cash: r.cash,
+        positions: r.positions,
+        ledger: r.ledger,
+        importedAt: new Date().toISOString(),
+      };
+      if (existing) s.portfolios.splice(s.portfolios.indexOf(existing), 1, p);
+      else s.portfolios.push(p);
+      s.preferences.activePortfolioId = pid;
+      if (!s.imports.includes(importData.hash)) s.imports.push(importData.hash);
+    })
+  ) {
+    selected = pid;
+    close();
+    location.hash = "portfolio";
+    render();
+    toast("Transactions reconciled and saved locally.");
+  }
+}
+function ledgerPanel(p) {
+  if (!p.ledger) return "";
+  const r = replayLedger(p.ledger);
+  return panel(
+    "Transaction-based accounting",
+    `<p class="notice">FIFO research accounting in ${esc(p.currency)}. Booked net settlements include costs once. This is not tax reporting. Shares, cash and book basis come from the ledger; only quotes can be edited directly.</p><div class="cards">${panel("Realised P/L", `<div class="metric">${money(r.realizedPnl, p.currency)}</div><small>${r.closedLots.length} sale records · FIFO</small>`)}${panel("Net dividends & interest", `<div class="metric">${money(r.dividends + r.interest, p.currency)}</div><small>Dividends ${money(r.dividends, p.currency)} · interest ${money(r.interest, p.currency)}</small>`)}${panel("Net contributions", `<div class="metric">${money(r.netContributions, p.currency)}</div><small>Includes opening cash, deposits less withdrawals</small>`)}</div><p class="sub">Standalone fees ${money(r.fees, p.currency)} · standalone taxes ${money(r.taxes, p.currency)}. Embedded charges remain in net trade/dividend totals.</p><button data-action="ledger">Review transaction ledger</button> <button data-action="import">Import more transactions</button>`,
+  );
+}
+function ledgerDetails() {
+  const p = selectedP();
+  if (!p?.ledger) return;
+  const r = replayLedger(p.ledger);
+  modal(
+    `<h2>${esc(p.name)} · transaction ledger</h2><p class="muted">${r.activity.length} records · FIFO net-settlement methodology · ${esc(p.currency)} cash account. Identical times retain file order for cash events; same-symbol trade ties are blocked.</p><div class="scroll"><table><thead><tr><th>UTC time</th><th>Action</th><th>Symbol</th><th>Shares</th><th>Net amount</th><th>Cash after</th><th>Broker ID</th><th>Source fee field*</th></tr></thead><tbody>${r.activity
+      .slice()
+      .reverse()
+      .map(
+        (e) =>
+          `<tr><td>${esc(e.time)}</td><td>${esc(e.type)}</td><td>${esc(e.symbol || "—")}</td><td>${num(e.quantity)}</td><td>${money(e.amount, p.currency)}</td><td>${money(e.cashAfter, p.currency)}</td><td>${esc(e.brokerId || "Not provided")}</td><td>${num(e.reportedFees)}</td></tr>`,
+      )
+      .join(
+        "",
+      )}</tbody></table></div><h3>FIFO sale outcomes</h3><div class="scroll"><table><thead><tr><th>Symbol / UTC time</th><th>Shares</th><th>Net proceeds</th><th>Allocated cost</th><th>Realised P/L</th></tr></thead><tbody>${r.closedLots.map((e) => `<tr><td>${esc(e.symbol)}<p>${esc(e.time)}</p></td><td>${num(e.quantity)}</td><td>${money(e.proceeds, p.currency)}</td><td>${money(e.basis, p.currency)}</td><td>${money(e.pnl, p.currency)}</td></tr>`).join("")}</tbody></table></div><p class="notice">*Source fee fields retain their original units, which may differ from the settlement currency. They are not deducted twice. Average quote-currency entry prices exclude settlement-currency charges. Remaining book basis and realised P/L use actual settled amounts. No current FX conversion or tax-lot rule is inferred.</p>`,
   );
 }
 function journalForm(symbol = "", i = null) {
@@ -650,6 +823,10 @@ function compare(
   );
 }
 const actions = {
+  "history-preview": historyPreview,
+  "history-setup": historySetup,
+  "history-save": historySave,
+  ledger: ledgerDetails,
   "correct-row": () => {
     const i = Number($("#correct-row-number").value) - 2,
       s = $("#correct-row-symbol").value.trim().toUpperCase();
@@ -693,7 +870,12 @@ const actions = {
         },
       ],
     };
-    if (await commit((s) => s.portfolios.push(p))) {
+    if (
+      await commit((s) => {
+        s.portfolios.push(p);
+        s.preferences.activePortfolioId = p.id;
+      })
+    ) {
       selected = p.id;
       location.hash = "portfolio";
       render();
@@ -749,6 +931,12 @@ const actions = {
       })
     ) {
       close();
+      selected = "";
+      query = "";
+      sector = "";
+      sort = "score";
+      document.body.classList.remove("light");
+      render();
       toast("All local workspace data removed");
     }
   },
@@ -769,6 +957,7 @@ const actions = {
     if (
       await commit((s) => {
         s.portfolios.push(p);
+        s.preferences.activePortfolioId = p.id;
         if (!s.imports.includes(importData.hash))
           s.imports.push(importData.hash);
       })
@@ -851,6 +1040,12 @@ document.addEventListener("click", async (e) => {
       return positionForm(Number(t.dataset.edit));
     if (t.dataset.remove !== undefined) {
       const p = selectedP();
+      if (p.ledger) {
+        toast(
+          "Ledger positions cannot be removed manually; import a sale or create a separate manual portfolio.",
+        );
+        return;
+      }
       await commit((s) =>
         s.portfolios
           .find((x) => x.id === p.id)
@@ -904,15 +1099,29 @@ document.addEventListener("submit", async (e) => {
         cash: 0,
         positions: [],
       };
-      ok = await commit((s) => s.portfolios.push(p));
+      ok = await commit((s) => {
+        s.portfolios.push(p);
+        s.preferences.activePortfolioId = p.id;
+      });
       selected = p.id;
     }
     if (f.id === "portfolio-form") {
       const p = selectedP();
+      if (
+        p.ledger &&
+        ((v.currency ?? p.currency) !== p.currency || Number(v.cash) !== p.cash)
+      )
+        throw Error(
+          "Cash and settlement currency come from the ledger; import transactions to change them.",
+        );
       ok = await commit((s) =>
         Object.assign(
           s.portfolios.find((x) => x.id === p.id),
-          { name: v.name, currency: v.currency, cash: Number(v.cash) },
+          {
+            name: v.name,
+            currency: v.currency ?? p.currency,
+            cash: Number(v.cash),
+          },
         ),
       );
     }
@@ -929,6 +1138,22 @@ document.addEventListener("submit", async (e) => {
         i = f.dataset.index;
       ok = await commit((s) => {
         const a = s.portfolios.find((x) => x.id === p.id).positions;
+        if (p.ledger) {
+          const old = a[Number(i)];
+          if (
+            i === "" ||
+            !old ||
+            r.symbol !== old.symbol ||
+            r.quantity !== old.quantity ||
+            r.currency !== old.currency ||
+            r.cost !== old.cost
+          )
+            throw Error(
+              "Ledger shares, currency and cost cannot be edited. Update the quote only.",
+            );
+          a[Number(i)] = { ...old, price: r.price, asOf: r.asOf };
+          return;
+        }
         if (
           a.some(
             (x, j) =>
@@ -971,6 +1196,7 @@ document.addEventListener("submit", async (e) => {
 });
 document.addEventListener("change", async (e) => {
   const t = e.target;
+  if (t.id === "history-destination") return configureHistoryDestination();
   if (t.id === "stock-range") {
     stockRange = t.value;
     return stock(t.dataset.symbol);
@@ -983,7 +1209,7 @@ document.addEventListener("change", async (e) => {
   }
   if (t.id === "portfolio-select") {
     selected = t.value;
-    render();
+    await commit((s) => (s.preferences.activePortfolioId = selected));
   }
   if (t.id === "sector") {
     sector = t.value;
@@ -1011,6 +1237,10 @@ document.addEventListener("change", async (e) => {
             Object.assign(s, b);
           })
         ) {
+          selected = state.preferences.activePortfolioId || "";
+          sector = state.preferences.sector || "";
+          sort = state.preferences.sort || "score";
+          document.body.classList.toggle("light", !!state.preferences.light);
           close();
           render();
         }
@@ -1055,6 +1285,10 @@ document.addEventListener("drop", (e) => {
     e.preventDefault();
     if (e.dataTransfer.files[0]) importFile(e.dataTransfer.files[0]);
   }
+});
+$("#modal").addEventListener("close", () => {
+  importData = null;
+  importEpoch++;
 });
 $("#close-modal").onclick = close;
 $("#search-open").onclick = () => {
@@ -1116,6 +1350,9 @@ try {
   sort = state.preferences.sort || "score";
   document.body.classList.toggle("light", !!state.preferences.light);
 } catch (e) {
+  storageError = e.message;
+  db?.close();
+  db = null;
   toast(e.message);
 }
 await loadData();

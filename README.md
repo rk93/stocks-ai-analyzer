@@ -142,8 +142,11 @@ No Node build or backend is required. Existing advanced dashboard URLs remain av
 
 Holdings, journal entries, watchlists and preferences are stored only in this
 browser's versioned IndexedDB. Import a CSV positions snapshot, map columns and
-review before committing. Transaction-history exports are detected but blocked
-from becoming holdings until complete accounting is available. Export private
+review before committing. Supported transaction histories can be reconciled into a new local ledger or
+appended to an existing ledger for the same account. Confirm complete share
+history from zero holdings, verified opening cash and net settlement totals
+before committing. Conflicts, unsupported actions and missing balances block
+the import. FIFO realised P/L is research accounting, not tax reporting. Export private
 JSON backups before changing browser/device or clearing storage.
 
 Prices entered into a private portfolio are manual snapshots. Cross-currency
@@ -154,6 +157,10 @@ separately; original predictions and existing paper ledgers remain unchanged.
 
 Read the [audit and delivery limits](research/AUDIT.md) and
 [experimental research register](research/EXPERIMENTS.md).
-Run `node --test tests/portfolio.test.mjs` and `PYTHONPATH=. python -m pytest -q tests`.
+Run `node --test tests/*.test.mjs` and `PYTHONPATH=. python -m pytest -q tests`.
 Optional browser regression: install Playwright, run the local server and
 `python tests/ui_smoke.py` (Chromium expected at `/usr/bin/chromium`).
+
+See the [transaction accounting contract](research/TRANSACTION_ACCOUNTING.md) for
+broker schema evidence, fee/FX treatment, duplicate handling and storage migration.
+Run `python tests/ui_accounting.py` with the local server for its browser regression.

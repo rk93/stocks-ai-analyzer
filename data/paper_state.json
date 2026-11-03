@@ -242,46 +242,14 @@
       "realized_pnl": -219.74941980419328
     },
     "V2": {
-      "cash": 8935.907239917062,
-      "positions": {
-        "WMT": {
-          "trade_id": "V2-WMT-581b20ccd7ec",
-          "symbol": "WMT",
-          "qty": 7,
-          "entry_time": "2026-11-02T22:15:54.126616+00:00",
-          "entry_price": 127.88945999999999,
-          "last_price": 127.8,
-          "stop": 126.7960495856277,
-          "target": 128.8039504143723,
-          "score": 73.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.3x; tradable daily range",
-          "market_regime": "RECOVERY",
-          "broker_status": "local",
-          "broker_order_id": null
-        }
-      },
-      "realized_pnl": -168.86654008294443
+      "cash": 9809.315430186532,
+      "positions": {},
+      "realized_pnl": -190.68456981347413
     },
     "V3": {
-      "cash": 8769.9190889518,
-      "positions": {
-        "WMT": {
-          "trade_id": "V3-WMT-c1359f73f5a8",
-          "symbol": "WMT",
-          "qty": 7,
-          "entry_time": "2026-11-02T22:15:54.128832+00:00",
-          "entry_price": 127.88945999999999,
-          "last_price": 127.8,
-          "stop": 126.7960495856277,
-          "target": 128.8039504143723,
-          "score": 84.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.3x; tradable daily range; broad market recovery; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "RECOVERY",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        }
-      },
-      "realized_pnl": -334.8546910482054
+      "cash": 9643.32727922127,
+      "positions": {},
+      "realized_pnl": -356.6727207787351
     }
   }
 }

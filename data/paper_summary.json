@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T03:30:46.786768+00:00",
+  "generated_at": "2026-11-03T20:01:20.501946+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,13 +10,13 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 752.0999755859375,
-      "return": -0.027961783007388052
+      "price": 753.8475952148438,
+      "return": -0.025703103146722084
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 681.0900268554688,
-      "return": -0.08000591620214115
+      "price": 684.1799926757812,
+      "return": -0.07583209165364524
     }
   },
   "strategies": {
@@ -33,60 +33,28 @@
       "profit_factor": 0.6947021891321258
     },
     "V2": {
-      "equity": 9830.51,
-      "return": -0.016949276008293768,
-      "cash": 8935.91,
-      "open_positions": 1,
-      "realized_pnl": -168.87,
-      "positions": [
-        {
-          "trade_id": "V2-WMT-581b20ccd7ec",
-          "symbol": "WMT",
-          "qty": 7,
-          "entry_time": "2026-11-02T22:15:54.126616+00:00",
-          "entry_price": 127.88945999999999,
-          "last_price": 127.8,
-          "stop": 126.7960495856277,
-          "target": 128.8039504143723,
-          "score": 73.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.3x; tradable daily range",
-          "market_regime": "RECOVERY",
-          "broker_status": "local",
-          "broker_order_id": null
-        }
-      ],
+      "equity": 9809.32,
+      "return": -0.019068456981346737,
+      "cash": 9809.32,
+      "open_positions": 0,
+      "realized_pnl": -190.68,
+      "positions": [],
       "max_drawdown": -0.027555068984358777,
-      "closed_trades": 75,
-      "win_rate": 0.4533333333333333,
-      "profit_factor": 0.7581783561683058
+      "closed_trades": 76,
+      "win_rate": 0.4473684210526316,
+      "profit_factor": 0.7352112284988406
     },
     "V3": {
-      "equity": 9664.52,
-      "return": -0.033548091104820044,
-      "cash": 8769.92,
-      "open_positions": 1,
-      "realized_pnl": -334.85,
-      "positions": [
-        {
-          "trade_id": "V3-WMT-c1359f73f5a8",
-          "symbol": "WMT",
-          "qty": 7,
-          "entry_time": "2026-11-02T22:15:54.128832+00:00",
-          "entry_price": 127.88945999999999,
-          "last_price": 127.8,
-          "stop": 126.7960495856277,
-          "target": 128.8039504143723,
-          "score": 84.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 3.3x; tradable daily range; broad market recovery; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "RECOVERY",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        }
-      ],
+      "equity": 9643.33,
+      "return": -0.03566727207787301,
+      "cash": 9643.33,
+      "open_positions": 0,
+      "realized_pnl": -356.67,
+      "positions": [],
       "max_drawdown": -0.040554191518732075,
-      "closed_trades": 79,
-      "win_rate": 0.4177215189873418,
-      "profit_factor": 0.6029120572925929
+      "closed_trades": 80,
+      "win_rate": 0.4125,
+      "profit_factor": 0.5877070306630758
     }
   },
   "note": "Local shadow portfolios are the source of truth. Alpaca, when enabled, is paper-only and mirrors the selected strategy."

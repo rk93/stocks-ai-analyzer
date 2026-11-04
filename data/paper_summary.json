@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T02:22:51.018735+00:00",
+  "generated_at": "2026-11-04T20:21:56.505402+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,99 +10,51 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 754.3499755859375,
-      "return": -0.02505381058453371
+      "price": 767.9990234375,
+      "return": -0.007413341806505325
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 685.280029296875,
-      "return": -0.07434619824240318
+      "price": 693.4400024414062,
+      "return": -0.06332397398289102
     }
   },
   "strategies": {
     "V1": {
-      "equity": 9779.68,
-      "return": -0.022031563580419244,
-      "cash": 8970.8,
-      "open_positions": 1,
-      "realized_pnl": -219.75,
-      "positions": [
-        {
-          "trade_id": "V1-UNH-209203a7987d",
-          "symbol": "UNH",
-          "qty": 2,
-          "entry_time": "2026-11-04T00:35:23.369005+00:00",
-          "entry_price": 404.72310799999997,
-          "last_price": 404.44,
-          "stop": 400.4432200199701,
-          "target": 408.4367799800299,
-          "score": 92.0,
-          "reason": "holding above VWAP; opening-range breakout; volume 10.1x; 15m momentum; near support; positive 1M trend; enough daily range",
-          "market_regime": "RECOVERY",
-          "broker_status": "local",
-          "broker_order_id": null
-        }
-      ],
+      "equity": 9797.29,
+      "return": -0.02027145802438879,
+      "cash": 9797.29,
+      "open_positions": 0,
+      "realized_pnl": -202.71,
+      "positions": [],
       "max_drawdown": -0.029995392656848252,
-      "closed_trades": 65,
-      "win_rate": 0.5076923076923077,
-      "profit_factor": 0.6947021891321258
+      "closed_trades": 66,
+      "win_rate": 0.5151515151515151,
+      "profit_factor": 0.7183575952883654
     },
     "V2": {
-      "equity": 9808.75,
-      "return": -0.01912507858134682,
-      "cash": 8999.87,
-      "open_positions": 1,
-      "realized_pnl": -190.68,
-      "positions": [
-        {
-          "trade_id": "V2-UNH-bc18e849c2f7",
-          "symbol": "UNH",
-          "qty": 2,
-          "entry_time": "2026-11-04T00:35:23.370786+00:00",
-          "entry_price": 404.72310799999997,
-          "last_price": 404.44,
-          "stop": 400.4432200199701,
-          "target": 408.4367799800299,
-          "score": 83.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 4.1x; controlled 15m momentum; near support; tradable daily range",
-          "market_regime": "RECOVERY",
-          "broker_status": "local",
-          "broker_order_id": null
-        }
-      ],
+      "equity": 9826.35,
+      "return": -0.017364973025316477,
+      "cash": 9826.35,
+      "open_positions": 0,
+      "realized_pnl": -173.65,
+      "positions": [],
       "max_drawdown": -0.027555068984358777,
-      "closed_trades": 76,
-      "win_rate": 0.4473684210526316,
-      "profit_factor": 0.7352112284988406
+      "closed_trades": 77,
+      "win_rate": 0.45454545454545453,
+      "profit_factor": 0.7588538268245615
     },
     "V3": {
-      "equity": 9642.76,
-      "return": -0.0357238936778731,
-      "cash": 8833.88,
-      "open_positions": 1,
-      "realized_pnl": -356.67,
-      "positions": [
-        {
-          "trade_id": "V3-UNH-d6dd4bfea72b",
-          "symbol": "UNH",
-          "qty": 2,
-          "entry_time": "2026-11-04T00:35:23.372444+00:00",
-          "entry_price": 404.72310799999997,
-          "last_price": 404.44,
-          "stop": 400.4432200199701,
-          "target": 408.4367799800299,
-          "score": 94.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 4.1x; controlled 15m momentum; near support; tradable daily range; broad market recovery; tight VWAP proximity; strong time-normalized volume",
-          "market_regime": "RECOVERY",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        }
-      ],
+      "equity": 9660.36,
+      "return": -0.03396378812184264,
+      "cash": 9660.36,
+      "open_positions": 0,
+      "realized_pnl": -339.64,
+      "positions": [],
       "max_drawdown": -0.040554191518732075,
-      "closed_trades": 80,
-      "win_rate": 0.4125,
-      "profit_factor": 0.5877070306630758
+      "closed_trades": 81,
+      "win_rate": 0.41975308641975306,
+      "profit_factor": 0.6073901133828781
     }
   },
   "note": "Local shadow portfolios are the source of truth. Alpaca, when enabled, is paper-only and mirrors the selected strategy."

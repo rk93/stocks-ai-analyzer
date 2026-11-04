@@ -1,4 +1,6 @@
 symbol,error
+NVO,No call quote close enough to 25% delta
+RGTI,No validated put quotes
 CL,No call quote close enough to 25% delta
-SOUN,No put quote close enough to 25% delta
-MP,No validated ATM quote for normalization
+SOUN,No call quote close enough to 25% delta
+MP,No put quote close enough to 25% delta

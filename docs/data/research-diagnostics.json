@@ -16,163 +16,163 @@
   "strategies": {
     "V1": {
       "all": {
-        "signals": 62,
-        "resolved": 62,
+        "signals": 67,
+        "resolved": 67,
         "unresolved_or_ambiguous": 0,
         "dates": 37,
-        "expectancy_after_assumed_cost_r": -0.3403225806451613,
+        "expectancy_after_assumed_cost_r": -0.24402985074626868,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.49761904761904757,
+        "profit_factor_after_assumed_cost": 0.6107142857142857,
         "date_block_bootstrap_95_interval_r": [
-          -0.5576923076923077,
-          -0.11451612903225812
+          -0.4693548387096774,
+          -0.017741935483871013
         ]
       },
       "earlier_70pct_dates": {
-        "signals": 48,
-        "resolved": 48,
+        "signals": 53,
+        "resolved": 53,
         "unresolved_or_ambiguous": 0,
-        "dates": 26,
-        "expectancy_after_assumed_cost_r": -0.25833333333333336,
+        "dates": 28,
+        "expectancy_after_assumed_cost_r": -0.14433962264150949,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.5927750410509031,
+        "profit_factor_after_assumed_cost": 0.7487684729064038,
         "date_block_bootstrap_95_interval_r": [
-          -0.5193877551020408,
-          0.01976744186046507
+          -0.3961538461538462,
+          0.12647058823529406
         ]
       },
       "later_30pct_dates": {
         "signals": 14,
         "resolved": 14,
         "unresolved_or_ambiguous": 0,
-        "dates": 11,
+        "dates": 9,
         "expectancy_after_assumed_cost_r": -0.6214285714285716,
         "median_after_assumed_cost_r": -1.05,
         "profit_factor_after_assumed_cost": 0.2467532467532467,
         "date_block_bootstrap_95_interval_r": [
           -1.05,
-          -0.25000000000000006
+          -0.35000000000000003
         ]
       },
       "exploratory_volume_tod_ge_1_5": {
-        "signals": 53,
-        "resolved": 53,
+        "signals": 58,
+        "resolved": 58,
         "unresolved_or_ambiguous": 0,
-        "dates": 35,
-        "expectancy_after_assumed_cost_r": -0.33301886792452834,
+        "dates": 34,
+        "expectancy_after_assumed_cost_r": -0.18793103448275866,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.5056022408963585,
+        "profit_factor_after_assumed_cost": 0.6854256854256855,
         "date_block_bootstrap_95_interval_r": [
-          -0.55,
-          -0.0712765957446809
+          -0.45983606557377055,
+          0.07499999999999996
         ]
       }
     },
     "V2": {
       "all": {
-        "signals": 179,
-        "resolved": 177,
-        "unresolved_or_ambiguous": 2,
-        "dates": 53,
-        "expectancy_after_assumed_cost_r": -0.12344632768361587,
+        "signals": 186,
+        "resolved": 186,
+        "unresolved_or_ambiguous": 0,
+        "dates": 52,
+        "expectancy_after_assumed_cost_r": -0.11451612903225811,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.7809523809523808,
+        "profit_factor_after_assumed_cost": 0.795093795093795,
         "date_block_bootstrap_95_interval_r": [
-          -0.30423728813559325,
-          0.059890109890109844
+          -0.3014619883040936,
+          0.06557788944723614
         ]
       },
       "earlier_70pct_dates": {
-        "signals": 127,
-        "resolved": 127,
+        "signals": 136,
+        "resolved": 136,
         "unresolved_or_ambiguous": 0,
-        "dates": 38,
-        "expectancy_after_assumed_cost_r": -0.19960629921259845,
+        "dates": 37,
+        "expectancy_after_assumed_cost_r": -0.1823529411764706,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.6692759295499021,
+        "profit_factor_after_assumed_cost": 0.6932591218305503,
         "date_block_bootstrap_95_interval_r": [
-          -0.3988372093023256,
-          -0.010000000000000044
+          -0.3940000000000001,
+          0.018493150684931462
         ]
       },
       "later_30pct_dates": {
-        "signals": 52,
+        "signals": 50,
         "resolved": 50,
-        "unresolved_or_ambiguous": 2,
+        "unresolved_or_ambiguous": 0,
         "dates": 15,
         "expectancy_after_assumed_cost_r": 0.06999999999999995,
         "median_after_assumed_cost_r": 0.95,
         "profit_factor_after_assumed_cost": 1.1515151515151514,
         "date_block_bootstrap_95_interval_r": [
-          -0.31530612244897965,
-          0.3982758620689655
+          -0.27727272727272734,
+          0.41341463414634144
         ]
       },
       "exploratory_volume_tod_ge_1_5": {
-        "signals": 160,
+        "signals": 159,
         "resolved": 159,
-        "unresolved_or_ambiguous": 1,
-        "dates": 53,
+        "unresolved_or_ambiguous": 0,
+        "dates": 51,
         "expectancy_after_assumed_cost_r": -0.11918238993710696,
         "median_after_assumed_cost_r": -1.05,
         "profit_factor_after_assumed_cost": 0.7876750700280112,
         "date_block_bootstrap_95_interval_r": [
-          -0.3035211267605634,
-          0.07162162162162158
+          -0.32536231884057976,
+          0.0694968553459119
         ]
       }
     },
     "V3": {
       "all": {
-        "signals": 203,
-        "resolved": 200,
-        "unresolved_or_ambiguous": 3,
-        "dates": 54,
-        "expectancy_after_assumed_cost_r": -0.13000000000000003,
+        "signals": 209,
+        "resolved": 207,
+        "unresolved_or_ambiguous": 2,
+        "dates": 53,
+        "expectancy_after_assumed_cost_r": -0.1128019323671498,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.7707231040564373,
+        "profit_factor_after_assumed_cost": 0.7978354978354978,
         "date_block_bootstrap_95_interval_r": [
-          -0.3074257425742575,
-          0.04090909090909086
+          -0.2907407407407408,
+          0.05909090909090904
         ]
       },
       "earlier_70pct_dates": {
-        "signals": 139,
-        "resolved": 139,
+        "signals": 145,
+        "resolved": 145,
         "unresolved_or_ambiguous": 0,
-        "dates": 37,
-        "expectancy_after_assumed_cost_r": -0.17230215827338133,
+        "dates": 36,
+        "expectancy_after_assumed_cost_r": -0.13965517241379316,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.7075702075702075,
+        "profit_factor_after_assumed_cost": 0.755877034358047,
         "date_block_bootstrap_95_interval_r": [
-          -0.36297709923664123,
-          0.0026315789473683768
+          -0.34696969696969704,
+          0.05958904109589037
         ]
       },
       "later_30pct_dates": {
         "signals": 64,
-        "resolved": 61,
-        "unresolved_or_ambiguous": 3,
+        "resolved": 62,
+        "unresolved_or_ambiguous": 2,
         "dates": 17,
-        "expectancy_after_assumed_cost_r": -0.03360655737704922,
-        "median_after_assumed_cost_r": 0.95,
-        "profit_factor_after_assumed_cost": 0.9349206349206349,
+        "expectancy_after_assumed_cost_r": -0.050000000000000044,
+        "median_after_assumed_cost_r": -1.05,
+        "profit_factor_after_assumed_cost": 0.9047619047619047,
         "date_block_bootstrap_95_interval_r": [
-          -0.4346153846153846,
-          0.33983050847457624
+          -0.4136363636363637,
+          0.2833333333333333
         ]
       },
       "exploratory_volume_tod_ge_1_5": {
-        "signals": 182,
-        "resolved": 180,
+        "signals": 178,
+        "resolved": 176,
         "unresolved_or_ambiguous": 2,
-        "dates": 53,
-        "expectancy_after_assumed_cost_r": -0.12777777777777782,
+        "dates": 52,
+        "expectancy_after_assumed_cost_r": -0.1295454545454546,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.7741777123220421,
+        "profit_factor_after_assumed_cost": 0.7714285714285715,
         "date_block_bootstrap_95_interval_r": [
-          -0.31553672316384185,
-          0.05465116279069762
+          -0.32027027027027033,
+          0.050529100529100486
         ]
       }
     }

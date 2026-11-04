@@ -1,6 +1,44 @@
 symbol,error
-NVO,No call quote close enough to 25% delta
+PYPL,No put quote close enough to 25% delta
+SQ,Insufficient price history
 RGTI,No validated put quotes
-CL,No call quote close enough to 25% delta
 SOUN,No call quote close enough to 25% delta
+PNC,No call quote close enough to 25% delta
+BK,Insufficient price history
+AIG,No call quote close enough to 25% delta
+MET,No validated call quotes
+GILD,No validated put quotes
+ISRG,No validated call quotes
+VRTX,No validated call quotes
+REGN,Skew 1.501 exceeds sanity ceiling 1.25
+HUM,No put quote close enough to 25% delta
+NVO,No call quote close enough to 25% delta
+CL,No call quote close enough to 25% delta
+HON,No put quote close enough to 25% delta
+NOC,No put quote close enough to 25% delta
+EMR,No validated call quotes
+CSX,No call quote close enough to 25% delta
+WM,No call quote close enough to 25% delta
 MP,No put quote close enough to 25% delta
+ROKU,No validated call quotes
+SNAP,No validated ATM quote for normalization
+DUK,No call quote close enough to 25% delta
+AEP,No put quote close enough to 25% delta
+EXC,No validated call quotes
+SRE,No validated call quotes
+D,No call quote close enough to 25% delta
+PCG,No put quote close enough to 25% delta
+LIN,No call quote close enough to 25% delta
+APD,No call quote close enough to 25% delta
+SHW,No put quote close enough to 25% delta
+DOW,No validated ATM quote for normalization
+DD,No validated call quotes
+STLD,No call quote close enough to 25% delta
+AMT,No call quote close enough to 25% delta
+EQIX,No call quote close enough to 25% delta
+SPG,No call quote close enough to 25% delta
+BIDU,No put quote close enough to 25% delta
+XLV,No validated put quotes
+XLY,No validated call quotes
+XLP,No call quote close enough to 25% delta
+XLI,No call quote close enough to 25% delta

@@ -164,3 +164,19 @@ Optional browser regression: install Playwright, run the local server and
 See the [transaction accounting contract](research/TRANSACTION_ACCOUNTING.md) for
 broker schema evidence, fee/FX treatment, duplicate handling and storage migration.
 Run `python tests/ui_accounting.py` with the local server for its browser regression.
+
+
+## Dated market prices and allocation modelling
+
+Choose **Published completed-session closes** in a portfolio to value covered
+instruments using the shared public price/FX snapshot. Matching remains local;
+private symbols are not sent to providers, and manual quotes are preserved.
+A separate current-allocation model shows historical volatility, drawdown, beta
+and correlations with explicit coverage/assumptions. These are hypothetical model
+results, not your achieved returns. Historical acquisition FX is never replaced
+by current FX to invent cost basis or P/L.
+
+See [market data and modelling](research/MARKET_DATA_AND_RISK.md).
+Run `python portfolio_market_data.py` to refresh the fixed public universe, or let
+the nightly research workflow refresh it. `python tests/ui_market_intelligence.py`
+checks the new browser flow with the local server running.

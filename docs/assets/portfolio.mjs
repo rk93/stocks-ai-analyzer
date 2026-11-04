@@ -1,5 +1,5 @@
 import { currency, validatePosition } from "./financial-domain.mjs";
-import { validateLedgerPortfolio } from "./accounting.mjs";
+import { validateLedgerPortfolio, quoteCurrency } from "./accounting.mjs";
 export { currency, validatePosition };
 // Financial data stays in this origin's IndexedDB. No holdings are sent over the network.
 export const SCHEMA = 2;
@@ -38,6 +38,11 @@ export function validateState(s) {
       !currency(p.currency)
     )
       throw Error("Invalid portfolio");
+    if (
+      p.quoteMode !== undefined &&
+      !["manual", "published"].includes(p.quoteMode)
+    )
+      throw Error("Unsupported portfolio price source");
     for (const r of p.positions) validatePosition(r);
     if (p.ledger) validateLedgerPortfolio(p);
   }
@@ -266,7 +271,7 @@ export function reconcile(parsed, map) {
       const r = validatePosition({
         symbol: get("symbol").toUpperCase(),
         quantity: number("quantity"),
-        currency: get("currency"),
+        currency: quoteCurrency(get("currency")),
         cost: number("cost"),
         price: get("price") ? number("price") : null,
         exchange: get("exchange"),

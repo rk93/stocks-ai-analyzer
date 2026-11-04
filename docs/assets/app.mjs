@@ -1,3 +1,10 @@
+import {
+  publicValuation,
+  portfolioRisk,
+  stockIndicators,
+  publicMark,
+  canonicalExchange,
+} from "./market-intelligence.mjs";
 import { reconcileHistory, replayLedger } from "./accounting.mjs";
 import {
   blank,
@@ -80,7 +87,23 @@ async function commit(fn) {
     return false;
   }
 }
-const stocks = () => data.trending?.stocks || [],
+const stocks = () => {
+    const rows = data.trending?.stocks || [],
+      known = new Set(rows.map((r) => r.symbol));
+    const extra = Object.values(data["portfolio-market"]?.instruments || {})
+      .filter(
+        (r) =>
+          !known.has(r.symbol) && Array.isArray(r.history) && r.history.length,
+      )
+      .map((r) => ({
+        symbol: r.symbol,
+        sector: "Unclassified",
+        spot: r.history.at(-1).close,
+        quote_currency: r.currency,
+        price_session: r.last_session,
+      }));
+    return [...rows, ...extra];
+  },
   signals = () => data.skew?.signals || [],
   find = (s) => ({
     ...stocks().find((r) => r.symbol === s),
@@ -114,11 +137,94 @@ function head(title, sub, actions = "") {
   return `<div class="page-head"><div><h1>${title}</h1><p>${sub}</p></div><div class="actions">${actions}</div></div>`;
 }
 function freshness() {
-  return `<div class="notice">${data.manifest?.datasets?.trending?.stale_publication ? "STALE PUBLICATION · " : ""}Published snapshot: ${esc(data.trending?.generated_at || "unavailable")}. This is scheduled research, not a live quote feed. ${errors.length ? `Unavailable datasets: ${esc(errors.join(", "))}. <button data-action="retry">Retry</button>` : ""}</div>`;
+  const age = Date.now() - Date.parse(data.trending?.generated_at);
+  const stale = !Number.isFinite(age) || age < 0 || age > 36 * 3600000;
+  return `<div class="notice">${stale ? "STALE PUBLICATION · " : ""}Published snapshot: ${esc(data.trending?.generated_at || "unavailable")}. This is scheduled research, not a live quote feed. ${errors.length ? `Unavailable datasets: ${esc(errors.join(", "))}. <button data-action="retry">Retry</button>` : ""}</div>`;
+}
+function valuePortfolio(p) {
+  return p.quoteMode === "published"
+    ? publicValuation(p, data["portfolio-market"])
+    : valuation(p);
+}
+function quoteSourcePanel(p, v) {
+  return panel(
+    "Valuation source & coverage",
+    `<label>Price source<select id="quote-mode"><option value="manual" ${p.quoteMode !== "published" ? "selected" : ""}>Manual entered prices</option><option value="published" ${p.quoteMode === "published" ? "selected" : ""}>Published completed-session closes</option></select></label><p class="notice">Public snapshot downloaded for a fixed universe; all holdings matching happens in this browser. No private symbols or holdings are transmitted. Publication ${esc(data["portfolio-market"]?.generated_at || "unavailable")} is not a quote timestamp. Check listing exchange and quote currency when mapping ambiguous symbols. Published prices and FX older than four calendar days are withheld; this is a conservative age rule, not an exchange-calendar check.</p>${p.quoteMode === "published" ? `<div class="scroll"><table><thead><tr><th>Holding</th><th>Price / session</th><th>FX date(s)</th><th>Coverage</th></tr></thead><tbody>${v.rows.map((r) => `<tr><td>${ticker(r.symbol)}<p>${esc(r.currency)} · ${esc(data["portfolio-market"]?.instruments?.[r.symbol]?.exchange || "Exchange unavailable")}</p></td><td>${num(r.mark.price)}<p>${esc(r.mark.date || "Unavailable")}</p></td><td>${esc(r.mark.fxDates?.join(", ") || "Same-currency units / unavailable")}</td><td>${esc(r.mark.reason || (r.mark.retained ? "Dated observation retained after source error" : "Covered by completed-session observations"))}</td></tr>`).join("")}</tbody></table></div>` : '<p class="muted">Manual prices remain exactly as entered. Public mode does not overwrite your prices, quantities, transactions or cost basis.</p>'}`,
+  );
+}
+function riskPanel(p) {
+  const r = portfolioRisk(p, data["portfolio-market"]);
+  if (!r.available)
+    return panel(
+      "Historical allocation model",
+      `<p class="muted">${esc(r.reason)}</p><p class="sub">This model will use current weights, not reconstruct actual investment performance.</p>`,
+    );
+  return panel(
+    "Historical allocation model · not actual performance",
+    `<p class="notice">${esc(r.methodology)}</p><p class="sub">${r.observations} aligned observations · ${esc(r.start)} to ${esc(r.end)} · benchmark SPY in ${esc(p.currency)}</p><div class="cards">${panel("Model annualised volatility", `<div class="metric">${pct(r.volatility)}</div>`)}${panel("Model maximum drawdown", `<div class="metric">${pct(r.drawdown)}</div>`)}${panel("Model beta vs SPY", `<div class="metric">${num(r.beta)}</div><small>Unavailable if benchmark coverage or variance is insufficient</small>`)}</div>${chart([r.equity], ["Hypothetical current-weight index · starts at 100"])}<p class="sub">Hypothetical model return ${pct(r.modelReturn)} · SPY adjusted-price return over the same dates ${pct(r.benchmarkReturn)}. Current weights were chosen after these observations, so this is retrospective exposure analysis, not out-of-sample performance.</p><h3>Highest observed holding correlations</h3>${
+      r.pairs
+        .slice(0, 5)
+        .map(
+          (x) =>
+            `<div class="list-row"><span class="grow">${ticker(x.a)} / ${ticker(x.b)}</span><b>${num(x.correlation)}</b><span class="tag">${x.correlation >= 0.85 ? "High correlation" : "Observed relationship"}</span></div>`,
+        )
+        .join("") ||
+      '<p class="muted">At least two holdings are needed for correlations.</p>'
+    }<p class="sub">High correlation means at least 0.85 in this aligned sample. Correlation does not measure ETF constituent overlap and can change sharply. Cash is flat in this model; fees and rebalancing costs are excluded.</p>`,
+  );
+}
+function instrumentExposure(p, v) {
+  if (v.value === null) return "";
+  const groups = {},
+    currencies = {};
+  for (const r of v.rows) {
+    const i = data["portfolio-market"]?.instruments?.[r.symbol],
+      type =
+        i?.currency === r.currency &&
+        (!r.exchange ||
+          canonicalExchange(r.exchange) === canonicalExchange(i.exchange))
+          ? i.instrument_type
+          : null;
+    const label =
+      type === "ETF"
+        ? "ETF · underlying mix not inferred"
+        : type === "EQUITY"
+          ? "Direct equity"
+          : "Unclassified";
+    groups[label] = (groups[label] || 0) + r.value;
+    currencies[r.currency] = (currencies[r.currency] || 0) + r.value;
+  }
+  groups["Cash"] = p.cash;
+  return panel(
+    "Instrument and quote-currency exposure",
+    `<div class="two-col"><div>${Object.entries(groups)
+      .map(
+        ([k, x]) =>
+          `<div class="list-row"><span class="grow">${esc(k)}</span><b>${v.value ? pct(x / v.value) : "0%"}</b></div>`,
+      )
+      .join("")}</div><div>${Object.entries(currencies)
+      .map(
+        ([k, x]) =>
+          `<div class="list-row"><span class="grow">${esc(k)} securities</span><b>${v.value ? pct(x / v.value) : "0%"}</b></div>`,
+      )
+      .join(
+        "",
+      )}<div class="list-row"><span class="grow">${esc(p.currency)} cash</span><b>${v.value ? pct(p.cash / v.value) : "0%"}</b></div></div></div><p class="sub">Quote currency is not underlying economic exposure. ETF holdings and asset mixtures are not inferred from an ETF label. Unknown classifications remain visible.</p>`,
+  );
+}
+function indicatorPanel(symbol) {
+  const instrument = data["portfolio-market"]?.instruments?.[symbol],
+    r = stockIndicators(instrument);
+  return panel(
+    "Daily technical context",
+    !r.available
+      ? `<p class="muted">${esc(r.reason)}</p>`
+      : `<p class="sub">${esc(r.date)} · ${esc(instrument.currency)} · ${esc(instrument.exchange || "Exchange unknown")}</p><div class="cards">${panel("RSI (14)", `<div class="metric">${num(r.rsi)}</div>`)}${panel("MACD / signal", `<div class="metric">${num(r.macd)} / ${num(r.macdSignal)}</div>`)}${panel("ATR (14)", `<div class="metric">${num(r.atr)}</div>`)}</div><p>MA20 ${num(r.ma20)} · MA50 ${num(r.ma50)} · MA200 ${num(r.ma200)}</p><p class="notice">${esc(r.methodology)}</p>`,
+  );
 }
 function summaryCards(p) {
-  const v = valuation(p);
-  return `<div class="cards">${panel("Portfolio value", `<div class="metric">${money(v.value, p.currency)}</div><small>Cash ${money(p.cash, p.currency)} · ${v.rows.length} positions</small>`)}${panel("Cost basis", `<div class="metric">${money(v.cost, p.currency)}</div><small>${p.ledger ? "Remaining FIFO book basis from net settlements" : "Position cost, excluding unreported fees"}</small>`)}${panel("Unrealised P/L", `<div class="metric ${v.value !== null && v.value - p.cash - v.cost >= 0 ? "positive" : "negative"}">${money(v.value === null ? null : v.value - p.cash - v.cost, p.currency)}</div><small>Based on your entered prices · not live</small>`)}</div>${v.missing ? `<div class="notice">${v.missing} positions have missing prices or unsupported currency conversion. Portfolio totals and weights are withheld. Enter prices in the position currency; no FX rates are assumed.</div>` : ""}`;
+  const v = valuePortfolio(p);
+  return `<div class="cards">${panel("Portfolio value", `<div class="metric">${money(v.value, p.currency)}</div><small>Cash ${money(p.cash, p.currency)} · ${v.rows.length} positions</small>`)}${panel("Cost basis", `<div class="metric">${money(v.cost, p.currency)}</div><small>${p.ledger ? "Remaining FIFO book basis from net settlements" : "Position cost, excluding unreported fees"}</small>`)}${panel("Unrealised P/L", `<div class="metric ${v.value === null || v.cost === null ? "muted" : v.value - p.cash - v.cost >= 0 ? "positive" : "negative"}">${money(v.value === null || v.cost === null ? null : v.value - p.cash - v.cost, p.currency)}</div><small>${p.quoteMode === "published" ? "Based on dated closing prices and observed FX" : "Based on entered prices"} · not live</small>`)}</div>${v.missing ? `<div class="notice">${v.missing} positions have missing prices or unsupported currency conversion. Portfolio totals and weights are withheld. Inspect source coverage below; no price or FX rate is guessed.</div>` : ""}${v.missingCost ? '<p class="notice">Historical base-currency cost is unavailable for at least one position. Current FX is not substituted for historical acquisition FX, so aggregate cost and unrealised P/L are withheld.</p>' : ""}`;
 }
 function market() {
   const m = data.trending?.context?.market || [];
@@ -236,7 +342,7 @@ function discover() {
       .join("")}</select></div>` +
     panel(
       `${rows.length} research names`,
-      `<div class="scroll"><table><thead><tr><th>Company / symbol</th><th>Snapshot price</th><th>1M return</th><th>Technical score</th><th>Research state</th><th>Watchlist</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${ticker(r.symbol)}<p class="muted">${esc(r.sector)}</p></td><td>${num(r.spot)}<p class="muted">Quote currency unverified</p></td><td class="${r.return_1m >= 0 ? "positive" : "negative"}">${pct(r.return_1m)}</td><td>${num(r.technical_score)} / 100</td><td><span class="tag">${esc(r.research_state || "Monitor")}</span></td><td><button data-watch="${esc(r.symbol)}" aria-label="Toggle watchlist ${esc(r.symbol)}">${state.watchlist.includes(r.symbol) ? "★" : "☆"}</button></td></tr>`).join("")}</tbody></table></div>`,
+      `<div class="scroll"><table><thead><tr><th>Company / symbol</th><th>Snapshot price</th><th>1M return</th><th>Technical score</th><th>Research state</th><th>Watchlist</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${ticker(r.symbol)}<p class="muted">${esc(r.sector)}</p></td><td>${num(r.spot)}<p class="muted">${r.quote_currency ? esc(r.quote_currency + " · " + r.price_session) : "Quote currency unverified"}</p></td><td class="${r.return_1m >= 0 ? "positive" : "negative"}">${pct(r.return_1m)}</td><td>${num(r.technical_score)} / 100</td><td><span class="tag">${esc(r.research_state || "Monitor")}</span></td><td><button data-watch="${esc(r.symbol)}" aria-label="Toggle watchlist ${esc(r.symbol)}">${state.watchlist.includes(r.symbol) ? "★" : "☆"}</button></td></tr>`).join("")}</tbody></table></div>`,
     ) +
     freshness()
   );
@@ -289,20 +395,23 @@ function portfolio() {
           '<div class="empty"><p>Import a broker positions snapshot, add holdings manually, or explore a sample.</p><button data-action="demo">Try labelled demo</button></div>',
         )
       : (() => {
-          const v = valuation(p);
+          const v = valuePortfolio(p);
           const total = v.value;
           return (
             `<div class="tools"><select id="portfolio-select" aria-label="Selected portfolio">${state.portfolios.map((r) => `<option value="${esc(r.id)}" ${r.id === p.id ? "selected" : ""}>${esc(r.name)}${r.demo ? " · DEMO" : ""}</option>`).join("")}</select>${p.ledger ? "" : '<button data-action="position">+ Add position</button>'}<button data-action="edit-portfolio">${p.ledger ? "Edit name" : "Edit name, currency & cash"}</button><button data-action="delete-portfolio">Delete portfolio</button></div>` +
             (p.demo
               ? '<p class="notice">Sample portfolio · fictional quantities, costs and prices. Not your holdings and not live market data.</p>'
               : "") +
+            quoteSourcePanel(p, v) +
             summaryCards(p) +
             ledgerPanel(p) +
             `<div class="two-col">${panel("Allocation by holding", v.rows.map((r) => `<div class="list-row"><div class="grow">${ticker(r.symbol)}<div class="bar"><span style="width:${total && r.value !== null ? Math.max(0, Math.min(100, (r.value / total) * 100)) : 0}%"></span></div></div><span>${total && r.value !== null ? pct(r.value / total) : "Unavailable"}</span></div>`).join("") + '<p class="sub">Weights include cash in the denominator. Missing FX prevents aggregate weights.</p>')}${panel("Portfolio health", health(p, v))}</div>` +
             allocationPanel(p, v) +
+            instrumentExposure(p, v) +
+            riskPanel(p) +
             panel(
               "Your positions",
-              `<div class="scroll"><table><thead><tr><th>Symbol</th><th>Quantity</th><th>${p.ledger ? "Average native entry (excl. settlement charges)" : "Unit cost"}</th><th>Entered price</th><th>Value (${esc(p.currency)})</th><th>Research</th><th>Manage</th></tr></thead><tbody>${v.rows.map((r, i) => `<tr><td>${ticker(r.symbol)}<p>${esc(r.currency)}</p></td><td>${num(r.quantity)}</td><td>${num(r.cost)}</td><td>${num(r.price)}<p class="muted">${esc(r.asOf || "Date not provided")}</p></td><td>${money(r.value, p.currency)}</td><td>${esc(find(r.symbol).research_state || "Insufficient Data")}</td><td><button data-edit="${i}">Edit</button> ${p.ledger ? "" : `<button data-remove="${i}" aria-label="Remove ${esc(r.symbol)}">×</button>`}</td></tr>`).join("")}</tbody></table></div>`,
+              `<div class="scroll"><table><thead><tr><th>Symbol</th><th>Quantity</th><th>${p.ledger ? "Average native entry (excl. settlement charges)" : "Unit cost"}</th><th>${p.quoteMode === "published" ? "Published close" : "Entered price"}</th><th>Value (${esc(p.currency)})</th><th>Research</th><th>Manage</th></tr></thead><tbody>${v.rows.map((r, i) => `<tr><td>${ticker(r.symbol)}<p>${esc(r.currency)}</p></td><td>${num(r.quantity)}</td><td>${num(r.cost)}</td><td>${num(r.mark?.price ?? r.price)}<p class="muted">${esc(r.mark?.date || r.asOf || "Date not provided")}</p></td><td>${money(r.value, p.currency)}</td><td>${esc(find(r.symbol).research_state || "Insufficient Data")}</td><td><button data-edit="${i}">${p.quoteMode === "published" ? "Edit manual quote" : "Edit"}</button> ${p.ledger ? "" : `<button data-remove="${i}" aria-label="Remove ${esc(r.symbol)}">×</button>`}</td></tr>`).join("")}</tbody></table></div>`,
             ) +
             `<div class="two-col">${panel("What if you add more?", `<p class="muted">Model a new contribution in ${esc(p.currency)}, held as cash or allocated to an existing position. Entered prices remain unchanged; fees and future returns are excluded.</p><label>Additional cash<input id="what-amount" type="number" min="0" value="500"></label><label>Hypothetical allocation<select id="what-symbol"><option value="">Hold as cash</option>${p.positions.map((r, i) => `<option value="${i}">${esc(r.symbol)}</option>`).join("")}</select></label><button data-action="what">Calculate allocation scenario</button><p id="what-result" role="status"></p>`)}${panel("Coverage & calculation limits", '<p class="muted">Transaction-based portfolios show booked FIFO realised P/L and net income. Position-only snapshots lack this history. Market total return, daily movement, beta, volatility, drawdown, correlations and ETF overlap still require verified historical prices, FX or constituent data; unavailable metrics are not estimated.</p>')}</div>`
           );
@@ -499,6 +608,12 @@ function modal(html) {
 }
 const close = () => $("#modal").close();
 function stock(s) {
+  const instrument = data["portfolio-market"]?.instruments?.[s];
+  const mark = publicMark(
+    data["portfolio-market"],
+    { symbol: s, currency: instrument?.currency, quantity: 1 },
+    instrument?.currency || "USD",
+  );
   const r = find(s),
     hist = (data.skew?.history || [])
       .filter((x) => x.symbol === s && x.normalized_skew != null)
@@ -510,7 +625,7 @@ function stock(s) {
             Date.parse(data.skew?.generated_at) - Number(stockRange) * 86400000,
       );
   modal(
-    `<span class="tag">STOCK INTELLIGENCE</span><h1>${esc(s)}</h1><p class="muted">${esc(r.sector || "Sector unavailable")} · published snapshot</p><div class="cards">${panel("Snapshot price", `<div class="metric">${num(r.spot)}</div><small>Quote currency not verified</small>`)}${panel("1M price return", `<div class="metric">${pct(r.return_1m)}</div>`)}${panel("Research state", `<span class="tag">${esc(r.research_state || "Insufficient Data")}</span>`)}</div><h2>Why is this stock highlighted?</h2><p>${esc(r.signal_reason || "This symbol is available in the research universe or your local workspace; no current entry classification is established.")}</p><div class="two-col">${panel("Supporting evidence", `<p>Technical score: ${num(r.technical_score)}</p><p>Above 50-day average: ${r.above_50d == null ? "Unavailable" : r.above_50d ? "Yes" : "No"}</p><p>Relative to SPY (1M): ${pct(r.return_vs_spy_1m)}</p><p>Options quality: ${esc(r.quality_label || "Unavailable")}</p>`)}${panel("Contradictions & invalidation", `<p>${r.catalyst_flag ? "Event distortion is flagged." : "Event coverage may be incomplete."}</p><p>Skew alone is not a directional forecast. Weak quote quality, stale observations or loss of trend support invalidate reliance on this snapshot.</p><p class="muted">No strategy here has established out-of-sample profitability.</p>`)}</div><h2>Published price observations</h2><div class="tools"><select id="stock-range" data-symbol="${esc(s)}" aria-label="Observation range">${[
+    `<span class="tag">STOCK INTELLIGENCE</span><h1>${esc(s)}</h1><p class="muted">${esc(r.sector || "Sector unavailable")} · published snapshot</p><div class="cards">${panel("Dated closing price", `<div class="metric">${num(mark.value)}</div><small>${esc(instrument?.currency || "Currency unknown")} · ${esc(mark.date || "No verified session")}<br>${esc(mark.reason || "Completed-session observation; not live")}</small>`)}${panel("1M price return", `<div class="metric">${pct(r.return_1m)}</div>`)}${panel("Research state", `<span class="tag">${esc(r.research_state || "Insufficient Data")}</span>`)}</div><h2>Why is this stock highlighted?</h2><p>${esc(r.signal_reason || "This symbol is available in the research universe or your local workspace; no current entry classification is established.")}</p><div class="two-col">${panel("Supporting evidence", `<p>Technical score: ${num(r.technical_score)}</p><p>Above 50-day average: ${r.above_50d == null ? "Unavailable" : r.above_50d ? "Yes" : "No"}</p><p>Relative to SPY (1M): ${pct(r.return_vs_spy_1m)}</p><p>Options quality: ${esc(r.quality_label || "Unavailable")}</p>`)}${panel("Contradictions & invalidation", `<p>${r.catalyst_flag ? "Event distortion is flagged." : "Event coverage may be incomplete."}</p><p>Skew alone is not a directional forecast. Weak quote quality, stale observations or loss of trend support invalidate reliance on this snapshot.</p><p class="muted">No strategy here has established out-of-sample profitability.</p>`)}</div>${indicatorPanel(s)}<h2>Published price observations</h2><div class="tools"><select id="stock-range" data-symbol="${esc(s)}" aria-label="Observation range">${[
       ["30", "Last 30 days"],
       ["90", "Last 90 days"],
       ["all", "All observations"],
@@ -521,13 +636,13 @@ function stock(s) {
       )
       .join(
         "",
-      )}</select><button data-compare="${esc(s)}">Compare symbols</button></div>${chart([hist.filter((r) => Number.isFinite(r.spot)).map((r) => r.spot)], ["Snapshot price · not OHLC bars"])}<h2>Available fundamentals</h2><div class="cards">${panel("Revenue growth", `<div class="metric">${pct(r.revenue_growth)}</div>`)}${panel("Profit margin", `<div class="metric">${pct(r.profit_margin)}</div>`)}${panel("Earnings growth", `<div class="metric">${pct(r.earnings_growth)}</div>`)}</div><p class="sub">Fundamental reporting period and source timestamp are not published; verify against company filings.</p><h2>Observed options skew</h2>${chart([hist.map((r) => r.normalized_skew)], ["Normalised skew"])}<p class="sub">${esc(hist[0]?.run_date || "No history")} → ${esc(hist.at(-1)?.run_date || "")} · observations, not continuous time. Price history, RSI, MACD and ATR are unavailable in the published contract; no synthetic chart is substituted.</p><div class="actions"><button data-watch="${esc(s)}">${state.watchlist.includes(s) ? "Remove from" : "Add to"} watchlist</button><button data-journal-symbol="${esc(s)}">Record thesis</button></div>`,
+      )}</select><button data-compare="${esc(s)}">Compare symbols</button></div><p class="sub">${esc(instrument?.currency || "Quote currency unavailable")} · ${esc(instrument?.history?.[0]?.date || "No daily history")} to ${esc(instrument?.last_session || "unavailable")}. Separate from the scanner snapshot and skew history below.</p>${chart([(data["portfolio-market"]?.instruments?.[s]?.history || []).filter((b) => stockRange === "all" || Date.parse(b.date) >= Date.now() - Number(stockRange) * 86400000).map((b) => b.close)], ["Completed-session closes · native quote currency"])}<h2>Available fundamentals</h2><div class="cards">${panel("Revenue growth", `<div class="metric">${pct(r.revenue_growth)}</div>`)}${panel("Profit margin", `<div class="metric">${pct(r.profit_margin)}</div>`)}${panel("Earnings growth", `<div class="metric">${pct(r.earnings_growth)}</div>`)}</div><p class="sub">Fundamental reporting period and source timestamp are not published; verify against company filings.</p><h2>Observed options skew</h2>${chart([hist.map((r) => r.normalized_skew)], ["Normalised skew"])}<p class="sub">${esc(hist[0]?.run_date || "No history")} → ${esc(hist.at(-1)?.run_date || "")} · observations, not continuous time. Daily OHLC and indicators use a separate public dataset when available. Empty charts and missing indicators represent coverage gaps; scanner skew observations are a different series.</p><div class="actions"><button data-watch="${esc(s)}">${state.watchlist.includes(s) ? "Remove from" : "Add to"} watchlist</button><button data-journal-symbol="${esc(s)}">Record thesis</button></div>`,
   );
 }
 function portfolioForm() {
   const p = selectedP();
   modal(
-    `<h2>${p ? "Edit" : "Create"} portfolio</h2><form id="portfolio-form"><label>Name<input name="name" required maxlength="80" value="${esc(p?.name || "My portfolio")}"></label><label>Base currency<select name="currency">${["GBP", "USD", "EUR", "INR", "CAD", "AUD", "CHF", "JPY", "HKD", "SGD"].map((c) => `<option ${p?.currency === c ? "selected" : ""}>${c}</option>`).join("")}</select></label><label>Cash<input name="cash" type="number" step="any" min="0" value="${p?.cash || 0}" required></label><button class="primary">Save portfolio</button></form>`,
+    `<h2>${p ? "Edit" : "Create"} portfolio</h2><form id="portfolio-form"><p class="notice">The base currency is the cash-account unit. Changing it does not convert entered cash; enter the verified balance in the selected currency. Native position currencies and transaction book costs remain unchanged.</p><label>Name<input name="name" required maxlength="80" value="${esc(p?.name || "My portfolio")}"></label><label>Base currency<select name="currency">${["GBP", "USD", "EUR", "INR", "CAD", "AUD", "CHF", "JPY", "HKD", "SGD"].map((c) => `<option ${p?.currency === c ? "selected" : ""}>${c}</option>`).join("")}</select></label><label>Cash<input name="cash" type="number" step="any" min="0" value="${p?.cash || 0}" required></label><button class="primary">Save portfolio</button></form>`,
   );
   if (p?.ledger) {
     $('#portfolio-form [name="currency"]').disabled = true;
@@ -972,7 +1087,7 @@ const actions = {
   what: () => {
     const amount = Number($("#what-amount").value),
       p = selectedP(),
-      v = valuation(p),
+      v = valuePortfolio(p),
       symbol = $("#what-symbol").value,
       out = $("#what-result");
     if (!Number.isFinite(amount) || amount < 0) {
@@ -995,12 +1110,14 @@ const actions = {
           : r.currency === p.currency
             ? 1
             : null;
-    if (!r || !r.price || scale === null) {
+    const usedPrice = p.quoteMode === "published" ? r?.mark?.price : r?.price;
+    const usedScale = p.quoteMode === "published" ? r?.mark?.fxRate : scale;
+    if (!r || !usedPrice || usedScale == null) {
       out.textContent =
         "A positive entered price and verified currency units are required.";
       return;
     }
-    out.textContent = `${r.symbol}: hypothetical purchase of ${num(amount / (r.price * scale))} shares. New holding value ${money(r.value + amount, p.currency)}; weight ${total ? pct((r.value + amount) / total) : "0%"}. Portfolio value ${money(total, p.currency)}. ${total && (r.value + amount) / total > 0.25 ? "Above the 25% concentration review threshold. " : ""}No future return, liquidity or risk estimate is assumed.`;
+    out.textContent = `${r.symbol}: hypothetical purchase of ${num(amount / (usedPrice * usedScale))} shares. New holding value ${money(r.value + amount, p.currency)}; weight ${total ? pct((r.value + amount) / total) : "0%"}. Portfolio value ${money(total, p.currency)}. ${total && (r.value + amount) / total > 0.25 ? "Above the 25% concentration review threshold. " : ""}No future return, liquidity or risk estimate is assumed.`;
   },
   cost: () => {
     const c = Number($("#cost-r").value);
@@ -1197,6 +1314,13 @@ document.addEventListener("submit", async (e) => {
 document.addEventListener("change", async (e) => {
   const t = e.target;
   if (t.id === "history-destination") return configureHistoryDestination();
+  if (t.id === "quote-mode") {
+    const p = selectedP();
+    await commit(
+      (s) => (s.portfolios.find((x) => x.id === p.id).quoteMode = t.value),
+    );
+    return;
+  }
   if (t.id === "stock-range") {
     stockRange = t.value;
     return stock(t.dataset.symbol);
@@ -1323,6 +1447,7 @@ async function loadData() {
   await Promise.allSettled(
     [
       "trending",
+      "portfolio-market",
       "skew",
       "backtest",
       "paper-trading",

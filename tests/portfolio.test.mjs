@@ -99,3 +99,15 @@ test("backup schema validation preserves compatibility boundary", () => {
     }),
   );
 });
+test("snapshot GBp is explicitly pence, never silently treated as pounds", () => {
+  const parsed = parseCSV(
+    "Ticker,Quantity,Currency,Average price,Current price\nRR.L,1,GBp,100,120",
+  );
+  const result = reconcile(parsed, detect(parsed.headers));
+  assert.deepEqual(result.errors, []);
+  assert.equal(result.positions[0].currency, "GBX");
+  assert.equal(
+    valuation({ currency: "GBP", cash: 0, positions: result.positions }).value,
+    1.2,
+  );
+});

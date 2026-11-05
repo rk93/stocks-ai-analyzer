@@ -1,42 +1,5 @@
 symbol,error
-ABNB,No call quote close enough to 25% delta
-SQ,Insufficient price history
 RGTI,No put quote close enough to 25% delta
-SOUN,No call quote close enough to 25% delta
-USB,No call quote close enough to 25% delta
-BK,Insufficient price history
-AIG,No validated call quotes
-PRU,No call quote close enough to 25% delta
-PFE,No call quote close enough to 25% delta
-AMGN,No call quote close enough to 25% delta
-ISRG,No put quote close enough to 25% delta
-VRTX,No call quote close enough to 25% delta
-REGN,No validated put quotes
-CI,No call quote close enough to 25% delta
 CL,No call quote close enough to 25% delta
-NOC,No put quote close enough to 25% delta
-EMR,No validated put quotes
-UNP,No call quote close enough to 25% delta
-URI,No call quote close enough to 25% delta
-CMCSA,No call quote close enough to 25% delta
-ROKU,No call quote close enough to 25% delta
-SNAP,No validated put quotes
-DUK,No validated put quotes
-AEP,No call quote close enough to 25% delta
-EXC,No validated call quotes
-SRE,No validated call quotes
-D,No call quote close enough to 25% delta
-LIN,No validated put quotes
-APD,No validated call quotes
-DD,No call quote close enough to 25% delta
-AMT,No put quote close enough to 25% delta
-PLD,No put quote close enough to 25% delta
-O,No call quote close enough to 25% delta
-SPG,No call quote close enough to 25% delta
-MELI,No call quote close enough to 25% delta
-XLF,No call quote close enough to 25% delta
-XLV,No put quote close enough to 25% delta
-XLY,No call quote close enough to 25% delta
-XLP,No validated call quotes
-XLI,No validated put quotes
-XLU,No call quote close enough to 25% delta
+SOUN,No put quote close enough to 25% delta
+MP,No call quote close enough to 25% delta

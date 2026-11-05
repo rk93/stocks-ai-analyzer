@@ -249,76 +249,14 @@
       "realized_pnl": -202.7145802438905
     },
     "V2": {
-      "cash": 8302.254949306835,
-      "positions": {
-        "JPM": {
-          "trade_id": "V2-JPM-df2709ed8d99",
-          "symbol": "JPM",
-          "qty": 2,
-          "entry_time": "2026-11-05T02:31:11.671153+00:00",
-          "entry_price": 352.356477,
-          "last_price": 352.11,
-          "stop": 349.65341928857964,
-          "target": 354.5665807114204,
-          "score": 65.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.8x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        },
-        "UNH": {
-          "trade_id": "V2-UNH-9022bee711eb",
-          "symbol": "UNH",
-          "qty": 2,
-          "entry_time": "2026-11-05T02:31:11.671226+00:00",
-          "entry_price": 409.69118321999997,
-          "last_price": 409.4046,
-          "stop": 405.2714815597573,
-          "target": 413.5377184402427,
-          "score": 65.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.6x; tradable daily range",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "local",
-          "broker_order_id": null
-        }
-      },
-      "realized_pnl": -173.64973025317136
+      "cash": 9766.159490987742,
+      "positions": {},
+      "realized_pnl": -233.84050901226306
     },
     "V3": {
-      "cash": 8136.266798341573,
-      "positions": {
-        "JPM": {
-          "trade_id": "V3-JPM-8d8603557af5",
-          "symbol": "JPM",
-          "qty": 2,
-          "entry_time": "2026-11-05T02:31:11.672506+00:00",
-          "entry_price": 352.356477,
-          "last_price": 352.11,
-          "stop": 349.65341928857964,
-          "target": 354.5665807114204,
-          "score": 69.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.8x; tradable daily range; sideways market: neutral; tight VWAP proximity",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        },
-        "UNH": {
-          "trade_id": "V3-UNH-06321c1d4611",
-          "symbol": "UNH",
-          "qty": 2,
-          "entry_time": "2026-11-05T02:31:11.672573+00:00",
-          "entry_price": 409.69118321999997,
-          "last_price": 409.4046,
-          "stop": 405.2714815597573,
-          "target": 413.5377184402427,
-          "score": 69.0,
-          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.6x; tradable daily range; sideways market: neutral; tight VWAP proximity",
-          "market_regime": "SIDEWAYS",
-          "broker_status": "disabled",
-          "broker_order_id": null
-        }
-      },
-      "realized_pnl": -339.6378812184323
+      "cash": 9600.171340022482,
+      "positions": {},
+      "realized_pnl": -399.828659977524
     }
   }
 }

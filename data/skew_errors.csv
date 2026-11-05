@@ -1,5 +1,19 @@
 symbol,error
-RGTI,No put quote close enough to 25% delta
-CL,No call quote close enough to 25% delta
+SQ,Insufficient price history
 SOUN,No put quote close enough to 25% delta
-MP,No call quote close enough to 25% delta
+BK,Insufficient price history
+AIG,No put quote close enough to 25% delta
+MET,No validated put quotes
+HUM,No call quote close enough to 25% delta
+CL,No call quote close enough to 25% delta
+CSX,No call quote close enough to 25% delta
+MP,No validated ATM quote for normalization
+ROKU,No validated call quotes
+SNAP,No put quote close enough to 25% delta
+DUK,No put quote close enough to 25% delta
+SRE,No validated call quotes
+D,No validated call quotes
+APD,No validated call quotes
+DD,No call quote close enough to 25% delta
+CCI,No put quote close enough to 25% delta
+SOXX,No validated call quotes

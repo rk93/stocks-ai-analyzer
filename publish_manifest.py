@@ -30,6 +30,17 @@ def build_manifest(root=Path('.')):
               'sha256':hashlib.sha256(raw).hexdigest()}
         except (OSError,ValueError,TypeError) as exc:
             datasets[name]={'schema_version':1,'pipeline_status':'unavailable','error':str(exc)}
+    market_path=root/'docs/data/portfolio-market.json'
+    if market_path.exists():
+        raw=market_path.read_bytes()
+        market=json.loads(raw)
+        sessions=sorted(r['last_session'] for r in list(market.get('instruments',{}).values())+list(market.get('fx',{}).values()) if r.get('last_session'))
+        datasets['portfolio-market']={'schema_version':market.get('schema_version'),'generated_at':market.get('generated_at'),
+          'market_data_timestamp':None,'market_data_session_range':{'earliest_last_session':sessions[0] if sessions else None,'latest_last_session':sessions[-1] if sessions else None},
+          'source':'portfolio_market_data.py: fixed public universe; Yahoo Finance via yfinance',
+          'validity':'dated_completed_session_observations','pipeline_status':market.get('pipeline_status','unavailable'),
+          'coverage':market.get('coverage',{}),'sha256':hashlib.sha256(raw).hexdigest(),
+          'note':'Clients check individual close and FX dates at runtime. Generated time does not establish quote freshness.'}
     return {'schema_version':1,'generated_at':now.isoformat(),'datasets':datasets,
      'note':'Publication time is not quote time. Staleness threshold is a conservative 36-hour publication flag, not exchange-session validation.'}
 

@@ -55,15 +55,15 @@ The exploratory volume filter does not establish an improvement. See EXPERIMENTS
 This is a substantive first release, not a claim that every item in the full overhaul brief is implemented.
 
 - XLSX parsing remains unshipped. Supported transaction accounting now requires a reviewable reconciliation flow. No real user broker export was supplied; adapters are mapped against published existing fields and synthetic tests, not represented as validated across all Trading 212 variants. The second release adds explicit transaction reconciliation for complete share histories with verified opening cash, net settlement totals, duplicate-safe appends and FIFO research realised P/L. See TRANSACTION_ACCOUNTING.md. Share transfers, corporate actions, multi-currency cash ledgers and jurisdiction-specific tax rules remain unsupported.
-- Portfolio metrics use entered prices, not automatically currency-verified public quotes. Position-only snapshots still lack realised P/L and income history. Transaction-based portfolios now show booked FIFO realised P/L and net income. Daily/market total-return history, beta, covariance, verified sector/ETF look-through, asset classes and historical scenarios remain unavailable rather than invented. Cash contributions and purchases at entered prices are arithmetic scenarios, not return/risk simulations. Published sector classifications are displayed with an unclassified bucket; ETF look-through is unavailable.
+- Portfolios keep entered prices by default; the third release adds optional provider-identified, dated closing prices and historical FX from a fixed public dataset. Position-only snapshots still lack realised P/L and income history. Transaction-based portfolios now show booked FIFO realised P/L and net income. Actual portfolio return history and ETF look-through remain unavailable. Current-allocation hypothetical volatility, drawdown, beta and correlations are now provided with explicit model assumptions, sample sizes and data gates; these are not achieved investment performance. Cash contributions and purchases at entered prices are arithmetic scenarios, not return/risk simulations. Published sector classifications are displayed with an unclassified bucket; ETF look-through is unavailable.
 - Aggregation across independent snapshots is intentionally not offered: overlapping snapshots must not be double counted. Multiple portfolios are switchable.
-- Price history is archived scanner observations, not complete OHLC. RSI/MACD/ATR, attributed news, full catalyst calendars and reliable exchange normalization await a richer point-in-time dataset. Users must enter exchange-qualified symbols where ambiguous.
+- Legacy scanner observations are sparse; daily price history, RSI/MACD/ATR and moving averages now use a separate public OHLC contract. Attributed news, full catalyst calendars and a complete cross-exchange security master remain future work. Users must enter exchange-qualified symbols where ambiguous.
 - Strategy capital/risk execution simulation, regime/sector/time slicing, calibrated prediction charts, prospective walk-forward V4 research and executable outcome accounting remain future work. No robust OOS profitability has been demonstrated.
 - Browser storage is device/origin-specific, not encrypted cross-device sync. A future sync design needs authenticated per-user authorization, encrypted transport/storage, deletion/export, audit controls and explicit consent. No login, public-write shortcut or live trading is introduced.
 
 ## Validation
 
-24 Python tests pass (existing tests plus diagnostics and frozen-prediction tests); 20 Node portfolio/accounting tests pass.
+29 Python tests pass; 32 Node portfolio/accounting/market-intelligence tests pass, plus three browser regression suites.
 Chromium checks cover routes, stock details/comparison, persistence after reload, CSV commit,
 duplicate rejection, invalid-import preservation, legacy navigation and overflow at desktop/tablet/mobile widths.
 See `tests/ui_smoke.py` for reproducible browser checks.
@@ -71,3 +71,7 @@ See `tests/ui_smoke.py` for reproducible browser checks.
 ## Second release
 
 See [Transaction accounting](TRANSACTION_ACCOUNTING.md) for the supported import contract, source-format evidence, schema-1 migration, append-only local records and cross-tab write protection.
+
+## Third release
+
+See [Public market data and risk model](MARKET_DATA_AND_RISK.md) for price/FX provenance, runtime freshness, historical-cost limits and the distinction between current-allocation modelling and actual portfolio returns.

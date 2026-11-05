@@ -19,6 +19,7 @@ on:
       - 'prediction_tracker.py'
       - 'prediction_research.py'
       - 'publish_manifest.py'
+      - 'portfolio_market_data.py'
       - 'research_diagnostics.py'
       - 'backtest_engine.py'
       - 'strategy_v2.py'
@@ -176,6 +177,9 @@ jobs:
           }
           Path('docs/data/day-opportunities.json').write_text(json.dumps(day_payload, allow_nan=False, separators=(',', ':')), encoding='utf-8')
           PY
+      - name: Publish completed-session portfolio market data
+        if: github.event_name != 'schedule' || github.event.schedule == '15 22 * * 1-5'
+        run: python portfolio_market_data.py
       - name: Publish provenance and read-only research diagnostics
         run: |
           python prediction_research.py

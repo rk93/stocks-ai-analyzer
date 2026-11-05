@@ -22,7 +22,7 @@ jobs:
           node-version: '22'
       - run: node --test tests/*.test.mjs
       - run: python -m pytest -q tests
-      - run: python -m py_compile market_data_provider.py skew_map.py signal_engine.py trending_engine.py day_opportunities.py strategy_v2.py strategy_v3.py paper_trader.py backtest_engine.py prediction_tracker.py skew_dashboard.py confluence_engine.py research_diagnostics.py publish_manifest.py prediction_research.py
+      - run: python -m py_compile market_data_provider.py skew_map.py signal_engine.py trending_engine.py day_opportunities.py strategy_v2.py strategy_v3.py paper_trader.py backtest_engine.py prediction_tracker.py skew_dashboard.py confluence_engine.py research_diagnostics.py publish_manifest.py prediction_research.py portfolio_market_data.py
 
   browser:
     runs-on: ubuntu-latest
@@ -42,3 +42,4 @@ jobs:
           curl --fail --silent --retry 5 --retry-connrefused --retry-delay 1 http://127.0.0.1:8765/ >/dev/null
           python tests/ui_smoke.py
           python tests/ui_accounting.py
+          python tests/ui_market_intelligence.py

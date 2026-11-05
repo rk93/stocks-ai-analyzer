@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T20:21:56.505402+00:00",
+  "generated_at": "2026-11-05T02:31:11.895522+00:00",
   "mode": "local",
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
@@ -10,13 +10,13 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 767.9990234375,
-      "return": -0.007413341806505325
+      "price": 766.8099975585938,
+      "return": -0.008950077124691758
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 693.4400024414062,
-      "return": -0.06332397398289102
+      "price": 691.9500122070312,
+      "return": -0.06533660395322016
     }
   },
   "strategies": {
@@ -33,24 +33,86 @@
       "profit_factor": 0.7183575952883654
     },
     "V2": {
-      "equity": 9826.35,
-      "return": -0.017364973025316477,
-      "cash": 9826.35,
-      "open_positions": 0,
+      "equity": 9825.28,
+      "return": -0.017471585069316675,
+      "cash": 8302.25,
+      "open_positions": 2,
       "realized_pnl": -173.65,
-      "positions": [],
+      "positions": [
+        {
+          "trade_id": "V2-JPM-df2709ed8d99",
+          "symbol": "JPM",
+          "qty": 2,
+          "entry_time": "2026-11-05T02:31:11.671153+00:00",
+          "entry_price": 352.356477,
+          "last_price": 352.11,
+          "stop": 349.65341928857964,
+          "target": 354.5665807114204,
+          "score": 65.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.8x; tradable daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V2-UNH-9022bee711eb",
+          "symbol": "UNH",
+          "qty": 2,
+          "entry_time": "2026-11-05T02:31:11.671226+00:00",
+          "entry_price": 409.69118321999997,
+          "last_price": 409.4046,
+          "stop": 405.2714815597573,
+          "target": 413.5377184402427,
+          "score": 65.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.6x; tradable daily range",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "local",
+          "broker_order_id": null
+        }
+      ],
       "max_drawdown": -0.027555068984358777,
       "closed_trades": 77,
       "win_rate": 0.45454545454545453,
       "profit_factor": 0.7588538268245615
     },
     "V3": {
-      "equity": 9660.36,
-      "return": -0.03396378812184264,
-      "cash": 9660.36,
-      "open_positions": 0,
+      "equity": 9659.3,
+      "return": -0.03407040016584273,
+      "cash": 8136.27,
+      "open_positions": 2,
       "realized_pnl": -339.64,
-      "positions": [],
+      "positions": [
+        {
+          "trade_id": "V3-JPM-8d8603557af5",
+          "symbol": "JPM",
+          "qty": 2,
+          "entry_time": "2026-11-05T02:31:11.672506+00:00",
+          "entry_price": 352.356477,
+          "last_price": 352.11,
+          "stop": 349.65341928857964,
+          "target": 354.5665807114204,
+          "score": 69.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.8x; tradable daily range; sideways market: neutral; tight VWAP proximity",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        },
+        {
+          "trade_id": "V3-UNH-06321c1d4611",
+          "symbol": "UNH",
+          "qty": 2,
+          "entry_time": "2026-11-05T02:31:11.672573+00:00",
+          "entry_price": 409.69118321999997,
+          "last_price": 409.4046,
+          "stop": 405.2714815597573,
+          "target": 413.5377184402427,
+          "score": 69.0,
+          "reason": "trend 3/3; confirmed OR breakout; time-normalized volume 1.6x; tradable daily range; sideways market: neutral; tight VWAP proximity",
+          "market_regime": "SIDEWAYS",
+          "broker_status": "disabled",
+          "broker_order_id": null
+        }
+      ],
       "max_drawdown": -0.040554191518732075,
       "closed_trades": 81,
       "win_rate": 0.41975308641975306,

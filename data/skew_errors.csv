@@ -1,19 +1,53 @@
 symbol,error
+DASH,No call quote close enough to 25% delta
+PYPL,No put quote close enough to 25% delta
 SQ,Insufficient price history
-SOUN,No put quote close enough to 25% delta
+RGTI,No validated put quotes
+SOUN,No validated call quotes
+USB,No validated put quotes
+PNC,No call quote close enough to 25% delta
 BK,Insufficient price history
-AIG,No put quote close enough to 25% delta
-MET,No validated put quotes
+MET,No call quote close enough to 25% delta
+PRU,No call quote close enough to 25% delta
+EOG,No validated put quotes
+ABBV,No call quote close enough to 25% delta
+TMO,No call quote close enough to 25% delta
+AMGN,No call quote close enough to 25% delta
+GILD,No call quote close enough to 25% delta
+VRTX,No call quote close enough to 25% delta
 HUM,No call quote close enough to 25% delta
 CL,No call quote close enough to 25% delta
-CSX,No call quote close enough to 25% delta
-MP,No validated ATM quote for normalization
+PM,No call quote close enough to 25% delta
+EL,No call quote close enough to 25% delta
+HON,No call quote close enough to 25% delta
+UPS,No call quote close enough to 25% delta
+EMR,No call quote close enough to 25% delta
+CSX,No validated call quotes
+UNP,No put quote close enough to 25% delta
+MP,No validated put quotes
+TMUS,No put quote close enough to 25% delta
 ROKU,No validated call quotes
 SNAP,No put quote close enough to 25% delta
 DUK,No put quote close enough to 25% delta
+AEP,No validated call quotes
+EXC,No call quote close enough to 25% delta
 SRE,No validated call quotes
-D,No validated call quotes
-APD,No validated call quotes
+D,No call quote close enough to 25% delta
+LIN,No call quote close enough to 25% delta
+APD,No call quote close enough to 25% delta
 DD,No call quote close enough to 25% delta
+STLD,No call quote close enough to 25% delta
+AMT,No call quote close enough to 25% delta
+EQIX,No call quote close enough to 25% delta
+O,No call quote close enough to 25% delta
+SPG,No validated call quotes
 CCI,No put quote close enough to 25% delta
+MELI,No call quote close enough to 25% delta
+BIDU,No call quote close enough to 25% delta
+XLE,No put quote close enough to 25% delta
+XLV,No validated call quotes
+XLY,No validated call quotes
+XLP,No validated call quotes
+XLI,No validated call quotes
+XLU,No call quote close enough to 25% delta
 SOXX,No validated call quotes

@@ -23,6 +23,8 @@ from typing import Any, Mapping
 import numpy as np
 import pandas as pd
 
+from market_sessions import next_session_open
+
 
 @dataclass(frozen=True)
 class ExecutionConfig:
@@ -244,8 +246,8 @@ def _simulate(df: pd.DataFrame, prepared: dict, qty: float, cfg: ExecutionConfig
             if previous_ts.tz_convert(cfg.market_timezone).date() == session:
                 missing = ts != previous_end
             else:
-                current_local = ts.tz_convert(cfg.market_timezone)
-                missing = not previous_session_complete or current_local.hour * 60 + current_local.minute != 570
+                expected_open = next_session_open(previous_ts)
+                missing = not previous_session_complete or expected_open is None or ts != expected_open
             if missing:
                 # Unknown bars could already have exited the trade. Do not use
                 # a subsequent recovery/target to manufacture a resolved path.
@@ -588,7 +590,8 @@ def simulate_portfolio(signals, bars_by_symbol: Mapping[str, pd.DataFrame],
                             "missing_data": "open paths retained; stale position marks explicitly listed",
                             "contiguity": "stop at first unknown held-path bar" if cfg.require_contiguous_bars else
                             "disabled explicitly; sparse-path fills assume no unobserved barrier touches",
-                            "calendar": "actual observed regular sessions; no holiday calendar or missing-whole-session verification",
+                            "calendar": "NYSE calendar verifies the next scheduled session opening across held-path gaps; holidays and early closes supported; calendar failures leave paths unresolved" if cfg.require_contiguous_bars else
+                            "scheduled-session continuity disabled explicitly; sparse paths do not establish executable performance",
                             "correlation_controls": "supplied point-in-time candidate correlations only; missing mappings are not inferred",
                             "cash_benchmark": "nominal zero-interest cash" if cfg.cash_annual_rate == 0 else
                             "constant annual cash-rate assumption; not observed point-in-time risk-free returns",

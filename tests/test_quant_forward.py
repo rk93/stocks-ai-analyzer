@@ -86,7 +86,7 @@ def test_forward_contains_no_broker_order_or_legacy_write_paths():
 def test_fetch_snapshot_cannot_complete_while_other_symbols_download(root,monkeypatch):
     """A 17:00 partial fetched at 17:04:59 stays partial after the scan passes 17:05."""
     calls=[]
-    moments=iter(pd.Timestamp(t) for t in ['2026-11-06T16:59:59Z','2026-11-06T17:04:59Z','2026-11-06T17:05:01Z','2026-11-06T17:05:02Z','2026-11-06T17:05:03Z'])
+    moments=iter(pd.Timestamp(t) for t in ['2026-11-06T16:59:59Z','2026-11-06T17:04:59Z','2026-11-06T17:05:01Z','2026-11-06T17:05:02Z','2026-11-06T17:05:03Z','2026-11-06T17:05:04Z'])
     def clock():
         value=next(moments);calls.append(('clock',value));return value
     class Provider:
@@ -108,6 +108,51 @@ def test_fetch_snapshot_cannot_complete_while_other_symbols_download(root,monkey
     archived=q.read_events(root/'data/quant_forward/bars.jsonl')
     assert {(r['symbol'],r['time']) for r in archived}=={('SPY',AT.isoformat()),('TEST',AT.isoformat())}
     assert view['collection_started_at']=='2026-11-06T16:59:59+00:00'
+    assert view['generated_at']=='2026-11-06T17:05:04+00:00'
+
+def collect_computed_candidate(root,monkeypatch,feature_at,persisted_at,source_at):
+    feature_at=pd.Timestamp(feature_at);persisted_at=pd.Timestamp(persisted_at);source_at=pd.Timestamp(source_at)
+    moments=iter([feature_at-pd.Timedelta(seconds=4),feature_at-pd.Timedelta(seconds=3),feature_at-pd.Timedelta(seconds=2),feature_at-pd.Timedelta(seconds=1),feature_at,persisted_at])
+    class Provider:
+        def intraday(self,symbol):return bars([source_at-pd.Timedelta(minutes=5)])
+        def daily(self,symbol):return pd.DataFrame()
+    def compute(manifest,events,frames,dailies,market,at,directory):
+        assert at==feature_at
+        return [{'kind':'decision','decision_id':'computed','signal_id':'computed','strategy':'V4','symbol':'TEST','signal_day':source_at.tz_convert('America/New_York').date().isoformat(),'signal_time':source_at.isoformat(),'frozen_at':at.isoformat(),'recorded_at':at.isoformat(),'accepted':True,'state':'ENTRY TRIGGERED','score':80,'reason':'frozen candidate','stop_price':99,'market_regime':'BULL_TREND'}]
+    monkeypatch.setattr(q,'freeze_decisions',compute)
+    return q.collect(root,Provider(),lambda:next(moments))
+
+def test_persistence_after_feature_calculation_cannot_fill_an_earlier_open(root,monkeypatch):
+    view=collect_computed_candidate(root,monkeypatch,'2026-11-06T14:59:59Z','2026-11-06T15:00:01Z','2026-11-06T14:55:00Z')
+    decision=view['signals'][0]
+    assert decision['accepted'] and decision['frozen_at']=='2026-11-06T15:00:01+00:00'
+    assert decision['recorded_at']==decision['frozen_at']==view['generated_at']
+    frames={'TEST':bars(['2026-11-06T15:00:00Z','2026-11-06T15:05:00Z'])}
+    manifest=json.loads((root/'data/quant_forward/manifest.json').read_text())
+    events=q.read_events(root/'data/quant_forward/events.jsonl')
+    replay=q.publish_forward(root,manifest,events,frames,pd.Timestamp('2026-11-06T15:10:00Z'))
+    assert replay['strategies']['V4']['trades'][0]['entry_time']=='2026-11-06T15:05:00+00:00'
+
+@pytest.mark.parametrize('feature_at,persisted_at,source_at,rejection',[
+    ('2026-11-06T17:09:59Z','2026-11-06T17:10:00.000001Z','2026-11-06T17:00:00Z','STALE_AT_PUBLICATION'),
+    ('2026-11-06T20:59:59Z','2026-11-06T21:00:01Z','2026-11-06T20:55:00Z','OUTSIDE_REGULAR_SESSION_AT_PUBLICATION'),
+    ('2026-11-27T17:59:59Z','2026-11-27T18:00:01Z','2026-11-27T17:55:00Z','OUTSIDE_REGULAR_SESSION_AT_PUBLICATION'),
+])
+def test_persistence_rechecks_freshness_and_actual_close(root,monkeypatch,feature_at,persisted_at,source_at,rejection):
+    view=collect_computed_candidate(root,monkeypatch,feature_at,persisted_at,source_at)
+    decision=view['signals'][0]
+    assert decision['accepted'] is False and decision['execution_rejection']==rejection
+    assert rejection in decision['reason'] and not view['strategies']['V4']['trades']
+    assert decision['frozen_at']==pd.Timestamp(persisted_at).isoformat()
+
+def test_exact_ten_minute_publication_cutoff_is_inclusive(root,monkeypatch):
+    view=collect_computed_candidate(root,monkeypatch,'2026-11-06T17:09:59Z','2026-11-06T17:10:00Z','2026-11-06T17:00:00Z')
+    assert view['signals'][0]['accepted'] is True
+
+def test_persistence_clock_reversal_fails_before_appending_decisions(root,monkeypatch):
+    with pytest.raises(ValueError,match='Persistence clock reversed'):
+        collect_computed_candidate(root,monkeypatch,'2026-11-06T17:05:00Z','2026-11-06T17:04:59Z','2026-11-06T17:00:00Z')
+    assert not any(e['kind']=='decision' for e in q.read_events(root/'data/quant_forward/events.jsonl'))
 
 def test_late_candles_do_not_change_first_seen_execution_order(root):
     directory=root/'data/quant_forward';directory.mkdir(parents=True)

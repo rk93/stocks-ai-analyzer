@@ -52,12 +52,25 @@ def test_new_york_calendar_date_is_used_instead_of_utc_date():
     assert sessions.session_bounds("2026-11-02T00:30:00Z") is None
 
 
+@pytest.mark.parametrize("previous,expected_open", [
+    ("2026-10-06T16:00:00-04:00", "2026-10-07T13:30:00Z"),
+    ("2026-09-04T16:00:00-04:00", "2026-09-08T13:30:00Z"),  # Labor Day
+    ("2026-10-30T16:00:00-04:00", "2026-11-02T14:30:00Z"),  # DST ends
+    ("2026-11-25T16:00:00-05:00", "2026-11-27T14:30:00Z"),  # Thanksgiving
+    ("2026-11-27T13:00:00-05:00", "2026-11-30T14:30:00Z"),  # half-day Friday
+    ("2026-12-31T16:00:00-05:00", "2027-01-04T14:30:00Z"),  # year boundary
+])
+def test_next_session_open_uses_exchange_schedule(previous, expected_open):
+    assert sessions.next_session_open(previous) == pd.Timestamp(expected_open)
+
+
 @pytest.mark.parametrize("timestamp", [
     None, pd.NaT, "not-a-timestamp", "2026-11-02T15:00:00",
     datetime(2026, 11, 2, 15), 0, [], {},
 ])
 def test_invalid_or_naive_timestamp_fails_closed(timestamp):
     assert sessions.session_bounds(timestamp) is None
+    assert sessions.next_session_open(timestamp) is None
     assert not sessions.in_regular_session(timestamp)
     assert not sessions.completed_bar(timestamp, "2026-11-02T15:10:00Z")
     assert not sessions.completed_bar("2026-11-02T15:00:00Z", timestamp)
@@ -85,6 +98,7 @@ def test_missing_calendar_dependency_fails_closed(monkeypatch):
     monkeypatch.setattr(sessions, "_exchange_calendars", None)
     try:
         assert sessions.session_bounds("2026-11-02T15:00:00Z") is None
+        assert sessions.next_session_open("2026-11-02T15:00:00Z") is None
         assert not sessions.in_regular_session("2026-11-02T15:00:00Z")
         assert not sessions.completed_bar("2026-11-02T15:00:00Z", "2026-11-02T15:05:00Z")
     finally:
@@ -96,6 +110,7 @@ def test_calendar_lookup_errors_fail_closed(monkeypatch):
         raise RuntimeError("calendar coverage unavailable")
     monkeypatch.setattr(sessions, "_calendar", unavailable)
     assert sessions.session_bounds("2026-11-02T15:00:00Z") is None
+    assert sessions.next_session_open("2026-11-02T15:00:00Z") is None
     assert not sessions.in_regular_session("2026-11-02T15:00:00Z")
     assert not sessions.completed_bar("2026-11-02T15:00:00Z", "2026-11-02T15:05:00Z")
 

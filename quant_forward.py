@@ -94,7 +94,7 @@ def register(root=Path('.'),at=None):
         if len(registrations)!=1 or registrations[0].get('manifest_hash')!=digest(result):raise ValueError('Immutable experiment registration is missing or inconsistent')
         return result
     if any((directory/name).exists() for name in ('events.jsonl','bars.jsonl')):raise ValueError('Experiment state exists without its manifest; refusing to reset the prospective cohort')
-    result={'schema_version':1,'experiment_id':'v4-prospective-003','registered_at':at.isoformat(),'strategy_version':STRATEGY_VERSION,'config_hash':CONFIG_HASH,'code_hashes':code,'runtime':runtime,'execution':asdict(execution_config()),'versions':list(VERSIONS),'status':'research_only','starting_cash':10000,'note':'Collection begins on first scheduled post-registration run. No elapsed unobserved period is backfilled.'}
+    result={'schema_version':1,'experiment_id':'v4-prospective-005','registered_at':at.isoformat(),'strategy_version':STRATEGY_VERSION,'config_hash':CONFIG_HASH,'code_hashes':code,'runtime':runtime,'execution':asdict(execution_config()),'versions':list(VERSIONS),'status':'research_only','starting_cash':10000,'note':'Collection begins on first scheduled post-registration run. No elapsed unobserved period is backfilled.'}
     write_json(path,result);append_events(directory/'events.jsonl',[{'kind':'registration','recorded_at':at.isoformat(),'manifest_hash':digest(result)}]);return result
 
 class YahooForwardProvider:
@@ -239,8 +239,22 @@ def collect(root=Path('.'),provider=None,clock=None):
             frames[symbol]=frame.loc[[completed_bar(t,observed_at) for t in frame.index]]
             dailies[symbol]=provider.daily(symbol)
         except Exception as exc:warnings.append(f'{symbol}: source unavailable ({type(exc).__name__})')
-    # Actual freeze time is AFTER download, not a stale workflow start timestamp.
-    at=utc_timestamp(clock());new=freeze_decisions(manifest,events,frames,dailies,dailies.get('SPY',pd.DataFrame()),at,directory);append_events(directory/'events.jsonl',new);events+=new
+    # Feature computation and accepted-input gzip writes can cross another bar
+    # boundary. Freeze availability only after that work, just before the append.
+    feature_at=utc_timestamp(clock());new=freeze_decisions(manifest,events,frames,dailies,dailies.get('SPY',pd.DataFrame()),feature_at,directory)
+    at=utc_timestamp(clock())
+    if at<feature_at:raise ValueError('Persistence clock reversed during decision computation; refusing earlier availability')
+    bounds=session_bounds(at)
+    for decision in new:
+        decision.update(frozen_at=at.isoformat(),recorded_at=at.isoformat())
+        if not decision.get('accepted'):continue
+        rejection=None
+        if bounds is None or not bounds[0]<=at<bounds[1]:rejection='OUTSIDE_REGULAR_SESSION_AT_PUBLICATION'
+        elif not 0<=(at-utc_timestamp(decision['signal_time'])).total_seconds()<=600:rejection='STALE_AT_PUBLICATION'
+        if rejection:
+            decision.update(accepted=False,execution_rejection=rejection)
+            decision['reason']=f"{decision.get('reason','')}; Prospective execution rejected: {rejection}".strip('; ')
+    append_events(directory/'events.jsonl',new);events+=new
     execution_frames,problems=archive_completed_bars(directory,frames,events,at,collection_start)
     try:
         split_symbols=[]

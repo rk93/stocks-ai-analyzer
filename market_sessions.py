@@ -7,6 +7,7 @@ weekday rules.  If the calendar cannot answer, no execution is permitted.
 """
 from __future__ import annotations
 
+from datetime import timedelta
 from functools import lru_cache
 import math
 from numbers import Real
@@ -77,6 +78,40 @@ def in_regular_session(timestamp: Any) -> bool:
         return False
     bounds = session_bounds(timestamp)
     return bounds is not None and bounds[0] <= timestamp < bounds[1]
+
+
+def next_session_open(timestamp: Any) -> pd.Timestamp | None:
+    """Return the first NYSE opening on a later New York calendar date.
+
+    This identifies the expected successor to a completed held-position
+    session, including weekends, exchange holidays and year boundaries.
+    It never infers the next session from the observations that happen to be
+    present in a dataset.  Invalid inputs or calendar errors return ``None``.
+    """
+    timestamp = _aware_timestamp(timestamp)
+    if timestamp is None:
+        return None
+    try:
+        candidate = timestamp.tz_convert("America/New_York").date() + timedelta(days=1)
+        # A December session can have its successor in January.  A full year
+        # without exchange sessions is unsupported and must fail closed.
+        for year in (candidate.year, candidate.year + 1):
+            calendar = _calendar(year)
+            if calendar is None:
+                return None
+            first, last = calendar.first_session, calendar.last_session
+            if candidate > last.date():
+                continue
+            label = first if candidate <= first.date() else calendar.date_to_session(
+                pd.Timestamp(candidate), direction="next"
+            )
+            opening = _aware_timestamp(calendar.session_open(label))
+            if opening is None or opening <= timestamp:
+                return None
+            return opening
+    except Exception:
+        return None
+    return None
 
 
 def completed_bar(start: Any, observed_at: Any, minutes: Real = 5) -> bool:

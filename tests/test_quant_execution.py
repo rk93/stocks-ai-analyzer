@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
+import market_sessions
 from quant_execution import ExecutionConfig, simulate_portfolio, simulate_trade
 
 
@@ -359,6 +360,53 @@ def test_missing_session_tail_or_open_is_unresolved_but_holiday_gap_is_not_infer
     missing_open = frame([(100, 101, 99, 100), (103, 104, 102, 103)],
                          ["2026-10-05 15:55", "2026-10-06 09:35"])
     assert simulate_trade(missing_open, missing_open.index[0], 98, config=cfg)["status"] == "OPEN"
+
+
+def test_entire_missing_scheduled_session_cannot_credit_later_target():
+    tuesday = pd.date_range("2026-10-06 09:30", "2026-10-06 15:55", freq="5min", tz="America/New_York")
+    thursday = pd.DatetimeIndex(["2026-10-08 09:30"], tz="America/New_York")
+    bars = frame([(100, 101, 99, 100)] * len(tuesday) + [(103, 104, 102, 103)],
+                 tuesday.append(thursday))
+    cfg = config(require_contiguous_bars=True)
+    trade = simulate_trade(bars, bars.index[0], 98, config=cfg)
+    assert trade["status"] == "OPEN"
+    assert trade["legs"] == []
+    assert trade["net_r"] is None
+    assert trade["bars_held"] == 78
+    assert trade["data_quality_flags"] == ["MISSING_BARS_UNRESOLVED"]
+    assert pd.Timestamp(trade["mark_time"]) == pd.Timestamp("2026-10-06T16:00:00-04:00")
+    assert pd.Timestamp(trade["unresolved_from"]) == pd.Timestamp("2026-10-06T16:00:00-04:00")
+    result = simulate_portfolio([signal("A", bars.index[0])], {"A": bars}, cfg)
+    assert result["metrics"]["equity_path_reliable"] is False
+    assert result["metrics"]["total_return"] is None
+    assert result["metrics"]["net_pnl"] is None
+    assert result["equity"][-1]["unresolved_symbols"] == ["A"]
+
+
+@pytest.mark.parametrize("previous,last_bar,following", [
+    ("2026-09-04 15:55", False, "2026-09-08 09:30"),  # weekend plus Labor Day
+    ("2026-11-25 15:55", False, "2026-11-27 09:30"),  # Thanksgiving
+    ("2026-11-27 12:55", True, "2026-11-30 09:30"),  # early close plus weekend
+    ("2026-12-31 15:55", False, "2027-01-04 09:30"),  # New Year plus weekend
+])
+def test_expected_next_session_open_allows_known_overnight_target(previous, last_bar, following):
+    bars = frame([(100, 101, 99, 100), (103, 104, 102, 103)], [previous, following])
+    bars["session_end"] = [last_bar, False]
+    trade = simulate_trade(bars, bars.index[0], 98, config=config(require_contiguous_bars=True))
+    assert trade["status"] == "CLOSED"
+    assert trade["exit_reason"] == "TARGET"
+    assert pd.Timestamp(trade["exit_time"]) == bars.index[1]
+    assert trade["data_quality_flags"] == []
+
+
+def test_inter_session_calendar_failure_keeps_held_path_unresolved(monkeypatch):
+    bars = frame([(100, 101, 99, 100), (103, 104, 102, 103)],
+                 ["2026-10-06 15:55", "2026-10-07 09:30"])
+    monkeypatch.setattr(market_sessions, "_calendar", lambda year: None)
+    trade = simulate_trade(bars, bars.index[0], 98, config=config(require_contiguous_bars=True))
+    assert trade["status"] == "OPEN"
+    assert trade["legs"] == []
+    assert trade["data_quality_flags"] == ["MISSING_BARS_UNRESOLVED"]
 
 
 def test_archive_may_start_at_entry_without_inventing_pre_entry_missing_data():

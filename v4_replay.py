@@ -274,7 +274,7 @@ def run(manifest_path=DEFAULT_MANIFEST):
                                     'metrics':trial['metrics'],'config':asdict(cfg),'confidence_interval':block_interval(trial['trades'],dates)})
     experiment_config={'checkpoints_minutes_ny':CHECKPOINT_MINUTES,'primary_execution':asdict(PRIMARY),'development_models':MODELS,'window_fractions':[.5,.25,.25],'purge_embargo_sessions':5,'historical_status':'already observed retrospective'}
     experiment_config_hash=hashlib.sha256(json.dumps(experiment_config,sort_keys=True,separators=(',',':')).encode()).hexdigest()
-    sources={name:digest_file(name) for name in ['quant_features.py','v4_replay.py','quant_execution.py','strategy_v4.py','research/v4_config.json','strategy_v2.py','strategy_v3.py','day_opportunities.py']}
+    sources={name:digest_file(name) for name in ['quant_features.py','v4_replay.py','quant_execution.py','market_sessions.py','strategy_v4.py','research/v4_config.json','strategy_v2.py','strategy_v3.py','day_opportunities.py']}
     return clean({'schema_version':1,'generated_at':manifest['captured_at'],'market_data_at':(pd.Timestamp(sessions[-1],tz=NY)+pd.Timedelta(hours=16)).isoformat(),'status':'research-only; retrospective replay, no independent profitability claim',
                   'config_hash':CONFIG_HASH,'experiment_config':experiment_config,'experiment_config_hash':experiment_config_hash,'manifest_path':str(manifest_path),'manifest_sha256':digest_file(manifest_path),'source_sha256':sources,
                   'coverage':{**coverage,'sessions':len(sessions),'symbols':len(manifest['universe']),'archive_errors':manifest['errors']},

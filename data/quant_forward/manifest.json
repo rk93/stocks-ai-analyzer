@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "experiment_id": "v4-prospective-003",
-  "registered_at": "2026-11-06T09:43:34.879943+00:00",
+  "experiment_id": "v4-prospective-005",
+  "registered_at": "2026-11-06T10:01:18.561025+00:00",
   "strategy_version": "V4.0.0-experimental",
   "config_hash": "d36d64a7cc8a538a17170c30a3b60f666ed3ecd72f7ee47e99a5b5304ce0fe6c",
   "code_hashes": {
@@ -11,9 +11,9 @@
     "requirements.txt": "797bdebbadb784359e3a4ef51b3a042063c84daf45e729bc33c12cc70cd9475a",
     "skew_config.json": "5e767cba449c9466c9b17f88e00a0a28f1e4545771f4936170aad722666bd2b3",
     "quant_features.py": "c065458a941b64546a08f9116b50db6c6185cb56d397af8097dfdb1d50e1ef30",
-    "quant_execution.py": "f7cb3e1be1f6e935fc6df1d56e894c76f2fc757d37ffa3a21f4d39d291ab03fb",
-    "quant_forward.py": "a267e4e3800c674f02aac418ace555763a00f637f7774d30712aa25b8f5ceda9",
-    "market_sessions.py": "b56cd195e6a91e60483c8f72e1a81398faa9dcb53fb96eb1d949558bd1d258b6",
+    "quant_execution.py": "1b8c2d22acbf926c4a133e5ce15297cde62fc54f78584c6d26c746a56d0f7232",
+    "quant_forward.py": "fd1c5825aba542e7e591277dccdf0b62ce0ed9742ee51f10fce01789f9533489",
+    "market_sessions.py": "0f753fe46d2f09c297779df62a4974432fe9a2bdc288e37f17ca239fcd0ecf78",
     "strategy_v2.py": "a4b278c715f53e36600ddf0b738cca7b2c151fe89208d8c365da2539b765f24e",
     "strategy_v3.py": "21bcf70289ae7215457dfe0ccc057a63dd1fd7889ec53414bf22819ae6ea6006",
     "day_opportunities.py": "fa8a86e9d2a431e2bdfca4ef29fc142930102d25255d965d811db32d64ae14de"

@@ -2,3 +2,6 @@
 *.png
 __pycache__/
 *.pyc
+
+/data/quant_forward/runner.lock
+/data/quant_forward/*.tmp

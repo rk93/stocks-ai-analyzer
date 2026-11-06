@@ -41,8 +41,8 @@ def main():
         try:d=yf.Ticker(str(r.symbol)).history(start=start,end=end,interval="1d",auto_adjust=False).dropna(subset=["High","Low","Close"])
         except Exception:d=pd.DataFrame()
         out={"prediction_id":r.get("prediction_id"),"signal_date":sd,"signal_time":r.get("generated_at"),
-             "symbol":r.symbol,"prediction":r.get("state"),"score":f(r.get("score")),"signal_price":entry,
-             "stop":stop,"target_1r":t1,"target_2r":t2,"original_reason":r.get("reason","")}
+             "symbol":r.symbol,"prediction":r.get("prediction_state") if pd.notna(r.get("prediction_state")) else r.get("state"),"score":f(r.get("prediction_score")) if pd.notna(r.get("prediction_score")) else f(r.get("score")),"signal_price":entry,
+             "stop":stop,"target_1r":t1,"target_2r":t2,"original_reason":r.get("prediction_reason") if pd.notna(r.get("prediction_reason")) else r.get("reason",""),"strategy_version":r.get("strategy_version"),"data_availability_cutoff":r.get("data_cutoff")}
         for n in HORIZONS:
             col=str(n)
             if len(d)>=n and np.isfinite(entry) and entry>0:

@@ -16,6 +16,8 @@ import pandas as pd
 import requests
 import yfinance as yf
 
+from market_sessions import in_regular_session
+
 SIGNALS = Path("data/day_opportunities_latest.csv")
 STATE = Path("data/paper_state.json")
 TRADES = Path("data/paper_trades.csv")
@@ -61,23 +63,22 @@ def empty_state():
 def load_state():
     if not STATE.exists():
         return empty_state()
-    try:
-        s = json.loads(STATE.read_text())
-        if int(s.get("schema_version", 0)) < 2:
-            return empty_state()
-        s.setdefault("seen_signals", [])
-        for v in ("V1", "V2", "V3"):
-            s.setdefault("portfolios", {}).setdefault(
-                v, {"cash": STARTING_CASH, "positions": {}, "realized_pnl": 0.0}
-            )
-        return s
-    except Exception:
-        return empty_state()
+    s = json.loads(STATE.read_text())
+    if int(s.get("schema_version",0))!=2 or not isinstance(s.get("portfolios"),dict):
+        raise ValueError("Unsupported paper state: refusing to reset existing capital/history")
+    s.setdefault("seen_signals",[])
+    for v in ("V1","V2","V3"):
+        pf=s["portfolios"].get(v)
+        if not isinstance(pf,dict) or not np.isfinite(f(pf.get("cash"))) or not isinstance(pf.get("positions"),dict):
+            raise ValueError("Invalid paper portfolio: refusing to reset existing history")
+    return s
 
 
 def save_state(s):
     STATE.parent.mkdir(parents=True, exist_ok=True)
-    STATE.write_text(json.dumps(s, indent=2, allow_nan=False))
+    temporary=STATE.with_suffix(".tmp")
+    temporary.write_text(json.dumps(s, indent=2, allow_nan=False))
+    temporary.replace(STATE)
 
 
 def append_csv(path: Path, row: dict):
@@ -95,12 +96,17 @@ def slippage(price, side):
     return price * (1 + bps if side == "buy" else 1 - bps)
 
 
+def fresh_quote(row,at):
+    try:
+        q=pd.Timestamp(row.get("quote_available_at")); t=pd.Timestamp(at)
+        if q.tzinfo is None or t.tzinfo is None:return False
+        return in_regular_session(t) and in_regular_session(q) and (q.tz_convert("America/New_York").hour*60+q.tz_convert("America/New_York").minute)>=575 and q.tz_convert("America/New_York").date()==t.tz_convert("America/New_York").date() and 0<=(t-q).total_seconds()<=600
+    except (ValueError,TypeError):return False
+
+
 def current_prices(df):
-    return {
-        str(r.symbol): f(r.price)
-        for r in df.itertuples()
-        if np.isfinite(f(getattr(r, "price", np.nan)))
-    }
+    at=now()
+    return {str(r["symbol"]):f(r["price"]) for _,r in df.iterrows() if fresh_quote(r,at) and np.isfinite(f(r.get("price"))) and f(r.get("price"))>0}
 
 
 def benchmark_prices():
@@ -187,6 +193,8 @@ def close_positions(state, prices):
 
 
 def open_positions(state, df, prices):
+    at=now()
+    if not in_regular_session(at):return
     for strategy in ("V1", "V2", "V3"):
         pf = state["portfolios"][strategy]
         if len(pf["positions"]) >= MAX_OPEN_POSITIONS:
@@ -200,6 +208,7 @@ def open_positions(state, df, prices):
         for _, r in candidates.iterrows():
             if len(pf["positions"]) >= MAX_OPEN_POSITIONS:
                 break
+            if not fresh_quote(r,at):continue
             symbol = str(r["symbol"])
             signal_day = str(r.get("generated_at", ""))[:10] or now()[:10]
             signal_key = f"{strategy}|{symbol}|{signal_day}"
@@ -217,10 +226,7 @@ def open_positions(state, df, prices):
             t2 = f(r.get(t2_col))
             if not np.isfinite(stop) or stop >= entry:
                 continue
-            raw_target = t1 if EXIT_AT_R <= 1 else t2
-            if not np.isfinite(raw_target) or raw_target <= entry:
-                raw_target = entry + EXIT_AT_R * (entry - stop)
-            target = float(raw_target)
+            target = entry + EXIT_AT_R * (entry-stop)
             trade_id = f"{strategy}-{symbol}-{uuid.uuid4().hex[:12]}"
             cost = qty * entry
             pf["cash"] -= cost
@@ -234,6 +240,7 @@ def open_positions(state, df, prices):
                 "stop": stop, "target": target, "score": f(r.get(score_col)),
                 "reason": str(r.get(reason_col, "")),
                 "market_regime": str(r.get("market_regime", "UNKNOWN")),
+                "execution_method":"guarded_sampled_quote_v2", "data_cutoff":str(r.get("data_cutoff","")),
                 "broker_status": broker.get("status"), "broker_order_id": broker.get("id"),
             }
 
@@ -255,6 +262,9 @@ def main():
         return
     state = load_state()
     prices = current_prices(df)
+    if state.get("execution_method")!="guarded_sampled_quote_v2":
+        state["execution_method"]="guarded_sampled_quote_v2"
+        state["protocol_changed_at"]=now()
     close_positions(state, prices)
     open_positions(state, df, prices)
 
@@ -313,6 +323,9 @@ def main():
     SUMMARY.write_text(json.dumps({
         "generated_at": now(),
         "mode": MODE,
+        "execution_method":state.get("execution_method"),
+        "protocol_changed_at":state.get("protocol_changed_at"),
+        "stale_or_missing_symbols":sorted({symbol for pf in state["portfolios"].values() for symbol in pf["positions"] if symbol not in prices}),
         "alpaca_strategy": ALPACA_STRATEGY,
         "starting_cash": float(state.get("starting_cash", STARTING_CASH)),
         "slippage_bps": SLIPPAGE_BPS,

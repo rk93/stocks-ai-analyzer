@@ -1,0 +1,1 @@
+Unpublished prelaunch registration retired before any collection, decision or execution. Cash-window reporting was corrected in the shared simulator. Original manifest and registration event are preserved here; active experiment is v4-prospective-002. No performance-based restart or historical trade change occurred.

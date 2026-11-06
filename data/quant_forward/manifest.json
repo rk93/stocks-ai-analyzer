@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "experiment_id": "v4-prospective-005",
+  "registered_at": "2026-11-06T10:01:18.561025+00:00",
+  "strategy_version": "V4.0.0-experimental",
+  "config_hash": "d36d64a7cc8a538a17170c30a3b60f666ed3ecd72f7ee47e99a5b5304ce0fe6c",
+  "code_hashes": {
+    "strategy_v4.py": "1abcaf48afccc62cf5ea992137eff31b0eae5b55c4f94b077df0b06e20eb400b",
+    "research/v4_config.json": "d6ce38e11ce85fdf274d916fec59ace61f73480ccff7a0e7cfcc5e3cc3e27f86",
+    "research/v4_constraints.txt": "93b5cc6ce58e3f16079645f0e8fa06f8d8c9b05e7ec038827e730bc0e74c51f8",
+    "requirements.txt": "797bdebbadb784359e3a4ef51b3a042063c84daf45e729bc33c12cc70cd9475a",
+    "skew_config.json": "5e767cba449c9466c9b17f88e00a0a28f1e4545771f4936170aad722666bd2b3",
+    "quant_features.py": "c065458a941b64546a08f9116b50db6c6185cb56d397af8097dfdb1d50e1ef30",
+    "quant_execution.py": "1b8c2d22acbf926c4a133e5ce15297cde62fc54f78584c6d26c746a56d0f7232",
+    "quant_forward.py": "fd1c5825aba542e7e591277dccdf0b62ce0ed9742ee51f10fce01789f9533489",
+    "market_sessions.py": "0f753fe46d2f09c297779df62a4974432fe9a2bdc288e37f17ca239fcd0ecf78",
+    "strategy_v2.py": "a4b278c715f53e36600ddf0b738cca7b2c151fe89208d8c365da2539b765f24e",
+    "strategy_v3.py": "21bcf70289ae7215457dfe0ccc057a63dd1fd7889ec53414bf22819ae6ea6006",
+    "day_opportunities.py": "fa8a86e9d2a431e2bdfca4ef29fc142930102d25255d965d811db32d64ae14de"
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "packages": {
+      "pandas": "2.2.3",
+      "numpy": "2.3.5",
+      "yfinance": "1.7.0",
+      "exchange_calendars": "4.13.2"
+    }
+  },
+  "execution": {
+    "initial_capital": 10000,
+    "risk_fraction": 0.005,
+    "max_position_dollars": 1000,
+    "max_open_positions": 5,
+    "max_total_risk_fraction": 0.025,
+    "max_sector_fraction": null,
+    "max_abs_correlation": 0.85,
+    "slippage_bps": 7,
+    "spread_bps": 2,
+    "commission_bps": 0.0,
+    "commission_per_order": 0.0,
+    "stop_model": "signal",
+    "fixed_stop_pct": 0.02,
+    "atr_multiple": 2.0,
+    "target_r": 1.0,
+    "trailing_atr_multiple": null,
+    "trailing_pct": null,
+    "partial_fraction": 0.0,
+    "partial_target_r": 1.0,
+    "max_holding_sessions": 5,
+    "max_holding_bars": null,
+    "trend_exit_column": null,
+    "bar_minutes": 5,
+    "execution_delay_bars": 0,
+    "max_entry_delay_minutes": 30.0,
+    "require_contiguous_bars": true,
+    "allow_fractional_shares": false,
+    "market_timezone": "America/New_York",
+    "cash_annual_rate": 0,
+    "min_daily_returns_for_ratios": 60
+  },
+  "versions": [
+    "V1",
+    "V2",
+    "V3",
+    "V4"
+  ],
+  "status": "research_only",
+  "starting_cash": 10000,
+  "note": "Collection begins on first scheduled post-registration run. No elapsed unobserved period is backfilled."
+}

@@ -134,6 +134,40 @@ ALPACA_PAPER_STRATEGY=V3
 
 Every V1/V2/V3 signal is versioned and frozen in the prediction ledger before outcomes are evaluated.
 
+## V4 quantitative research
+
+V4 is an isolated, explainable **experimental strategy**, with a trade-level loss
+audit, a reproducible historical replay and a new equal-capital V1–V4 prospective
+paper cohort. It has not established positive expectancy. All historical windows
+have already been inspected; the retrospective tail is not an untouched test.
+Original V1/V2/V3 histories remain separate and preserved.
+
+Use the Python/package versions recorded in
+[v4_environment.json](research/v4_environment.json) and the accompanying
+[constraints](research/v4_constraints.txt):
+
+```bash
+python -m pip install -r requirements.txt -c research/v4_constraints.txt
+python quant_audit.py
+python v4_replay.py --output /tmp/v4-replay.json
+python -m pytest -q
+```
+
+Replay defaults to the sealed
+[enriched manifest](research/v4_inputs/capture-20261105/enriched-manifest.json)
+and runs offline; `/tmp/v4-replay.json` leaves published results intact. The
+[V4 research view](docs/v4.html) separates corrected historical results, original
+forward history and the prospective cohort. Registration alone creates no trades
+or equity history. Actual collection uses `python quant_forward.py`; its frozen
+code/configuration checks prevent silently restarting an existing cohort.
+
+Read the [findings and delivery](research/QUANT_DELIVERY.md),
+[loss audit](research/QUANT_ROOT_CAUSES.md),
+[validation and reproduction](research/V4_VALIDATION.md) and
+[research sources](research/V4_SOURCES.md). The
+[published replay](docs/data/v4-replay.json) contains the complete experiment
+register, including unsuccessful variants, execution assumptions and source hashes.
+
 ## Personal research workspace
 
 The GitHub Pages entry point now provides Overview, Discover, My Portfolio,

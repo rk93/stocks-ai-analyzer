@@ -1,0 +1,2686 @@
+{
+  "schema_version": 1,
+  "config_hash": "d36d64a7cc8a538a17170c30a3b60f666ed3ecd72f7ee47e99a5b5304ce0fe6c",
+  "generated_at": "2026-11-05T20:55:01.007462+00:00",
+  "built_at": "2026-11-06T09:40:34.645643+00:00",
+  "manifest_sha256": "16fb00e4dc05acc19e58d988c574acdd3060b7016c2b231a560ea8b7497111a1",
+  "status": "retrospective_examples_only",
+  "sampling": "Every tenth completed captured date after a ten-session warmup; first four alphabetical public symbols;13:30NY; plus first five acceptedV4signals by timestamp, never by outcome. Not exhaustive or an acceptance-rate estimate.",
+  "decisions": [
+    {
+      "strategy": "V4",
+      "symbol": "AAPL",
+      "signal_time": "2026-08-27T13:30:00-04:00",
+      "accepted": false,
+      "score": 66.7,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: -0.12335562544183376; must exceed 0.0; volume_confirmation: same-clock RVOL 1.0193170804473028, history sessions 10.0; minimum 1.4x over 5 sessions",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "opening_range",
+        "vwap_entry",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "relative_strength: 20d return minus market: -0.12335562544183376; must exceed 0.0",
+        "volume_confirmation: same-clock RVOL 1.0193170804473028, history sessions 10.0; minimum 1.4x over 5 sessions"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": false,
+          "evidence": "20d return minus market: -0.12335562544183376; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": true,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.006287989039374109; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 1.0193170804473028, history sessions 10.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap -0.009267821554200917, day change 0.0058062744800231325, 15m momentum 0.0010795933883649411; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 161942690.89733887; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.01903242389104216; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-08-27T17:30:00+00:00",
+        "daily_asof": "2026-08-26T20:00:00+00:00",
+        "market_asof": "2026-08-26T20:00:00+00:00",
+        "intraday_asof": "2026-08-27T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AMD",
+      "signal_time": "2026-08-27T13:30:00-04:00",
+      "accepted": false,
+      "score": 58.3,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.002538977722778224; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 1.2909721228757636, history sessions 10.0; minimum 1.4x over 5 sessions",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "relative_strength",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.002538977722778224; allowed 0 to 0.015",
+        "volume_confirmation: same-clock RVOL 1.2909721228757636, history sessions 10.0; minimum 1.4x over 5 sessions"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.06938596345498782; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.002538977722778224; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 1.2909721228757636, history sessions 10.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap 0.002224871271316209, day change -0.013390727422874282, 15m momentum 2.1031967239570903e-05; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 171160662.12927246; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.04131280567459022; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-08-27T17:30:00+00:00",
+        "daily_asof": "2026-08-26T20:00:00+00:00",
+        "market_asof": "2026-08-26T20:00:00+00:00",
+        "intraday_asof": "2026-08-27T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AMZN",
+      "signal_time": "2026-08-27T13:30:00-04:00",
+      "accepted": false,
+      "score": 58.3,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.0038842486454769842; allowed 0 to 0.015; entry_extension: gap -0.004034070223963293, day change -0.016828050189620858, 15m momentum -0.0004297326860044359; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "relative_strength",
+        "volume_confirmation",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.0038842486454769842; allowed 0 to 0.015",
+        "entry_extension: gap -0.004034070223963293, day change -0.016828050189620858, 15m momentum -0.0004297326860044359; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.09817707206006854; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.0038842486454769842; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": true,
+          "evidence": "same-clock RVOL 2.8521550491341494, history sessions 10.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap -0.004034070223963293, day change -0.016828050189620858, 15m momentum -0.0004297326860044359; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 432619345.98721313; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.021213415265840793; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-08-27T17:30:00+00:00",
+        "daily_asof": "2026-08-26T20:00:00+00:00",
+        "market_asof": "2026-08-26T20:00:00+00:00",
+        "intraday_asof": "2026-08-27T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "ASML",
+      "signal_time": "2026-08-27T13:30:00-04:00",
+      "accepted": false,
+      "score": 50.0,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.0012509676600646058; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 0.8758891977198849, history sessions 10.0; minimum 1.4x over 5 sessions; entry_extension: gap 0.0010999083025140521, day change -0.00819186585328413, 15m momentum -0.0010443750213499081; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "relative_strength",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.0012509676600646058; allowed 0 to 0.015",
+        "volume_confirmation: same-clock RVOL 0.8758891977198849, history sessions 10.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap 0.0010999083025140521, day change -0.00819186585328413, 15m momentum -0.0010443750213499081; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.07551676991592249; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.0012509676600646058; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.8758891977198849, history sessions 10.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap 0.0010999083025140521, day change -0.00819186585328413, 15m momentum -0.0010443750213499081; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 25779458.868164062; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.02972507607017287; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-08-27T17:30:00+00:00",
+        "daily_asof": "2026-08-26T20:00:00+00:00",
+        "market_asof": "2026-08-26T20:00:00+00:00",
+        "intraday_asof": "2026-08-27T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AAPL",
+      "signal_time": "2026-09-11T13:30:00-04:00",
+      "accepted": false,
+      "score": 50.0,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.00117509300159091; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 0.727973152976461, history sessions 20.0; minimum 1.4x over 5 sessions; entry_extension: gap 0.0032458509196204854, day change 0.0225985384980123, 15m momentum -0.001166429787434864; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "relative_strength",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.00117509300159091; allowed 0 to 0.015",
+        "volume_confirmation: same-clock RVOL 0.727973152976461, history sessions 20.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap 0.0032458509196204854, day change 0.0225985384980123, 15m momentum -0.001166429787434864; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.0994407743716137; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.00117509300159091; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.727973152976461, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap 0.0032458509196204854, day change 0.0225985384980123, 15m momentum -0.001166429787434864; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 181099668.46014404; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.023027221557860512; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-09-11T17:30:00+00:00",
+        "daily_asof": "2026-09-10T20:00:00+00:00",
+        "market_asof": "2026-09-10T20:00:00+00:00",
+        "intraday_asof": "2026-09-11T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AMD",
+      "signal_time": "2026-09-11T13:30:00-04:00",
+      "accepted": false,
+      "score": 75.0,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; opening_range: completed close above the frozen opening-range high",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "relative_strength",
+        "vwap_entry",
+        "volume_confirmation",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "opening_range: completed close above the frozen opening-range high"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.06177882000520252; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.005148726846060603; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": true,
+          "evidence": "same-clock RVOL 1.8631669274501435, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap 0.015061539640885302, day change 0.02462270402342992, 15m momentum 0.008354084411539509; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 269109307.6947632; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.03717376774739941; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-09-11T17:30:00+00:00",
+        "daily_asof": "2026-09-10T20:00:00+00:00",
+        "market_asof": "2026-09-10T20:00:00+00:00",
+        "intraday_asof": "2026-09-11T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AMZN",
+      "signal_time": "2026-09-11T13:30:00-04:00",
+      "accepted": false,
+      "score": 58.3,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: -0.03860250640992158; must exceed 0.0; opening_range: completed close above the frozen opening-range high; volume_confirmation: same-clock RVOL 0.7247431365763628, history sessions 20.0; minimum 1.4x over 5 sessions",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "vwap_entry",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "relative_strength: 20d return minus market: -0.03860250640992158; must exceed 0.0",
+        "opening_range: completed close above the frozen opening-range high",
+        "volume_confirmation: same-clock RVOL 0.7247431365763628, history sessions 20.0; minimum 1.4x over 5 sessions"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": false,
+          "evidence": "20d return minus market: -0.03860250640992158; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.0032531303867120442; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.7247431365763628, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap 0.008555316941992963, day change 0.019095687915510418, 15m momentum 0.0020298990792311233; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 108341014.30389404; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.02188030031506803; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-09-11T17:30:00+00:00",
+        "daily_asof": "2026-09-10T20:00:00+00:00",
+        "market_asof": "2026-09-10T20:00:00+00:00",
+        "intraday_asof": "2026-09-11T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "ASML",
+      "signal_time": "2026-09-11T13:30:00-04:00",
+      "accepted": false,
+      "score": 41.7,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: -0.048776670991510285; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.0006477224746972432; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 0.6668158860223634, history sessions 20.0; minimum 1.4x over 5 sessions; entry_extension: gap 0.020860094967767306, day change 0.014133904711183476, 15m momentum -0.0007386752558188325; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "relative_strength: 20d return minus market: -0.048776670991510285; must exceed 0.0",
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.0006477224746972432; allowed 0 to 0.015",
+        "volume_confirmation: same-clock RVOL 0.6668158860223634, history sessions 20.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap 0.020860094967767306, day change 0.014133904711183476, 15m momentum -0.0007386752558188325; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": false,
+          "evidence": "20d return minus market: -0.048776670991510285; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.0006477224746972432; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.6668158860223634, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap 0.020860094967767306, day change 0.014133904711183476, 15m momentum -0.0007386752558188325; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 17598303.78466797; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.026824834598333888; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-09-11T17:30:00+00:00",
+        "daily_asof": "2026-09-10T20:00:00+00:00",
+        "market_asof": "2026-09-10T20:00:00+00:00",
+        "intraday_asof": "2026-09-11T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AAPL",
+      "signal_time": "2026-09-25T13:30:00-04:00",
+      "accepted": false,
+      "score": 91.7,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "BULL_TREND",
+      "reason": "volume_confirmation: same-clock RVOL 0.5759846250586745, history sessions 20.0; minimum 1.4x over 5 sessions",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "stock_trend",
+        "relative_strength",
+        "opening_range",
+        "vwap_entry",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "volume_confirmation: same-clock RVOL 0.5759846250586745, history sessions 20.0; minimum 1.4x over 5 sessions"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.07025022596744046; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": true,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.007406871473585541; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.5759846250586745, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap 0.0003572133614877515, day change 0.012473123828120825, 15m momentum 0.0009534665911270501; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 145917337.56365967; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.02111898110767783; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-09-25T17:30:00+00:00",
+        "daily_asof": "2026-09-24T20:00:00+00:00",
+        "market_asof": "2026-09-24T20:00:00+00:00",
+        "intraday_asof": "2026-09-25T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AMD",
+      "signal_time": "2026-09-25T13:30:00-04:00",
+      "accepted": false,
+      "score": 66.7,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "BULL_TREND",
+      "reason": "opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.004548583070328904; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 0.5548774177184929, history sessions 20.0; minimum 1.4x over 5 sessions; entry_extension: gap 0.009229862550141688, day change 0.00038138484990390964, 15m momentum -0.002803420337178175; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "stock_trend",
+        "relative_strength",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.004548583070328904; allowed 0 to 0.015",
+        "volume_confirmation: same-clock RVOL 0.5548774177184929, history sessions 20.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap 0.009229862550141688, day change 0.00038138484990390964, 15m momentum -0.002803420337178175; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.3069874540235784; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.004548583070328904; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.5548774177184929, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap 0.009229862550141688, day change 0.00038138484990390964, 15m momentum -0.002803420337178175; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 119895491.17749023; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.042699795279308; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-09-25T17:30:00+00:00",
+        "daily_asof": "2026-09-24T20:00:00+00:00",
+        "market_asof": "2026-09-24T20:00:00+00:00",
+        "intraday_asof": "2026-09-25T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AMZN",
+      "signal_time": "2026-09-25T13:30:00-04:00",
+      "accepted": false,
+      "score": 66.7,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "BULL_TREND",
+      "reason": "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: -0.04331380377846916; must exceed 0.0; volume_confirmation: same-clock RVOL 0.614290031551761, history sessions 20.0; minimum 1.4x over 5 sessions; entry_extension: gap -0.003288183928796151, day change 0.004531195773111341, 15m momentum -0.00019956518297004067; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "opening_range",
+        "vwap_entry",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "relative_strength: 20d return minus market: -0.04331380377846916; must exceed 0.0",
+        "volume_confirmation: same-clock RVOL 0.614290031551761, history sessions 20.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap -0.003288183928796151, day change 0.004531195773111341, 15m momentum -0.00019956518297004067; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": false,
+          "evidence": "20d return minus market: -0.04331380377846916; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": true,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.006240223922947097; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.614290031551761, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap -0.003288183928796151, day change 0.004531195773111341, 15m momentum -0.00019956518297004067; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 88608432.15605164; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.021960157084600217; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-09-25T17:30:00+00:00",
+        "daily_asof": "2026-09-24T20:00:00+00:00",
+        "market_asof": "2026-09-24T20:00:00+00:00",
+        "intraday_asof": "2026-09-25T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "ASML",
+      "signal_time": "2026-09-25T13:30:00-04:00",
+      "accepted": false,
+      "score": 50.0,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "BULL_TREND",
+      "reason": "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: -0.01469174097852477; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.002066194963828094; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 0.4196895138560916, history sessions 20.0; minimum 1.4x over 5 sessions; entry_extension: gap 0.01069669017597974, day change 0.009712615656748858, 15m momentum -0.0003477229060990794; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "relative_strength: 20d return minus market: -0.01469174097852477; must exceed 0.0",
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.002066194963828094; allowed 0 to 0.015",
+        "volume_confirmation: same-clock RVOL 0.4196895138560916, history sessions 20.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap 0.01069669017597974, day change 0.009712615656748858, 15m momentum -0.0003477229060990794; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": false,
+          "evidence": "20d return minus market: -0.01469174097852477; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.002066194963828094; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.4196895138560916, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap 0.01069669017597974, day change 0.009712615656748858, 15m momentum -0.0003477229060990794; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 11980880.779174805; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.03194318625434118; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-09-25T17:30:00+00:00",
+        "daily_asof": "2026-09-24T20:00:00+00:00",
+        "market_asof": "2026-09-24T20:00:00+00:00",
+        "intraday_asof": "2026-09-25T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AAPL",
+      "signal_time": "2026-10-09T13:30:00-04:00",
+      "accepted": false,
+      "score": 91.7,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "BULL_TREND",
+      "reason": "volume_confirmation: same-clock RVOL 1.0565797489919293, history sessions 20.0; minimum 1.4x over 5 sessions",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "stock_trend",
+        "relative_strength",
+        "opening_range",
+        "vwap_entry",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "volume_confirmation: same-clock RVOL 1.0565797489919293, history sessions 20.0; minimum 1.4x over 5 sessions"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.021165689444204938; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": true,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.005318825607377731; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 1.0565797489919293, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap -0.025351050297882982, day change -0.01577470601887976, 15m momentum 0.0004478766772708642; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 190389316.09613037; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.01831561760249494; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-10-09T17:30:00+00:00",
+        "daily_asof": "2026-10-08T20:00:00+00:00",
+        "market_asof": "2026-10-08T20:00:00+00:00",
+        "intraday_asof": "2026-10-09T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AMD",
+      "signal_time": "2026-10-09T13:30:00-04:00",
+      "accepted": false,
+      "score": 75.0,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "BULL_TREND",
+      "reason": "opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.006367201514394405; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 0.636036344514693, history sessions 20.0; minimum 1.4x over 5 sessions",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "stock_trend",
+        "relative_strength",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.006367201514394405; allowed 0 to 0.015",
+        "volume_confirmation: same-clock RVOL 0.636036344514693, history sessions 20.0; minimum 1.4x over 5 sessions"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.21124123307154918; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.006367201514394405; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.636036344514693, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap 0.007830098293664767, day change -0.015789115016774602, 15m momentum 0.0011963950496454157; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 158799323.09838867; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.03981692824427189; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-10-09T17:30:00+00:00",
+        "daily_asof": "2026-10-08T20:00:00+00:00",
+        "market_asof": "2026-10-08T20:00:00+00:00",
+        "intraday_asof": "2026-10-09T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AMZN",
+      "signal_time": "2026-10-09T13:30:00-04:00",
+      "accepted": false,
+      "score": 66.7,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "BULL_TREND",
+      "reason": "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: -0.012629973204174583; must exceed 0.0; volume_confirmation: same-clock RVOL 0.9604619892742527, history sessions 20.0; minimum 1.4x over 5 sessions; entry_extension: gap 0.008816776572071028, day change 0.023911722685229897, 15m momentum -0.0012094545081298147; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "opening_range",
+        "vwap_entry",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "relative_strength: 20d return minus market: -0.012629973204174583; must exceed 0.0",
+        "volume_confirmation: same-clock RVOL 0.9604619892742527, history sessions 20.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap 0.008816776572071028, day change 0.023911722685229897, 15m momentum -0.0012094545081298147; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": false,
+          "evidence": "20d return minus market: -0.012629973204174583; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": true,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.002055005887829253; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.9604619892742527, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap 0.008816776572071028, day change 0.023911722685229897, 15m momentum -0.0012094545081298147; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 161183055.63452148; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.021356041515108674; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-10-09T17:30:00+00:00",
+        "daily_asof": "2026-10-08T20:00:00+00:00",
+        "market_asof": "2026-10-08T20:00:00+00:00",
+        "intraday_asof": "2026-10-09T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "ASML",
+      "signal_time": "2026-10-09T13:30:00-04:00",
+      "accepted": false,
+      "score": 75.0,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "BULL_TREND",
+      "reason": "opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.008246923815201979; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 0.7069010509335041, history sessions 20.0; minimum 1.4x over 5 sessions",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "stock_trend",
+        "relative_strength",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.008246923815201979; allowed 0 to 0.015",
+        "volume_confirmation: same-clock RVOL 0.7069010509335041, history sessions 20.0; minimum 1.4x over 5 sessions"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.027563102790839622; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.008246923815201979; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.7069010509335041, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap 0.026635936245526848, day change 0.007803149649747709, 15m momentum 0.0006047627721981197; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 26575419.90600586; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.02712105333065842; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-10-09T17:30:00+00:00",
+        "daily_asof": "2026-10-08T20:00:00+00:00",
+        "market_asof": "2026-10-08T20:00:00+00:00",
+        "intraday_asof": "2026-10-09T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AAPL",
+      "signal_time": "2026-10-23T13:30:00-04:00",
+      "accepted": false,
+      "score": 58.3,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.0053414949035613946; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 1.372557583803314, history sessions 20.0; minimum 1.4x over 5 sessions; entry_extension: gap 0.002555809912525131, day change -0.005714749949454312, 15m momentum -0.00018885370121524137; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "stock_trend",
+        "relative_strength",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.0053414949035613946; allowed 0 to 0.015",
+        "volume_confirmation: same-clock RVOL 1.372557583803314, history sessions 20.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap 0.002555809912525131, day change -0.005714749949454312, 15m momentum -0.00018885370121524137; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.040812974676604274; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.0053414949035613946; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 1.372557583803314, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap 0.002555809912525131, day change -0.005714749949454312, 15m momentum -0.00018885370121524137; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 308887687.55126953; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.017470491488702642; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-10-23T17:30:00+00:00",
+        "daily_asof": "2026-10-22T20:00:00+00:00",
+        "market_asof": "2026-10-22T20:00:00+00:00",
+        "intraday_asof": "2026-10-23T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AMD",
+      "signal_time": "2026-10-23T13:30:00-04:00",
+      "accepted": false,
+      "score": 41.7,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: -0.18861665387311666; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance -0.0034760246337267597; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 0.7692618243550122, history sessions 20.0; minimum 1.4x over 5 sessions; entry_extension: gap 0.004370683465664493, day change 0.014687106649002413, 15m momentum -0.0007599485573284159; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "relative_strength: 20d return minus market: -0.18861665387311666; must exceed 0.0",
+        "opening_range: completed close above the frozen opening-range high",
+        "vwap_entry: VWAP distance -0.0034760246337267597; allowed 0 to 0.015",
+        "volume_confirmation: same-clock RVOL 0.7692618243550122, history sessions 20.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap 0.004370683465664493, day change 0.014687106649002413, 15m momentum -0.0007599485573284159; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": false,
+          "evidence": "20d return minus market: -0.18861665387311666; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": false,
+          "evidence": "VWAP distance -0.0034760246337267597; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.7692618243550122, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap 0.004370683465664493, day change 0.014687106649002413, 15m momentum -0.0007599485573284159; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 176854962.98828125; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.05734056637822893; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-10-23T17:30:00+00:00",
+        "daily_asof": "2026-10-22T20:00:00+00:00",
+        "market_asof": "2026-10-22T20:00:00+00:00",
+        "intraday_asof": "2026-10-23T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "AMZN",
+      "signal_time": "2026-10-23T13:30:00-04:00",
+      "accepted": false,
+      "score": 58.3,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; opening_range: completed close above the frozen opening-range high; volume_confirmation: same-clock RVOL 0.4412246345489199, history sessions 20.0; minimum 1.4x over 5 sessions; entry_extension: gap -0.007312919863508238, day change -0.00535191137689639, 15m momentum -0.0004014052490993736; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "relative_strength",
+        "vwap_entry",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "opening_range: completed close above the frozen opening-range high",
+        "volume_confirmation: same-clock RVOL 0.4412246345489199, history sessions 20.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap -0.007312919863508238, day change -0.00535191137689639, 15m momentum -0.0004014052490993736; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.008207096144334458; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.0017860648879521879; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.4412246345489199, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap -0.007312919863508238, day change -0.00535191137689639, 15m momentum -0.0004014052490993736; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 87111356.96296692; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.0284167973680631; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-10-23T17:30:00+00:00",
+        "daily_asof": "2026-10-22T20:00:00+00:00",
+        "market_asof": "2026-10-22T20:00:00+00:00",
+        "intraday_asof": "2026-10-23T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "strategy": "V4",
+      "symbol": "ASML",
+      "signal_time": "2026-10-23T13:30:00-04:00",
+      "accepted": false,
+      "score": 50.0,
+      "score_kind": "uncalibrated evidence coverage, not a probability",
+      "market_regime": "OTHER",
+      "reason": "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: -0.08982895058069895; must exceed 0.0; opening_range: completed close above the frozen opening-range high; volume_confirmation: same-clock RVOL 0.85030858896408, history sessions 20.0; minimum 1.4x over 5 sessions; entry_extension: gap -0.006443316710398661, day change 0.007939568571326605, 15m momentum -0.00033995806770070747; bounded gap and short-term extension",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "vwap_entry",
+        "session_window",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": [
+        "market_regime: market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap",
+        "stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return",
+        "relative_strength: 20d return minus market: -0.08982895058069895; must exceed 0.0",
+        "opening_range: completed close above the frozen opening-range high",
+        "volume_confirmation: same-clock RVOL 0.85030858896408, history sessions 20.0; minimum 1.4x over 5 sessions",
+        "entry_extension: gap -0.006443316710398661, day change 0.007939568571326605, 15m momentum -0.00033995806770070747; bounded gap and short-term extension"
+      ],
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": false,
+          "evidence": "market regime OTHER; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": false,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": false,
+          "evidence": "20d return minus market: -0.08982895058069895; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": false,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.0026069372238137767; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": false,
+          "evidence": "same-clock RVOL 0.85030858896408, history sessions 20.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 240.0, observed clock 240.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": false,
+          "evidence": "gap -0.006443316710398661, day change 0.007939568571326605, 15m momentum -0.00033995806770070747; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 29222063.012451172; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.03769664957409521; finite bounded volatility required"
+        }
+      ],
+      "context": {
+        "signal_at": "2026-10-23T17:30:00+00:00",
+        "daily_asof": "2026-10-22T20:00:00+00:00",
+        "market_asof": "2026-10-22T20:00:00+00:00",
+        "intraday_asof": "2026-10-23T17:30:00+00:00"
+      },
+      "source": "retrospective_explanation_sample",
+      "retrospective": true
+    },
+    {
+      "signal_id": "replay|V4|LLY|2026-08-21",
+      "symbol": "LLY",
+      "strategy": "V4",
+      "signal_time": "2026-08-21T16:00:00+00:00",
+      "stop_price": 1244.7475058687999,
+      "atr": 46.07284109933035,
+      "score": 100.0,
+      "rationale": "required_features: finite required features; point_in_time: prior-session daily/market data and completed intraday availability within cutoff; market_regime: market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: 0.016274854350576184; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance 0.011437645741850577; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 1.4374614318362944, history sessions 6.0; minimum 1.4x over 5 sessions; session_window: minutes from regular-session open 150.0, observed clock 150.0; require settled liquid session; entry_extension: gap -0.009964661017988319, day change 0.01914573344941317, 15m momentum 0.004136956125049496; bounded gap and short-term extension; observed_liquidity: last completed 15m USD volume 97979457.22302246; minimum 1000000.0; atr_risk: prior-session ATR/close 0.0370241403049025; finite bounded volatility required",
+      "market_regime": "BULL_TREND",
+      "context": {
+        "signal_at": "2026-08-21T12:00:00-04:00",
+        "daily_asof": "2026-08-20T20:00:00+00:00",
+        "market_asof": "2026-08-20T20:00:00+00:00",
+        "intraday_asof": "2026-08-21T16:00:00+00:00"
+      },
+      "features": {
+        "daily": {
+          "prev_close": 1244.4000244140625,
+          "price": 1244.4000244140625,
+          "ma20": 1195.1315002441406,
+          "ma50": 1177.2019995117187,
+          "ma200": null,
+          "atr_pct": 0.0370241403049025,
+          "prior_high": 1280.280029296875,
+          "prior_low": 1243.22998046875,
+          "return_20d": 0.04935619379685119,
+          "rsi14": 58.02288905787887,
+          "history_sessions": 198,
+          "relative_strength_20d": 0.016274854350576184
+        },
+        "intra": {
+          "price": 1268.2249755859375,
+          "session_open": 1232.0,
+          "gap": -0.009964661017988319,
+          "day_change": 0.01914573344941317,
+          "session_return": 0.029403389274299974,
+          "vwap": 1253.8835003078646,
+          "vwap_dist": 0.011437645741850577,
+          "volume_ratio": 0.8228035935623034,
+          "volume_ratio_tod": 1.4374614318362944,
+          "minutes_from_open": 150.0,
+          "opening_range_high": 1253.4000244140625,
+          "opening_range_low": 1230.0,
+          "breakout_or": true,
+          "crossed_vwap": false,
+          "momentum_15m": 0.004136956125049496,
+          "legacy_momentum_10m": -0.00036024098043274666,
+          "near_support": false,
+          "dollar_volume_15m": 97979457.22302246,
+          "volume_history_sessions": 6
+        },
+        "market": {
+          "prev_close": 762.5999755859375,
+          "price": 762.5999755859375,
+          "ma20": 760.9875030517578,
+          "ma50": 750.9438049316407,
+          "ma200": 707.1325009155273,
+          "atr_pct": 0.00841481282654387,
+          "prior_high": 768.1500244140625,
+          "prior_low": 762.0399780273438,
+          "return_20d": 0.033081339446275004,
+          "rsi14": 51.736284271477786,
+          "history_sessions": 447
+        }
+      },
+      "correlations": {},
+      "config_hash": "d36d64a7cc8a538a17170c30a3b60f666ed3ecd72f7ee47e99a5b5304ce0fe6c",
+      "retrospective": true,
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.016274854350576184; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": true,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.011437645741850577; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": true,
+          "evidence": "same-clock RVOL 1.4374614318362944, history sessions 6.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 150.0, observed clock 150.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap -0.009964661017988319, day change 0.01914573344941317, 15m momentum 0.004136956125049496; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 97979457.22302246; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.0370241403049025; finite bounded volatility required"
+        }
+      ],
+      "accepted": true,
+      "source": "chronological_accepted_replay_examples_not_outcome_selected",
+      "score_kind": "uncalibrated research evidence, not probability",
+      "reason": "required_features: finite required features; point_in_time: prior-session daily/market data and completed intraday availability within cutoff; market_regime: market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: 0.016274854350576184; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance 0.011437645741850577; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 1.4374614318362944, history sessions 6.0; minimum 1.4x over 5 sessions; session_window: minutes from regular-session open 150.0, observed clock 150.0; require settled liquid session; entry_extension: gap -0.009964661017988319, day change 0.01914573344941317, 15m momentum 0.004136956125049496; bounded gap and short-term extension; observed_liquidity: last completed 15m USD volume 97979457.22302246; minimum 1000000.0; atr_risk: prior-session ATR/close 0.0370241403049025; finite bounded volatility required",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "stock_trend",
+        "relative_strength",
+        "opening_range",
+        "vwap_entry",
+        "volume_confirmation",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": []
+    },
+    {
+      "signal_id": "replay|V4|MSFT|2026-08-21",
+      "symbol": "MSFT",
+      "strategy": "V4",
+      "signal_time": "2026-08-21T16:00:00+00:00",
+      "stop_price": 479.4823583454322,
+      "atr": 11.907854352678571,
+      "score": 100.0,
+      "rationale": "required_features: finite required features; point_in_time: prior-session daily/market data and completed intraday availability within cutoff; market_regime: market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: 0.22786003805797117; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance 0.004619041056674877; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 1.8465823892204065, history sessions 6.0; minimum 1.4x over 5 sessions; session_window: minutes from regular-session open 150.0, observed clock 150.0; require settled liquid session; entry_extension: gap -0.0026394867084734708, day change 0.009020048618818777, 15m momentum 0.0007016249593800872; bounded gap and short-term extension; observed_liquidity: last completed 15m USD volume 370060221.4315796; minimum 1000000.0; atr_risk: prior-session ATR/close 0.02474873636856047; finite bounded volatility required",
+      "market_regime": "BULL_TREND",
+      "context": {
+        "signal_at": "2026-08-21T12:00:00-04:00",
+        "daily_asof": "2026-08-20T20:00:00+00:00",
+        "market_asof": "2026-08-20T20:00:00+00:00",
+        "intraday_asof": "2026-08-21T16:00:00+00:00"
+      },
+      "features": {
+        "daily": {
+          "prev_close": 481.1499938964844,
+          "price": 481.1499938964844,
+          "ma20": 468.01499938964844,
+          "ma50": 418.1269976806641,
+          "ma200": null,
+          "atr_pct": 0.02474873636856047,
+          "prior_high": 484.1600036621094,
+          "prior_low": 479.5,
+          "return_20d": 0.2609413775042462,
+          "rsi14": 61.61153324499861,
+          "history_sessions": 198,
+          "relative_strength_20d": 0.22786003805797117
+        },
+        "intra": {
+          "price": 485.489990234375,
+          "session_open": 479.8800048828125,
+          "gap": -0.0026394867084734708,
+          "day_change": 0.009020048618818777,
+          "session_return": 0.011690391961491464,
+          "vwap": 483.2578026031924,
+          "vwap_dist": 0.004619041056674877,
+          "volume_ratio": 1.3886000089866082,
+          "volume_ratio_tod": 1.8465823892204065,
+          "minutes_from_open": 150.0,
+          "opening_range_high": 484.5799865722656,
+          "opening_range_low": 478.5299987792969,
+          "breakout_or": true,
+          "crossed_vwap": false,
+          "momentum_15m": 0.0007016249593800872,
+          "legacy_momentum_10m": 0.0011545488128210657,
+          "near_support": false,
+          "dollar_volume_15m": 370060221.4315796,
+          "volume_history_sessions": 6
+        },
+        "market": {
+          "prev_close": 762.5999755859375,
+          "price": 762.5999755859375,
+          "ma20": 760.9875030517578,
+          "ma50": 750.9438049316407,
+          "ma200": 707.1325009155273,
+          "atr_pct": 0.00841481282654387,
+          "prior_high": 768.1500244140625,
+          "prior_low": 762.0399780273438,
+          "return_20d": 0.033081339446275004,
+          "rsi14": 51.736284271477786,
+          "history_sessions": 447
+        }
+      },
+      "correlations": {},
+      "config_hash": "d36d64a7cc8a538a17170c30a3b60f666ed3ecd72f7ee47e99a5b5304ce0fe6c",
+      "retrospective": true,
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.22786003805797117; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": true,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.004619041056674877; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": true,
+          "evidence": "same-clock RVOL 1.8465823892204065, history sessions 6.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 150.0, observed clock 150.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap -0.0026394867084734708, day change 0.009020048618818777, 15m momentum 0.0007016249593800872; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 370060221.4315796; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.02474873636856047; finite bounded volatility required"
+        }
+      ],
+      "accepted": true,
+      "source": "chronological_accepted_replay_examples_not_outcome_selected",
+      "score_kind": "uncalibrated research evidence, not probability",
+      "reason": "required_features: finite required features; point_in_time: prior-session daily/market data and completed intraday availability within cutoff; market_regime: market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: 0.22786003805797117; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance 0.004619041056674877; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 1.8465823892204065, history sessions 6.0; minimum 1.4x over 5 sessions; session_window: minutes from regular-session open 150.0, observed clock 150.0; require settled liquid session; entry_extension: gap -0.0026394867084734708, day change 0.009020048618818777, 15m momentum 0.0007016249593800872; bounded gap and short-term extension; observed_liquidity: last completed 15m USD volume 370060221.4315796; minimum 1000000.0; atr_risk: prior-session ATR/close 0.02474873636856047; finite bounded volatility required",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "stock_trend",
+        "relative_strength",
+        "opening_range",
+        "vwap_entry",
+        "volume_confirmation",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": []
+    },
+    {
+      "signal_id": "replay|V4|CRM|2026-08-21",
+      "symbol": "CRM",
+      "strategy": "V4",
+      "signal_time": "2026-08-21T17:00:00+00:00",
+      "stop_price": 206.1099907904452,
+      "atr": 8.013569423130587,
+      "score": 100.0,
+      "rationale": "required_features: finite required features; point_in_time: prior-session daily/market data and completed intraday availability within cutoff; market_regime: market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: 0.27597366764979636; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance 0.007149795101630163; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 1.7999240791870466, history sessions 6.0; minimum 1.4x over 5 sessions; session_window: minutes from regular-session open 210.0, observed clock 210.0; require settled liquid session; entry_extension: gap 0.0007302203213830349, day change 0.023268335727538947, 15m momentum 0.005982005933372836; bounded gap and short-term extension; observed_liquidity: last completed 15m USD volume 69146190.38394165; minimum 1000000.0; atr_risk: prior-session ATR/close 0.03900876069142425; finite bounded volatility required",
+      "market_regime": "BULL_TREND",
+      "context": {
+        "signal_at": "2026-08-21T13:00:00-04:00",
+        "daily_asof": "2026-08-20T20:00:00+00:00",
+        "market_asof": "2026-08-20T20:00:00+00:00",
+        "intraday_asof": "2026-08-21T17:00:00+00:00"
+      },
+      "features": {
+        "daily": {
+          "prev_close": 205.42999267578125,
+          "price": 205.42999267578125,
+          "ma20": 190.2905014038086,
+          "ma50": 173.83,
+          "ma200": null,
+          "atr_pct": 0.03900876069142425,
+          "prior_high": 207.8800048828125,
+          "prior_low": 203.0,
+          "return_20d": 0.30905500709607137,
+          "rsi14": 64.13430978972212,
+          "history_sessions": 198,
+          "relative_strength_20d": 0.27597366764979636
+        },
+        "intra": {
+          "price": 210.2100067138672,
+          "session_open": 205.5800018310547,
+          "gap": 0.0007302203213830349,
+          "day_change": 0.023268335727538947,
+          "session_return": 0.02252166962532387,
+          "vwap": 208.71771779753493,
+          "vwap_dist": 0.007149795101630163,
+          "volume_ratio": 0.7373313079956529,
+          "volume_ratio_tod": 1.7999240791870466,
+          "minutes_from_open": 210.0,
+          "opening_range_high": 207.9900054931641,
+          "opening_range_low": 204.72610473632807,
+          "breakout_or": true,
+          "crossed_vwap": false,
+          "momentum_15m": 0.005982005933372836,
+          "legacy_momentum_10m": 0.004299886129526698,
+          "near_support": false,
+          "dollar_volume_15m": 69146190.38394165,
+          "volume_history_sessions": 6
+        },
+        "market": {
+          "prev_close": 762.5999755859375,
+          "price": 762.5999755859375,
+          "ma20": 760.9875030517578,
+          "ma50": 750.9438049316407,
+          "ma200": 707.1325009155273,
+          "atr_pct": 0.00841481282654387,
+          "prior_high": 768.1500244140625,
+          "prior_low": 762.0399780273438,
+          "return_20d": 0.033081339446275004,
+          "rsi14": 51.736284271477786,
+          "history_sessions": 447
+        }
+      },
+      "correlations": {},
+      "config_hash": "d36d64a7cc8a538a17170c30a3b60f666ed3ecd72f7ee47e99a5b5304ce0fe6c",
+      "retrospective": true,
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.27597366764979636; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": true,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.007149795101630163; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": true,
+          "evidence": "same-clock RVOL 1.7999240791870466, history sessions 6.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 210.0, observed clock 210.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap 0.0007302203213830349, day change 0.023268335727538947, 15m momentum 0.005982005933372836; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 69146190.38394165; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.03900876069142425; finite bounded volatility required"
+        }
+      ],
+      "accepted": true,
+      "source": "chronological_accepted_replay_examples_not_outcome_selected",
+      "score_kind": "uncalibrated research evidence, not probability",
+      "reason": "required_features: finite required features; point_in_time: prior-session daily/market data and completed intraday availability within cutoff; market_regime: market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: 0.27597366764979636; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance 0.007149795101630163; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 1.7999240791870466, history sessions 6.0; minimum 1.4x over 5 sessions; session_window: minutes from regular-session open 210.0, observed clock 210.0; require settled liquid session; entry_extension: gap 0.0007302203213830349, day change 0.023268335727538947, 15m momentum 0.005982005933372836; bounded gap and short-term extension; observed_liquidity: last completed 15m USD volume 69146190.38394165; minimum 1000000.0; atr_risk: prior-session ATR/close 0.03900876069142425; finite bounded volatility required",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "stock_trend",
+        "relative_strength",
+        "opening_range",
+        "vwap_entry",
+        "volume_confirmation",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": []
+    },
+    {
+      "signal_id": "replay|V4|PLTR|2026-08-21",
+      "symbol": "PLTR",
+      "strategy": "V4",
+      "signal_time": "2026-08-21T18:30:00+00:00",
+      "stop_price": 174.25253497280892,
+      "atr": 9.18557357788086,
+      "score": 100.0,
+      "rationale": "required_features: finite required features; point_in_time: prior-session daily/market data and completed intraday availability within cutoff; market_regime: market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: 0.37698596087796643; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance 0.004104650364834317; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 1.693452232440318, history sessions 6.0; minimum 1.4x over 5 sessions; session_window: minutes from regular-session open 300.0, observed clock 300.0; require settled liquid session; entry_extension: gap 0.00011490579961148661, day change 0.02884451341911154, 15m momentum 0.0018348982738820574; bounded gap and short-term extension; observed_liquidity: last completed 15m USD volume 137595253.68008423; minimum 1000000.0; atr_risk: prior-session ATR/close 0.05280278928127124; finite bounded volatility required",
+      "market_regime": "BULL_TREND",
+      "context": {
+        "signal_at": "2026-08-21T14:30:00-04:00",
+        "daily_asof": "2026-08-20T20:00:00+00:00",
+        "market_asof": "2026-08-20T20:00:00+00:00",
+        "intraday_asof": "2026-08-21T18:30:00+00:00"
+      },
+      "features": {
+        "daily": {
+          "prev_close": 173.9600067138672,
+          "price": 173.9600067138672,
+          "ma20": 154.42349853515626,
+          "ma50": 137.93719955444337,
+          "ma200": null,
+          "atr_pct": 0.05280278928127124,
+          "prior_high": 176.4600067138672,
+          "prior_low": 172.02999877929688,
+          "return_20d": 0.41006730032424143,
+          "rsi14": 66.2980263378428,
+          "history_sessions": 198,
+          "relative_strength_20d": 0.37698596087796643
+        },
+        "intra": {
+          "price": 178.97779846191406,
+          "session_open": 173.97999572753906,
+          "gap": 0.00011490579961148661,
+          "day_change": 0.02884451341911154,
+          "session_return": 0.028726306800247237,
+          "vwap": 178.24616029502877,
+          "vwap_dist": 0.004104650364834317,
+          "volume_ratio": 0.8030383337646065,
+          "volume_ratio_tod": 1.693452232440318,
+          "minutes_from_open": 300.0,
+          "opening_range_high": 175.14990234375,
+          "opening_range_low": 172.5500030517578,
+          "breakout_or": true,
+          "crossed_vwap": false,
+          "momentum_15m": 0.0018348982738820574,
+          "legacy_momentum_10m": 0.0011063859714048885,
+          "near_support": false,
+          "dollar_volume_15m": 137595253.68008423,
+          "volume_history_sessions": 6
+        },
+        "market": {
+          "prev_close": 762.5999755859375,
+          "price": 762.5999755859375,
+          "ma20": 760.9875030517578,
+          "ma50": 750.9438049316407,
+          "ma200": 707.1325009155273,
+          "atr_pct": 0.00841481282654387,
+          "prior_high": 768.1500244140625,
+          "prior_low": 762.0399780273438,
+          "return_20d": 0.033081339446275004,
+          "rsi14": 51.736284271477786,
+          "history_sessions": 447
+        }
+      },
+      "correlations": {},
+      "config_hash": "d36d64a7cc8a538a17170c30a3b60f666ed3ecd72f7ee47e99a5b5304ce0fe6c",
+      "retrospective": true,
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.37698596087796643; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": true,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.004104650364834317; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": true,
+          "evidence": "same-clock RVOL 1.693452232440318, history sessions 6.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 300.0, observed clock 300.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap 0.00011490579961148661, day change 0.02884451341911154, 15m momentum 0.0018348982738820574; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 137595253.68008423; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.05280278928127124; finite bounded volatility required"
+        }
+      ],
+      "accepted": true,
+      "source": "chronological_accepted_replay_examples_not_outcome_selected",
+      "score_kind": "uncalibrated research evidence, not probability",
+      "reason": "required_features: finite required features; point_in_time: prior-session daily/market data and completed intraday availability within cutoff; market_regime: market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: 0.37698596087796643; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance 0.004104650364834317; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 1.693452232440318, history sessions 6.0; minimum 1.4x over 5 sessions; session_window: minutes from regular-session open 300.0, observed clock 300.0; require settled liquid session; entry_extension: gap 0.00011490579961148661, day change 0.02884451341911154, 15m momentum 0.0018348982738820574; bounded gap and short-term extension; observed_liquidity: last completed 15m USD volume 137595253.68008423; minimum 1000000.0; atr_risk: prior-session ATR/close 0.05280278928127124; finite bounded volatility required",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "stock_trend",
+        "relative_strength",
+        "opening_range",
+        "vwap_entry",
+        "volume_confirmation",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": []
+    },
+    {
+      "signal_id": "replay|V4|MSFT|2026-08-24",
+      "symbol": "MSFT",
+      "strategy": "V4",
+      "signal_time": "2026-08-24T16:00:00+00:00",
+      "stop_price": 484.0511384158122,
+      "atr": 10.543568202427455,
+      "score": 100.0,
+      "rationale": "required_features: finite required features; point_in_time: prior-session daily/market data and completed intraday availability within cutoff; market_regime: market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: 0.22976527254550283; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance 0.005203857592265049; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 2.1782888640737483, history sessions 7.0; minimum 1.4x over 5 sessions; session_window: minutes from regular-session open 150.0, observed clock 150.0; require settled liquid session; entry_extension: gap -7.243535886258812e-05, day change 0.012726646259304086, 15m momentum 0.0005520517131696323; bounded gap and short-term extension; observed_liquidity: last completed 15m USD volume 493475918.1682129; minimum 1000000.0; atr_risk: prior-session ATR/close 0.021818492706519893; finite bounded volatility required",
+      "market_regime": "BULL_TREND",
+      "context": {
+        "signal_at": "2026-08-24T12:00:00-04:00",
+        "daily_asof": "2026-08-21T20:00:00+00:00",
+        "market_asof": "2026-08-21T20:00:00+00:00",
+        "intraday_asof": "2026-08-24T16:00:00+00:00"
+      },
+      "features": {
+        "daily": {
+          "prev_close": 483.239990234375,
+          "price": 483.239990234375,
+          "ma20": 473.0919982910156,
+          "ma50": 419.8445977783203,
+          "ma200": null,
+          "atr_pct": 0.021818492706519893,
+          "prior_high": 486.3599853515625,
+          "prior_low": 478.5299987792969,
+          "return_20d": 0.26602036882374835,
+          "rsi14": 62.419406658123904,
+          "history_sessions": 199,
+          "relative_strength_20d": 0.22976527254550283
+        },
+        "intra": {
+          "price": 489.3900146484375,
+          "session_open": 483.2049865722656,
+          "gap": -7.243535886258812e-05,
+          "day_change": 0.012726646259304086,
+          "session_return": 0.012800008791397088,
+          "vwap": 486.8564828438471,
+          "vwap_dist": 0.005203857592265049,
+          "volume_ratio": 1.7749730047275432,
+          "volume_ratio_tod": 2.1782888640737483,
+          "minutes_from_open": 150.0,
+          "opening_range_high": 486.989990234375,
+          "opening_range_low": 481.8599853515625,
+          "breakout_or": true,
+          "crossed_vwap": false,
+          "momentum_15m": 0.0005520517131696323,
+          "legacy_momentum_10m": 0.0009817982506650225,
+          "near_support": false,
+          "dollar_volume_15m": 493475918.1682129,
+          "volume_history_sessions": 7
+        },
+        "market": {
+          "prev_close": 765.719970703125,
+          "price": 765.719970703125,
+          "ma20": 762.327001953125,
+          "ma50": 751.7496044921875,
+          "ma200": 707.5444006347657,
+          "atr_pct": 0.0077928448470973655,
+          "prior_high": 767.8499755859375,
+          "prior_low": 764.1699829101562,
+          "return_20d": 0.036255096278245524,
+          "rsi14": 54.22779666041523,
+          "history_sessions": 448
+        }
+      },
+      "correlations": {},
+      "config_hash": "d36d64a7cc8a538a17170c30a3b60f666ed3ecd72f7ee47e99a5b5304ce0fe6c",
+      "retrospective": true,
+      "checks": [
+        {
+          "name": "required_features",
+          "passed": true,
+          "evidence": "finite required features"
+        },
+        {
+          "name": "point_in_time",
+          "passed": true,
+          "evidence": "prior-session daily/market data and completed intraday availability within cutoff"
+        },
+        {
+          "name": "market_regime",
+          "passed": true,
+          "evidence": "market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap"
+        },
+        {
+          "name": "stock_trend",
+          "passed": true,
+          "evidence": "previous close > MA20 > MA50 and positive prior-session 20d return"
+        },
+        {
+          "name": "relative_strength",
+          "passed": true,
+          "evidence": "20d return minus market: 0.22976527254550283; must exceed 0.0"
+        },
+        {
+          "name": "opening_range",
+          "passed": true,
+          "evidence": "completed close above the frozen opening-range high"
+        },
+        {
+          "name": "vwap_entry",
+          "passed": true,
+          "evidence": "VWAP distance 0.005203857592265049; allowed 0 to 0.015"
+        },
+        {
+          "name": "volume_confirmation",
+          "passed": true,
+          "evidence": "same-clock RVOL 2.1782888640737483, history sessions 7.0; minimum 1.4x over 5 sessions"
+        },
+        {
+          "name": "session_window",
+          "passed": true,
+          "evidence": "minutes from regular-session open 150.0, observed clock 150.0; require settled liquid session"
+        },
+        {
+          "name": "entry_extension",
+          "passed": true,
+          "evidence": "gap -7.243535886258812e-05, day change 0.012726646259304086, 15m momentum 0.0005520517131696323; bounded gap and short-term extension"
+        },
+        {
+          "name": "observed_liquidity",
+          "passed": true,
+          "evidence": "last completed 15m USD volume 493475918.1682129; minimum 1000000.0"
+        },
+        {
+          "name": "atr_risk",
+          "passed": true,
+          "evidence": "prior-session ATR/close 0.021818492706519893; finite bounded volatility required"
+        }
+      ],
+      "accepted": true,
+      "source": "chronological_accepted_replay_examples_not_outcome_selected",
+      "score_kind": "uncalibrated research evidence, not probability",
+      "reason": "required_features: finite required features; point_in_time: prior-session daily/market data and completed intraday availability within cutoff; market_regime: market regime BULL_TREND; requires ordered MA20 > MA50 > MA200, positive 20d return and ATR below cap; stock_trend: previous close > MA20 > MA50 and positive prior-session 20d return; relative_strength: 20d return minus market: 0.22976527254550283; must exceed 0.0; opening_range: completed close above the frozen opening-range high; vwap_entry: VWAP distance 0.005203857592265049; allowed 0 to 0.015; volume_confirmation: same-clock RVOL 2.1782888640737483, history sessions 7.0; minimum 1.4x over 5 sessions; session_window: minutes from regular-session open 150.0, observed clock 150.0; require settled liquid session; entry_extension: gap -7.243535886258812e-05, day change 0.012726646259304086, 15m momentum 0.0005520517131696323; bounded gap and short-term extension; observed_liquidity: last completed 15m USD volume 493475918.1682129; minimum 1000000.0; atr_risk: prior-session ATR/close 0.021818492706519893; finite bounded volatility required",
+      "supports": [
+        "required_features",
+        "point_in_time",
+        "market_regime",
+        "stock_trend",
+        "relative_strength",
+        "opening_range",
+        "vwap_entry",
+        "volume_confirmation",
+        "session_window",
+        "entry_extension",
+        "observed_liquidity",
+        "atr_risk"
+      ],
+      "contradictions": []
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Registration-only retirement
+
+This preparatory registration was retired before collection began, to stamp frozen decisions after feature calculation and input archival, recheck execution eligibility at persistence, and deny reversed clocks. This prevents a processing interval crossing a candle boundary from assigning an entry before the decision was persisted. The original manifest and its only event are preserved here. There were no source observations, decisions, executions, outcomes or returns to inspect. The active cohort is identified by data/quant_forward/manifest.json. This is a prelaunch causality correction, not a performance-based restart.

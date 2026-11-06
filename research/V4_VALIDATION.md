@@ -1,0 +1,72 @@
+# V4 retrospective validation and reproducibility
+
+V4 remains an experimental research strategy. **There is no untouched historical test and no demonstrated independent positive expectancy.** The period and current universe were already inspected during prior strategy development, including the open PR #9 bull/moderate-volume proposal. Renaming a chronological tail “test” cannot undo that exposure. Future, timestamp-frozen paper signals form the independent evaluation; their outcome sample starts empty.
+
+## Exact observations and execution
+
+The final sealed input vintage is `research/v4_inputs/capture-20261105/enriched-manifest.json`. The original capture archives 72 gzip CSVs: 60 days of five-minute OHLCV and one year of daily OHLCV for all 36 public `core_universe` symbols, including SPY and QQQ. The enriched manifest selects a separately hashed two-year SPY daily supplement to supply a full 200-day regime warm-up before the first replay session; this is a coverage correction, not performance-based selection. The original `manifest.json`, original SPY daily file and every other original file remain preserved. Each compressed file and its uncompressed CSV have SHA-256 checksums. The original capture completed at 2026-11-05T20:55:01.007462Z; the supplement was registered at 2026-11-05T21:03:19.505607Z. There were no acquisition errors. All 59 completed sessions have 78 five-minute bars for every symbol; the unfinished 5 November session is excluded from replay. The input archive is approximately 4 MB and can be replayed offline without fetching revised Yahoo data.
+
+These are current Yahoo observations, not authentic point-in-time vendor vintages. Yahoo revises historical prices, splits and coverage. The universe is today's curated universe, not historical constituents; survivorship and selection bias remain. Raw `auto_adjust=False` OHLC, dividends and splits are archived when Yahoo supplies them. Price-return benchmarks do not reinvest dividend cash. No historical earnings calendar, bid/ask quotes, options chain, sector history, news, fundamentals or sentiment is fabricated or backfilled from today's metadata.
+
+The [legacy loss audit](QUANT_ROOT_CAUSES.md) reads the newer 6 November upstream summaries and rolling historical ledger. Its source timestamps, signal counts and gross results can therefore differ from this sealed 5 November replay. The corrected experiment continues to use its original archive through the 4 November completed session; newer legacy prices are not substituted into it. Source/execution labels distinguish these vintages throughout the application.
+
+`quant_features.py` enforces five-minute candle availability at **bar-open timestamp + five minutes**. The opening range contains 09:30 through 09:55 bar opens, excluding 10:00. Stock and SPY daily features use only earlier New York session dates. Same-clock relative volume uses at most 20 prior sessions, with all three corresponding clock slots required in each prior session. The latest three bars must be contiguous; a true 15-minute momentum observation requires four contiguous closes. V1–V3 retain their original scorer definitions, including the historically misnamed `momentum_15m` that spans ten minutes; V4 receives a true fifteen-minute change. All versions use the same corrected prior-session daily features, day change relative to prior close, and prior-low support definition.
+
+The scanner evaluates completed cutoffs every 30 minutes from 10:00 to 15:30 New York time and freezes only the first trigger per symbol/session/version. V4 uses its isolated `strategy_v4.py` evaluator and its complete acceptance/rejection checks. A simple trend baseline requires prior close > MA50 > MA200 and SPY above MA200, without V4's intraday confirmations. The original V1/V2/V3 CSVs, historical predictions and old paper portfolios are never replay outputs or rewritten.
+
+All strategy versions and the simple trend strategy pass through **one** `quant_execution.simulate_portfolio` with $10,000 starting capital, a $1,000 position cap, five positions, 0.5% planned equity risk per entry and 2.5% aggregate planned risk. A prior-60-session return correlation guard rejects simultaneous pairs with absolute correlation at least 0.85, requiring at least 40 common prior observations. Missing correlations are disclosed rather than inferred. No current sector labels are substituted for historical sector membership, so a sector cap is disabled consistently. Whole shares, cash constraints, ranking, no pyramiding, overnight gap stops, adverse costs and maximum five-session holding periods apply equally.
+
+Entry occurs at the next eligible regular-session open after signal availability, never at the signal close. Seven basis points of adverse slippage plus one basis point of assumed half-spread apply on each side; actual historic spreads/market impact are unavailable. The baseline configuration has no commission, and this assumption is visible in each output. Stops and targets use actual filled-entry risk. Unresolved OHLC stop/target collisions resolve pessimistically at the stop and remain flagged. Trailing changes and trend exits become actionable only after the triggering bar closes. Missing held-path bars, including an entirely absent intervening NYSE session, prevent invented resolutions. Exchange-calendar lookup failures also deny continuity; weekends, holidays, early closes and year boundaries use the pinned NYSE schedule. Window-end positions remain open and marked; they are not silently discarded or resolved with later test prices.
+
+SPY and QQQ buy-and-hold benchmarks use the same $10,000, window dates and per-side execution friction, with fractional shares for a fully invested reference. Their 100% exposure differs from the capped tactical strategies; returns are not risk-matched alpha estimates. Cash is a disclosed zero-interest nominal reference because no historical Treasury-yield series is archived, not a fabricated realized risk-free return.
+
+## Chronological separation and uncertainty
+
+The ordered session list is divided into development (first half), five excluded sessions, validation (through the three-quarter boundary), five further excluded sessions and a retrospective tail. At least five sessions separate adjacent evaluation windows, matching maximum holding duration. Each window receives only its own execution candles; earlier daily feature context is allowed, later outcome candles are unavailable. This is fixed-rule chronological walk-forward **description**, without fitting or tuning. Every window is explicitly retrospective and already observed.
+
+Reports include signal, executed, closed, rejected and open counts; net expectancy in R and currency; average/median returns; profit factor; daily-close drawdown; exposure, capital utilization, turnover, holding duration, costs, largest loss and ambiguous outcomes. Sharpe/Sortino require at least 60 complete daily returns and are absent for these shorter windows. Annualization requires a full year. Open positions affect marked portfolio return but are excluded from resolved-trade expectancy and win-rate denominators, with both counts displayed.
+
+Equity histories include observed cash-only sessions before the first entry, so curves and drawdown retain the full evaluation window. Capital utilization and time in market use the whole observed window, starting at its first eligible bar rather than the first trade; their calendar-time denominators include overnight and weekend exposure. Explicit early-close session markers can complete a shorter session. The sealed historical replay itself contains full regular sessions; forward collection uses an exchange calendar and publishes missing/stale-bar warnings rather than treating an unfinished candle as complete.
+
+The descriptive 95% interval resamples contiguous five-session blocks, preserving all trades clustered by entry date. Seed 4319 and 2,000 resamples are fixed. Fewer than ten closed trades or ten sessions suppress the interval. Even a displayed interval has only a few independent date blocks, misses structural/universe uncertainty and is not a certification of profitability. Feature and regime buckets are descriptive associations, subject to correlated trades and multiple comparisons; they do not identify causal effects. A failed or inconclusive hypothesis remains in the register.
+
+## Registered development comparisons
+
+The main V1/V2/V3/V4 comparison always uses the same 1R execution configuration. Separate **development-only V4** experiments compare signal-stop targets at 1R, 1.5R and 2R; half-ATR and fixed 2% stops; a 1% trailing stop; one-, three- and five-session time exits; a prior-MA20 trend exit; half profit-taking at 1R with the remainder targeting 2R; notional-cap sizing; and 0.25% fractional-risk sizing. Every variant retains capital/risk constraints and adverse costs. No winning exit or size model is selected from the validation/tail results. The experiment configuration and source files are hashed in the output, including all failed experiments.
+
+V4 excludes a retrospective upper relative-volume cap of 2.5 because PR #9 selected it after examining the same historical period. Neither PR #9's chronological split nor this new replay is independent confirmation. RSI is measured for diagnostics but does not enter V4; historical options divergence, MACD, earnings avoidance and VWAP auction microstructure cannot be independently tested with the archived evidence. Adding indicators without a credible validation sample would expand the search space without establishing economic value.
+
+## Reproduce and inspect
+
+```bash
+python -m pip install -r requirements.txt -c research/v4_constraints.txt
+python -m pytest -q
+python v4_replay.py --manifest research/v4_inputs/capture-20261105/enriched-manifest.json --output /tmp/v4-replay.json
+```
+
+The replay's default manifest is the same enriched manifest, so `python v4_replay.py --output /tmp/v4-replay.json` is equivalent. [v4_environment.json](v4_environment.json) records the observed Python and package versions; [v4_constraints.txt](v4_constraints.txt) pins the numerical, data-adapter, calendar and test dependencies. Compare financial outputs and source/configuration hashes using those versions before attributing a difference to a strategy rule.
+
+`docs/data/v4-replay.json` contains the sealed manifest hash, all source hashes, full experiment configuration/hash, per-window/per-strategy signals with frozen features, trade legs, equity histories, rejections, confidence intervals, descriptive feature buckets, benchmarks and every development experiment. Financial outputs are deterministic for the sealed input and exact code/config versions. To acquire a new vintage explicitly, run `python v4_replay.py --capture research/v4_inputs/NEW_CAPTURE_NAME`; existing vintages are never overwritten. Replay never calls the legacy `backtest_engine.main()` or a baseline data publisher.
+
+To deliberately regenerate the published retrospective artifacts, run `python v4_replay.py` with its default output, followed by `python v4_candidates.py` and `python v4_publish.py`. This does not collect or backdate prospective observations. Use the `/tmp` output above when checking reproducibility without replacing the published replay.
+
+Forward acceptance, signal freezing and append-only outcomes are handled separately by the new forward cohort. The persistence clock follows source retrieval, feature calculation and input archival; it is sampled immediately before decision append. Freshness and actual session eligibility are rechecked there, and clock reversal denies publication. A computation interval that crosses a bar opening cannot backdate a fill to that opening. They never backdate a replay candidate as a prospective signal, nor attach today's feature observations to old predictions. Promotion requires reviewed independent forward evidence across conditions; there is no automatic profit threshold or live trading.
+
+The [active forward manifest](../data/quant_forward/manifest.json) identifies the current protocol and its frozen inputs. Four preparatory registrations were retired before collection, decisions or executions: to correct full-window cash/exposure reporting, freeze the public universe and dependency constraints, verify missing entire exchange sessions, and timestamp decisions after computation/input archival. Their original manifests, sole registration events and retirement reasons remain in `research/v4_inputs/prelaunch-registration-001/` through `research/v4_inputs/prelaunch-registration-004/`. No performance observation was reset or discarded. Subsequent code/configuration changes must use an explicit separate protocol and preserve existing observations.
+
+The refresh workflow serializes collectors with `cancel-in-progress: false`, so a new refresh does not cancel an already running collector. It commits and pushes `data/` and `docs/data/` before uploading or deploying the Pages artifact; a persistence failure blocks publication. An `always()` recovery step attempts to retain `data/quant_forward/` (excluding the transient lock) in a run-specific `prospective-paper-observations-*` artifact for 30 days. After a failed persistence step, preserve and inspect that artifact before retrying: reconcile its manifest and append-only ledger prefixes with repository state, retaining all newly frozen decisions and outcomes. Never reset the cohort or invent observations for the elapsed period. Artifact upload is a recovery aid, not a guarantee against abrupt runner termination.
+
+## Results
+
+The machine-readable results and the generated comparison below must be interpreted within these limits. Negative and inconclusive results are retained.
+
+
+The completed run does not demonstrate a V4 edge. Development V4 resolved nine
+trades at -0.900R after costs; validation resolved four at +0.112R; the already
+observed retrospective tail resolved two at -0.059R. None has enough observations
+for a reliable V4 interval. All 13 development exit/sizing variants remain
+negative. No variant was promoted or selected from the tail. Tail V1/V2/V3 net
+expectancies are -0.473R/-0.469R/-0.454R under the same corrected execution rules;
+V4's lower aggregate loss reflects only two closed trades and much less exposure,
+not demonstrated superiority. There are no split events in the archived replay
+period; dividends are not credited and comparisons are price-return simulations.

@@ -258,5 +258,7 @@
       "positions": {},
       "realized_pnl": -399.828659977524
     }
-  }
+  },
+  "execution_method": "guarded_sampled_quote_v2",
+  "protocol_changed_at": "2026-11-06T19:55:14.773579+00:00"
 }

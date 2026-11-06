@@ -1,6 +1,9 @@
 {
-  "generated_at": "2026-11-06T02:30:14.568382+00:00",
+  "generated_at": "2026-11-06T19:55:15.488520+00:00",
   "mode": "local",
+  "execution_method": "guarded_sampled_quote_v2",
+  "protocol_changed_at": "2026-11-06T19:55:14.773579+00:00",
+  "stale_or_missing_symbols": [],
   "alpaca_strategy": "V3",
   "starting_cash": 10000.0,
   "slippage_bps": 7.0,
@@ -10,13 +13,13 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 733.0,
-      "return": -0.05264720624343189
+      "price": 737.22998046875,
+      "return": -0.04718024333128179
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 647.0499877929688,
-      "return": -0.12598608521787924
+      "price": 657.905029296875,
+      "return": -0.1113234509563249
     }
   },
   "strategies": {

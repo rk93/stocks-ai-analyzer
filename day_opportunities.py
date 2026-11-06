@@ -35,11 +35,12 @@ def _regular_session(df: pd.DataFrame) -> pd.DataFrame:
     idx = idx.tz_convert("America/New_York")
     out = df.copy()
     out.index = idx
-    return out.between_time("09:30", "16:00")
+    return out.between_time("09:30", "16:00", inclusive="left")
 
 
 def _daily_metrics(symbol: str):
     d = yf.Ticker(symbol).history(period="6mo", interval="1d", auto_adjust=False)
+    d = d[pd.DatetimeIndex(d.index).date < pd.Timestamp.now(tz="America/New_York").date()]
     if len(d) < 55:
         return {}
     close = d["Close"].dropna()
@@ -47,7 +48,7 @@ def _daily_metrics(symbol: str):
     low = d["Low"].dropna()
     if len(close) < 55:
         return {}
-    prev_close = _safe(close.iloc[-2])
+    prev_close = _safe(close.iloc[-1])
     ma20 = _safe(close.tail(20).mean())
     ma50 = _safe(close.tail(50).mean())
     tr = pd.concat([
@@ -61,8 +62,8 @@ def _daily_metrics(symbol: str):
         "ma20": ma20,
         "ma50": ma50,
         "atr_pct": atr14 / prev_close if prev_close else np.nan,
-        "prior_high": _safe(high.iloc[-2]),
-        "prior_low": _safe(low.iloc[-2]),
+        "prior_high": _safe(high.iloc[-1]),
+        "prior_low": _safe(low.iloc[-1]),
         "return_20d": _safe(close.iloc[-1] / close.iloc[-21] - 1) if len(close) >= 21 else np.nan,
     }
 
@@ -72,6 +73,8 @@ def _intraday_metrics(symbol: str, daily: dict):
     if raw.empty:
         return None
     reg = _regular_session(raw)
+    available_now = pd.Timestamp.now(tz="UTC")
+    reg = reg[reg.index + pd.Timedelta(minutes=5) <= available_now]
     if reg.empty:
         return None
     latest_session_date = reg.index[-1].date()
@@ -88,7 +91,7 @@ def _intraday_metrics(symbol: str, daily: dict):
     price = _safe(today["Close"].iloc[-1])
     cur_vwap = _safe(vwap.iloc[-1])
 
-    opening = today.between_time("09:30", "10:00")
+    opening = today.between_time("09:30", "10:00", inclusive="left")
     or_high = _safe(opening["High"].max()) if not opening.empty else np.nan
     or_low = _safe(opening["Low"].min()) if not opening.empty else np.nan
 
@@ -101,7 +104,8 @@ def _intraday_metrics(symbol: str, daily: dict):
     tod_avg = _safe(tod["Volume"].mean(), 0.0) if not tod.empty else 0.0
     volume_ratio_tod = _safe(today["Volume"].tail(3).mean() / tod_avg) if tod_avg > 0 else np.nan
     last_ts = today.index[-1]
-    minutes_from_open = (last_ts.hour * 60 + last_ts.minute) - (9 * 60 + 30)
+    available_ts=last_ts+pd.Timedelta(minutes=5)
+    minutes_from_open = (available_ts.hour * 60 + available_ts.minute) - (9 * 60 + 30)
 
     prev_close = daily.get("prev_close", np.nan)
     session_open = _safe(today["Open"].iloc[0])
@@ -125,6 +129,9 @@ def _intraday_metrics(symbol: str, daily: dict):
             break
 
     return {
+        "quote_available_at": (last_ts + pd.Timedelta(minutes=5)).isoformat(),
+        "data_cutoff": (last_ts + pd.Timedelta(minutes=5)).isoformat(),
+        "feature_method": "completed_5m_prior_daily_v1",
         "price": price,
         "session_open": session_open,
         "gap": gap,
@@ -145,6 +152,7 @@ def _intraday_metrics(symbol: str, daily: dict):
 
 def _market_metrics():
     d = yf.Ticker("SPY").history(period="1y", interval="1d", auto_adjust=False)
+    d = d[pd.DatetimeIndex(d.index).date < pd.Timestamp.now(tz="America/New_York").date()]
     if len(d) < 205:
         return {}
     close = d["Close"].dropna()

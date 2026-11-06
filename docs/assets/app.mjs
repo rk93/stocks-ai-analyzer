@@ -1,4 +1,9 @@
 import {
+  renderQuantLab,
+  renderQuantSummary,
+  bindQuantLab,
+} from "./quant-lab.mjs";
+import {
   publicValuation,
   portfolioRisk,
   stockIndicators,
@@ -441,9 +446,14 @@ function allocationPanel(p, v) {
 function lab() {
   const s = data.backtest?.summary;
   if (!s)
-    return head(
-      "Strategy Lab",
-      "Research dataset unavailable. Retry from Overview.",
+    return (
+      head(
+        "Strategy Lab",
+        "Baseline dataset unavailable. Retry from Overview.",
+      ) +
+      renderQuantLab(data["v4-research"], data["quant-audit"], {
+        compact: true,
+      })
     );
   return (
     head(
@@ -451,6 +461,9 @@ function lab() {
       "Historical baselines preserved. Experimental assumptions are never production signals.",
       `<a class="tag" href="paper-trading.html">Paper trading ↗</a><a class="tag" href="backtest.html">Detailed replay ↗</a>`,
     ) +
+    renderQuantLab(data["v4-research"], data["quant-audit"], {
+      compact: true,
+    }) +
     `<div class="notice">Coverage ${esc(s.coverage_start)} to ${esc(s.coverage_end)} · ${esc(s.method)}. ${esc(s.note)} All three baselines have negative 1R expectancy before costs. No validated profitable strategy is established.</div>` +
     panel(
       "Immutable baseline comparison",
@@ -574,6 +587,7 @@ function insights() {
       `<button class="primary" data-action="journal">+ Record a decision</button><a class="tag" href="prediction-tracker.html">Prediction tracker ↗</a>`,
     ) +
     `<div class="two-col">${panel("Decision journal", state.journal.map((j, i) => `<article class="list-row"><div class="grow">${ticker(j.symbol)} <span class="tag">${esc(j.action)}</span><p>${esc(j.date)}</p><p>${esc(j.thesis)}</p><p>Invalidation: ${esc(j.invalidation)}</p><p>Later observation: ${esc(j.outcome || "Not recorded")}</p></div><button data-journal="${i}">Review</button></article>`).join("") || '<div class="empty">Record your thesis and what would change your mind. Your entries stay private.</div>')}${panel("Research context", `<p>What changed?</p><p class="muted">The published snapshot is ${esc(data.trending?.generated_at || "unavailable")}. No real-time news claims are generated.</p><p>What matters to my portfolio?</p><p class="muted">${selectedP() ? `${selectedP().positions.length} holdings are available for matching against public research. Review freshness before using any signal.` : "Add a local portfolio for holdings-specific research."}</p><p>What deserves attention?</p><p class="muted">Negative baseline expectancy, missing data and concentration are reasons to investigate further.</p>`)}</div>` +
+    renderQuantSummary(data["v4-research"], data["quant-audit"]) +
     panel(
       "Frozen predictions · observed close returns",
       `<div class="scroll"><table><thead><tr><th>Timestamp</th><th>Symbol</th><th>Strategy / original prediction</th><th>Original rationale</th><th>1D observed return</th></tr></thead><tbody>${(
@@ -1442,6 +1456,7 @@ function openStockHash() {
     if (/^[A-Z0-9.^=:/_-]{1,30}$/.test(symbol)) stock(symbol);
   }
 }
+bindQuantLab();
 async function loadData() {
   errors = [];
   await Promise.allSettled(
@@ -1455,6 +1470,8 @@ async function loadData() {
       "prediction-research",
       "manifest",
       "research-diagnostics",
+      "v4-research",
+      "quant-audit",
     ].map(async (k) => {
       try {
         const r = await fetch(`data/${k}.json`);

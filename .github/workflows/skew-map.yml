@@ -24,6 +24,14 @@ on:
       - 'backtest_engine.py'
       - 'strategy_v2.py'
       - 'strategy_v3.py'
+      - 'strategy_v4.py'
+      - 'quant_features.py'
+      - 'quant_execution.py'
+      - 'quant_forward.py'
+      - 'market_sessions.py'
+      - 'quant_audit.py'
+      - 'v4_publish.py'
+      - 'research/v4_config.json'
       - 'paper_trader.py'
       - 'docs/paper-trading.html'
       - 'market_data_provider.py'
@@ -47,21 +55,25 @@ permissions:
 
 concurrency:
   group: skew-refresh-pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   scan:
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.12.14'
           cache: pip
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt -c research/v4_constraints.txt
       - name: Run skew scanner
         env:
           EVENT_NAME: ${{ github.event_name }}
@@ -88,6 +100,9 @@ jobs:
           ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
           ALPACA_PAPER_STRATEGY: V3
         run: python paper_trader.py
+      - name: Run isolated prospective V1–V4 research cohort
+        continue-on-error: true
+        run: python quant_forward.py
       - name: Evaluate saved predictions
         run: python prediction_tracker.py
       - name: Run strategy backtest
@@ -185,6 +200,27 @@ jobs:
           python prediction_research.py
           python publish_manifest.py
           python research_diagnostics.py
+          python quant_audit.py
+          python v4_publish.py
+      - name: Persist observations and page data before publication
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data docs/data
+          if ! git diff --cached --quiet; then
+            git commit -m "data: refresh research dashboards"
+            git push origin HEAD:main
+          fi
+      - name: Preserve prospective paper observations for recovery
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prospective-paper-observations-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            data/quant_forward
+            !data/quant_forward/runner.lock
+          if-no-files-found: warn
+          retention-days: 30
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -192,15 +228,3 @@ jobs:
       - name: Deploy refreshed dashboard
         id: deployment
         uses: actions/deploy-pages@v4
-      - name: Persist observations and page data
-        continue-on-error: true
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data docs/data || true
-          if ! git diff --cached --quiet; then
-            git commit -m "data: refresh research dashboards"
-            if ! git push; then
-              echo "Data commit raced with another main-branch update; dashboard was already deployed from this run."
-            fi
-          fi

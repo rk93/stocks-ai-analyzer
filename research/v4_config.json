@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "strategy_version": "V4.0.0-experimental",
+  "experiment_id": "v4-pit-trend-risk-001",
+  "status": "research-only",
+  "registered_date": "2026-11-05",
+  "selection_basis": "Economic guardrails and implementation audit; not fitted to replay outcomes. Historical evaluation is exploratory because this universe and period have already been inspected.",
+  "score_kind": "uncalibrated evidence coverage, not a probability",
+  "market": {
+    "exchange_timezone": "America/New_York",
+    "maximum_atr_pct": 0.025
+  },
+  "data": {
+    "maximum_intraday_age_minutes": 10,
+    "maximum_daily_age_days": 7,
+    "minimum_volume_history_sessions": 5
+  },
+  "entry": {
+    "minimum_minutes_from_open": 120,
+    "maximum_minutes_from_open": 330,
+    "minimum_relative_strength_20d": 0.0,
+    "minimum_volume_ratio_tod": 1.4,
+    "maximum_vwap_distance": 0.015,
+    "maximum_absolute_gap": 0.05,
+    "maximum_day_change": 0.05,
+    "minimum_momentum_15m": 0.0,
+    "maximum_momentum_15m": 0.02,
+    "minimum_dollar_volume_15m": 1000000.0,
+    "maximum_spread_bps_when_known": 20.0,
+    "earnings_blackout_hours_when_known": 24
+  },
+  "risk": {
+    "minimum_atr_pct": 0.005,
+    "maximum_atr_pct": 0.06,
+    "stop_atr_multiple": 0.5,
+    "minimum_stop_pct": 0.006,
+    "maximum_stop_pct": 0.03,
+    "target_r_multiples": [1.0, 2.0],
+    "portfolio_risk_fraction": 0.005,
+    "maximum_position_fraction": 0.1,
+    "maximum_positions": 5,
+    "maximum_total_open_risk_fraction": 0.025
+  },
+  "execution": {
+    "entry": "next available regular-session bar open after signal cutoff",
+    "slippage_bps_per_side": 7.0,
+    "commission_per_order": 0.0,
+    "same_bar_stop_target": "stop-first; disclose ambiguity",
+    "gap_stop": "adverse opening price",
+    "maximum_holding_sessions": 5
+  },
+  "validation": {
+    "final_test_status": "No untouched historical test established; reserve genuinely prospective signals after registration",
+    "promotion": "Never automatic; require reviewed independent forward evidence",
+    "missing_earnings_or_spread": "Unavailable and disclosed; never backfill current metadata into historical signals",
+    "unused_indicators": ["RSI", "MACD", "options skew", "sentiment", "current sector classifications", "current earnings calendars"]
+  }
+}

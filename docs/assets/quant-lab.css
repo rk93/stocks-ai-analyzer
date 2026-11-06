@@ -1,0 +1,161 @@
+.quant-lab {
+  min-width: 0;
+}
+.quant-lab > .panel,
+.quant-lab > #prospective {
+  margin-bottom: 18px;
+}
+.quant-lab .scroll {
+  max-width: 100%;
+}
+.quant-lab td {
+  vertical-align: top;
+}
+.quant-lab td p {
+  margin: 5px 0 0;
+}
+.quant-lab p {
+  overflow-wrap: anywhere;
+}
+.quant-lab details {
+  min-width: 0;
+}
+.quant-lab .ql-limitations {
+  margin: 16px 0;
+}
+.quant-lab .ql-limitations ul {
+  max-width: 90ch;
+}
+.quant-lab summary {
+  cursor: pointer;
+  color: var(--accent);
+  line-height: 1.6;
+}
+.quant-lab details[open] summary {
+  margin-bottom: 12px;
+}
+.quant-lab details p,
+.quant-lab li {
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+.quant-lab li + li {
+  margin-top: 8px;
+}
+.quant-lab [hidden] {
+  display: none;
+}
+.ql-facts {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 18px;
+}
+.ql-facts dt {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.ql-facts dd {
+  margin: 0;
+  line-height: 1.5;
+}
+.ql-hash {
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+.ql-config {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 24rem;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+.ql-curve {
+  width: 100%;
+  max-height: 330px;
+}
+.ql-scores {
+  width: 100%;
+  margin: 20px 0;
+}
+.ql-finding + .ql-finding {
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.ql-page {
+  max-width: 1480px;
+  margin: auto;
+}
+.ql-page header {
+  height: auto;
+  min-height: 76px;
+  flex-wrap: wrap;
+  padding: 20px 32px;
+}
+.ql-page header a {
+  color: var(--accent);
+}
+.ql-page main {
+  padding: 32px;
+}
+.ql-page .page-head {
+  flex-wrap: wrap;
+}
+.ql-page footer {
+  padding: 20px 32px;
+}
+@media (max-width: 760px) {
+  .ql-facts {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .ql-page main {
+    padding: 24px 16px;
+  }
+  .ql-page header {
+    padding: 18px 16px;
+  }
+  .ql-page .tools {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .ql-page footer {
+    padding: 20px 16px;
+  }
+  .quant-lab .tools label {
+    min-width: 0;
+  }
+  .ql-trades table,
+  .ql-trades tbody,
+  .ql-trades tr,
+  .ql-trades td {
+    display: block;
+    width: 100%;
+  }
+  .ql-trades thead {
+    position: absolute;
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .ql-trades tr {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 14px;
+    padding: 8px;
+  }
+  .ql-trades td {
+    border: 0;
+    padding: 8px;
+    overflow-wrap: anywhere;
+  }
+  .ql-trades td::before {
+    content: attr(data-label);
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+}

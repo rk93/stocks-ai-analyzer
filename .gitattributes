@@ -1,0 +1,4 @@
+# Keep generated research evidence downloadable while focusing PRs on source.
+docs/data/quant-audit.json linguist-generated=true
+docs/data/v4-*.json linguist-generated=true
+research/v4_inputs/** linguist-generated=true

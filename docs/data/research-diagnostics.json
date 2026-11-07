@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": "data/backtest_trades.csv",
-  "split_date": "2026-10-09",
+  "split_date": "2026-10-12",
   "cost_assumption_r": 0.05,
   "bootstrap": "2000 resamples of complete signal-date blocks, fixed seed 2026",
   "status": "descriptive_only_not_untouched_out_of_sample",
@@ -16,163 +16,163 @@
   "strategies": {
     "V1": {
       "all": {
-        "signals": 64,
+        "signals": 65,
         "resolved": 64,
-        "unresolved_or_ambiguous": 0,
+        "unresolved_or_ambiguous": 1,
         "dates": 36,
-        "expectancy_after_assumed_cost_r": -0.30000000000000004,
+        "expectancy_after_assumed_cost_r": -0.33125000000000004,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.5428571428571428,
+        "profit_factor_after_assumed_cost": 0.5075493612078977,
         "date_block_bootstrap_95_interval_r": [
-          -0.5126865671641792,
-          -0.08125000000000004
+          -0.5420634920634921,
+          -0.11896551724137935
         ]
       },
       "earlier_70pct_dates": {
-        "signals": 49,
-        "resolved": 49,
+        "signals": 48,
+        "resolved": 48,
         "unresolved_or_ambiguous": 0,
-        "dates": 27,
-        "expectancy_after_assumed_cost_r": -0.23367346938775516,
+        "dates": 26,
+        "expectancy_after_assumed_cost_r": -0.25833333333333336,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.6239737274220032,
+        "profit_factor_after_assumed_cost": 0.5927750410509031,
         "date_block_bootstrap_95_interval_r": [
-          -0.4944444444444445,
-          0.029999999999999957
+          -0.5142857142857143,
+          0.013829787234042509
         ]
       },
       "later_30pct_dates": {
-        "signals": 15,
-        "resolved": 15,
-        "unresolved_or_ambiguous": 0,
-        "dates": 9,
-        "expectancy_after_assumed_cost_r": -0.5166666666666667,
+        "signals": 17,
+        "resolved": 16,
+        "unresolved_or_ambiguous": 1,
+        "dates": 10,
+        "expectancy_after_assumed_cost_r": -0.55,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.32900432900432897,
+        "profit_factor_after_assumed_cost": 0.3015873015873015,
         "date_block_bootstrap_95_interval_r": [
-          -0.8833333333333334,
-          -0.25000000000000006
+          -0.8961538461538462,
+          -0.30000000000000004
         ]
       },
       "exploratory_volume_tod_ge_1_5": {
-        "signals": 55,
+        "signals": 56,
         "resolved": 55,
-        "unresolved_or_ambiguous": 0,
+        "unresolved_or_ambiguous": 1,
         "dates": 33,
-        "expectancy_after_assumed_cost_r": -0.25000000000000006,
+        "expectancy_after_assumed_cost_r": -0.2863636363636364,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.6031746031746031,
+        "profit_factor_after_assumed_cost": 0.5588235294117646,
         "date_block_bootstrap_95_interval_r": [
-          -0.4968085106382979,
-          0.021428571428571384
+          -0.5254098360655738,
+          -0.01428571428571433
         ]
       }
     },
     "V2": {
       "all": {
-        "signals": 182,
-        "resolved": 182,
-        "unresolved_or_ambiguous": 0,
-        "dates": 51,
-        "expectancy_after_assumed_cost_r": -0.13791208791208795,
+        "signals": 183,
+        "resolved": 181,
+        "unresolved_or_ambiguous": 2,
+        "dates": 52,
+        "expectancy_after_assumed_cost_r": -0.1549723756906078,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.7585377585377585,
+        "profit_factor_after_assumed_cost": 0.7328571428571429,
         "date_block_bootstrap_95_interval_r": [
-          -0.3284810126582279,
-          0.043596059113300445
+          -0.3308988764044944,
+          0.020270270270270226
         ]
       },
       "earlier_70pct_dates": {
-        "signals": 129,
-        "resolved": 129,
+        "signals": 131,
+        "resolved": 131,
         "unresolved_or_ambiguous": 0,
-        "dates": 36,
-        "expectancy_after_assumed_cost_r": -0.2282945736434109,
+        "dates": 37,
+        "expectancy_after_assumed_cost_r": -0.21030534351145042,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.6309523809523809,
+        "profit_factor_after_assumed_cost": 0.6547619047619048,
         "date_block_bootstrap_95_interval_r": [
-          -0.45000000000000007,
-          -0.01688741721854309
+          -0.4346153846153846,
+          0.0010948905109488608
         ]
       },
       "later_30pct_dates": {
-        "signals": 53,
-        "resolved": 53,
-        "unresolved_or_ambiguous": 0,
+        "signals": 52,
+        "resolved": 50,
+        "unresolved_or_ambiguous": 2,
         "dates": 15,
-        "expectancy_after_assumed_cost_r": 0.08207547169811316,
+        "expectancy_after_assumed_cost_r": -0.010000000000000044,
         "median_after_assumed_cost_r": 0.95,
-        "profit_factor_after_assumed_cost": 1.1801242236024843,
+        "profit_factor_after_assumed_cost": 0.98015873015873,
         "date_block_bootstrap_95_interval_r": [
-          -0.2558823529411765,
-          0.4261904761904762
+          -0.35000000000000003,
+          0.29999999999999993
         ]
       },
       "exploratory_volume_tod_ge_1_5": {
-        "signals": 157,
-        "resolved": 157,
-        "unresolved_or_ambiguous": 0,
-        "dates": 50,
-        "expectancy_after_assumed_cost_r": -0.17101910828025482,
+        "signals": 150,
+        "resolved": 148,
+        "unresolved_or_ambiguous": 2,
+        "dates": 49,
+        "expectancy_after_assumed_cost_r": -0.17162162162162167,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.7094155844155844,
+        "profit_factor_after_assumed_cost": 0.708548479632817,
         "date_block_bootstrap_95_interval_r": [
-          -0.36764705882352944,
-          0.013157894736842061
+          -0.3709876543209877,
+          0.02482993197278907
         ]
       }
     },
     "V3": {
       "all": {
-        "signals": 203,
-        "resolved": 202,
-        "unresolved_or_ambiguous": 1,
+        "signals": 208,
+        "resolved": 205,
+        "unresolved_or_ambiguous": 3,
         "dates": 52,
-        "expectancy_after_assumed_cost_r": -0.15891089108910894,
+        "expectancy_after_assumed_cost_r": -0.16219512195121955,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.7270408163265306,
+        "profit_factor_after_assumed_cost": 0.7222222222222222,
         "date_block_bootstrap_95_interval_r": [
-          -0.34670329670329675,
-          0.02177033492822962
+          -0.35054644808743174,
+          0.02766990291262131
         ]
       },
       "earlier_70pct_dates": {
-        "signals": 140,
-        "resolved": 140,
+        "signals": 146,
+        "resolved": 146,
         "unresolved_or_ambiguous": 0,
-        "dates": 35,
-        "expectancy_after_assumed_cost_r": -0.20714285714285718,
+        "dates": 36,
+        "expectancy_after_assumed_cost_r": -0.17328767123287678,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.6590241034685479,
+        "profit_factor_after_assumed_cost": 0.7061556329849011,
         "date_block_bootstrap_95_interval_r": [
-          -0.4298449612403101,
-          -0.0031250000000000444
+          -0.3885826771653544,
+          0.02692307692307688
         ]
       },
       "later_30pct_dates": {
-        "signals": 63,
-        "resolved": 62,
-        "unresolved_or_ambiguous": 1,
-        "dates": 17,
-        "expectancy_after_assumed_cost_r": -0.050000000000000044,
+        "signals": 62,
+        "resolved": 59,
+        "unresolved_or_ambiguous": 3,
+        "dates": 16,
+        "expectancy_after_assumed_cost_r": -0.13474576271186445,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.9047619047619047,
+        "profit_factor_after_assumed_cost": 0.7633928571428571,
         "date_block_bootstrap_95_interval_r": [
-          -0.4123188405797102,
-          0.28333333333333327
+          -0.48661971830985923,
+          0.18404255319148932
         ]
       },
       "exploratory_volume_tod_ge_1_5": {
-        "signals": 175,
-        "resolved": 174,
-        "unresolved_or_ambiguous": 1,
-        "dates": 51,
-        "expectancy_after_assumed_cost_r": -0.1994252873563219,
+        "signals": 173,
+        "resolved": 170,
+        "unresolved_or_ambiguous": 3,
+        "dates": 50,
+        "expectancy_after_assumed_cost_r": -0.19117647058823534,
         "median_after_assumed_cost_r": -1.05,
-        "profit_factor_after_assumed_cost": 0.6695238095238095,
+        "profit_factor_after_assumed_cost": 0.6809032891507117,
         "date_block_bootstrap_95_interval_r": [
-          -0.3833333333333334,
-          -0.0207602339181287
+          -0.37051282051282053,
+          -0.021428571428571474
         ]
       }
     }

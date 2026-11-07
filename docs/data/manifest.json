@@ -1,133 +1,133 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-07T00:02:05.071205+00:00",
+  "generated_at": "2026-11-07T02:04:42.924903+00:00",
   "datasets": {
     "skew": {
       "schema_version": 1,
-      "generated_at": "2026-11-07T00:02:04.677912+00:00",
+      "generated_at": "2026-11-07T02:04:34.615202+00:00",
       "market_data_timestamp": null,
       "latest_record_timestamp": "2026-11-07",
       "source": "data/skew_latest.csv",
       "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
       "pipeline_status": "published_snapshot",
       "validity": "unknown_quote_freshness",
-      "publication_age_seconds": 0.393293,
+      "publication_age_seconds": 8.309701,
       "stale_publication": false,
       "coverage": {
-        "source_rows": 32,
+        "source_rows": 124,
         "market_data_cutoff_verified": false
       },
-      "sha256": "3f861971398d818d40abe177617b0271f2b98d4fbc0c7599f88769ab2f7e72e4"
+      "sha256": "357add1c6098744bee340fc701f4e0e728eabe2f5c52e972daf9c8dbf7e6f780"
     },
     "trending": {
       "schema_version": 1,
-      "generated_at": "2026-11-07T00:02:04.803636+00:00",
+      "generated_at": "2026-11-07T02:04:34.749282+00:00",
       "market_data_timestamp": null,
       "latest_record_timestamp": null,
       "source": "data/trending_latest.csv",
       "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
       "pipeline_status": "published_snapshot",
       "validity": "unknown_quote_freshness",
-      "publication_age_seconds": 0.267569,
+      "publication_age_seconds": 8.175621,
       "stale_publication": false,
       "coverage": {
         "source_rows": 163,
         "market_data_cutoff_verified": false
       },
-      "sha256": "b65fbb5ff1ef2b6c37042d8716b4f2cd01bef62d2cacfe9acf25e7e887273724"
+      "sha256": "a7d1f4631220f8df6ae2ca8751d4709c3df1e15a2f06b9854ce94f9e5a04ef34"
     },
     "day-opportunities": {
       "schema_version": 1,
-      "generated_at": "2026-11-07T00:02:04.843552+00:00",
+      "generated_at": "2026-11-07T02:04:34.793423+00:00",
       "market_data_timestamp": null,
       "latest_record_timestamp": null,
       "source": "data/day_opportunities_latest.csv",
       "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
       "pipeline_status": "published_snapshot",
       "validity": "unknown_quote_freshness",
-      "publication_age_seconds": 0.227653,
+      "publication_age_seconds": 8.13148,
       "stale_publication": false,
       "coverage": {
         "source_rows": 36,
         "market_data_cutoff_verified": false
       },
-      "sha256": "a79a5a7ff51799454d57ded568c20f2ff6c65983db6b5e6f5dad47bb1633633b"
+      "sha256": "243c98330808109b83db71f16d4f45f430d24b8313849b5c57881c9eadd698a3"
     },
     "backtest": {
       "schema_version": 1,
-      "generated_at": "2026-11-07T00:02:04.826950+00:00",
+      "generated_at": "2026-11-07T02:04:34.776028+00:00",
       "market_data_timestamp": null,
-      "latest_record_timestamp": "2026-11-04T13:30:00-05:00",
+      "latest_record_timestamp": "2026-11-06T13:30:00-05:00",
       "source": "data/backtest_trades.csv",
       "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
       "pipeline_status": "published_snapshot",
       "validity": "unknown_quote_freshness",
-      "publication_age_seconds": 0.244255,
+      "publication_age_seconds": 8.148875,
       "stale_publication": false,
       "coverage": {
-        "source_rows": 449,
+        "source_rows": 456,
         "market_data_cutoff_verified": false
       },
-      "sha256": "d8c4c343a659bebf1f60d0ee9f810a6055aca799fbb200d05ee25fee9bfd3ba5"
+      "sha256": "952826c8c34dd9fdf49a38ccea92e110f3e4a582cc21a4ab00ef9c62a2fc52c5"
     },
     "prediction-tracker": {
       "schema_version": 1,
-      "generated_at": "2026-11-07T00:02:04.809052+00:00",
+      "generated_at": "2026-11-07T02:04:34.755370+00:00",
       "market_data_timestamp": null,
       "latest_record_timestamp": "2026-11-05T02:31:04.761443+00:00",
       "source": "data/prediction_tracker.csv",
       "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
       "pipeline_status": "published_snapshot",
       "validity": "unknown_quote_freshness",
-      "publication_age_seconds": 0.262153,
+      "publication_age_seconds": 8.169533,
       "stale_publication": false,
       "coverage": {
         "source_rows": 336,
         "market_data_cutoff_verified": false
       },
-      "sha256": "dec067d9380c5651de4cc0ea2d338006705e59c443c099476124e69d586ef702"
+      "sha256": "21da1254120740b434f8fab004b441fe2884cf9a9e39f4849c380fac074d49b8"
     },
     "prediction-research": {
       "schema_version": 1,
-      "generated_at": "2026-11-07T00:02:05.024221+00:00",
+      "generated_at": "2026-11-07T02:04:42.876478+00:00",
       "market_data_timestamp": null,
       "latest_record_timestamp": null,
       "source": "data/predictions.csv",
       "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
       "pipeline_status": "published_snapshot",
       "validity": "unknown_quote_freshness",
-      "publication_age_seconds": 0.046984,
+      "publication_age_seconds": 0.048425,
       "stale_publication": false,
       "coverage": {
         "source_rows": 336,
         "market_data_cutoff_verified": false
       },
-      "sha256": "5ac44411ea4bde54ae0ca623f4babb7c8bbe31826781386617fa90d22a966427"
+      "sha256": "d852d456e3aa3bf044ee01c9d911dde02c780b24e2101f40bee622b0349ebe3c"
     },
     "paper-trading": {
       "schema_version": 1,
-      "generated_at": "2026-11-07T00:02:04.821582+00:00",
+      "generated_at": "2026-11-07T02:04:34.768558+00:00",
       "market_data_timestamp": null,
-      "latest_record_timestamp": "2026-11-07T00:01:31.991906+00:00",
+      "latest_record_timestamp": "2026-11-07T01:59:37.112967+00:00",
       "source": "data/paper_equity.csv",
       "provenance": "Existing Python pipeline; Yahoo/yfinance market inputs; see engine execution assumptions.",
       "pipeline_status": "published_snapshot",
       "validity": "unknown_quote_freshness",
-      "publication_age_seconds": 0.249623,
+      "publication_age_seconds": 8.156345,
       "stale_publication": false,
       "coverage": {
-        "source_rows": 90,
+        "source_rows": 91,
         "market_data_cutoff_verified": false
       },
-      "sha256": "1e82b102f87f66d1744c86eb02e003b48ac0917f4940e07675605081ec5065b6"
+      "sha256": "1c4a228012ed88f7261ef5a03e106bdc8f0cfbe840e3950c684843db450d2125"
     },
     "portfolio-market": {
       "schema_version": 1,
-      "generated_at": "2026-11-06T02:34:02.294460+00:00",
+      "generated_at": "2026-11-07T02:04:35.009407+00:00",
       "market_data_timestamp": null,
       "market_data_session_range": {
-        "earliest_last_session": "2026-11-04",
-        "latest_last_session": "2026-11-05"
+        "earliest_last_session": "2026-11-05",
+        "latest_last_session": "2026-11-06"
       },
       "source": "portfolio_market_data.py: fixed public universe; Yahoo Finance via yfinance",
       "validity": "dated_completed_session_observations",
@@ -136,7 +136,7 @@
         "requested": 42,
         "available": 42
       },
-      "sha256": "5eaf3ece2b51b615aa325f4388c4b7f11f845750829f2f4d392b07febb52741b",
+      "sha256": "b24800d6788fd2a42e04555acf8d8a32102530f892d5ca7079f013c78d96fc7f",
       "note": "Clients check individual close and FX dates at runtime. Generated time does not establish quote freshness."
     }
   },

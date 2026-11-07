@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T19:55:15.488520+00:00",
+  "generated_at": "2026-11-07T00:01:31.998431+00:00",
   "mode": "local",
   "execution_method": "guarded_sampled_quote_v2",
   "protocol_changed_at": "2026-11-06T19:55:14.773579+00:00",
@@ -13,13 +13,13 @@
   "benchmarks": {
     "SPY": {
       "start_price": 773.7349853515625,
-      "price": 737.22998046875,
-      "return": -0.04718024333128179
+      "price": 735.2899780273438,
+      "return": -0.04968756493122828
     },
     "QQQ": {
       "start_price": 740.3200073242188,
-      "price": 657.905029296875,
-      "return": -0.1113234509563249
+      "price": 656.0999755859375,
+      "return": -0.11376165834377838
     }
   },
   "strategies": {
